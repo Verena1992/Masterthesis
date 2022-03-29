@@ -1,0 +1,450 @@
+\documentclass[12pt,a4paper]{article}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+%\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[printonlyused]{acronym}
+\usepackage[font={small}]{caption}
+\usepackage[nopostdot]{glossaries}
+%\usepackage[toc]{glossaries}
+%\usepackage[Parameter]{glossaries}, https://ittechnick.de/latex-glossar-erstellen/
+\usepackage{biblatex}
+%\usepackage[%
+%backend=biber,
+%citestyle=numeric-comp
+%]{biblatex}
+%\usepackage{csquote}
+%\usepackage[style=authoryear, sorting=nyt]{biblatex}
+%\addbibresource{bibliography.bib}
+\bibliography{bibliography}
+\usepackage{listings}
+\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt}
+\lstset{language=bash}
+\usepackage{textcmds}
+
+
+
+
+%\bibliographystyle{unsrt}
+\parindent0cm %Verhindern der Absatzeinrückung (im Vorspann)
+\graphicspath{ {./figures/} }
+
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{
+\includegraphics[width=6cm]{logo}}
+\fancyhead[R]{}
+\pagestyle{plain}
+\makeglossaries
+\newglossaryentry{magistrale Zubereitungen}{name={magistrale Zubereitungen},description={gemäß ABO 2005 §20(1) handelt es sich dabei um Arzneimittel, die in einer Apotheke durch einen Apotheker/eine Apothekerin nach ärztlicher oder zahnärztlicher Verschreibung für einen bestimmten Patienten/eine bestimmte Patientin bzw. nach tierärztlicher Verschreibung für ein bestimmtes Tier zubereitet werden. }}
+
+\newglossaryentry{offizinale Zubereitungen}{name={offizinale Zubereitungen},description={gemäß ABO 2005 §20(2) handelt es sich dabei um Arzneimittel, die in einer Apotheke nach einer Monographie des Arzneibuches nach § 1 des Arzneibuchgesetzes hergestellt werden und dazu bestimmt sind, in der Apotheke, in der sie hergestellt worden ist, unmittelbar an Verbraucher/Verbraucherinnen abgegeben zu werden }}
+
+\newglossaryentry{Hilfsstoff}{name={Hilfsstoff},description={gemäß ABO 2009 1. Abschnitt §2: jeder Bestandteil eines Arzneimittels mit Ausnahme des Wirkstoffs und des Verpackungsmaterials}}
+
+\newglossaryentry{Rezepturvorrat}{name={Rezepturvorrat},description={laut ABO 2005 dürfen magistrale und offizinale Zubereitungen auf Vorrat hergestellt werden, sofern ein vorhersehbarer, wiederkehrender Bedarf gegeben ist.}}
+%Fertiggrundlage
+%Wirkstoff 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+
+\begin{titlepage}
+	\centering
+	\includegraphics[width=0.5\textwidth]{logo}\par\vspace{1cm}
+	%{\scshape\LARGE Studiengang Bio Data Science\par}
+	\vspace{1cm}
+	{\scshape\Large Research Proposal\par}
+	\vspace{1.5cm}
+	{\LARGE\bfseries Konzeption und Implementierung einer interaktiven 
+	Webanwendung für die Arzneimittelherstellung in österreichischen Apotheken \par}
+	\vspace{2cm}
+	{\large\itshape Verena Gebhart\par}
+	\vspace{0.5cm}
+	persönliche Identifizierung: \textbf{118797}
+	%Personal Identification: \textbf{118797}
+	\vfill
+	Betreuer\par
+	Univ.-Prof. Dipl.-Ing. Dr. Bernhard Pfeifer
+	%Dr.~Mark \textsc{Brown}
+
+	\vfill
+
+% Bottom of the page
+	{\large \today\par}
+\end{titlepage}
+
+
+\tableofcontents
+\newpage
+\section{Abstract}
+
+Neben einer Vielzahl industriell erzeugter Medikamente, existieren auch Medikamente, die im Labor von Apotheken speziell für einzelne Kunden hergestellt werden. 
+
+
+\section{Gegenstand des Projekts}
+%\section{Topic of the project}
+
+Ziel dieser Arbeit ist es eine interaktive Webanwendung zu erstellen. 
+
+Diese soll einen Beitrag zur Vereinheitlichung und Standardisierung der Arzneimittelherstellung in österreichischen Apotheken leisten. 
+
+Die Zusammensetzung einer Magistralen Rezeptur wird von einem Arzt/einer Ärztin verschrieben. 
+
+Die App soll vor der Herstellung des Arzneimittels die ärztlichen Verordnungen prüfen. Ziel dieser Prüfungen ist es, strukturiert mögliche Fehler schon vorab herauszufinden, um eine stabile und sichere Rezeptur herzustellen. 
+
+Fehler passieren überall, auch wenn Fehler in der Apotheke kaum veröffentlicht werden, so kommen sie doch vor. 
+
+Häufig wird eine Rezeptur durch eine einzelne Person unter erheblichem Zeitdruck, während des laufenden Apothekenbetriebs, angefertigt. Infolge der erhöhten Ablenkung und dem Gefühl einer Routine können sich leicht Flüchtigkeitsfehler einschleichen \cite{DAZ.online.2015}.
+Die tatsächliche Anzahl der Fehler lässt sich schwer abschätzen, weil Fehler meist nur bekannt werden, wenn sie fatale Folgen verursachen. Ein Großteil der Arzneimittel, die hergestellt werden, dienen der topisch Anwendung. Fehler bei topischen Arzneimittel führen häufig nicht zu schwerwiegenden Symptomen, sondern zu einer schlechteren Verträglichkeit oder ein Ausbleiben der Wirkung. Dies bewirkt vor allem Verwirrung bei der weiteren Diagnosestellung. Die Tatsache, dass magistrale Arzneimittel meist speziell für eine einzige Person hergestellt werden, erschwert es zusätzlich einen Zusammenhang zwischen auftretenden Symptomen und einer fehlerhaften Arzneimittelherstellung zu finden. 
+
+
+Seit 2013 gibt es ein eigenes Meldesystem der Apothekerkammer für fehlerhaftes Verhalten \cite{.25.03.2022b}. %https://www.apothekerkammer.at/demo-cirs-form
+Eine Meldung daraus betrifft beispielsweise ein Nicht-Erhalt einer Schwangerschaft aufgrund einer Fehldosierung von Progesteronzäpfchen \cite{Holzer.2019}.
+
+Der Arbeitskreis Klinische Toxikologie der Gesellschaft für Toxikologische und Forensische
+Chemie veröffentlichte weitere Fallbeispiele. So erlitt z. B.  ein Substitutionspatient eine schwere Opioid-Vergiftung aufgrund einer 10-fachen Überdosierung, ein Kind hatte schwere Nebenwirkungen aufgrund einer überdosierten Salicylsäure-haltigen Salbe und der Wirkstoff Amphetamin wurde mit Atropin vertauscht und an einem Kind verabreicht \cite{DAZ.online.2015}. %https://www.deutsche-apotheker-zeitung.de/daz-az/2015/daz-22-2015/trotz-aller-sorgfalt
+
+
+
+Die App soll ein praxistauglicher, nützlicher Begleiter im Apothekenalltag werden.
+Sie soll Fehler verhindern und dadurch eine größtmögliche Patientensicherheit gewährleisten. 
+
+
+% und solche Fehler verhindern um durch die verbesserte Qualität die größtmögliche Patientensicherheit zu gewährleisten.
+
+
+
+%Die Folgen jedoch verhältnismäßig überschaubar, da meist nur eine einzige Person betroffen ist
+
+
+
+
+
+
+\section{Stand der Forschung}
+%\section{State of research}
+Arzneimittel, die in der Apotheke hergestellt werden dürfen, kann man folgendermaßen unterteilen: \gls{magistrale Zubereitungen}, \gls{offizinale Zubereitungen}, \gls{Rezepturvorrat} und apothekeneigene Arzneispezialitäten.
+Im Arzneibuchgesetz 2012 § 1 werden die Regeln für die Herstellung von Arzneimitteln festgelegt.
+Dieses beinhaltet sowohl das europäische als auch das österreichische Arzneibuch.
+Soweit das Arzneibuch keine Vorschriften über die Herstellung einer Zubereitung enthält, ist sie nach dem Stand der Wissenschaften herzustellen (§ 20(4) \ac{ABO}).  Was der Stand der Wissenschaft ist, wird von keinem Gesetz genauer definiert. 
+Das Arzneibuch teilt Arzneimittel in verschiedenen Arzneiformen ein. Kapseln, Augentropfen, Zäpfchen, Gele, Salben und Cremes sind die gängigsten Arzneiformen die in öffentlichen Apotheken hergestellt werden. 
+
+
+In der \ac{AMBO} sind generelle Herstellungsvorschriften für Betriebe, die Arzneimittel oder Wirkstoffe herstellen, verankert. 
+Dort wird unter anderem die \qq{gute Herstellungspraxis} als Teil der pharmazeutischen Qualitätssicherung definiert. Dadurch wird gewährleistet, dass Arzneimittel und Wirkstoffe nach Qualitätsstandards hergestellt und kontrolliert werden. %die der vorgesehenen Verwendung entsprechen.
+In Österreich sind öffentliche Apotheken allerdings von den Vorgaben der \ac{AMBO} § 1(3) ausgenommen.
+
+In anderen europäischen Ländern wurden die Vorschriften für die öffentlichen Apotheken angepasst \cite{Holzer.2019}. % https://phaidra.univie.ac.at/open/o:1353715. 
+In Deutschland z. B. ist seit 2012 nach § 7 Abs 1b ApBetrO die Durchführung einer Plausibilitätsprüfung vor Herstellung von Rezepturarzneimittel verpflichtend. Durch die österreichischen \ac{ABO} wird eine ähnliche Prüfung gefordert, aber kein so strukturiertes Vorgehen wie die Plausibilitätsprüfung in Deutschland fixiert. 
+
+%Im Prinzip wird auch in der österreichischen ABO im § 21 eine ähnliche Prüfung gefordert, 
+%jedoch kein derartig strukturiertes Vorgehen wie die deutsche Plausibilitätsprüfung fixiert.
+%In § 21 ABO heißt es: „Magistrale Zubereitungen müssen der Verschreibung entsprechen.
+%Enthält eine Verschreibung einen erkennbaren Irrtum, ist sie unleserlich oder ergeben sich
+%sonstige Bedenken, so darf das Arzneimittel nicht hergestellt werden, bevor die Unklarheit
+%beseitigt ist [2].“
+
+
+
+Die Herstellung von magistralen Rezepturen wird im Vergleich zu Arzneimittel die industriell hergestellt werden, wenig kontrolliert, da sie nicht zulassungspflichtig sind \cite{Holzer.2019}.%  https://phaidra.univie.ac.at/open/o:1353715
+
+Existierende Richtlinien sind für die Praxis oftmals nicht ausreichend,  % http://juniormed.at/pdf/JUNIORMED_Kompendium.pdf
+bzw. fehlen Standards oder Leitlinien für die magistralen Rezepturherstellung \cite{.11.11.2019,Holzer.2019}.% https://phaidra.univie.ac.at/open/o:1353715
+
+Um eine optimale  Qualität zu gewährleisten,  bedarf es einer genauen Analyse von verschriebenen Rezepturen. Vorallem stellt die Abschätzung von Inkompatibilitäten zwischen Wirkstoffen bzw. zwischen Wirkstoff und Hilfsstoffe eine große Herausforderung dar. Zusätzlich sollte die Unbedenklichkeit, Sinnhaftigkeit, Machbarkeit, Stabilität und Haltbarkeit der Rezeptur abgeschätzt werden. 
+%.https://www.buecher.de/shop/apotheke/magistrale-rezepturen/danninger-lukas/products_products/detail/prod_id/41016980/
+Wesentlich ist die Kontrolle der verordneten Wirkstoffdosierung. Diese sollte sich in einem therapeutisch üblichen Bereich befinden. Dass bei Kindern fälschlicherweise eine Erwachsenendosis verschrieben wird, stellt eine mögliche Fehlerquelle dar.
+%Erschwerend kommt hinzu, dass die Herstellung sehr rasch erfolgen muss, um den Kunden zufrieden zu stellen. Auch wird häufig der Arbeitsprozess unterbrochen, um Kunden zu bedienen oder ein Telefonanruf entgegenzunehmen. Was 
+
+Die Herstellung muss sehr rasch erfolgen, um den Kunden zufrieden zu stellen. Auch wird häufig der Arbeitsprozess unterbrochen, um Kunden zu bedienen oder einen Telefonanruf entgegenzunehmen, was die Durchführung eine Rezepturanalyse erschwert. Zeitdruck und Ablenkungen machen die Durchführung von Berechnungen fehleranfällig. Gängige Berechnungen werden in der Praxis häufig von \ac{PKAs} durchgeführt und von ApothekerInnen kontrolliert und abgezeichnet. Beispiele dafür sind Berechnungen von Wirkstoffeinwaagen, Verdünnungen, Menge der Zäpfchengrundlage, Hilfstoffmenge bei der Kapselherstellung und die Menge an \ac{NaCl} um Augentropfen zu isotonisieren.
+
+
+
+%Für einige Fragestellungen/Kontrollen sind bereits Lösungen vorgegeben, es ist aber schwierig, unter den zahlreichen Quellen, welche meist nur in gedruckter Form zu Verfügung stehen, sie in adequater Zeit zu finden. %Durch dieses 4 Augen prinzip 
+
+Es gibt zahlreiche gesetzliche und wissenschaftliche Vorgaben die teilweise nicht klar formuliert beziehnungsweise auf etlichen gedruckten Quellen verteilt sind. Versuche, diese in Form von digitalen Tools strukturierter zugänglich zu machen, gibt es vor allem in Deutschland. \qq{Labor+} ist eine webbasierte Laborsoftware, um die in Deutschland vorgeschriebene Plausibilitätsprüfung zu automatisieren und die Suche auf bereits standardisierten Rezepturen zu vereinfachen. Auf der \qq{PTA-heute} Homepage findet man einen Rezepturrechner um das Berechnen der Hartfettgrundlage für Zäpfchen zu beschleunigen \cite{Home.22.03.2022}.
+%https://www.ptaheute.de/aktuelles/2021/08/05/hurra-hurra-die-neuen-rezepturrechner-sind-da
+
+In Österreichischen Apotheken wird noch kein Tool eingesetzt. Ein Versuch war der Antibiotika-Dosierungsrechner, bereitgestellt von Mag. pharm. Viktor Hafner, welcher aber von der AGES - Medizinproduktaufsicht vom Netz genommen wurde \cite{.22.03.2022}. %https://www.antibiotikarechner.at/
+
+  
+
+
+
+
+\section{Ziele der Masterarbeit}
+
+
+
+Arzneistoffe verhalten sich auch über Landesgrenzen ident, doch variieren Gesetzliche Bestimmungen für die Arzneimittelherstellung,  wie z. B. die Rezeptpflicht oder die Kostenübernahme von Sozialversicherungsträgern. 
+
+Es stellt sich nun die Frage, ob es möglich ist wissenschaftliche Informationen aus ausländischer Literatur mit den gesetzlichen Vorgaben in Österreich zu verknüpfen und es in einem einfach zu bedienenden Tool zur Verfügung zu stellen. 
+
+Dabei soll hauptsächlich auf die Herstellung von den gängigen Arzneiformen eingegangen werden, welche sich im Herstellungsablauf gravierend unterscheiden. 
+
+Allen gemeinsam ist der erste Schritt, nämlich die Kontrolle, ob es sich bei der verordneten Rezeptur um eine schon standardisierten Rezeptur handelt. 
+
+%\ac{NFA}, stellt die österreichische Rezeptursammlung dar, \ac{DAC}/\ac{NRF} ist die deutsche Sammlung. Weitere Quellen von standardisierte Rezepturen, sind die Monographien der Arzneibücher, JUNIORMED und Unterlagen von diverse Vorträge.
+Die Durchsicht aller Quellen beansprucht einige Zeit, zumal sie in unterschiedlicher Form (CD-ROM, Druckwerk, online) vorliegen. 
+%Um dieses Problem zu lösen wurden in Deutschland der Rezepturfinder etabliert. Dort können DAC/NRF Abonnenten auf eine Datenbank mit anerkannten Rezepturen zugreifen. 
+Das Tool soll eine einfache, schnelle Verlinkung zu Quellen von standardisierten Rezepturen mit den jeweiligen Herstellungshinweisen herstellen. 
+
+Handelt es sich bei der verordneten Rezeptur nicht um eine standardisierte Rezeptur, sind weitere Schritte erforderlich.
+
+
+Befinden sich verordnete Wirkstoffmengen nicht in einer üblichen Dosierung, kann dies schwere Folgen verursachen. Ist die Dosierung zu gering, bleibt der Therapieerfolg aus, ist sie hingegen zu hoch, kann es zu Intoxikationen führen. Sie ist deshalb vor jeder Herstellung zu überprüfen. 
+
+%Vorallem dass für Kinder die dosierung entsprechend angepasst wurde muss kontrolliert werden. 
+Im \ac{ÖAB} waren Maximaldosen von Arzneistoffen gelisten.
+
+%wie sie für Kinder berechnet werden soll(5 prozent der Erwachsenendosis je Lebensjahr), 
+Dieses Kapitel wurde jedoch in der letzten Ausgabe gestrichen. Maximaldosen findet man jetzt vor allem in den Fachinformationen von Arzneispezialitäten oder in pharmakologischen Fachliteraturen. 
+Das Tool soll die Möglichkeit bieten, die Maximaldosen der jeweiligen Arzneistoffe, nachdem nach diesen recherchiert wurde, langfristig abzuspeichern.
+
+Das Tool sollte die Möglichkeit bieten nach Recherche der jeweiligen Maximaldosen, diese langfristig abzuspeichern. So kann eine zukünftige Überschreitung der Dosierung des entsprechenden Arzneistoffes automatisch abgeprüft werden.
+%Damit könnte bei wiederholter Verwendung von Arzneistoffe, deren Maximaldosis bereits abgespeichert wurde,   eine Überschreitung der Dosierung automatisch abgeprüft werden. 
+Auch sollen Dosierangaben von gängigen Arzneistoffen bereits in der App hinterlegt sein.
+
+%Wirkstoffe sollten außerdem automatisiert kontrolliert werden, ob sie rezeptpflichtig sind, ob die Kosten von  Krankenversicherungsträger übernommen werden, ein obsoletes bedenkliche Arzneimittel handelt, der Rezeptpflichtstatus, ob die gesetztlich erlaubte Abgabemenge überschritten wird, ob der verarbeitung bestimmte Sichheitsmaßnahmen ergriffen werden müssen und ob eine bestimmte Beschriftung bei der Abgabe erforderlich ist.
+
+Weitere Prüfungen der Rezeptur, die integriert werden sollen, sind: Rezeptpflichtstatus, Kostenübernahme von Krankenversicherungsträgern, Unbedenklichkeit des Arzneimittels (obsolet ja oder nein), Überschreitung der gesetzlich erlaubten Abgabemenge (laut Psychotropenverordnung), Art der einzuhaltenden Sichheitsmaßnahmen bei der Verarbeitung und das Vorliegen von verpflichtender Kennzeichung.
+
+
+
+Gängige Berechnungen sollten automatisch durchgeführt werden und als Gegenkontrolle dienen um mögliche Fehler zu vermeiden.
+
+% wie Wirkstoffeinwaagen, Verdünnungen, Menge von Zäpfchengrundlage, Hilfstoffmenge bei der Kapselherstellung und die Menge von NaCl-Lösung um Augentropfen zu isotonisieren, 
+
+Ergänzend soll die Dokumentation von hergestellten Rezepturen ermöglicht werden.
+
+
+
+
+
+
+
+%Die Maximal-dosen für Kinder und Jugendliche betragen im allgemeinen 5 % der Erwachsenendosis je Lebensjahr, sofern bei den einzelnen Artikeln keine besonderen Angaben gemacht werden
+%Dokumentation von Rezepturen
+
+\section{Illustration der gewählten Forschungsmethoden}
+%\section{Illustration of the chosen research methods}
+
+\subsection{Git, GitHub}
+
+Um nach einem Datenverlust oder sonstigen Fehlern, alte Versionen der Skripten wiederherstellen zu können, wird das Versionsverwaltungssystem Git eingesetzt. Zusätzlich soll das Projekt in einer GitHub repository abgespeichert werden, wodurch eine Sicherheitskopie erstellt und das Teilen der Dateien ermöglicht wird \cite{Blischak.2016}. 
+%was eine Sicherheitskopie darstellt sowie das Teilen der Dateien ermöglicht. 
+% 
+
+%Versionsverwaltungssystem 
+%der wichtigste ist die Wiederherstellbarkeit alter Versionen nach einem Datenverlust
+%oder sonstigen Fehlern in einer neueren Version.
+
+
+
+\subsection{Shiny}
+
+Webapplikationen können mit jedem beliebigen Webbrowser benutzt werden und erfordern im Gegensatz zu Desktop-Anwendungen keine Softwareinstallation auf dem Rechner des Benutzers. 
+Webbasierte Programme sind deshalb an verschiedenen Geräten (Mac, Pc, Tablet) flexibel aufrufbar \cite{.03.03.2022b}
+
+Shiny ist ein R-Paket, mit dem man auf einfache Weise umfangreiche, interaktive Webanwendungen erstellen kann. Durch Bereitstellung von Benutzeroberflächen-Funktionen sind keine fundierten Kenntnisse von Webtechnologien wie HTML, CSS und JavaScript nötig. Shiny führt eine neue Art der Programmierung ein, die sogenannte reaktive Programmierung, die automatisch die Abhängigkeiten von Codeteilen verfolgt. Das bedeutet, dass Shiny bei jeder Änderung eines Inputs automatisch herausfinden kann, wie man den geringsten Arbeitsaufwand betreibt, um alle zugehörigen Outputs zu aktualisieren. Man kann Shiny-Anwendungen generell mit jeder R-Umgebung schreiben und verwenden; RStudio bietet allerdings einige Funktionen speziell für das Erstellen, Debuggen und Bereitstellen von Shiny-Anwendungen an \cite{Wickham.22.03.2022}. 
+
+
+
+
+% https://mastering-shiny.org/preface.html
+
+%mit Shiny ist es möglich Webapplikationen zu realisieren. Eine Webapplikation oder kurz Web-App kann im Browser des Benutzers aufgerufen und ausgeführt werden. Im Gegensatz zu Desktop-Anwendungen ist in der Regel keine Installation von Software auf dem Rechner des Benutzers erforderlich.
+%\cite{.03.03.2022}
+
+% Shiny ist ein R-Paket, mit dem man auf einfache Weise umfangreiche, interaktive Webanwendungen erstellen kann. Mit Shiny können Sie Ihre Arbeit in R über einen Webbrowser zugänglich machen, so dass jeder sie nutzen kann. Shiny lässt Sie großartig aussehen, indem es Ihnen die Erstellung ausgefeilter Webanwendungen mit einem Minimum an Aufwand erleichtert.
+
+\subsection{Docker, Docker Hub}
+
+Damit die Anwendung schnell und zuverlässig in einer anderen Computerumgebung ausgeführt werden kann werden Docker-Container eingesetzt. Container isolieren die Software von ihrer Umgebung und stellen sicher, dass sie trotz unterschiedlichen Umgebungen einheitlich funktionieren. 
+Die Grundlage von Containern bilden Images.
+Ein Container ist eine laufende Instanz eines Docker-Images. Images haben keinen Zustand und ändern sich nie. Docker kann Images automatisch erstellen, indem es die Anweisungen aus einer Dockerdatei (Dockerfile) liest. Durch \qq{docker run <image-id>} können aus einem Docker-Image beliebig viele gleichartige Docker-Container erzeugt werden. Umgekehrt können mit \qq{docker commit <container-id>} Images aus den laufenden Containern erzeugt werden. Docker-Images sind eine gute Möglichkeit, um die genauen Versionen aller verwendeten Programme zu archivieren und die Reproduzierbarkeit zu garantieren. Ähnlich wie Textdateien können auch Images geteilt, online gespeichert und deren Versionen verwaltet werden. Dazu wird der Online-Dienst Docker-Hub verwendet \cite{Docker.18.03.2022,IONOSDigitalguide.22.03.2022,DockerDocumentation.22.03.2022}
+
+%\cite{Docker.18.03.2022}\cite{IONOSDigitalguide.22.03.2022}\cite{DockerDocumentation.22.03.2022}.
+% https://docs.docker.com/glossary/?term=image, https://www.ionos.at/digitalguide/server/knowhow/docker-image/
+% https://www.docker.com/resources/what-container
+
+Das Rocker-Projekt bietet ein Basis-Image, welches R und Rstudio installiert hat. Weiters kann es mit benötigten Packages erweitert werden \cite{.22.03.2022d}.
+%https://www.rocker-project.org/
+
+
+\subsection{Informationsquellen}
+
+\textbf{Kostenübernahme der Krankenversicherungsträger}: Der \ac{EKO} enthält einerseits eine Stoffliste für magistrale Zubereitungen, die nur mit chef- und kontrollärztlichen Bewilligung abgegeben werden dürfen, andererseits die bewilligungsfreien Höchstmengen der Darreichungsformen \cite{.2014}.
+ 
+
+\textbf{Bedenkliche Arzneimittel}: Österreichische Behörden haben bisher noch keine Liste bezüglich bedenklicher Arzneimittel veröffentlicht. Deshalb wird die Tabelle der Deutschen Arzneimittelkommission integriert. 
+
+\textbf{Lateinische Abkürzungen auf Rezepten}: Quellen davon sind zum Beispiel das Aspiranten-Handbuch und das pharmazeutische Nachschlagewerk, Hunnius.
+ %das pharmazeutische Wörterbuch.
+
+
+\textbf{Rezeptpflichtstatus}: In der Anlage der Rezeptpflichtverordnung angeführten Arzneimittel und deren Zubereitung unterliegen einer Abgabebeschränkung gemäß § 1 des Rezeptpflichtgesetzes.
+Das \ac{RIS} stellt die Rezeptpflichtverordung in den Datenformaten HTML, PDF und RTF zu Verfügung. 
+
+
+\textbf{Maximaldosen}: Maximaldosen zu Wirkstoffen sind in den Fachinformationen von Arzneispezialitäten zu finden. Die Ages-Medizinmarktaufsicht ist verpflichtet ein Arzneispezialitätenregister zu führen. Darin enthalten sind alle Arzneispezialitäten die über eine Zulassung, Registrierung bzw. Genehmigung zum Parallelimport verfügen. Dieses Register, welches \qq{Links} zu den jeweiligen Fachinformationen enthält, kann online abgerufen und Daten können als XLS-Datei heruntergeladen werden \cite{.22.03.2022b}. Auch in pharmakologischen Lehrbüchern, z. B. Aktories oder im pharmazeutischen Wörterbuch Hunnius sind die jeweiligen Maximaldosen aufgelistet. 
+% https://aspregister.basg.gv.at/aspregister/faces/aspregister.jspx
+
+\textbf{Maximale Abgabemenge}: Fallen Arzneistoffe unter die Psychotropenverordnung, wird dessen Abgabemenge gesetzlich limitiert. Auch diese Rechtsvorschrift ist im \ac{RIS} abrufbar. 
+
+% ://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10011054
+
+\textbf{Inkompatibilitäten und Haltbarkeiten}: Unverträglichkeiten zwischen Bestandteilen eines Rezepturarzneimittels findet man in diverser Fachliteratur. Beispiele dafür sind das Aspiranten-Handbuch und Informationen von Fertiggrundlagenhersteller \cite{Ichthyol.22.03.2022,.22.03.2022b}.
+% Rezepturscheibe, Plausibilitäts-Check Rezeptur,  \ac{DAC}/\ac{NRF}, Magistrale Rezepturen Aus der Praxis Für die Praxis, Informationen der Hersteller von Fertiggrundlagen (Bayer, Caelo, Ichthyol)\cite{Ichthyol.22.03.2022}\cite{.22.03.2022b}
+%salbenfibel
+%://www.caelo.de/apotheken_downloads.html
+%://www.ichthyol.de/de/medizinische-fachkreise/
+
+\textbf{Kennzeichnungen und Abgabebeschränkungen}: Einige Stoffe dürfen nur als Bestandteil von Arzneispezialitäten und nicht als Reinsubstanz abgegeben werden. Andere wiederum müssen bei der Abgabe entsprechend gekennzeichnet werden. Die Anlagen der Abgrenzungsverordnung führen entsprechende Stoffe mit verpflichtender Kennzeichung auf. 
+
+\textbf{standardisierte Rezepturen}: Quellen davon sind zum Beispiel der \ac{NFA} (die offizielle Rezeptursammlung der Österreichischen Apothekerkammer), der \ac{NRF} (von der \ac{ABDA}, herausgegebenes Sammelwerk), das pharmazeutische Wörterbuch Hunnius oder das Kompendium JUNIORMED (Standardwerk magistraler Arzneimittel für Kinder und Jugendliche).
+
+
+% https://www.basg.gv.at/fileadmin/redakteure/07_Unternehmen/FAQ_Zulassung_und_Lifecycle/Substanzliste_Doping_2022.pdf
+
+%https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20003255
+\textbf{Verdrängungsfaktoren}: Das Verhältnis der Dichte des Arzneistoffes zur Dichte der Grundmasse wird zur Berechnung der Grundmasse von Zäpfchen benötigt. Diese können experimentell bestimmt werden oder im \ac{DAC} nachgelesen werden. 
+
+\textbf{Konservierungsmittel}: Geeignete und wirksame Konzentrationen von Konservierungsmittel sind im allgemeinen Teil des \ac{ÖAB} aufgelistet. 
+
+\textbf{Spezifische Tropfenmasse einer Flüssigkeit}: Wie viel ein Tropfen der flüssigen Hilfsstoffe wiegt ist ebenfalls im allgemeinen Teil des \ac{ÖAB} nachzulesen. 
+
+\textbf{Isotonische Konzentrationen von Arzneistoffen}: Im XVI. Kapitel des \ac{ÖAB} findet man die isotonischen Konzentrationen der Arzneistoffe, die häufig bei der Herstellung von Augentropfen eingesetzt werden. 
+
+\textbf{Kapselvolumen}: Füllvolumen von handelsüblichen Hartgelatine-Kapseln findet man in der Anlage G des \ac{DAC} oder in Herstellerinformationen. 
+
+
+
+
+
+
+\subsection{LaTeX, Citavi}
+
+Zum Verfassen der Masterarbeit wird LaTeX und Citavi verwendet. 
+
+LaTeX wird vorallem für das Verfassen wissenschaftlicher Dokumente verwendet. Dieser Editor ermöglicht es  sich nicht zu sehr um das Layout der Dokumente kümmern zu müssen, sondern sich auf den Inhalt per se konzentrieren zu können. 
+LaTeX basiert auf der Idee, dass es besser ist, das Dokumentendesign den \qq{Dokumentendesignern} zu überlassen und die Autoren mit dem Schreiben von Dokumenten zu betrauen \cite{.09.03.2022}.
+Es wird in einem Text-Editor (z. B. Texmaker) der inhaltliche Fließtext mit speziellen LaTeX-Befehlen geschrieben, das Ausgabedokument(z. B. PDF) ist nicht kontinuierlich sichtbar \cite{.25.03.2022}.
+Es wird ein sogenanntes logisches Markup verwendet und ist somit kein Textverarbeitungsprogramm das mit dem What-you-see-is-what-you-get-Prinzip funktioniert; beispielsweise muss man eine Überschrift nicht rein optisch hervorheben, sondern kann in der Textdatei die entsprechende Passage als Überschrift kennzeichnen. 
+Die Formatierung von Überschriften ist global definiert \cite{Wikipedia.2022}.
+LaTeX ist sehr gut dokumentiert, für viele Computerplattformen verfügbar und als freie Software erhältlich \cite{.25.03.2022}.
+
+
+Für die Verwaltung von Literaturangaben sowie für die Wissensorganisation und Aufgabenplanung wird Citavi verwendet. 
+% https://de.wikipedia.org/wiki/Citavi
+
+Durch das Zusatzprogramm Citavi Picker können Informationen aus Internet- und PDF-Dokumenten schnell übernommen werden \cite{.26.10.2021}.
+% https://www1.citavi.com/sub/manual6/de/index.html?101_creating_a_publication_with_latex.html
+
+%Mit Citavi können Quellennachweise und Zitate mit dem jeweiligen BibTeX-Key in das TeX-Dokument eingefügt %werden. Citavi erzeugt automatisch die BibTeX-Datei, die Ihr TeX-Programm benötigt, um das abgabefertige %Dokument zu erstellen
+
+
+% https://www1.citavi.com/sub/manual6/de/index.html?101_creating_a_publication_with_latex.html
+
+
+
+\section{Zeitplan und Meilensteine}
+%\section{Project timeplan and milestones}
+%References
+%Index of figures
+%index of tables
+
+%://appsilon.com/why-you-should-use-r-shiny-for-enterprise-application-development/
+
+%://www.bitfactory.io/de/blog/app-konzept/#:~:text=Ein%20App%2DKonzept%20hilft%20Ihnen,und%20die%20Produktionszeit%20gering%20halten.
+
+\begin{tabular}{|l|l|}
+\hline 
+\rule[-1ex]{0pt}{2.5ex} \textbf{Datum} & \textbf{Meilenstein} \\ 
+\hline 
+\rule[-1ex]{0pt}{2.5ex} Abgabe Research Proposal  & 07.04.2022 (23:59) \\ 
+\hline 
+\rule[-1ex]{0pt}{2.5ex} Abgabe Präsentation & 12.04.2022 (14:00) \\ 
+\hline 
+\rule[-1ex]{0pt}{2.5ex} Erstes Image mit Rstudio und Shiny auf Docker Hub übertragen  & 01.04\\ 
+\hline 
+\rule[-1ex]{0pt}{2.5ex} Shiny-Grundkenntnisse erlangen  & 01.04 \\ 
+\hline 
+\rule[-1ex]{0pt}{2.5ex} ApothekerInnen von verschiedenen Bundesländern kontaktieren  & 01.04 \\ 
+\hline
+\rule[-1ex]{0pt}{2.5ex} Konkretisierung der Funktionen & 15.04\\ 
+\hline
+\rule[-1ex]{0pt}{2.5ex} Erste Kernfunktion implementieren und als Webseite freigeben & 23.04 \\ 
+
+\hline
+\rule[-1ex]{0pt}{2.5ex} Implementierung aller Kernfunktionen & 01.07\\
+
+\hline
+\rule[-1ex]{0pt}{2.5ex} Kontaktierung Zweitbetreuer & 01.07\\
+
+\hline
+\rule[-1ex]{0pt}{2.5ex} Prototyp mit ApothekerInnen testen & 15.07\\
+\hline
+\rule[-1ex]{0pt}{2.5ex} Designoptimierung & 31.07\\
+\hline
+\rule[-1ex]{0pt}{2.5ex} Rücksprache mit ApothekerInnen und Präsentation des Tools & 31.07\\
+\hline
+
+\rule[-1ex]{0pt}{2.5ex} evtl. implementierung Zusatzfunktionen & 15.08\\
+\hline
+
+
+\rule[-1ex]{0pt}{2.5ex} Erste Version der gesamten Masterarbeit an Professor  &  01.08.2022\\ 
+\hline 
+\rule[-1ex]{0pt}{2.5ex} Abgabe & 01.09.2022\\ 
+\hline 
+\end{tabular} 
+
+
+%\newpage
+%\gls{Code}
+%\gls{offi}
+%\glsaddall
+%\glossarystyle{list} 
+\newpage
+\printglossary[title=Glossar, toctitle=Glossar, style=altlist]
+%https://tex.stackexchange.com/questions/43759/printglossaries-is-not-generating-anything-for-me
+
+
+\newpage
+
+%\bibliographystyle{plain}
+\printbibliography
+\newpage
+\section{Abkürzungsverzeichnis}
+\begin{acronym}[längsteAbkürzung]
+%\ac{Kürzel}
+\acro{ABDA}[ABDA]{Bundesvereinigung Deutscher Apothekerverbände}
+\acro{ABO}[ABO]{Apothekenbetriebsordnung}
+\acro{AMBO}[AMBO]{Arzneimittelbetriebsordung}
+\acro{ApBetrO}[ApBetrO]{Apothekenbetriebsordnung}
+\acro{DAC}[DAC]{Deutsche Arzneimittel-Codex}
+\acro{NaCl}[NaCl]{Natriumchlorid}
+\acro{NFA}[NFA] {Neue Formularium Austriacum}
+\acro{NRF}[NRF] {Neues Rezeptur-Formularium}
+\acro{PKAs}[PKAs] {Pharmazeutisch-kaufmännische AssistentInnen}
+\acro{EKO}[EKO]{Erstattungskodex}
+
+\acro{RIS}[RIS]{Rechtsinformationssystem des Bundes}
+
+\acro{ÖAB}[ÖAB]{Österreichisches Arzneibuch}
+
+\end{acronym}
+
+
+
+\end{document}

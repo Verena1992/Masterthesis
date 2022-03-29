@@ -1,0 +1,530 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{.22.03.2022}{online}{}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{labeltitlesource}{title}
+      \field{title}{Antibiotika-Dosierungsrechner}
+      \field{urlday}{22}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{22.03.2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.antibiotikarechner.at/
+      \endverb
+      \verb{url}
+      \verb https://www.antibiotikarechner.at/
+      \endverb
+    \endentry
+    \entry{Blischak.2016}{article}{}
+      \name{author}{3}{}{%
+        {{hash=2f5e7eff1ecea61dc6faa885ab2fdf03}{%
+           family={Blischak},
+           familyi={B\bibinitperiod},
+           given={John\bibnamedelima D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=563b1377731d4156367a12b2a6a53ed7}{%
+           family={Davenport},
+           familyi={D\bibinitperiod},
+           given={Emily\bibnamedelima R.},
+           giveni={E\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=fda30198609a1ab29a82b93d4e8f347b}{%
+           family={Wilson},
+           familyi={W\bibinitperiod},
+           given={Greg},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {eng}%
+      }
+      \strng{namehash}{475717815cde8b823fb8ad2c659e33e2}
+      \strng{fullhash}{475717815cde8b823fb8ad2c659e33e2}
+      \strng{bibnamehash}{475717815cde8b823fb8ad2c659e33e2}
+      \strng{authorbibnamehash}{475717815cde8b823fb8ad2c659e33e2}
+      \strng{authornamehash}{475717815cde8b823fb8ad2c659e33e2}
+      \strng{authorfullhash}{475717815cde8b823fb8ad2c659e33e2}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{PLoS computational biology}
+      \field{note}{Journal Article Research Support, N.I.H., Extramural Journal Article Research Support, N.I.H., Extramural}
+      \field{number}{1}
+      \field{pagination}{page}
+      \field{title}{A Quick Introduction to Version Control with Git and GitHub}
+      \field{volume}{12}
+      \field{year}{2016}
+      \field{pages}{e1004668}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1371/journal.pcbi.1004668
+      \endverb
+      \verb{eprint}
+      \verb 26785377
+      \endverb
+      \verb{file}
+      \verb Blischak, Davenport et al. 2016 - A Quick Introduction to Version:C\:\\Users\\user\\Documents\\Citavi 6\\Projects\\Masterarbeit\\Citavi Attachments\\Blischak, Davenport et al. 2016 - A Quick Introduction to Version.pdf:pdf
+      \endverb
+    \endentry
+    \entry{.26.10.2021}{online}{}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{labeltitlesource}{title}
+      \field{title}{Citavi 6: Handbuch}
+      \field{urlday}{25}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{26.10.2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www1.citavi.com/sub/manual6/de/index.html?101_creating_a_publication_with_latex.html
+      \endverb
+      \verb{url}
+      \verb https://www1.citavi.com/sub/manual6/de/index.html?101_creating_a_publication_with_latex.html
+      \endverb
+    \endentry
+    \entry{DAZ.online.2015}{online}{}
+      \name{author}{1}{}{%
+        {{hash=9199ecebab36e9f2a3bb1127bfd9a0e0}{%
+           family={DAZ.online},
+           familyi={D\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {DAZ.online}%
+      }
+      \strng{namehash}{9199ecebab36e9f2a3bb1127bfd9a0e0}
+      \strng{fullhash}{9199ecebab36e9f2a3bb1127bfd9a0e0}
+      \strng{bibnamehash}{9199ecebab36e9f2a3bb1127bfd9a0e0}
+      \strng{authorbibnamehash}{9199ecebab36e9f2a3bb1127bfd9a0e0}
+      \strng{authornamehash}{9199ecebab36e9f2a3bb1127bfd9a0e0}
+      \strng{authorfullhash}{9199ecebab36e9f2a3bb1127bfd9a0e0}
+      \field{sortinit}{D}
+      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Trotz aller Sorgfalt kann es bei der Herstellung von Rezepturen zu Fehlern kommen. Der Arbeitskreis Klinische Toxikologie der GTFCh berichtet im ­Folgenden von Fällen, bei denen in Apotheken Rezepturen fehlerhaft hergestellt worden waren oder die abzugebenden Substanzen verwechselt worden waren.}
+      \field{title}{Trotz aller Sorgfalt}
+      \field{urlday}{25}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{2015}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.deutsche-apotheker-zeitung.de/daz-az/2015/daz-22-2015/trotz-aller-sorgfalt
+      \endverb
+      \verb{url}
+      \verb https://www.deutsche-apotheker-zeitung.de/daz-az/2015/daz-22-2015/trotz-aller-sorgfalt
+      \endverb
+    \endentry
+    \entry{Docker.18.03.2022}{online}{}
+      \name{author}{1}{}{%
+        {{hash=c5fd214cdd0d2b3b4272e73b022ba5c2}{%
+           family={Docker},
+           familyi={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{c5fd214cdd0d2b3b4272e73b022ba5c2}
+      \strng{fullhash}{c5fd214cdd0d2b3b4272e73b022ba5c2}
+      \strng{bibnamehash}{c5fd214cdd0d2b3b4272e73b022ba5c2}
+      \strng{authorbibnamehash}{c5fd214cdd0d2b3b4272e73b022ba5c2}
+      \strng{authornamehash}{c5fd214cdd0d2b3b4272e73b022ba5c2}
+      \strng{authorfullhash}{c5fd214cdd0d2b3b4272e73b022ba5c2}
+      \field{sortinit}{D}
+      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{What is a Container? - Docker}
+      \field{urlday}{22}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{18.03.2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.docker.com/resources/what-container/
+      \endverb
+      \verb{url}
+      \verb https://www.docker.com/resources/what-container/
+      \endverb
+    \endentry
+    \entry{DockerDocumentation.22.03.2022}{online}{}
+      \name{author}{1}{}{%
+        {{hash=41e33631aa73867e5e50aebe8fc2788d}{%
+           family={{Docker Documentation}},
+           familyi={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{41e33631aa73867e5e50aebe8fc2788d}
+      \strng{fullhash}{41e33631aa73867e5e50aebe8fc2788d}
+      \strng{bibnamehash}{41e33631aa73867e5e50aebe8fc2788d}
+      \strng{authorbibnamehash}{41e33631aa73867e5e50aebe8fc2788d}
+      \strng{authornamehash}{41e33631aa73867e5e50aebe8fc2788d}
+      \strng{authorfullhash}{41e33631aa73867e5e50aebe8fc2788d}
+      \field{sortinit}{D}
+      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Glossary of terms used around Docker}
+      \field{title}{Glossary}
+      \field{urlday}{22}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{22.03.2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://docs.docker.com/glossary/?term=image
+      \endverb
+      \verb{url}
+      \verb https://docs.docker.com/glossary/?term=image
+      \endverb
+    \endentry
+    \entry{.22.03.2022b}{online}{}
+      \field{sortinit}{D}
+      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
+      \field{labeltitlesource}{title}
+      \field{title}{Downloads: Caesar {\&} Loretz GmbH}
+      \field{urlday}{22}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{22.03.2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.caelo.de/apotheken_downloads.html
+      \endverb
+      \verb{url}
+      \verb https://www.caelo.de/apotheken_downloads.html
+      \endverb
+    \endentry
+    \entry{.2014}{online}{}
+      \field{sortinit}{E}
+      \field{sortinithash}{c554bd1a0b76ea92b9f105fe36d9c7b0}
+      \field{labeltitlesource}{title}
+      \field{title}{Erstattungskodex}
+      \field{urlday}{22}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{2014}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.sozialversicherung.at/cdscontent/?contentid=10007.844503&portal=svportal
+      \endverb
+      \verb{url}
+      \verb https://www.sozialversicherung.at/cdscontent/?contentid=10007.844503&portal=svportal
+      \endverb
+    \endentry
+    \entry{Holzer.2019}{thesis}{}
+      \name{author}{1}{}{%
+        {{hash=4a777cdc8f0bce5f0108fa62e3352203}{%
+           family={Holzer},
+           familyi={H\bibinitperiod},
+           given={Veronika\bibnamedelimb Maria\bibnamedelima Dorothea},
+           giveni={V\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {(:none)}%
+      }
+      \list{language}{1}{%
+        {de}%
+      }
+      \strng{namehash}{4a777cdc8f0bce5f0108fa62e3352203}
+      \strng{fullhash}{4a777cdc8f0bce5f0108fa62e3352203}
+      \strng{bibnamehash}{4a777cdc8f0bce5f0108fa62e3352203}
+      \strng{authorbibnamehash}{4a777cdc8f0bce5f0108fa62e3352203}
+      \strng{authornamehash}{4a777cdc8f0bce5f0108fa62e3352203}
+      \strng{authorfullhash}{4a777cdc8f0bce5f0108fa62e3352203}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Good Manufacturing Practice (GMP) is an essential element for producing high quality medicinal products and a requirement to obtain a marketing authorisation in the European Union. However, GMP is not a requirement for any kind of pharmacy compounding of medicinal products in retail pharmacies in Austria. Since GMP is a way of ensuring the integrity and quality of a product, certain aspects of GMP are also desirable for production in pharmacies. Therefore, the aim of this thesis was to identify which of the various GMP-concepts are already part of the current legislation and to find possible discrepancies. The in-depth analysis of the pharmacy-related Austrian law confirmed that many of the essential GMP-fundamentals are already part of the legislation. Some parts however, are not in accordance with EU-GMP, most notably the production area. Even though Austrian legislation already calls for the highest possible quality standards of pharmaceutical and medicinal products, there is a lack of practical guidance to fulfil these requirements. To promote higher quality standards specific guidelines are necessary to ensure high quality and quality assurance. In order to develop such guidelines it is of the utmost importance to include patients' needs, doctors' requests and pharmacies' feasibility. Good Manufacturing Practice (GMP) ist ein wesentliches Element in der qualitativ hochwertigen Arzneimittelproduktion und verpflichtend für Arzneimittel, die in der Europäischen Union vermarktet werden sollen. GMP gilt jedoch nicht für die Herstellung von Arzneimitteln in öffentlichen Apotheken in Österreich, weder für offizinale noch magistrale Anfertigungen. Da GMP ein Instrument zum Nachweis der Integrität und Qualität des hergestellten Produktes ist, wäre es durchaus wünschenswert GMP auf die eine oder andere Art in Apotheken einzuführen. Ziel der vorliegenden Arbeit ist es daher, zu erarbeiten, welche GMP-Thematik schon gesetzlich verankert ist, wo möglicherweise Unterschiede bestehen und wo noch keinerlei rechtliche Vorschriften vorhanden sind. Die genaue Untersuchung der apothekenrelevanten, österreichischen Gesetze zeigte, dass viele wesentliche Bestandteile im Hinblick auf die Qualität der herzustellenden Produkte bereits gesetzlich festgelegt sind. In einigen Punkten, wie zum Beispiel der Raumaufteilung, unterscheidet sich jedoch die österreichische Legislatur von den Anforderungen durch GMP. Während die gesetzlichen Gegebenheiten bereits höchstmögliche Ansprüche an die Produkte stellen, fehlt es noch an konkreten, praktischen Umsetzungsmöglichkeiten. Um den Qualitätsstandard der magistralen Herstellungen in der Apotheke zu verbessern, sind daher spezifische Leitlinien im Hinblick auf die Qualitätssicherung nötig. Dazu sollte jedoch nicht außer Acht gelassen werden, was von den Patienten benötigt, von Ärzten gewünscht und in Apotheken möglich ist.}
+      \field{title}{GMP-Aspekte in der öffentlichen Apotheke im Hinblick auf die Herstellung magistraler Rezepturen}
+      \field{year}{2019}
+      \verb{urlraw}
+      \verb 10.25365/THESIS.57660
+      \endverb
+      \verb{url}
+      \verb 10.25365/THESIS.57660
+      \endverb
+    \endentry
+    \entry{Home.22.03.2022}{online}{}
+      \name{author}{1}{}{%
+        {{hash=8cf04a9734132302f96da8e113e80ce5}{%
+           family={Home},
+           familyi={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{8cf04a9734132302f96da8e113e80ce5}
+      \strng{fullhash}{8cf04a9734132302f96da8e113e80ce5}
+      \strng{bibnamehash}{8cf04a9734132302f96da8e113e80ce5}
+      \strng{authorbibnamehash}{8cf04a9734132302f96da8e113e80ce5}
+      \strng{authornamehash}{8cf04a9734132302f96da8e113e80ce5}
+      \strng{authorfullhash}{8cf04a9734132302f96da8e113e80ce5}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Hurra, hurra, die neuen Rezepturrechner sind da!}
+      \field{urlday}{22}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{22.03.2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.ptaheute.de/aktuelles/2021/08/05/hurra-hurra-die-neuen-rezepturrechner-sind-da
+      \endverb
+      \verb{url}
+      \verb https://www.ptaheute.de/aktuelles/2021/08/05/hurra-hurra-die-neuen-rezepturrechner-sind-da
+      \endverb
+    \endentry
+    \entry{Ichthyol.22.03.2022}{online}{}
+      \name{author}{1}{}{%
+        {{hash=8c3f89250a76a10e6952844f85c6df12}{%
+           family={Ichthyol},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{8c3f89250a76a10e6952844f85c6df12}
+      \strng{fullhash}{8c3f89250a76a10e6952844f85c6df12}
+      \strng{bibnamehash}{8c3f89250a76a10e6952844f85c6df12}
+      \strng{authorbibnamehash}{8c3f89250a76a10e6952844f85c6df12}
+      \strng{authornamehash}{8c3f89250a76a10e6952844f85c6df12}
+      \strng{authorfullhash}{8c3f89250a76a10e6952844f85c6df12}
+      \field{sortinit}{I}
+      \field{sortinithash}{9417e9a1288a9371e2691d999083ed39}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{"}><link rel=}
+      \field{title}{Medizinische Fachkreise}
+      \field{urlday}{22}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{22.03.2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.ichthyol.de/de/medizinische-fachkreise/
+      \endverb
+      \verb{url}
+      \verb https://www.ichthyol.de/de/medizinische-fachkreise/
+      \endverb
+    \endentry
+    \entry{IONOSDigitalguide.22.03.2022}{online}{}
+      \name{author}{1}{}{%
+        {{hash=71fe5639fc602df4de0dee1b30be6f89}{%
+           family={{IONOS Digitalguide}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{71fe5639fc602df4de0dee1b30be6f89}
+      \strng{fullhash}{71fe5639fc602df4de0dee1b30be6f89}
+      \strng{bibnamehash}{71fe5639fc602df4de0dee1b30be6f89}
+      \strng{authorbibnamehash}{71fe5639fc602df4de0dee1b30be6f89}
+      \strng{authornamehash}{71fe5639fc602df4de0dee1b30be6f89}
+      \strng{authorfullhash}{71fe5639fc602df4de0dee1b30be6f89}
+      \field{sortinit}{I}
+      \field{sortinithash}{9417e9a1288a9371e2691d999083ed39}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Die Begriffe Docker-Image und Docker-Container sorgen oft für Verwirrung. Denn die Konzepte stehen in einem ähnlichen Zusammenhang wie Henne und Ei: Welches war zuerst da?}
+      \field{title}{Docker-Image}
+      \field{urlday}{22}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{22.03.2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.ionos.at/digitalguide/server/knowhow/docker-image/
+      \endverb
+      \verb{url}
+      \verb https://www.ionos.at/digitalguide/server/knowhow/docker-image/
+      \endverb
+    \endentry
+    \entry{.11.11.2019}{online}{}
+      \field{sortinit}{J}
+      \field{sortinithash}{c45040a764d616897e7f5b30174d7b92}
+      \field{labeltitlesource}{title}
+      \field{title}{JUNIORMED}
+      \field{urlday}{22}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{11.11.2019}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb http://www.juniormed.at/index2.html
+      \endverb
+      \verb{url}
+      \verb http://www.juniormed.at/index2.html
+      \endverb
+    \endentry
+    \entry{.09.03.2022}{online}{}
+      \field{sortinit}{L}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{labeltitlesource}{title}
+      \field{abstract}{LaTeX is a high-quality typesetting system; it includes features designed for the production of technical and scientific documentation.}
+      \field{title}{LaTeX - A document preparation system}
+      \field{urlday}{12}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{09.03.2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.latex-project.org/
+      \endverb
+      \verb{url}
+      \verb https://www.latex-project.org/
+      \endverb
+    \endentry
+    \entry{.25.03.2022b}{online}{}
+      \field{sortinit}{Ö}
+      \field{sortinithash}{ff8d4eeb5101e3cf3809959b3592d942}
+      \field{labeltitlesource}{title}
+      \field{title}{Österreichische Apothekerkammer: ApoCIRS-Formular}
+      \field{urlday}{25}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{25.03.2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.apothekerkammer.at/demo-cirs-form
+      \endverb
+      \verb{url}
+      \verb https://www.apothekerkammer.at/demo-cirs-form
+      \endverb
+    \endentry
+    \entry{.22.03.2022d}{online}{}
+      \field{sortinit}{R}
+      \field{sortinithash}{b9c68a358aea118dfa887b6e902414a7}
+      \field{labeltitlesource}{title}
+      \field{title}{Rocker Project}
+      \field{urlday}{22}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{22.03.2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.rocker-project.org/
+      \endverb
+      \verb{url}
+      \verb https://www.rocker-project.org/
+      \endverb
+    \endentry
+    \entry{.03.03.2022b}{online}{}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labeltitlesource}{title}
+      \field{title}{Shiny}
+      \field{urlday}{12}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{03.03.2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://shiny.rstudio.com/
+      \endverb
+      \verb{url}
+      \verb https://shiny.rstudio.com/
+      \endverb
+    \endentry
+    \entry{Wickham.22.03.2022}{online}{}
+      \name{author}{1}{}{%
+        {{hash=1d0f6977ce2d043e298a59a1cd75b7ef}{%
+           family={Wickham},
+           familyi={W\bibinitperiod},
+           given={Hadley},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{1d0f6977ce2d043e298a59a1cd75b7ef}
+      \strng{fullhash}{1d0f6977ce2d043e298a59a1cd75b7ef}
+      \strng{bibnamehash}{1d0f6977ce2d043e298a59a1cd75b7ef}
+      \strng{authorbibnamehash}{1d0f6977ce2d043e298a59a1cd75b7ef}
+      \strng{authornamehash}{1d0f6977ce2d043e298a59a1cd75b7ef}
+      \strng{authorfullhash}{1d0f6977ce2d043e298a59a1cd75b7ef}
+      \field{sortinit}{W}
+      \field{sortinithash}{1af34bd8c148ffb32de1494636b49713}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{0.1 What is Shiny? If you’ve never used Shiny before, welcome! Shiny is an R package that allows you to easily create rich, interactive web apps. Shiny allows you to take your work in R and expose...}
+      \field{title}{Preface | Mastering Shiny}
+      \field{urlday}{22}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{22.03.2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://mastering-shiny.org/preface.html
+      \endverb
+      \verb{url}
+      \verb https://mastering-shiny.org/preface.html
+      \endverb
+    \endentry
+    \entry{Wikipedia.2022}{online}{}
+      \name{editor}{1}{}{%
+        {{hash=9c677286866aad38f8e9b660f5411814}{%
+           family={Wikipedia},
+           familyi={W\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {de}%
+      }
+      \strng{namehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{fullhash}{9c677286866aad38f8e9b660f5411814}
+      \strng{bibnamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{editorbibnamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{editornamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{editorfullhash}{9c677286866aad38f8e9b660f5411814}
+      \field{sortinit}{W}
+      \field{sortinithash}{1af34bd8c148ffb32de1494636b49713}
+      \field{labelnamesource}{editor}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Citavi ist ein Programm zur Literaturverwaltung und Wissensorganisation für Microsoft Windows. Es wird an Universitäten und Hochschulen zum Schreiben von Hausarbeiten und Abschlussarbeiten eingesetzt, von Forschern beim Verfassen von wissenschaftlichen Publikationen, und in Firmen bei der Abfassung von Berichten und zur Wissensorganisation im Team. Citavi wird von der Firma Swiss Academic Software mit Sitz in Wädenswil bei Zürich entwickelt. Es basiert auf der Software-Plattform .NET. Im Februar 2021 wurde Citavi von der US-amerikanischen Software-Firma QSR International übernommen.}
+      \field{note}{Creative Commons Attribution-ShareAlike License Page Version ID: 220783020}
+      \field{title}{Citavi}
+      \field{urlday}{12}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Wikipedia (Hg.) 2022 - Citavi:C\:\\Users\\user\\Documents\\Citavi 6\\Projects\\Masterarbeit\\Citavi Attachments\\Wikipedia (Hg.) 2022 - Citavi.pdf:pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://de.wikipedia.org/w/index.php?title=Citavi&oldid=220783020
+      \endverb
+      \verb{url}
+      \verb https://de.wikipedia.org/w/index.php?title=Citavi&oldid=220783020
+      \endverb
+    \endentry
+    \entry{.25.03.2022}{online}{}
+      \field{sortinit}{W}
+      \field{sortinithash}{1af34bd8c148ffb32de1494636b49713}
+      \field{labeltitlesource}{title}
+      \field{title}{Willkommen bei LaTeX@TU Graz! [LaTeX@TU Graz]}
+      \field{urlday}{25}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{25.03.2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://latex.tugraz.at/
+      \endverb
+      \verb{url}
+      \verb https://latex.tugraz.at/
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

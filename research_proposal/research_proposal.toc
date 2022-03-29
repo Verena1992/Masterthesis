@@ -1,0 +1,26 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {ngerman}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1}Abstract}{2}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2}Gegenstand des Projekts}{2}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}Stand der Forschung}{3}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4}Ziele der Masterarbeit}{4}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5}Illustration der gewählten Forschungsmethoden}{6}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.1}Git, GitHub}{6}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.2}Shiny}{6}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.3}Docker, Docker Hub}{6}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.4}Informationsquellen}{7}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.5}LaTeX, Citavi}{8}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6}Zeitplan und Meilensteine}{9}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7}Abkürzungsverzeichnis}{13}{}%
