@@ -3,3 +3,13 @@
 app\.config\
 app\.local\
 
+app/.config/rstudio/rstudio-prefs.json
+app/.local/share/rstudio/addin_registry
+app/.local/share/rstudio/history_database
+app/.local/share/rstudio/monitored/lists/command_palette_mru
+app/.local/share/rstudio/monitored/lists/file_mru
+app/.local/share/rstudio/monitored/lists/help_history_links
+app/.local/share/rstudio/monitored/lists/plot_publish_mru
+app/.local/share/rstudio/monitored/lists/project_mru
+app/.local/share/rstudio/monitored/lists/user_dictionary
+app/.local/share/rstudio/notebooks/patch-chunk-names
