@@ -1,2 +1,5 @@
 .gitattributes
 .Rhistory
+app\.config\
+app\.local\
+
