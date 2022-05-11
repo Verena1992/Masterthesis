@@ -3,6 +3,10 @@
 app\.config\
 app\.local\
 
+app/.config/
+app/.local/
+
+
 app/.config/rstudio/rstudio-prefs.json
 app/.local/share/rstudio/addin_registry
 app/.local/share/rstudio/history_database
@@ -13,3 +17,15 @@ app/.local/share/rstudio/monitored/lists/plot_publish_mru
 app/.local/share/rstudio/monitored/lists/project_mru
 app/.local/share/rstudio/monitored/lists/user_dictionary
 app/.local/share/rstudio/notebooks/patch-chunk-names
+app/.local/share/rstudio/client-state/environment-grid.persistent
+app/.local/share/rstudio/client-state/source-column-manager.persistent
+app/.local/share/rstudio/client-state/workbenchp.persistent
+app/.local/share/rstudio/notebooks/paths
+app/.local/share/rstudio/pcs/debug-breakpoints.pper
+app/.local/share/rstudio/pcs/files-pane.pper
+app/.local/share/rstudio/pcs/source-pane.pper
+app/.local/share/rstudio/pcs/windowlayoutstate.pper
+app/.local/share/rstudio/pcs/workbench-pane.pper
+app/.local/share/rstudio/projects/none/console07/82F7173F
+app/.local/share/rstudio/persistent-state
+
