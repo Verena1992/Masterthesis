@@ -1,18 +1,24 @@
 library(shiny)
+library(readr)
+#rezeptpflicht <- read_csv("data/Rezeptpflicht/rezeptpflicht.csv")
+rezeptpflicht <- readRDS("~/data/Rezeptpflicht/rezeptpflicht.rds")
 ui <- fluidPage(
-  tabsetPanel(
-    tabPanel("tab 1", "contents"),
-    tabPanel("tab 2", "contents"),
-    tabPanel("tab 3", "contents")
+  selectizeInput("WS", "Wirkstoff",choices = NULL),
+  textOutput("Rstatus")
+  
   )
-  # *Input() functions,
-  #sliderInput(inputId = "num", label = "irge")
-  # *Output() functions 
+
+
+server <- function(input, output, session) {
+  updateSelectizeInput(session, "WS", choices = rezeptpflicht$Wirkstoff, server = TRUE
   )
-server <- function(input, output) {
-  #1save objects to disply to output$
-  # output$hist <- code
-  #2build objects to display with render*()
-  #output$hist <- renderPlot({})
+
+  output$Rstatus <- renderPrint({
+    selected_ws <- rezeptpflicht[which(rezeptpflicht$Wirkstoff == input$WS),]
+    Rstatus <- selected_ws$Rstatus
+    Rstatus
+  })
 }
+
+
 shinyApp(ui = ui, server = server)

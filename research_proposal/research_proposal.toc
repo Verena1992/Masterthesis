@@ -7,7 +7,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3}Stand der Forschung}{3}{}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4}Ziele der Masterarbeit}{4}{}%
+\contentsline {section}{\numberline {4}Ziele der Masterarbeit}{5}{}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {5}Illustration der gewählten Forschungsmethoden}{6}{}%
 \defcounter {refsection}{0}\relax 
