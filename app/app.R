@@ -52,17 +52,18 @@ server <- function(input, output, session) {
   observe({
     dataSet <- data_Verdrän()
     updateSelectizeInput(session, "WS_S", choices = dataSet$Wirkstoff)
-  })
+    })
   
   
  # output$preview1 <- renderTable(head(data_Verdrän()))
-  
-  
+
+  rezeptpflicht <- readRDS("~/data/Rezeptpflicht/rezeptpflicht.rds")
+
   updateSelectizeInput(session, "WS", choices = rezeptpflicht$Wirkstoff, server = TRUE
   )
 
   output$Rstatus <- renderPrint({
-    selected_ws <- rezeptpflicht[which(rezepflicht$Wirkstoff == input$WS),]
+    selected_ws <- rezeptpflicht[which(rezeptpflicht$Wirkstoff == input$WS),]
     Rstatus <- selected_ws$Rstatus
     Rstatus
   })
