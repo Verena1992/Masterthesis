@@ -1,11 +1,10 @@
 .gitattributes
 .Rhistory
-app\.config\
-app\.local\
+
 
 app/.config/
 app/.local/
-
+app/data/
 
 app/.config/rstudio/rstudio-prefs.json
 app/.local/share/rstudio/addin_registry
