@@ -1,0 +1,21 @@
+---
+title: "parse_taxe_eko_rezeptpflicht"
+author: "Verena"
+date: '2022-05-23'
+output: html_document
+---
+
+```{r}
+rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
+taxe_eko <- readRDS("./data/Arzneitaxe/Arzneitaxe_eko.rds")
+```
+
+```{r}
+for (i in 1:length(taxe_eko$wirkstoffe_arzneitaxe)){
+  print(taxe_eko$wirkstoffe_arzneitaxe[i])
+  print(rezeptpflicht$Wirkstoff[grep(taxe_eko$wirkstoffe_arzneitaxe[i],rezeptpflicht$Wirkstoff, ignore.case = TRUE)])
+ # print(wirkstoffe_arzneitaxe[grep(no_match[i], wirkstoffe_arzneitaxe)])
+  #print(grep(no_match[i], wirkstoffe_arzneitaxe))
+}
+```
+

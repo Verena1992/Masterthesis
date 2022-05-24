@@ -1,0 +1,278 @@
+---
+title: "parse_Arzneitaxe"
+author: "Verena"
+date: '2022-05-16'
+output: html_document
+---
+
+Die ÖAT erscheint 2 x jährlich (Jänner und Juli)
+
+# required libraries are loaded
+```{r}
+library(unrtf)
+```
+
+
+rtf-file is downloaded from RIS and converted to plain text
+
+
+```{r}
+text <- unrtf("https://www.ris.bka.gv.at/GeltendeFassung/Bundesnormen/10010306/%c3%96sterreichische%20Arzneitaxe%201962%2c%20Fassung%20vom%2016.05.2022.rtf", format = "text")
+```
+
+
+if rtf-file is already downloaded read in the file as text
+```{r}
+text <- unrtf("~/data/Arzneitaxe/Österreichische Arzneitaxe 1962, Fassung vom 16.05.2022.rtf", format = "text")
+```
+
+
+
+
+split text into separated lines
+
+```{r}
+lin <- unlist(strsplit(text, "\n"))
+```
+
+separate words
+```{r}
+word <- strsplit(lin, "\t")
+```
+
+
+
+
+
+define beginning and end of the list
+```{r}
+last_wirkstoff <- which(lin == "\tZypressenöl\t1\t58")
+first_wirkstoff <- which(lin == "\tAbführender Tee offizinal\t10\t52")
+```
+
+```{r}
+word[first_wirkstoff]
+```
+
+word is a list of lists, wirkstoffe are saved as second character in each list 
+
+
+```{r}
+#create empty vector wirkstoff
+wirkstoff <- c()
+
+#append every second element from every list, from the first to the last wirkstoff
+for (i in first_wirkstoff:last_wirkstoff){
+    vector <- word[[i]]
+    wirkstoff <- append(wirkstoff, vector[2])
+}
+```
+
+inspect created vector wirkstoff
+```{r}
+str(wirkstoff)
+```
+
+```{r}
+head(wirkstoff)
+```
+
+
+
+
+
+some wirkstoffe have *) added at the end. remove this from string:
+```{r}
+wirkstoff <- gsub(" \\*)", "", as.character(wirkstoff))
+```
+
+promille is not formatted correctly but in original text on homepage neither
+
+```{r}
+wirkstoff <- gsub("spiritus \\(3.*", "spiritus \\(3 ‰\\)", as.character(wirkstoff))
+```
+
+Abstand vor % nicht universal
+
+```{r}
+wirkstoff <- gsub(" %", "%", as.character(wirkstoff))
+
+```
+
+
+
+
+```{r}
+saveRDS(wirkstoff, file ="data/Arzneitaxe/Arzneitaxe.rds")
+```
+
+
+## add erstattungssstatus to Arzneitaxe Wirkstoffe
+
+
+
+Stoffe für magistrale Zubereitungen, die in der Österreichischen Arzneitaxe angeführt
+sind, gelten als Teil des Grünen Bereiches des EKO, werden jedoch nicht
+im EKO veröffentlicht.
+Stoffe für magistrale Zubereitungen, die nur mit vorheriger chef- und kontrollärztlicher
+Bewilligung für Rechnung der Sozialversicherungsträger abgegeben
+werden dürfen, gelten als Teil des Gelben Bereiches des EKO und werden im
+Anschluss an die Arzneispezialitäten des Gelben Bereiches angeführt. Diese
+Anführung erfolgt analog der Österreichischen Arzneitaxe mit deutschen Bezeichnungen
+entsprechend der im Arzneibuch üblichen Nomenklatur.
+
+Stoffe für magistrale Zubereitungen gemäß Anlage B der Österreichischen
+Arzneitaxe gelten als Teil des Grünen Bereichs. Ausnahmen bilden die in folgendem
+Verzeichnis angeführten Stoffe für magistrale Zubereitungen, die auf
+Grund einer Empfehlung der HEK ausdrücklich dem Gelben Bereich zuzuordnen
+sind und dementsprechend – sowohl rein als auch in Verarbeitung – nur mit
+vorheriger Bewilligung des chef- und kontrollärztlichen Dienstes abgegeben
+werden können.
+```{r}
+wirkstoffe_arzneitaxe <- readRDS("data/Arzneitaxe/Arzneitaxe.rds")
+```
+
+
+read in stoffe aus dem gelben Bereich laut EKO
+```{r}
+eko <- read.delim(file = "~/data/EKO/Stoffe_gelbeListe_EKO.txt", sep = "\t", header = T)
+```
+
+```{r}
+str(eko)
+```
+
+```{r}
+eko$Stoffe <- gsub(" %", "%", as.character(eko$Stoffe))
+```
+
+
+
+```{r}
+box <- rep("grün", length(wirkstoffe_arzneitaxe))
+```
+
+```{r}
+ausnahme <- rep("keine", length(wirkstoffe_arzneitaxe))
+```
+
+
+
+
+```{r}
+no_match <- c()
+
+for (i in 1:length(eko$Stoffe)){
+  match <- which(wirkstoffe_arzneitaxe == eko$Stoffe[i])
+  if (length(match) == 0){
+    #print(i)
+    no_match <- append(no_match, eko$Stoffe[i])
+  } else {
+      box[match] <- "gelb"
+      #print(eko$Ausnahmen.von.der.Chefarztpflicht[i])
+      ausnahme[match] <- eko$Ausnahmen.von.der.Chefarztpflicht[i]
+    }
+
+ # print(which(wirkstoffe_arzneitaxe == eko$Stoffe[i]))
+  
+}
+```
+
+
+```{r}
+sum(box == "gelb")
+```
+```{r}
+no_match
+```
+```{r}
+for (i in 1:length(no_match)){
+  print(no_match[i])
+  print(wirkstoffe_arzneitaxe[grep(no_match[i], wirkstoffe_arzneitaxe)])
+  print(grep(no_match[i], wirkstoffe_arzneitaxe))
+}
+```
+```{r}
+no_match_2 <- c()
+
+for (i in 1:length(no_match)){
+  match <- grep(no_match[i], wirkstoffe_arzneitaxe)
+  if (length(match) == 0){
+    #print(i)
+    no_match_2 <- append(no_match_2, no_match[i])
+  } else {
+      box[match] <- "gelb"
+      ausnahme[match] <- eko$Ausnahmen.von.der.Chefarztpflicht[which(eko$Stoffe == no_match[i])]
+    }
+
+ # print(which(wirkstoffe_arzneitaxe == eko$Stoffe[i]))
+  
+}
+```
+
+
+```{r}
+no_match_2
+```
+
+```{r}
+#Süßholzwurzelextrakt
+match <- which(wirkstoffe_arzneitaxe == "Süßholzwurzelfluidextrakt / Quantifizierter")
+#print(wirkstoffe_arzneitaxe[which(wirkstoffe_arzneitaxe == "Prasteron")])
+box[match] <- "gelb"
+ausnahme[match] <- "keine"
+```
+
+
+
+
+
+```{r}
+sum(df_taxe_eko$box == "gelb")
+#weizenkeimöl matched 2 times
+```
+
+## Medizinalweine (weinhaltigen Zubereitungen) sowie Gewürze und Genussmittel
+
+Für die folgenden Medizinalweine (weinhaltigen Zubereitungen) sowie Gewürze
+und Genussmittel werden von den Krankenversicherungsträgern keine Kosten
+übernommen, obgleich sie in der Anlage B der Österreichischen Arzneitaxe angeführt
+sind:
+
+```{r}
+Stoffe_noBox_EKO <- read.delim("~/data/EKO/Stoffe_noBox_EKO.txt", header=FALSE)
+```
+
+```{r}
+no_match <- c()
+
+for (i in 1:length(Stoffe_noBox_EKO$V1)){
+  match <- which(wirkstoffe_arzneitaxe == Stoffe_noBox_EKO$V1[i])
+  if (length(match) == 0){
+    #print(i)
+    no_match <- append(no_match, Stoffe_noBox_EKO$V1[i])
+  } else {
+      box[match] <- "no"
+    }
+
+ # print(which(wirkstoffe_arzneitaxe == eko$Stoffe[i]))
+  
+}
+```
+
+
+```{r}
+sum(box == "no")
+```
+
+
+
+```{r}
+df_taxe_eko <- data.frame(wirkstoffe_arzneitaxe, box, ausnahme)
+```
+
+
+```{r}
+saveRDS(df_taxe_eko, file ="data/Arzneitaxe/Arzneitaxe_eko.rds")
+```
+

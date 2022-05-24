@@ -35,3 +35,8 @@ app/mastering_shiny/app.R
 app/data/Rezeptpflicht/Rezeptpflicht.rtf
 app/data/Rezeptpflicht/rezeptpflicht.rds
 app/data/Rezeptpflicht/download_rezeptpflichtverordnung.txt
+app/.bash_history
+app/.Renviron
+app/rsconnect/shinyapps.io/vere/rstudio.dcf
+data/20220101_Druckwerk_zum_Erstattungskodex_(Internet).pdf
+notes.txt
