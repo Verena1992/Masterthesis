@@ -32,7 +32,8 @@ ui_Suppositorien_gespeichert <- tabPanel("mit abgespeicherten Verdrängungsfakto
                                                           numericInput("New_Verdrängungsfaktor", "Füge neuen Verdrängungsfaktor hinzu", value = 0.7, min = 0, max = 1), 
                                                           actionButton("Substanz_hinzufügen", "Substanz und Verdrängungsfaktor in Liste abspeichern"),
                                                           downloadButton("download")),
-                                         tableOutput("New_Substanz"), 
+                                         tableOutput("New_Substanz"),
+                                        
                                          logoutButton())
 
 
@@ -66,7 +67,7 @@ ui_Suppositorien <- tabPanel("ohne abgespeicherten Verdrängungsfaktoren",
                              textOutput("nötige_Hartfettmenge")
 )
 
-auth0_ui <- navbarPage("My Application", ui_Rezeptpflichtcheck, navbarMenu("Suppositorien-Hartfettmengenrechner",ui_Suppositorien_gespeichert, ui_Suppositorien),
-                 tabPanel("Component 3")
+ui <- auth0_ui(navbarPage("My Application", ui_Rezeptpflichtcheck, navbarMenu("Suppositorien-Hartfettmengenrechner",ui_Suppositorien_gespeichert, ui_Suppositorien),
+                 tabPanel("Component 3"))
 )
 

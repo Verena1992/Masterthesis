@@ -14,7 +14,7 @@ Verdrängungsfaktor <- c()
 
 
 
-auth0_server <- function(input, output, session) {
+server <- auth0_server(function(input, output, session) {
   # Upload Verdrängungsfaktoren-----------------------------------------------------
   
   data_Verdrän <- reactive({
@@ -104,5 +104,5 @@ auth0_server <- function(input, output, session) {
       shinyalert(title = "Bewilligung des chef- und kontrollärztlichen Dienstes nötig! Höchstmenge überschritten", type = "warning")}
   })
   
-}
+})
 
