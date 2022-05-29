@@ -1,7 +1,7 @@
 .gitattributes
 .Rhistory
 
-
+backups_shiny.io/
 app/.config/
 app/.local/
 app/data/
@@ -41,3 +41,5 @@ app/rsconnect/shinyapps.io/vere/rstudio.dcf
 data/20220101_Druckwerk_zum_Erstattungskodex_(Internet).pdf
 notes.txt
 Proposal_Gebhart.pptx
+backups_shiny.io/extraction/.Renviron
+*.yml

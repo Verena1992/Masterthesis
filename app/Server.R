@@ -14,7 +14,7 @@ Verdrängungsfaktor <- c()
 
 
 
-server <- auth0_server(function(input, output, session) {
+server <- function(input, output, session) {
   # Upload Verdrängungsfaktoren-----------------------------------------------------
   
   data_Verdrän <- reactive({
@@ -81,9 +81,9 @@ server <- auth0_server(function(input, output, session) {
   
   #Harfettgrundmasse berechnen--------------------------------------------------------------
   
-  output$nötige_Hartfettmenge <- renderText(input$Stückanzahl * input$Eichwert * input$Überschuss)
+  output$nötige_Hartfettmenge <- renderText(((input$Stückanzahl * input$Eichwert)-(input$Menge_Substanz1 *input$Stückanzahl * input$Vf))/100 * (input$Überschuss+100))
   
-  
+  # (input$Menge_Substanz1 * input$Vf)
   
   
   updateSelectizeInput(session, "WS", choices = rezeptpflicht$Wirkstoff, server = TRUE
@@ -104,5 +104,5 @@ server <- auth0_server(function(input, output, session) {
       shinyalert(title = "Bewilligung des chef- und kontrollärztlichen Dienstes nötig! Höchstmenge überschritten", type = "warning")}
   })
   
-})
+}
 
