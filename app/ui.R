@@ -64,8 +64,8 @@ ui_Suppositorien <- tabPanel("ohne abgespeicherten Verdrängungsfaktoren",
                                               
                                               
                              )
-                             ,actionButton("weitere_Substanz", "weitere Substanz hinzufügen"), 
-                             textOutput("nötige_Hartfettmenge")
+                             ,actionButton("Berechnung_Menge", "Berechnen")
+                             #textOutput("nötige_Hartfettmenge")
 )
 
 ui <- navbarPage("My Application", ui_Rezeptpflichtcheck, navbarMenu("Suppositorien-Hartfettmengenrechner",ui_Suppositorien_gespeichert, ui_Suppositorien),

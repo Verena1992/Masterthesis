@@ -81,9 +81,54 @@ server <- function(input, output, session) {
   
   #Harfettgrundmasse berechnen--------------------------------------------------------------
   
-  output$nötige_Hartfettmenge <- renderText(((input$Stückanzahl * input$Eichwert)-(input$Menge_Substanz1 *input$Stückanzahl * input$Vf))/100 * (input$Überschuss+100))
+  ## ohne abgespeicherten Verdrängungsfaktore
+ 
   
-  # (input$Menge_Substanz1 * input$Vf)
+  
+  observeEvent(input$Stückanzahl,{
+    req(input$Stückanzahl)
+    if (input$Stückanzahl > 24) {
+      # Show a simple modal
+      shinyalert(title = "Bewilligung des chef- und kontrollärztlichen Dienstes nötig! Höchstmenge überschritten", type = "warning")}
+  })
+  
+  observeEvent(input$Berechnung_Menge,{
+    #req(input$Stückanzahl)
+    
+      # Show a simple modal
+      shinyalert(
+        html = TRUE,
+        title = "Berechnete Einwaagen",
+        text = tagList(
+         
+          "Hartfettmenge:",
+          textOutput("nötige_Hartfettmenge", inline = TRUE)
+        ))
+        
+  }) 
+  
+  
+  
+  
+  
+  
+  output$nötige_Hartfettmenge <- renderText({
+    einwaage_ohne_WS <- input$Stückanzahl * input$Eichwert
+    verdrängung1 <- (input$Menge_Substanz1 * input$Stückanzahl * input$Vf)
+    verdrängung2 <- if(input$weitere_Substanz > input$Substanz2_entfernen){
+      (input$Menge_Substanz2 * input$Stückanzahl * input$Vf)} else {0}
+    verdrängung3 <- if(input$weitere_Substanz2 > input$Substanz3_entfernen){
+      (input$Menge_Substanz3 * input$Stückanzahl * input$Vf)} else {0}
+    verdrängung <- verdrängung1 + verdrängung2 + verdrängung3
+                   
+                  
+    einwaage_mit_Überschuss <- (einwaage_ohne_WS - verdrängung)/100 * (input$Überschuss+100)
+    #((input$Stückanzahl * input$Eichwert)-(input$Menge_Substanz1 *input$Stückanzahl * input$Vf))/100 * (input$Überschuss+100)
+    einwaage_mit_Überschuss
+    }) 
+  
+  
+  
   
   
   updateSelectizeInput(session, "WS", choices = rezeptpflicht$Wirkstoff, server = TRUE
@@ -95,14 +140,14 @@ server <- function(input, output, session) {
     Rstatus
   })
   
-  # ohne abgespeicherten Verdrängungsfaktoren
   
-  observeEvent(input$Stückanzahl,{
-    req(input$Stückanzahl)
-    if (input$Stückanzahl > 24) {
-      # Show a simple modal
-      shinyalert(title = "Bewilligung des chef- und kontrollärztlichen Dienstes nötig! Höchstmenge überschritten", type = "warning")}
-  })
+
   
+  
+  
+
+  
+  
+        
 }
 
