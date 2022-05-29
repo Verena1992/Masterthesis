@@ -93,21 +93,28 @@ server <- function(input, output, session) {
   })
   
   observeEvent(input$Berechnung_Menge,{
-    #req(input$Stückanzahl)
-    
-      # Show a simple modal
       shinyalert(
         html = TRUE,
-        title = "Berechnete Einwaagen",
+        title = "Berechnete Einwaagen(g)",
         text = tagList(
          
-          "Hartfettmenge:",
-          textOutput("nötige_Hartfettmenge", inline = TRUE)
-        ))
-        
-  }) 
-  
-  
+          tags$h3("Hartfett:"),
+          textOutput("nötige_Hartfettmenge", inline = T),
+          tags$hr(),
+          tags$h3("Substanz 1:"),
+          textOutput("nötige_Substanzmenge1", inline = T),
+          tags$hr(),
+          if(input$weitere_Substanz > input$Substanz2_entfernen){
+            tags$h3("Substanz 2:")},
+          if(input$weitere_Substanz > input$Substanz2_entfernen){
+            textOutput("nötige_Substanzmenge2", inline = T)},
+          if(input$weitere_Substanz2 > input$Substanz3_entfernen){
+            tags$hr()},          
+          if(input$weitere_Substanz2 > input$Substanz3_entfernen){
+            tags$h3("Substanz 3:")},
+          if(input$weitere_Substanz2 > input$Substanz3_entfernen){
+            textOutput("nötige_Substanzmenge3", inline = T)}         
+          ))})
   
   
   
@@ -127,9 +134,19 @@ server <- function(input, output, session) {
     einwaage_mit_Überschuss
     }) 
   
+  output$nötige_Substanzmenge1 <- renderText({
+    (input$Menge_Substanz1 * input$Stückanzahl)/100 * (input$Überschuss+100)
+  })
   
+  output$nötige_Substanzmenge2 <- renderText({
+    (input$Menge_Substanz2 * input$Stückanzahl)/100 * (input$Überschuss+100)
+  })
+ 
+  output$nötige_Substanzmenge3 <- renderText({
+    (input$Menge_Substanz3 * input$Stückanzahl)/100 * (input$Überschuss+100)
+  })
   
-  
+ 
   
   updateSelectizeInput(session, "WS", choices = rezeptpflicht$Wirkstoff, server = TRUE
   )
