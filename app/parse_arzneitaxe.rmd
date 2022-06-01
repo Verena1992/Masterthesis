@@ -23,7 +23,7 @@ text <- unrtf("https://www.ris.bka.gv.at/GeltendeFassung/Bundesnormen/10010306/%
 
 if rtf-file is already downloaded read in the file as text
 ```{r}
-text <- unrtf("~/data/Arzneitaxe/Österreichische Arzneitaxe 1962, Fassung vom 16.05.2022.rtf", format = "text")
+text <- unrtf("~/data/Arzneitaxe/download/Österreichische Arzneitaxe 1962, Fassung vom 16.05.2022.rtf", format = "text")
 ```
 
 
@@ -86,7 +86,7 @@ some wirkstoffe have *) added at the end. remove this from string:
 wirkstoff <- gsub(" \\*)", "", as.character(wirkstoff))
 ```
 
-promille is not formatted correctly but in original text on homepage neither
+promille is not formatted correctly, in original text on homepage neither
 
 ```{r}
 wirkstoff <- gsub("spiritus \\(3.*", "spiritus \\(3 ‰\\)", as.character(wirkstoff))
@@ -110,7 +110,6 @@ saveRDS(wirkstoff, file ="data/Arzneitaxe/Arzneitaxe.rds")
 ## add erstattungssstatus to Arzneitaxe Wirkstoffe
 
 
-
 Stoffe für magistrale Zubereitungen, die in der Österreichischen Arzneitaxe angeführt
 sind, gelten als Teil des Grünen Bereiches des EKO, werden jedoch nicht
 im EKO veröffentlicht.
@@ -128,6 +127,7 @@ Grund einer Empfehlung der HEK ausdrücklich dem Gelben Bereich zuzuordnen
 sind und dementsprechend – sowohl rein als auch in Verarbeitung – nur mit
 vorheriger Bewilligung des chef- und kontrollärztlichen Dienstes abgegeben
 werden können.
+
 ```{r}
 wirkstoffe_arzneitaxe <- readRDS("data/Arzneitaxe/Arzneitaxe.rds")
 ```

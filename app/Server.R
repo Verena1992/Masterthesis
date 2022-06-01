@@ -15,7 +15,7 @@ Verdrängungsfaktor <- c()
 
 
 server <- function(input, output, session) {
-  # Upload Verdrängungsfaktoren-----------------------------------------------------
+# Home-----------------------------------------------------
   
   data_Verdrän <- reactive({
     req(input$Verdrängungsfaktoren)#to make sure code waits until the first file is uploaded
@@ -29,6 +29,21 @@ server <- function(input, output, session) {
   observe({
     dataSet <- data_Verdrän()
     updateSelectizeInput(session, "WS_S", choices = c(dataSet$Wirkstoff, "Substanz nicht in der Liste vorhanden"))
+  })
+  
+  output$fileUploaded <- reactive({
+    return(!is.null(data_Verdrän()))
+  })
+  outputOptions(output, 'fileUploaded', suspendWhenHidden=FALSE)
+  
+  output$vf <- renderUI({
+    dataSet <- data_Verdrän()
+    vf <- dataSet[which(dataSet$Wirkstoff == input$WS_S),]
+    if (input$Substanz_hinzufügen){
+      vf <- input$New_Verdrängungsfaktor
+    } else {
+    vf <- vf$Verdrängungsfaktor}
+    HTML(paste("Verdrägungsfaktor = ",vf))
   })
   
   updateSelectizeInput(session, "New_Substanz", choices = taxe_eko$wirkstoffe_arzneitaxe, server = TRUE)
@@ -46,7 +61,7 @@ server <- function(input, output, session) {
     #new_dataSet[nrow(data_Verdrän()) + 1,] <- list(input$New_Substanz, input$New_Verdrängungsfaktor)
     new_data <- data.frame(Wirkstoff, Verdrängungsfaktor)
     new_data
-    print(new_data)
+    #print(new_data)
   })
   
   
