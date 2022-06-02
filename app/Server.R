@@ -28,7 +28,12 @@ server <- function(input, output, session) {
   
   observe({
     dataSet <- data_Verdrän()
-    updateSelectizeInput(session, "WS_S", choices = c(dataSet$Wirkstoff, "Substanz nicht in der Liste vorhanden"))
+    updateSelectizeInput(session, "WS_S", choices = c(dataSet$Wirkstoff, "Substanz nicht in Liste vorhanden"))
+  })
+  
+  observe({
+    dataSet <- data_Verdrän()
+    updateSelectizeInput(session, "WS_S2", choices = c(dataSet$Wirkstoff, "Substanz nicht in Liste vorhanden"))
   })
   
   output$fileUploaded <- reactive({
@@ -46,25 +51,69 @@ server <- function(input, output, session) {
     HTML(paste("Verdrägungsfaktor = ",vf))
   })
   
+  output$vf2 <- renderUI({
+    dataSet <- data_Verdrän()
+    vf <- dataSet[which(dataSet$Wirkstoff == input$WS_S2),]
+    if (input$Substanz_hinzufügen2){
+      vf2 <- input$New_Verdrängungsfaktor2
+    } else {
+      vf2 <- vf$Verdrängungsfaktor}
+    HTML(paste("Verdrägungsfaktor = ",vf2))
+  })
+  
+  
+  
+  
+  
+   
+  
+  
+  output$sub <- renderUI({
+    req(input$New_Substanz)
+    input$New_Substanz
+  })
+  
+  output$sub2 <- renderUI({
+    req(input$New_Substanz2)
+    input$New_Substanz2
+  })  
+  
+  
+  
+  
+  
   updateSelectizeInput(session, "New_Substanz", choices = taxe_eko$wirkstoffe_arzneitaxe, server = TRUE)
+  updateSelectizeInput(session, "New_Substanz2", choices = taxe_eko$wirkstoffe_arzneitaxe, server = TRUE)
   
+          
   
-  
-  new_data <- eventReactive(input$Substanz_hinzufügen, {
+  new_data <- eventReactive(list(input$Substanz_hinzufügen , input$Substanz_hinzufügen2),{
+    req(input$Substanz_hinzufügen | input$Substanz_hinzufügen2)
     #assigning as global variable ("<<-")is needed to append
+    if (input$weitere_Substanz > input$Substanz2_entfernen){
+    Wirkstoff <<- append(Wirkstoff, input$New_Substanz2)
+    Verdrängungsfaktor <<- append(Verdrängungsfaktor, input$New_Verdrängungsfaktor2)
+    } else {
     Wirkstoff <<- append(Wirkstoff, input$New_Substanz)
-    Verdrängungsfaktor <<- append(Verdrängungsfaktor, input$New_Verdrängungsfaktor)
-    #new_dataSet <- vroom::vroom_write(list(input$New_Substanz, input$New_Verdrängungsfaktor), 
-    #                                 input$Verdrängungsfaktoren$name, delim = "\t", append = T)
-    
-    #print(typeof(input$New_Verdrängungsfaktor))
-    #new_dataSet[nrow(data_Verdrän()) + 1,] <- list(input$New_Substanz, input$New_Verdrängungsfaktor)
+    Verdrängungsfaktor <<- append(Verdrängungsfaktor, input$New_Verdrängungsfaktor)}
+
     new_data <- data.frame(Wirkstoff, Verdrängungsfaktor)
     new_data
     #print(new_data)
   })
   
-  
+#  new_data2 <- eventReactive(input$Substanz_hinzufügen2, {
+    #assigning as global variable ("<<-")is needed to append
+ #   Wirkstoff <<- append(Wirkstoff, input$New_Substanz2)
+#    Verdrängungsfaktor <<- append(Verdrängungsfaktor, input$New_Verdrängungsfaktor2)
+ 
+    
+    #print(typeof(input$New_Verdrängungsfaktor))
+    #new_dataSet[nrow(data_Verdrän()) + 1,] <- list(input$New_Substanz, input$New_Verdrängungsfaktor)
+ #   new_data <- data.frame(Wirkstoff, Verdrängungsfaktor)
+#    new_data
+    #print(new_data)
+ # })
   
   
   #  new_dataSet <- reactive({
@@ -85,9 +134,11 @@ server <- function(input, output, session) {
                          file, delim = "\t")
     }
   )
-  
+
   
   output$New_Substanz <- renderTable({
+    #new_data <- data.frame(Wirkstoff, Verdrängungsfaktor)
+    #browser()
     new_data()
   })
   
