@@ -56,17 +56,26 @@ ui_Suppositorien <- tabPanel("ohne abgespeicherten Verdrängungsfaktoren",
                              ),
                              column(4,
                                     conditionalPanel(condition = "input.WS_S == 'Substanz nicht in Liste vorhanden' 
-                                                     && input.weitere_Substanz <= input.Substanz2_entfernen",
+                                                     && input.weitere_Substanz <= input.Substanz2_entfernen"
+                                                     ,
                                                      selectizeInput("New_Substanz", "Arzneimittel, Arzneitaxe-Anlage B", choices = NULL),
                                     
                                                      numericInput("New_Verdrängungsfaktor", "Füge neuen Verdrängungsfaktor hinzu", value = 0.7, min = 0, max = 1), 
                                                      actionButton("Substanz_hinzufügen", "übernehmen")),
                                     conditionalPanel(condition = "input.WS_S2 == 'Substanz nicht in Liste vorhanden' 
-                                                     && input.weitere_Substanz2 <= input.Substanz3_entfernen",
+                                                     && input.weitere_Substanz2 <= input.Substanz3_entfernen
+                                                     && input.Substanz2_entfernen < input.weitere_Substanz",
                                                      selectizeInput("New_Substanz2", "Arzneimittel, Arzneitaxe-Anlage B", choices = NULL),
                                                      
                                                      numericInput("New_Verdrängungsfaktor2", "Füge neuen Verdrängungsfaktor hinzu", value = 0.7, min = 0, max = 1), 
-                                                     actionButton("Substanz_hinzufügen2", "übernehmen"))                 
+                                                     actionButton("Substanz_hinzufügen2", "übernehmen")),
+                                    
+                                    conditionalPanel(condition = "input.WS_S3 == 'Substanz nicht in Liste vorhanden' 
+                                                     && input.weitere_Substanz2 >= input.Substanz3_entfernen",
+                                                     selectizeInput("New_Substanz3", "Arzneimittel, Arzneitaxe-Anlage B", choices = NULL),
+                                                     
+                                                     numericInput("New_Verdrängungsfaktor3", "Füge neuen Verdrängungsfaktor hinzu", value = 0.7, min = 0, max = 1), 
+                                                     actionButton("Substanz_hinzufügen3", "übernehmen")),
                                     
                                     ),
                              column(4,
@@ -101,15 +110,22 @@ ui_Suppositorien <- tabPanel("ohne abgespeicherten Verdrängungsfaktoren",
                                                         tags$hr()),
                                        conditionalPanel("!output.fileUploaded",
                                                         numericInput("Vf2", "Verdrängungsfaktor", value = 0.7, min = 0, max = 1, step = 0.01)),
-                                       numericInput("Menge_Substanz2", "Menge(g)", value = 0.7, min = 0, max = 1, step = 0.01),
+                                       numericInput("Menge_Substanz2", "Menge(g) pro Zäpfchen", value = 0.7, min = 0, max = 1, step = 0.01),
                                        actionButton("weitere_Substanz2", "weitere Substanz hinzufügen"),
                                        actionButton("Substanz2_entfernen", "Substanz entfernen"),
                                                                  ))),
                              column(4,
                                        conditionalPanel(condition = "input.weitere_Substanz2 > input.Substanz3_entfernen", 
                                        wellPanel(tags$h4("Substanz 3"),
-                                       numericInput("Vf3", "Verdrängungsfaktor", value = 0.7, min = 0, max = 1, step = 0.01),
-                                       numericInput("Menge_Substanz3", "Menge(g)", value = 0.7, min = 0, max = 1, step = 0.01),
+                                       conditionalPanel("output.fileUploaded",
+                                                        selectizeInput("WS_S3", "Substanz",choices = NULL),
+                                                        htmlOutput("vf3"),
+                                                        conditionalPanel(condition = "input.WS_S3 == 'Substanz nicht in Liste vorhanden'",
+                                                                        htmlOutput("sub3") ),
+                                                                  tags$hr()),
+                                       conditionalPanel("!output.fileUploaded",      
+                                                        numericInput("Vf3", "Verdrängungsfaktor", value = 0.7, min = 0, max = 1, step = 0.01)),
+                                       numericInput("Menge_Substanz3", "Menge(g) pro Zäpfchen", value = 0.7, min = 0, max = 1, step = 0.01),
                                        actionButton("Substanz3_entfernen", "Substanz entfernen")))
                                               
                                               

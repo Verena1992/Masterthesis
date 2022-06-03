@@ -36,6 +36,13 @@ server <- function(input, output, session) {
     updateSelectizeInput(session, "WS_S2", choices = c(dataSet$Wirkstoff, "Substanz nicht in Liste vorhanden"))
   })
   
+  observe({
+    dataSet <- data_Verdrän()
+    updateSelectizeInput(session, "WS_S3", choices = c(dataSet$Wirkstoff, "Substanz nicht in Liste vorhanden"))
+  })
+  
+  
+  
   output$fileUploaded <- reactive({
     return(!is.null(data_Verdrän()))
   })
@@ -61,7 +68,15 @@ server <- function(input, output, session) {
     HTML(paste("Verdrägungsfaktor = ",vf2))
   })
   
-  
+  output$vf3 <- renderUI({
+    dataSet <- data_Verdrän()
+    vf <- dataSet[which(dataSet$Wirkstoff == input$WS_S3),]
+    if (input$Substanz_hinzufügen3){
+      vf3 <- input$New_Verdrängungsfaktor3
+    } else {
+      vf3 <- vf$Verdrängungsfaktor}
+    HTML(paste("Verdrägungsfaktor = ",vf3))
+  })
   
   
   
@@ -78,21 +93,30 @@ server <- function(input, output, session) {
     input$New_Substanz2
   })  
   
+  output$sub3 <- renderUI({
+    req(input$New_Substanz3)
+    input$New_Substanz3
+  })
+  
   
   
   
   
   updateSelectizeInput(session, "New_Substanz", choices = taxe_eko$wirkstoffe_arzneitaxe, server = TRUE)
   updateSelectizeInput(session, "New_Substanz2", choices = taxe_eko$wirkstoffe_arzneitaxe, server = TRUE)
-  
+  updateSelectizeInput(session, "New_Substanz3", choices = taxe_eko$wirkstoffe_arzneitaxe, server = TRUE)
           
   
-  new_data <- eventReactive(list(input$Substanz_hinzufügen , input$Substanz_hinzufügen2),{
-    req(input$Substanz_hinzufügen | input$Substanz_hinzufügen2)
+  new_data <- eventReactive(list(input$Substanz_hinzufügen , input$Substanz_hinzufügen2, input$Substanz_hinzufügen3),{
+    req(input$Substanz_hinzufügen | input$Substanz_hinzufügen2 | input$Substanz_hinzufügen3)
     #assigning as global variable ("<<-")is needed to append
     if (input$weitere_Substanz > input$Substanz2_entfernen){
     Wirkstoff <<- append(Wirkstoff, input$New_Substanz2)
     Verdrängungsfaktor <<- append(Verdrängungsfaktor, input$New_Verdrängungsfaktor2)
+    } else if (input$weitere_Substanz2 > input$Substanz3_entfernen) {
+      print("test")
+    Wirkstoff <<- append(Wirkstoff, input$New_Substanz3)
+    Verdrängungsfaktor <<- append(Verdrängungsfaktor, input$New_Verdrängungsfaktor3)
     } else {
     Wirkstoff <<- append(Wirkstoff, input$New_Substanz)
     Verdrängungsfaktor <<- append(Verdrängungsfaktor, input$New_Verdrängungsfaktor)}
