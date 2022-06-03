@@ -110,14 +110,14 @@ server <- function(input, output, session) {
   new_data <- eventReactive(list(input$Substanz_hinzufügen , input$Substanz_hinzufügen2, input$Substanz_hinzufügen3),{
     req(input$Substanz_hinzufügen | input$Substanz_hinzufügen2 | input$Substanz_hinzufügen3)
     #assigning as global variable ("<<-")is needed to append
-    if (input$weitere_Substanz > input$Substanz2_entfernen){
-    Wirkstoff <<- append(Wirkstoff, input$New_Substanz2)
-    Verdrängungsfaktor <<- append(Verdrängungsfaktor, input$New_Verdrängungsfaktor2)
-    } else if (input$weitere_Substanz2 > input$Substanz3_entfernen) {
+    if (input$weitere_Substanz2 > input$Substanz3_entfernen) {
       print("test")
-    Wirkstoff <<- append(Wirkstoff, input$New_Substanz3)
-    Verdrängungsfaktor <<- append(Verdrängungsfaktor, input$New_Verdrängungsfaktor3)
-    } else {
+      Wirkstoff <<- append(Wirkstoff, input$New_Substanz3)
+      Verdrängungsfaktor <<- append(Verdrängungsfaktor, input$New_Verdrängungsfaktor3)}
+    else if (input$weitere_Substanz > input$Substanz2_entfernen){
+      Wirkstoff <<- append(Wirkstoff, input$New_Substanz2)
+      Verdrängungsfaktor <<- append(Verdrängungsfaktor, input$New_Verdrängungsfaktor2)}
+    else {
     Wirkstoff <<- append(Wirkstoff, input$New_Substanz)
     Verdrängungsfaktor <<- append(Verdrängungsfaktor, input$New_Verdrängungsfaktor)}
 
