@@ -111,7 +111,6 @@ server <- function(input, output, session) {
     req(input$Substanz_hinzufügen | input$Substanz_hinzufügen2 | input$Substanz_hinzufügen3)
     #assigning as global variable ("<<-")is needed to append
     if (input$weitere_Substanz2 > input$Substanz3_entfernen) {
-      print("test")
       Wirkstoff <<- append(Wirkstoff, input$New_Substanz3)
       Verdrängungsfaktor <<- append(Verdrängungsfaktor, input$New_Verdrängungsfaktor3)}
     else if (input$weitere_Substanz > input$Substanz2_entfernen){
