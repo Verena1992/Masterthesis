@@ -28,7 +28,7 @@ ui_Rezeptpflichtcheck <- tabPanel("Rezeptpflichtcheck",
 
 
 # Suppositorien----------------------------------------------------------
-ui_Suppositorien_gespeichert <- tabPanel("mit abgespeicherten Verdrängungsfaktoren",
+ui_Suppositorien_gespeichert <- tabPanel("Dosierungcheck",
                                          
                                          #selectizeInput("WS_S", "Substanz",choices = NULL),
                                          
@@ -44,7 +44,7 @@ ui_Suppositorien_gespeichert <- tabPanel("mit abgespeicherten Verdrängungsfakto
                                          )
 
 
-ui_Suppositorien <- tabPanel("ohne abgespeicherten Verdrängungsfaktoren", 
+ui_Suppositorien_Rechner <- tabPanel("Hartfettmengenrechner", 
                              fluidPage(
                               # titlePanel("Hartfettmengenrechner"),
                               # tags$hr(),
@@ -150,7 +150,7 @@ ui_Suppositorien <- tabPanel("ohne abgespeicherten Verdrängungsfaktoren",
                              #class = "btn-primary btn-lg"
 )
 
-ui <- navbarPage("My Application", ui_Home, ui_Rezeptpflichtcheck, navbarMenu("Suppositorien-Hartfettmengenrechner",ui_Suppositorien_gespeichert, ui_Suppositorien)
+ui <- navbarPage("My Application", ui_Home, navbarMenu("Suppositorien", ui_Suppositorien_Rechner, ui_Suppositorien_gespeichert) ,ui_Rezeptpflichtcheck
                  )
 
 
