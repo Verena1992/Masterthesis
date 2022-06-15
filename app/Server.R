@@ -5,14 +5,12 @@ library(dplyr)
 library(shinyalert)
 library(auth0)
 
+
 rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
 taxe_eko <- readRDS("./data/Arzneitaxe/Arzneitaxe_eko.rds")
 
 Wirkstoff <- c()
 Verdrängungsfaktor <- c()
-
-
-
 
 server <- function(input, output, session) {
 # Home-----------------------------------------------------
@@ -22,8 +20,15 @@ server <- function(input, output, session) {
     #first column = c(character), second = double
     #verdrängungsfaktor needs to be written with point as comma
     #datapath = The path to a temp file that contains the data that was uploaded
+    ext <- tools::file_ext(input$Verdrängungsfaktoren$datapath)
+    #validate(need(ext == "txt" | ext == "pdf", "Please upload a csv file"))
+    if (ext == "txt"){
     dataSet <- vroom::vroom(input$Verdrängungsfaktoren$datapath, delim = "\t", col_types = "cd")
-    
+    } else if (ext == "pdf") {
+      source("verdrängungsfaktoren_pdf.R")
+      print("pdf")
+      dataSet
+    }
   })
   
   observe({
@@ -245,15 +250,6 @@ server <- function(input, output, session) {
     Rstatus <- selected_ws$Rstatus
     Rstatus
   })
-  
-  
-
-  
-  
-  
-
-  
-  
         
 }
 

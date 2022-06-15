@@ -17,9 +17,13 @@ Verdrängungsfaktor <- c()
 ui_Home <- tabPanel("Home", 
                     
                     fileInput("Verdrängungsfaktoren", "Choose CSV File"),
+                    
+                    
                               
                     logoutButton())
 
+
+ui_Rezeptursammlung <- tabPanel("Rezeptursammlung")
 
 # Rezeptpflicht-----------------------------------------------------
 ui_Rezeptpflichtcheck <- tabPanel("Rezeptpflichtcheck", 
@@ -150,7 +154,7 @@ ui_Suppositorien_Rechner <- tabPanel("Hartfettmengenrechner",
                              #class = "btn-primary btn-lg"
 )
 
-ui <- navbarPage("My Application", ui_Home, navbarMenu("Suppositorien", ui_Suppositorien_Rechner, ui_Suppositorien_gespeichert) ,ui_Rezeptpflichtcheck
-                 )
+ui <- navbarPage("My Application", ui_Home, navbarMenu("Suppositorien", ui_Suppositorien_Rechner, ui_Suppositorien_gespeichert) ,ui_Rezeptpflichtcheck,
+                 ui_Rezeptursammlung)
 
 

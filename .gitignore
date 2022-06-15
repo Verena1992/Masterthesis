@@ -43,3 +43,10 @@ notes.txt
 Proposal_Gebhart.pptx
 backups_shiny.io/extraction/.Renviron
 *.yml
+app/Verdrängungsfaktoren_NRF
+app/verdrängungsfaktoren_pdf.R
+app/.mozilla/firefox/Crash Reports/InstallTime20220519220738
+app/parse_verdrängungsfaktoren_NRF.html
+app/parse_verdrängungsfaktoren_NRF.Rmd
+app/Rezeptursammlung.txt
+app/Selenium.R
