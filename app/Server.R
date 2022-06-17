@@ -250,6 +250,13 @@ server <- function(input, output, session) {
     Rstatus <- selected_ws$Rstatus
     Rstatus
   })
-        
+
+  
+# Rezeptursammlung----------------------------------------------------------   
+  updateSelectizeInput(session, "WS_Sammlung", choices = Rezeptursammlung$V2, server = TRUE
+  )
+  #output$Rezeptur <- rendertable({
+  #  subset(Rezeptursammlung, name == "Dan")
+  #})
 }
 

@@ -4,6 +4,7 @@ library(vroom)
 library(dplyr)
 library(shinyalert)
 library(auth0)
+library(shinyWidgets)
 
 
 rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
@@ -22,8 +23,39 @@ ui_Home <- tabPanel("Home",
                               
                     logoutButton())
 
-
-ui_Rezeptursammlung <- tabPanel("Rezeptursammlung")
+# Rezeptursammlung----------------------------------------------------------
+ui_Rezeptursammlung <- tabPanel("Rezeptursammlung", 
+                                fluidPage(
+                                  titlePanel("Rezeptursammlung"),
+                                  sidebarLayout(
+                                    sidebarPanel(
+                                      tags$h3("NRF"),
+                                      actionButton("NRF_online", "NRF_online suchen"),
+                                      tags$hr(),
+                                      
+                                      tags$h3("Juniormed"),
+                                       
+                                      selectizeInput("WS_Sammlung", "1.Substanz",choices = NULL),
+                                      
+                                      actionBttn(
+                                        inputId = "bttn1",
+                                        label = "weitere Substanz hinzufügen",
+                                        color = "success",
+                                        style = "stretch", 
+                                        size = "sm"
+                                      ),
+                                      tags$hr(),
+                                      actionButton("Juniormed", "Juniormed suchen"),
+                                      tags$hr(),
+                                      ),
+                                    mainPanel(conditionalPanel(condition = "input.NRF_online", 
+                                      tags$iframe(src="https://dacnrf.pharmazeutische-zeitung.de/dac/nrf-wissen/rezepturenfinder/offen", height=500, width=800))
+                                             )          
+                                  )))
+                               # tags$iframe(src="https://dacnrf.pharmazeutische-zeitung.de/dac/nrf-wissen/rezepturenfinder/offen", height=300, width=800), 
+                              #  tags$h2("Juniormed"), 
+                              #  selectizeInput("WS_Sammlung", "1.Substanz",choices = NULL))    
+                      
 
 # Rezeptpflicht-----------------------------------------------------
 ui_Rezeptpflichtcheck <- tabPanel("Rezeptpflichtcheck", 
