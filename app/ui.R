@@ -34,23 +34,36 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                       tags$hr(),
                                       
                                       tags$h3("Juniormed"),
-                                       
-                                      selectizeInput("WS_Sammlung", "1.Substanz",choices = NULL),
                                       
                                       actionBttn(
-                                        inputId = "bttn1",
-                                        label = "weitere Substanz hinzufügen",
+                                        inputId = "plus",
+                                        label = "Substanz hinzufügen",
                                         color = "success",
                                         style = "stretch", 
                                         size = "sm"
                                       ),
+                                      actionBttn(
+                                        inputId = "minus",
+                                        label = "Substanz entfernen",
+                                        color = "royal",
+                                        style = "stretch", 
+                                        size = "sm"
+                                      ),
+                                      
                                       tags$hr(),
+                                      #selectizeInput("WS_Sammlung", "1.Substanz",choices = NULL),
+                                      uiOutput("moreSubstanzen"),
+                                      
                                       actionButton("Juniormed", "Juniormed suchen"),
+                                      
                                       tags$hr(),
                                       ),
                                     mainPanel(conditionalPanel(condition = "input.NRF_online", 
-                                      tags$iframe(src="https://dacnrf.pharmazeutische-zeitung.de/dac/nrf-wissen/rezepturenfinder/offen", height=500, width=800))
-                                             )          
+                                      tags$iframe(src="https://dacnrf.pharmazeutische-zeitung.de/dac/nrf-wissen/rezepturenfinder/offen", height=500, width=800)),
+                                      tableOutput("table")
+                                             )
+                                    #textOutput("table")
+                                       
                                   )))
                                # tags$iframe(src="https://dacnrf.pharmazeutische-zeitung.de/dac/nrf-wissen/rezepturenfinder/offen", height=300, width=800), 
                               #  tags$h2("Juniormed"), 

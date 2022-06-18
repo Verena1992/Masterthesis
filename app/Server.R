@@ -4,10 +4,11 @@ library(vroom)
 library(dplyr)
 library(shinyalert)
 library(auth0)
-
+library(shinyWidgets)
 
 rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
 taxe_eko <- readRDS("./data/Arzneitaxe/Arzneitaxe_eko.rds")
+Rezeptursammlung <- read.csv("~/Rezeptursammlung.txt", header=FALSE, sep=";")
 
 Wirkstoff <- c()
 Verdrängungsfaktor <- c()
@@ -253,10 +254,69 @@ server <- function(input, output, session) {
 
   
 # Rezeptursammlung----------------------------------------------------------   
-  updateSelectizeInput(session, "WS_Sammlung", choices = Rezeptursammlung$V2, server = TRUE
-  )
-  #output$Rezeptur <- rendertable({
-  #  subset(Rezeptursammlung, name == "Dan")
-  #})
+
+  
+  value <- reactiveVal(1)       # rv <- reactiveValues(value = 0)
+  
+  observeEvent(input$minus, {
+    if (value() > 1) {
+    newValue <- value() - 1     # newValue <- rv$value - 1
+    value(newValue)  }           # rv$value <- newValue
+  })
+  
+  observeEvent(input$plus, {
+    newValue <- value() + 1     # newValue <- rv$value + 1
+    value(newValue)             # rv$value <- newValue
+  })
+  
+  
+#maybe better using insertUI https://shiny.rstudio.com/reference/shiny/1.0.3/observeEvent.html
+  
+  output$moreSubstanzen <- renderUI({
+    lapply (1:value(), (function(i){
+      # input[[paste0('moreSubstanzen', i)]] <- 
+      selectizeInput(paste0("Substanz", i), paste0("Substanz ", i),choices = Rezeptursammlung$V2)
+    }))
+  })
+  
+  
+#  df <- eventReactive(input$button, {
+#    head(cars, input$x)
+#  })
+#  output$table <- renderTable({
+#    df()
+#  }
+  
+  Rezeptursammlung_sub <- eventReactive(input$Juniormed,{
+    a <- Rezeptursammlung[which(Rezeptursammlung$V2 == input$Substanz1),]$V1
+    
+    
+    Rezeptursammlung <- subset(Rezeptursammlung, V1 %in% a)
+    
+    c <- Rezeptursammlung[which(Rezeptursammlung$V2 == input$Substanz2),]$V1
+    
+    Rezeptursammlung <- subset(Rezeptursammlung, V1 %in% c)
+    Rezeptursammlung
+    
+  })
+
+  
+  output$table <- renderTable({
+    Rezeptursammlung_sub()
+      })
+  
+#  output$moreSubstanzen <- renderUI({
+#    lapply (1:value(), (function(i){
+#      # input[[paste0('moreSubstanzen', i)]] <- 
+#      selectizeInput(paste0("Substanz", i), paste0("Substanz ", i),choices = Rezeptursammlung$V2)
+#    }))
+#  })
+  
+
+  
+  
+  
+  #updateSelectizeInput(session, "moreSubstanzen", choices = Rezeptursammlung$V2, server = TRUE)
+    
 }
 
