@@ -131,27 +131,8 @@ server <- function(input, output, session) {
     #print(new_data)
   })
   
-#  new_data2 <- eventReactive(input$Substanz_hinzufügen2, {
-    #assigning as global variable ("<<-")is needed to append
- #   Wirkstoff <<- append(Wirkstoff, input$New_Substanz2)
-#    Verdrängungsfaktor <<- append(Verdrängungsfaktor, input$New_Verdrängungsfaktor2)
  
-    
-    #print(typeof(input$New_Verdrängungsfaktor))
-    #new_dataSet[nrow(data_Verdrän()) + 1,] <- list(input$New_Substanz, input$New_Verdrängungsfaktor)
- #   new_data <- data.frame(Wirkstoff, Verdrängungsfaktor)
-#    new_data
-    #print(new_data)
- # })
   
-  
-  #  new_dataSet <- reactive({
-  #print(input$New_Substanz)
-  #    new_dataSet <- data_Verdrän()
-  #print(typeof(input$New_Verdrängungsfaktor))
-  #    new_dataSet[nrow(new_dataSet) + 1,] <- list(input$New_Substanz, input$New_Verdrängungsfaktor)
-  #    new_dataSet
-  #  })
   
   output$download <- downloadHandler(
     filename = function() {
@@ -280,25 +261,40 @@ server <- function(input, output, session) {
   })
   
   
-#  df <- eventReactive(input$button, {
-#    head(cars, input$x)
-#  })
-#  output$table <- renderTable({
-#    df()
-#  }
+
+  
+  # Rezeptursammlung_sub <- eventReactive(input$Juniormed,{
+  #   a <- Rezeptursammlung[which(Rezeptursammlung$V2 == input$Substanz1),]$V1
+  #   
+  #   
+  #   Rezeptursammlung <- subset(Rezeptursammlung, V1 %in% a)
+  #   
+  #   c <- Rezeptursammlung[which(Rezeptursammlung$V2 == input$Substanz2),]$V1
+  #   
+  #   Rezeptursammlung <- subset(Rezeptursammlung, V1 %in% c)
+  #   Rezeptursammlung
+  #   
+  # })
   
   Rezeptursammlung_sub <- eventReactive(input$Juniormed,{
-    a <- Rezeptursammlung[which(Rezeptursammlung$V2 == input$Substanz1),]$V1
     
+    for (i in 1:value()){
+      
+      Rezeptursammlung <- subset(Rezeptursammlung, V1 %in% Rezeptursammlung[which(Rezeptursammlung$V2 == input[[paste0('Substanz', i)]]),]$V1)
+    }
+ #   lapply (value(), (function(i){
     
-    Rezeptursammlung <- subset(Rezeptursammlung, V1 %in% a)
-    
-    c <- Rezeptursammlung[which(Rezeptursammlung$V2 == input$Substanz2),]$V1
-    
-    Rezeptursammlung <- subset(Rezeptursammlung, V1 %in% c)
+    #paste0("a", i) <- Rezeptursammlung[which(Rezeptursammlung$V2 == input[[paste0('Substanz', i)]]),]$V1
+
+
+  #  Rezeptursammlung <- subset(Rezeptursammlung, V1 %in% Rezeptursammlung[which(Rezeptursammlung$V2 == input[[paste0('Substanz', i)]]),]$V1)
+
+
     Rezeptursammlung
     
   })
+  
+  
 
   
   output$table <- renderTable({
