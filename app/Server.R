@@ -291,15 +291,68 @@ server <- function(input, output, session) {
 
 
     Rezeptursammlung
+})
+  
+  
+  output$Rezepturen <- renderUI({
+    Rezeptursammlung <- Rezeptursammlung_sub()
+    Rezepturen <- unique(Rezeptursammlung$V1)
+  #  Rezepturen
+  #  Rezepturen <- Rezeptursammlung_sub()
+    lapply(1:length(Rezeptursammlung_sub()), function(i){
+        numlines <- which(Rezeptursammlung$V1 == Rezepturen[i])
+        Bestandteile <- Rezeptursammlung$V2[numlines]
+        
+        tagList(
+          
+          #sapply(Bestandteile, function(j) as.character(tags$p(j)))
+          actionButton(paste0("Rezeptur",i),HTML(paste0("<h3>",Rezepturen[i]),"</h3>", "<br/>", Bestandteile)))
+        
+      })
+      
+    
+    
+    
+    # lapply(1:10, function(i) {
+    #   output[[paste0('b', i)]] <- renderUI({
+    #     strong(paste0('Hi, this is output B#', i))
+    #   })
     
   })
   
+ #  output$text <- renderText({
+ #    sammlung <- Rezeptursammlung_sub()
+ #    uni <- unique(sammlung$V1)
+ #    num <- length(uni)
+ #    uni[num]
+ # #   renderUI({
+ #     lapply (1:num, (function(i){
+ #        renderTable(sammlung[uni[i],])
+ #    
+ #        renderUI ({tableOutput(paste0("Rezeptur", i))
+ #        })
+ #      }))
+ #      
+ #    })
+    
   
+  
+  # output$moretab <- renderUI({
+  #   lapply (1:value(), (function(i){
+  #     # input[[paste0('moreSubstanzen', i)]] <- 
+  #     selectizeInput(paste0("Substanz", i), paste0("Substanz ", i),choices = Rezeptursammlung$V2)
+  #   }))
+  # })
+  # 
 
   
-  output$table <- renderTable({
-    Rezeptursammlung_sub()
-      })
+  # output$table <- renderTable({
+  #   Rezepturen <- Rezeptursammlung_sub()
+  #   num <- length(Rezepturen)
+  #   print(num)
+  #   for (i in 1:num){
+  #   }
+  #     })
   
 #  output$moreSubstanzen <- renderUI({
 #    lapply (1:value(), (function(i){

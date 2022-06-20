@@ -60,7 +60,8 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                       ),
                                     mainPanel(conditionalPanel(condition = "input.NRF_online", 
                                       tags$iframe(src="https://dacnrf.pharmazeutische-zeitung.de/dac/nrf-wissen/rezepturenfinder/offen", height=500, width=800)),
-                                      tableOutput("table")
+                                      tableOutput("table"),
+                                      uiOutput("Rezepturen")
                                              )
                                     #textOutput("table")
                                        
@@ -73,7 +74,8 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
 # Rezeptpflicht-----------------------------------------------------
 ui_Rezeptpflichtcheck <- tabPanel("Rezeptpflichtcheck", 
                                   selectizeInput("WS", "Wirkstoff",choices = NULL),
-                                  textOutput("Rstatus"))
+                                  textOutput("Rstatus"), 
+                                  )
 
 
 # Suppositorien----------------------------------------------------------
