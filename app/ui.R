@@ -9,6 +9,7 @@ library(shinyWidgets)
 
 rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
 taxe_eko <- readRDS("./data/Arzneitaxe/Arzneitaxe_eko.rds")
+juniormed_pagenr <- readRDS("~/data/Juniormed/juniormed_pagenr.rds")
 
 Wirkstoff <- c()
 Verdrängungsfaktor <- c()
@@ -61,7 +62,9 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                     mainPanel(conditionalPanel(condition = "input.NRF_online", 
                                       tags$iframe(src="https://dacnrf.pharmazeutische-zeitung.de/dac/nrf-wissen/rezepturenfinder/offen", height=500, width=800)),
                                       tableOutput("table"),
-                                      uiOutput("Rezepturen")
+                                      uiOutput("Rezepturen"),
+                                      uiOutput("Herstellungshinweis")
+                                      
                                              )
                                     #textOutput("table")
                                        
@@ -75,7 +78,9 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
 ui_Rezeptpflichtcheck <- tabPanel("Rezeptpflichtcheck", 
                                   selectizeInput("WS", "Wirkstoff",choices = NULL),
                                   textOutput("Rstatus"), 
-                                  )
+                                 # tags$iframe(src="http://juniormed.at/pdf/#kompendium/5", height=500, width=800),
+                                 # uiOutput("Herstellungshinweis")
+                                 )
 
 
 # Suppositorien----------------------------------------------------------

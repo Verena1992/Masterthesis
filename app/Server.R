@@ -9,6 +9,7 @@ library(shinyWidgets)
 rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
 taxe_eko <- readRDS("./data/Arzneitaxe/Arzneitaxe_eko.rds")
 Rezeptursammlung <- read.csv("~/Rezeptursammlung.txt", header=FALSE, sep=";")
+juniormed_pagenr <- readRDS("~/data/Juniormed/juniormed_pagenr.rds")
 
 Wirkstoff <- c()
 Verdrängungsfaktor <- c()
@@ -237,7 +238,8 @@ server <- function(input, output, session) {
 # Rezeptursammlung----------------------------------------------------------   
 
   
-  value <- reactiveVal(1)       # rv <- reactiveValues(value = 0)
+  value <- reactiveVal(1) 
+  Rezeptur <- reactiveVal() # rv <- reactiveValues(value = 0)
   
   observeEvent(input$minus, {
     if (value() > 1) {
@@ -263,18 +265,7 @@ server <- function(input, output, session) {
   
 
   
-  # Rezeptursammlung_sub <- eventReactive(input$Juniormed,{
-  #   a <- Rezeptursammlung[which(Rezeptursammlung$V2 == input$Substanz1),]$V1
-  #   
-  #   
-  #   Rezeptursammlung <- subset(Rezeptursammlung, V1 %in% a)
-  #   
-  #   c <- Rezeptursammlung[which(Rezeptursammlung$V2 == input$Substanz2),]$V1
-  #   
-  #   Rezeptursammlung <- subset(Rezeptursammlung, V1 %in% c)
-  #   Rezeptursammlung
-  #   
-  # })
+
   
   Rezeptursammlung_sub <- eventReactive(input$Juniormed,{
     
@@ -297,9 +288,11 @@ server <- function(input, output, session) {
   output$Rezepturen <- renderUI({
     Rezeptursammlung <- Rezeptursammlung_sub()
     Rezepturen <- unique(Rezeptursammlung$V1)
+    Rezeptur(Rezepturen)
   #  Rezepturen
   #  Rezepturen <- Rezeptursammlung_sub()
-    lapply(1:length(Rezeptursammlung_sub()), function(i){
+  #  1:nrow(Rezeptursammlung_sub()
+    lapply(1:length(Rezepturen), function(i){
         numlines <- which(Rezeptursammlung$V1 == Rezepturen[i])
         Bestandteile <- Rezeptursammlung$V2[numlines]
         
@@ -309,7 +302,44 @@ server <- function(input, output, session) {
           actionButton(paste0("Rezeptur",i),HTML(paste0("<h3>",Rezepturen[i]),"</h3>", "<br/>", Bestandteile)))
         
       })
+  })
+    
+    
+      # output$Herstellungshinweis <- renderUI({
+      #   for (i in 1:10){
+      #   if (input[[paste0('Rezeptur', i)]]){
+      #   tags$iframe(src="http://juniormed.at/pdf/#kompendium/5", height=500, width=800)}}
+      # })
       
+      lapply(
+        X = 1:10,
+        FUN = function(i){
+          observeEvent(input[[paste0("Rezeptur", i)]], {
+            #JUN <- sub(".*JUN", "JUN", Rezepturen)
+            JUN <- sub(".*JUN", "JUN", Rezeptur()[i])
+            print(JUN)
+            src <- juniormed_pagenr[which(juniormed_pagenr$JUN == JUN),]$unlist.url_JUN.
+            print(src)
+            #print(Rezeptur()[i])
+            output$Herstellungshinweis <- renderUI({
+              tags$iframe(src=src, height=500, width=800 )
+             # tags$iframe(src=juniormed_pagenr$unlist.url_JUN.[i], height=500, width=800 )
+           # tags$iframe(src="http://juniormed.at/pdf/#kompendium/5", height=500, width=800)
+            })
+          })
+        }
+      )
+     
+      # lapply(
+      #   X = 1:10,
+      #   FUN = function(i){
+      # 
+      # observeEvent(input[[paste0("Rezeptur", i)]], {
+      #   removeUI(
+      #     selector = uiOutput("Rezepturen")
+      #   )
+      # })
+      #   })
     
     
     
@@ -318,7 +348,7 @@ server <- function(input, output, session) {
     #     strong(paste0('Hi, this is output B#', i))
     #   })
     
-  })
+ 
   
  #  output$text <- renderText({
  #    sammlung <- Rezeptursammlung_sub()
