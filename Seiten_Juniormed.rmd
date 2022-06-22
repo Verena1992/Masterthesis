@@ -1,0 +1,60 @@
+---
+title: "Seiten_Juniormed.rmd"
+output: html_document
+---
+
+load libraries and dataset
+```{r}
+library("RSelenium")
+Rezeptursammlung <- read.csv("Rezeptursammlung.txt", header=FALSE, sep=";")
+head(Rezeptursammlung)
+```
+
+take only the Juniormed identifier of the Rezepturenname
+(only short name can be used for search input)
+```{r}
+JUN <- sub(".*JUN", "JUN", Rezepturen)
+```
+
+open firefoxbrowser for web scraping
+```{r}
+rD <- rsDriver(browser="firefox", port=9029L, verbose=F)
+#Sys.sleep(10)
+remDr <- rD[["client"]]
+```
+
+create empty vector
+```{r}
+url_JUN <- c()
+```
+
+open Juniormed, click to searching button und find search input
+```{r}
+remDr$navigate("http://juniormed.at/pdf/#kompendium/31")
+Sys.sleep(10) #it needs time to load webpage
+remDr$findElement(using='xpath', '//*[contains(concat( " ", @class, " " ), concat( " ", "wowbook-control-find", " " ))]//i')$clickElement()
+Rezepturname <- remDr$findElement(using='xpath', '//*[contains(concat( " ", @class, " " ), concat( " ", "wowbook-find-text", " " ))]')
+```
+
+
+write Jun identifier to searchinput, search for it and save the website
+```{r}
+for (i in 1:length(JUN)){
+  
+  Rezepturname$sendKeysToElement(list(JUN[i]))
+  Sys.sleep(10)
+  url <- remDr$getCurrentUrl()
+
+  url_JUN <- append(url_JUN, url)
+  Rezepturname$clearElement()
+  Sys.sleep(10)
+}
+```
+
+
+
+```{r}
+juniormed_pagenr <- data.frame(JUN, unlist(url_JUN))
+saveRDS(juniormed_pagenr, file ="juniormed_pagenr.rds")
+```
+
