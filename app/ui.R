@@ -19,6 +19,7 @@ Verdrängungsfaktor <- c()
 ui_Home <- tabPanel("Home", 
                     
                     fileInput("Verdrängungsfaktoren", "Choose CSV File"),
+                    fileInput("interne_Rezeptursammlung", "Rezeptursammlung"),
                     
                     
                               
@@ -58,11 +59,35 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                       actionButton("Juniormed", "Juniormed suchen"),
                                       
                                       tags$hr(),
+                                      conditionalPanel(condition="output.interne_Rezeptursammlung", 
+                                      tags$h3("eigene Rezeptursammlung"),
+                                      actionBttn(
+                                        inputId = "eR_plus",
+                                        label = "Substanz hinzufügen",
+                                        color = "success",
+                                        style = "stretch", 
+                                        size = "sm"
+                                      ),actionBttn(
+                                        inputId = "eR_minus",
+                                        label = "Substanz entfernen",
+                                        color = "royal",
+                                        style = "stretch", 
+                                        size = "sm"
+                                      ),
+                                      tags$hr(),
+                                      #selectizeInput("WS_Sammlung", "1.Substanz",choices = NULL),
+                                      uiOutput("moreSubstanzen_2"),
+                                      
+                                      actionButton("ei_Rezeptur_B", "suchen")
+                                      )
+                                      
                                       ),
                                     mainPanel(conditionalPanel(condition = "input.NRF_online", 
                                       tags$iframe(src="https://dacnrf.pharmazeutische-zeitung.de/dac/nrf-wissen/rezepturenfinder/offen", height=500, width=800)),
                                       tableOutput("table"),
+                                      
                                       uiOutput("Rezepturen"),
+                                      uiOutput("Rezepturen_int"),
                                       uiOutput("Herstellungshinweis")
                                       
                                              )

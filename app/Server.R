@@ -237,22 +237,35 @@ server <- function(input, output, session) {
   
 # Rezeptursammlung----------------------------------------------------------   
 
-  
-  value <- reactiveVal(1) 
-  Rezeptur <- reactiveVal() # rv <- reactiveValues(value = 0)
-  
+   value <- reactiveVal(1) 
+   value_2 <- reactiveVal(1)
+   
+   Rezeptur <- reactiveVal() 
+   Rezeptur2 <- reactiveVal()
+   
   observeEvent(input$minus, {
     if (value() > 1) {
-    newValue <- value() - 1     # newValue <- rv$value - 1
-    value(newValue)  }           # rv$value <- newValue
+    newValue <- value() - 1     
+    value(newValue)  }           
+  })
+  
+  observeEvent(input$eR_minus, {
+    if (value_2() > 1) {
+      newValue <- value_2() - 1     
+      value_2(newValue)  }           
   })
   
   observeEvent(input$plus, {
-    newValue <- value() + 1     # newValue <- rv$value + 1
-    value(newValue)             # rv$value <- newValue
+    newValue <- value() + 1     
+    value(newValue)             
   })
   
+  observeEvent(input$eR_plus, {
+    newValue <- value_2() + 1     
+    value_2(newValue)             
+  })
   
+    
 #maybe better using insertUI https://shiny.rstudio.com/reference/shiny/1.0.3/observeEvent.html
   
   output$moreSubstanzen <- renderUI({
@@ -262,7 +275,13 @@ server <- function(input, output, session) {
     }))
   })
   
-  
+  output$moreSubstanzen_2 <- renderUI({
+    lapply (1:value_2(), (function(i){
+      # input[[paste0('moreSubstanzen', i)]] <- 
+      selectizeInput(paste0("Substanz_int", i), paste0("Substanz ", i),choices =  interne_Rezeptursammlung()$V2)
+    }))
+  })
+    
 
   
 
@@ -273,16 +292,21 @@ server <- function(input, output, session) {
       
       Rezeptursammlung <- subset(Rezeptursammlung, V1 %in% Rezeptursammlung[which(Rezeptursammlung$V2 == input[[paste0('Substanz', i)]]),]$V1)
     }
- #   lapply (value(), (function(i){
-    
-    #paste0("a", i) <- Rezeptursammlung[which(Rezeptursammlung$V2 == input[[paste0('Substanz', i)]]),]$V1
-
-
-  #  Rezeptursammlung <- subset(Rezeptursammlung, V1 %in% Rezeptursammlung[which(Rezeptursammlung$V2 == input[[paste0('Substanz', i)]]),]$V1)
-
-
     Rezeptursammlung
 })
+  
+  interne_Rezeptursammlung_sub <- eventReactive(input$ei_Rezeptur_B,{
+    
+    for (i in 1:value_2()){
+      
+      intRez <- interne_Rezeptursammlung()
+      interne_Rezeptursammlung <- subset(intRez, V1 %in% intRez[which(intRez$V2 == input[[paste0('Substanz_int', i)]]),]$V1)
+    }
+    interne_Rezeptursammlung
+  })
+  
+  
+  
   
   
   output$Rezepturen <- renderUI({
@@ -302,6 +326,27 @@ server <- function(input, output, session) {
           actionButton(paste0("Rezeptur",i),HTML(paste0("<h3>",Rezepturen[i]),"</h3>", "<br/>", Bestandteile)))
         
       })
+  })
+  
+  
+  
+  output$Rezepturen_int <- renderUI({
+    Rezeptursammlung_int <- interne_Rezeptursammlung_sub()
+    Rezepturen_int <- unique(Rezeptursammlung_int$V1)
+    Rezeptur2(Rezepturen)
+    #  Rezepturen
+    #  Rezepturen <- Rezeptursammlung_sub()
+    #  1:nrow(Rezeptursammlung_sub()
+    lapply(1:length(Rezepturen_int), function(i){
+      numlines_int <- which(Rezeptursammlung_int$V1 == Rezepturen_int[i])
+      Bestandteile_int <- Rezeptursammlung_int$V2[numlines_int]
+      
+      tagList(
+        
+        #sapply(Bestandteile, function(j) as.character(tags$p(j)))
+        actionButton(paste0("Rezeptur_int",i),HTML(paste0("<h3>",Rezepturen_int[i]),"</h3>", "<br/>", Bestandteile_int)))
+      
+    })
   })
     
     
@@ -329,73 +374,27 @@ server <- function(input, output, session) {
           })
         }
       )
-     
-      # lapply(
-      #   X = 1:10,
-      #   FUN = function(i){
-      # 
-      # observeEvent(input[[paste0("Rezeptur", i)]], {
-      #   removeUI(
-      #     selector = uiOutput("Rezepturen")
-      #   )
-      # })
-      #   })
-    
-    
-    
-    # lapply(1:10, function(i) {
-    #   output[[paste0('b', i)]] <- renderUI({
-    #     strong(paste0('Hi, this is output B#', i))
-    #   })
-    
+      
  
-  
- #  output$text <- renderText({
- #    sammlung <- Rezeptursammlung_sub()
- #    uni <- unique(sammlung$V1)
- #    num <- length(uni)
- #    uni[num]
- # #   renderUI({
- #     lapply (1:num, (function(i){
- #        renderTable(sammlung[uni[i],])
- #    
- #        renderUI ({tableOutput(paste0("Rezeptur", i))
- #        })
- #      }))
- #      
- #    })
-    
-  
-  
-  # output$moretab <- renderUI({
-  #   lapply (1:value(), (function(i){
-  #     # input[[paste0('moreSubstanzen', i)]] <- 
-  #     selectizeInput(paste0("Substanz", i), paste0("Substanz ", i),choices = Rezeptursammlung$V2)
-  #   }))
-  # })
-  # 
-
-  
-  # output$table <- renderTable({
-  #   Rezepturen <- Rezeptursammlung_sub()
-  #   num <- length(Rezepturen)
-  #   print(num)
-  #   for (i in 1:num){
-  #   }
-  #     })
-  
-#  output$moreSubstanzen <- renderUI({
-#    lapply (1:value(), (function(i){
-#      # input[[paste0('moreSubstanzen', i)]] <- 
-#      selectizeInput(paste0("Substanz", i), paste0("Substanz ", i),choices = Rezeptursammlung$V2)
-#    }))
-#  })
-  
-
-  
-  
-  
-  #updateSelectizeInput(session, "moreSubstanzen", choices = Rezeptursammlung$V2, server = TRUE)
+      
+      interne_Rezeptursammlung <- reactive({
+        req(input$interne_Rezeptursammlung)#to make sure code waits until the first file is uploaded
+        #first column = c(character), second = double
+        #verdrängungsfaktor needs to be written with point as comma
+        #datapath = The path to a temp file that contains the data that was uploaded
+        #ext <- tools::file_ext(input$Verdrängungsfaktoren$datapath)
+        #validate(need(ext == "txt" | ext == "pdf", "Please upload a csv file"))
+        
+          dataSet <- vroom::vroom(input$interne_Rezeptursammlung$datapath, delim = "\t",col_types = "cc")
+          
+        dataSet
+      })
+      
+      output$interne_Rezeptursammlung <- reactive({
+        return(!is.null(interne_Rezeptursammlung()))
+      })
+      outputOptions(output, 'interne_Rezeptursammlung', suspendWhenHidden=FALSE)
+     
     
 }
 
