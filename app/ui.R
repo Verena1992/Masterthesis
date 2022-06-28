@@ -5,7 +5,7 @@ library(dplyr)
 library(shinyalert)
 library(auth0)
 library(shinyWidgets)
-
+library(shinyFiles)
 
 rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
 taxe_eko <- readRDS("./data/Arzneitaxe/Arzneitaxe_eko.rds")
@@ -19,9 +19,8 @@ Verdrängungsfaktor <- c()
 ui_Home <- tabPanel("Home", 
                     
                     fileInput("Verdrängungsfaktoren", "Choose CSV File"),
-                    fileInput("interne_Rezeptursammlung", "Rezeptursammlung"),
-                    
-                    
+                   # fileInput("interne_Rezeptursammlung", "Rezeptursammlung"),
+                    fileInput("file", "Upload Zip file", accept = ".zip"),
                               
                     logoutButton())
 
@@ -88,7 +87,8 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                       
                                       uiOutput("Rezepturen"),
                                       uiOutput("Rezepturen_int"),
-                                      uiOutput("Herstellungshinweis")
+                                      uiOutput("Herstellungshinweis"),
+                                      tableOutput("Herstellungstext_int")
                                       
                                              )
                                     #textOutput("table")

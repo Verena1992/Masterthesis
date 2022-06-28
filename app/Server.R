@@ -5,6 +5,7 @@ library(dplyr)
 library(shinyalert)
 library(auth0)
 library(shinyWidgets)
+library(shinyFiles)
 
 rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
 taxe_eko <- readRDS("./data/Arzneitaxe/Arzneitaxe_eko.rds")
@@ -16,6 +17,7 @@ Verdrängungsfaktor <- c()
 
 server <- function(input, output, session) {
 # Home-----------------------------------------------------
+#upload and generate dataset
   
   data_Verdrän <- reactive({
     req(input$Verdrängungsfaktoren)#to make sure code waits until the first file is uploaded
@@ -28,10 +30,24 @@ server <- function(input, output, session) {
     dataSet <- vroom::vroom(input$Verdrängungsfaktoren$datapath, delim = "\t", col_types = "cd")
     } else if (ext == "pdf") {
       source("verdrängungsfaktoren_pdf.R")
-      print("pdf")
       dataSet
     }
   })
+  
+  interne_Rezeptursammlung <- reactive({
+    req(input$file)
+    file_list <- unzip("~/interne_Rezeptursammlung.zip", list = T, exdir = getwd())
+    interne_Rezeptursammlung <- read.table(file_list[1,1], header=T, sep = "\t")
+    interne_Rezeptursammlung
+  })
+  
+   interne_Herstellungshinweise <- reactive({
+     req(input$file)
+     file_list <- unzip("~/interne_Rezeptursammlung.zip", list = T, exdir = getwd())
+     interne_Herstellungshinweise <- read.table(file_list[2,1], header=F, sep = ";")
+     interne_Herstellungshinweise
+   })
+  
   
   observe({
     dataSet <- data_Verdrän()
@@ -243,6 +259,9 @@ server <- function(input, output, session) {
    Rezeptur <- reactiveVal() 
    Rezeptur2 <- reactiveVal()
    
+   #number of
+   selected_int_Rezeptur <- reactiveVal()
+   
   observeEvent(input$minus, {
     if (value() > 1) {
     newValue <- value() - 1     
@@ -375,26 +394,75 @@ server <- function(input, output, session) {
         }
       )
       
- 
+      lapply(
+        X = 1:10,
+        FUN = function(i){
+          observeEvent(input[[paste0("Rezeptur_int", i)]], {
+            #JUN <- sub(".*JUN", "JUN", Rezepturen)
+            JUN_int <-  Rezeptur2()[i]
+            print(JUN_int)
+            
+            interne_Herstellungshinweise <- interne_Herstellungshinweise()
+            #browser()
+            #print(interne_Herstellungshinweise$Titel)
+            number <- which(interne_Herstellungshinweise$V1 == JUN_int)
+            print(number)
+            selected_int_Rezeptur(number)
+            #src <- juniormed_pagenr[which(juniormed_pagenr$JUN == JUN),]$unlist.url_JUN.
+            #print(src)
+            #print(Rezeptur()[i])
+            
+            #  tags$iframe(src=src, height=500, width=800 )
+              # tags$iframe(src=juniormed_pagenr$unlist.url_JUN.[i], height=500, width=800 )
+              # tags$iframe(src="http://juniormed.at/pdf/#kompendium/5", height=500, width=800)
+            })
+        #})
+        }
+      )
       
-      interne_Rezeptursammlung <- reactive({
-        req(input$interne_Rezeptursammlung)#to make sure code waits until the first file is uploaded
-        #first column = c(character), second = double
-        #verdrängungsfaktor needs to be written with point as comma
-        #datapath = The path to a temp file that contains the data that was uploaded
-        #ext <- tools::file_ext(input$Verdrängungsfaktoren$datapath)
-        #validate(need(ext == "txt" | ext == "pdf", "Please upload a csv file"))
+      table_int_sel_rezeptursammlung <- reactive({
         
-          dataSet <- vroom::vroom(input$interne_Rezeptursammlung$datapath, delim = "\t",col_types = "cc")
-          
-        dataSet
+        a <- as.data.frame(t(interne_Herstellungshinweise()[c(1,selected_int_Rezeptur()),]))
+        
+        colnames(a) <- c(unlist(interne_Herstellungshinweise()[1]))
+        b <- a[-1,]
+        b
       })
+      
+      
+        
+      
+      output$Herstellungstext_int <- renderTable(
+        
+        #interne_Herstellungshinweise <- interne_Herstellungshinweise()
+        #as.data.frame(t(starting_df))
+        table_int_sel_rezeptursammlung()
+        
+      )
+      
+      # interne_Rezeptursammlung <- reactive({
+      #   req(input$interne_Rezeptursammlung)#to make sure code waits until the first file is uploaded
+      #   #first column = c(character), second = double
+      #   #verdrängungsfaktor needs to be written with point as comma
+      #   #datapath = The path to a temp file that contains the data that was uploaded
+      #   #ext <- tools::file_ext(input$Verdrängungsfaktoren$datapath)
+      #   #validate(need(ext == "txt" | ext == "pdf", "Please upload a csv file"))
+      #   
+      #     dataSet <- vroom::vroom(input$interne_Rezeptursammlung$datapath, delim = "\t",col_types = "cc")
+      #     
+      #   dataSet
+      # })
       
       output$interne_Rezeptursammlung <- reactive({
         return(!is.null(interne_Rezeptursammlung()))
       })
       outputOptions(output, 'interne_Rezeptursammlung', suspendWhenHidden=FALSE)
      
-    
+      output$zipped <-renderTable({
+        req(input$file$datapath)
+        list <- unzip(input$file$datapath, list = TRUE, exdir = getwd())
+        int_rezep <- unz(list[1])
+        browser()
+      })
 }
 
