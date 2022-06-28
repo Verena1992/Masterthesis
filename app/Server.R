@@ -259,8 +259,9 @@ server <- function(input, output, session) {
    Rezeptur <- reactiveVal() 
    Rezeptur2 <- reactiveVal()
    
-   #number of
-   selected_int_Rezeptur <- reactiveVal()
+   #number of selected interne Rezeptur, reactiveValues = False to use it with req(), 
+   #tableOutput should wait until Rezeptur is selected -- if not error 
+   selected_int_Rezeptur <- reactiveValues(num = FALSE)
    
   observeEvent(input$minus, {
     if (value() > 1) {
@@ -407,7 +408,7 @@ server <- function(input, output, session) {
             #print(interne_Herstellungshinweise$Titel)
             number <- which(interne_Herstellungshinweise$V1 == JUN_int)
             print(number)
-            selected_int_Rezeptur(number)
+            selected_int_Rezeptur$num <- number
             #src <- juniormed_pagenr[which(juniormed_pagenr$JUN == JUN),]$unlist.url_JUN.
             #print(src)
             #print(Rezeptur()[i])
@@ -421,9 +422,10 @@ server <- function(input, output, session) {
       )
       
       table_int_sel_rezeptursammlung <- reactive({
-        
-        a <- as.data.frame(t(interne_Herstellungshinweise()[c(1,selected_int_Rezeptur()),]))
-        
+        number <- selected_int_Rezeptur$num
+        #req(selected_int_Rezeptur$state)
+        a <- as.data.frame(t(interne_Herstellungshinweise()[c(1,number),]))
+        req(selected_int_Rezeptur$num)
         colnames(a) <- c(unlist(interne_Herstellungshinweise()[1]))
         b <- a[-1,]
         b
