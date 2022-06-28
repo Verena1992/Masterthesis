@@ -40,15 +40,16 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                         inputId = "plus",
                                         label = "Substanz hinzufügen",
                                         color = "success",
-                                        style = "stretch", 
-                                        size = "sm"
+                                        style = "bordered", 
+                                        size = "xs"
                                       ),
+                                      
                                       actionBttn(
                                         inputId = "minus",
                                         label = "Substanz entfernen",
                                         color = "royal",
-                                        style = "stretch", 
-                                        size = "sm"
+                                        style = "bordered", 
+                                        size = "xs"
                                       ),
                                       
                                       tags$hr(),
@@ -64,26 +65,27 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                         inputId = "eR_plus",
                                         label = "Substanz hinzufügen",
                                         color = "success",
-                                        style = "stretch", 
-                                        size = "sm"
+                                        style = "bordered", 
+                                        size = "xs"
                                       ),actionBttn(
                                         inputId = "eR_minus",
                                         label = "Substanz entfernen",
                                         color = "royal",
-                                        style = "stretch", 
-                                        size = "sm"
+                                        style = "bordered", 
+                                        size = "xs"
                                       ),
                                       tags$hr(),
                                       #selectizeInput("WS_Sammlung", "1.Substanz",choices = NULL),
                                       uiOutput("moreSubstanzen_2"),
                                       
-                                      actionButton("ei_Rezeptur_B", "suchen")
-                                      )
-                                      
-                                      ),
+                                      actionButton("ei_Rezeptur_B", "suchen"),
+                                      tags$hr(),
+                                      actionBttn(inputId = "jumpto_neueRezep", label = "neue Rezeptur zur Sammlung hinzufügen", size = "xs", style = "bordered", color = "primary")
+                                      ))
+                                      ,
                                     mainPanel(conditionalPanel(condition = "input.NRF_online", 
                                       tags$iframe(src="https://dacnrf.pharmazeutische-zeitung.de/dac/nrf-wissen/rezepturenfinder/offen", height=500, width=800)),
-                                      tableOutput("table"),
+                                      #tableOutput("table"),
                                       
                                       uiOutput("Rezepturen"),
                                       uiOutput("Rezepturen_int"),
@@ -100,7 +102,7 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                       
 
 # Rezeptpflicht-----------------------------------------------------
-ui_Rezeptpflichtcheck <- tabPanel("Rezeptpflichtcheck", 
+ui_Rezeptpflichtcheck <- tabPanel(title = "Rezeptpflichtcheck", value = "Rezeptpflichtcheck",
                                   selectizeInput("WS", "Wirkstoff",choices = NULL),
                                   textOutput("Rstatus"), 
                                  # tags$iframe(src="http://juniormed.at/pdf/#kompendium/5", height=500, width=800),
@@ -231,7 +233,9 @@ ui_Suppositorien_Rechner <- tabPanel("Hartfettmengenrechner",
                              #class = "btn-primary btn-lg"
 )
 
-ui <- navbarPage("My Application", ui_Home, navbarMenu("Suppositorien", ui_Suppositorien_Rechner, ui_Suppositorien_gespeichert) ,ui_Rezeptpflichtcheck,
-                 ui_Rezeptursammlung)
+ui_Rezepturhinzufügen <- tabPanel(title = "neue Rezeptur", value = "Rezepturhinzufügen")
+
+ui <- navbarPage("My Application", id = "inTabset", ui_Home, ui_Rezeptursammlung, navbarMenu("Suppositorien", ui_Suppositorien_Rechner, ui_Suppositorien_gespeichert) ,ui_Rezeptpflichtcheck,
+                 ui_Rezepturhinzufügen)
 
 

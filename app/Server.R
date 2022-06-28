@@ -6,6 +6,7 @@ library(shinyalert)
 library(auth0)
 library(shinyWidgets)
 library(shinyFiles)
+library(shinyjs)
 
 rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
 taxe_eko <- readRDS("./data/Arzneitaxe/Arzneitaxe_eko.rds")
@@ -442,6 +443,9 @@ server <- function(input, output, session) {
         
       )
       
+      
+      
+      
       # interne_Rezeptursammlung <- reactive({
       #   req(input$interne_Rezeptursammlung)#to make sure code waits until the first file is uploaded
       #   #first column = c(character), second = double
@@ -459,6 +463,11 @@ server <- function(input, output, session) {
         return(!is.null(interne_Rezeptursammlung()))
       })
       outputOptions(output, 'interne_Rezeptursammlung', suspendWhenHidden=FALSE)
+      
+      observeEvent(input$jumpto_neueRezep, {
+        updateTabsetPanel(session, "inTabset",
+                          selected = "Rezepturhinzufügen")
+      })
      
       output$zipped <-renderTable({
         req(input$file$datapath)
