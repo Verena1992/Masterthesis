@@ -14,6 +14,36 @@ juniormed_pagenr <- readRDS("~/data/Juniormed/juniormed_pagenr.rds")
 Wirkstoff <- c()
 Verdrängungsfaktor <- c()
 
+#Rezeptur hinzufügen----------------------------------------------------------------------------------------------------
+
+#Titel;Anwendung;Haltbarkeit;Lagerung; Dosierung;Herstellungshinweise;Quelle
+ui_Rezepturhinzufügen <- tabPanel(title = "neue Rezeptur", value = "Rezepturhinzufügen",
+                                  fluidPage(
+                                    titlePanel("Eigene Rezeptur hinzufügen"), 
+                                    tags$br(),
+                                    textAreaInput("Titel", "Titel", width = "100%"), 
+                                    textAreaInput("Herstellungshinweise", "Herstellungshinweise", height = "200px", width = "100%"),
+                                    textAreaInput("Quelle", "Quelle", width = "100%"), 
+                                    textAreaInput("Dosierung", "Dosierung", width = "100%"),
+                                    textAreaInput("Haltbarkeit", "Haltbarkeit", width = "100%"),
+                                    textAreaInput("Lagerung", "Lagerung", width = "100%"),
+                                    textAreaInput("Anwendung", "Anwendung", width = "100%"),
+                                    actionBttn(
+                                      inputId = "eigeneRezeptur_hinzu",
+                                      label = "Rezeptur hinzufügen",
+                                      color = "warning",
+                                      style = "fill", 
+                                      size = "lg", 
+                                      block = TRUE
+                                    ),
+                                    tags$br()
+                                  ))
+
+
+
+
+
+
 
 # Home-------------------------------------------------------------
 ui_Home <- tabPanel("Home", 
@@ -21,7 +51,8 @@ ui_Home <- tabPanel("Home",
                     fileInput("Verdrängungsfaktoren", "Choose CSV File"),
                    # fileInput("interne_Rezeptursammlung", "Rezeptursammlung"),
                     fileInput("file", "Upload Zip file", accept = ".zip"),
-                              
+                   tableOutput("new_Rezeptur"),
+                   downloadButton("download_newRezeptur", label = "Neue Verdrängungsfaktoren zur Liste hinzufügen"),       
                     logoutButton())
 
 # Rezeptursammlung----------------------------------------------------------
@@ -233,9 +264,11 @@ ui_Suppositorien_Rechner <- tabPanel("Hartfettmengenrechner",
                              #class = "btn-primary btn-lg"
 )
 
-ui_Rezepturhinzufügen <- tabPanel(title = "neue Rezeptur", value = "Rezepturhinzufügen")
 
-ui <- navbarPage("My Application", id = "inTabset", ui_Home, ui_Rezeptursammlung, navbarMenu("Suppositorien", ui_Suppositorien_Rechner, ui_Suppositorien_gespeichert) ,ui_Rezeptpflichtcheck,
-                 ui_Rezepturhinzufügen)
+ui <- navbarPage("My Application", id = "inTabset", ui_Home,
+                 navbarMenu("Rezeptursammlung",ui_Rezeptursammlung, ui_Rezepturhinzufügen ),
+                 
+                 navbarMenu("Suppositorien", ui_Suppositorien_Rechner, ui_Suppositorien_gespeichert),
+                 ui_Rezeptpflichtcheck)
 
 

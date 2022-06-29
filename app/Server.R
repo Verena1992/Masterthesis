@@ -17,6 +17,52 @@ Wirkstoff <- c()
 Verdrängungsfaktor <- c()
 
 server <- function(input, output, session) {
+
+# Rezeptur hinzufügen--------------------------------------------------------------------------------------------- 
+  
+  new_Rezeptur <- eventReactive(input$eigeneRezeptur_hinzu,{
+    
+    content <- c(
+    input$Titel, input$Herstellungshinweise, input$Quelle, input$Dosierung, 
+    input$Haltbarkeit, input$Lagerung, input$Anwendung)
+    
+    titel <- c("Titel", "Herstellungshinweise", "Quelle", "Dosierung", 
+               "Haltbarkeit", "Lagerung", "Anwendung")
+    
+    new_Rezeptur <- data.frame(content)
+    new_Rezeptur <- t(new_Rezeptur)
+    colnames(new_Rezeptur) <- titel
+    new_Rezeptur
+    #new_Rezeptur <- data.frame(titel, content)
+    #new_Rezeptur <- t(new_Rezeptur)
+    #browser()
+  })
+  
+  output$new_Rezeptur <- renderTable({
+    t(new_Rezeptur())
+  }) 
+  
+  output$download_newRezeptur <- downloadHandler(
+    filename = function() {
+      paste0("Herstellungshinweise")
+    },
+    content = function(file) {
+      new_Rezeptur <- new_Rezeptur()
+      interne_Herstellungshinweise <- interne_Herstellungshinweise()
+      titel <- c("Titel", "Herstellungshinweise", "Quelle", "Dosierung", 
+                 "Haltbarkeit", "Lagerung", "Anwendung")
+      colnames(interne_Herstellungshinweise) <- titel
+      
+      
+      data_Verdrän <- rbind(new_Rezeptur,interne_Herstellungshinweise[-1,])
+      
+      vroom::vroom_write(data_Verdrän, 
+                         file, delim = ";")
+    }
+  )
+  
+  
+  
 # Home-----------------------------------------------------
 #upload and generate dataset
   
@@ -464,6 +510,8 @@ server <- function(input, output, session) {
       })
       outputOptions(output, 'interne_Rezeptursammlung', suspendWhenHidden=FALSE)
       
+      
+      #jump to new page
       observeEvent(input$jumpto_neueRezep, {
         updateTabsetPanel(session, "inTabset",
                           selected = "Rezepturhinzufügen")
