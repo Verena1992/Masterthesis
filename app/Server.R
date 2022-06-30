@@ -17,7 +17,21 @@ Wirkstoff <- c()
 Verdrängungsfaktor <- c()
 
 server <- function(input, output, session) {
+  hideTab("inTabset", "Rezepturhinzufügen2"); hideTab("inTabset", "Rezepturhinzufügen")
+  
+  observeEvent(input$file, {
+    showTab("inTabset", "Rezepturhinzufügen2"); 
+    showTab("inTabset", "Rezepturhinzufügen")
+    })
+  
+# Rezeptur hinzufügen2---------------------------------------------------------------------------------------------  
 
+  observeEvent(input$jump_2_Herstellungshinweise, {
+    updateTabsetPanel(session, "inTabset",
+                      selected = "Rezepturhinzufügen")
+  })
+
+  
 # Rezeptur hinzufügen--------------------------------------------------------------------------------------------- 
   
   new_Rezeptur <- eventReactive(input$eigeneRezeptur_hinzu,{
@@ -42,21 +56,29 @@ server <- function(input, output, session) {
     t(new_Rezeptur())
   }) 
   
+  
+  updated_Herstellungshinweise <- reactive({
+    new_Rezeptur <- new_Rezeptur()
+    interne_Herstellungshinweise <- interne_Herstellungshinweise()
+    titel <- c("Titel", "Herstellungshinweise", "Quelle", "Dosierung", 
+               "Haltbarkeit", "Lagerung", "Anwendung")
+    colnames(interne_Herstellungshinweise) <- titel
+    
+    
+    updated_Herstellungshinweise <- rbind(new_Rezeptur,interne_Herstellungshinweise[-1,])
+    updated_Herstellungshinweise
+  })
+  
+  
   output$download_newRezeptur <- downloadHandler(
+    #https://www.reddit.com/r/rprogramming/comments/f53c59/zip_multiple_csvs_for_download/
     filename = function() {
       paste0("Herstellungshinweise")
     },
     content = function(file) {
-      new_Rezeptur <- new_Rezeptur()
-      interne_Herstellungshinweise <- interne_Herstellungshinweise()
-      titel <- c("Titel", "Herstellungshinweise", "Quelle", "Dosierung", 
-                 "Haltbarkeit", "Lagerung", "Anwendung")
-      colnames(interne_Herstellungshinweise) <- titel
+
       
-      
-      data_Verdrän <- rbind(new_Rezeptur,interne_Herstellungshinweise[-1,])
-      
-      vroom::vroom_write(data_Verdrän, 
+      vroom::vroom_write(updated_Herstellungshinweise(), 
                          file, delim = ";")
     }
   )
@@ -514,7 +536,7 @@ server <- function(input, output, session) {
       #jump to new page
       observeEvent(input$jumpto_neueRezep, {
         updateTabsetPanel(session, "inTabset",
-                          selected = "Rezepturhinzufügen")
+                          selected = "Rezepturhinzufügen2")
       })
      
       output$zipped <-renderTable({

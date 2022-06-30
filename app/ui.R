@@ -6,6 +6,7 @@ library(shinyalert)
 library(auth0)
 library(shinyWidgets)
 library(shinyFiles)
+library(shinyjs)
 
 rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
 taxe_eko <- readRDS("./data/Arzneitaxe/Arzneitaxe_eko.rds")
@@ -17,7 +18,7 @@ Verdrängungsfaktor <- c()
 #Rezeptur hinzufügen----------------------------------------------------------------------------------------------------
 
 #Titel;Anwendung;Haltbarkeit;Lagerung; Dosierung;Herstellungshinweise;Quelle
-ui_Rezepturhinzufügen <- tabPanel(title = "neue Rezeptur", value = "Rezepturhinzufügen",
+ui_Rezepturhinzufügen <- tabPanel(title = "neue Herstellungsanweisung", value = "Rezepturhinzufügen",
                                   fluidPage(
                                     titlePanel("Eigene Rezeptur hinzufügen"), 
                                     tags$br(),
@@ -38,7 +39,22 @@ ui_Rezepturhinzufügen <- tabPanel(title = "neue Rezeptur", value = "Rezepturhin
                                     ),
                                     tags$br()
                                   ))
-
+#Rezeptur hinzufügen2----------------------------------------------------------------------------------------------------
+ui_Rezepturhinzufügen2 <- tabPanel(title = "neue Rezeptur", value = "Rezepturhinzufügen2",
+                                   fluidPage(
+                                     titlePanel("Neue Rezeptur - Zusammensetzung"),
+                                     
+                                     
+                                     actionBttn(
+                                       inputId = "jump_2_Herstellungshinweise",
+                                       label = "weiter zu Herstellungshinweise",
+                                       color = "warning",
+                                       style = "fill", 
+                                       size = "lg", 
+                                       block = TRUE
+                                     ),
+                                   )
+                                   )
 
 
 
@@ -142,20 +158,7 @@ ui_Rezeptpflichtcheck <- tabPanel(title = "Rezeptpflichtcheck", value = "Rezeptp
 
 
 # Suppositorien----------------------------------------------------------
-ui_Suppositorien_gespeichert <- tabPanel("Dosierungcheck",
-                                         
-                                         #selectizeInput("WS_S", "Substanz",choices = NULL),
-                                         
-                                         #only appear if substanz not in List
-                                         #conditionalPanel(condition = "input.WS_S == 'Substanz nicht in der Liste vorhanden'",
-                                          #                selectizeInput("New_Substanz", "Füge neue Substanz hinzu", choices = NULL)),
-                                         #conditionalPanel(condition = "input.WS_S == 'Substanz nicht in der Liste vorhanden'",
-                                          #                numericInput("New_Verdrängungsfaktor", "Füge neuen Verdrängungsfaktor hinzu", value = 0.7, min = 0, max = 1), 
-                                          #                actionButton("Substanz_hinzufügen", "Substanz und Verdrängungsfaktor in Liste abspeichern"),
-                                          #                downloadButton("download")),
-                                         #tableOutput("New_Substanz")
-                                        
-                                         )
+ui_Suppositorien_gespeichert <- tabPanel("Dosierungcheck",)
 
 
 ui_Suppositorien_Rechner <- tabPanel("Hartfettmengenrechner", 
@@ -266,7 +269,7 @@ ui_Suppositorien_Rechner <- tabPanel("Hartfettmengenrechner",
 
 
 ui <- navbarPage("My Application", id = "inTabset", ui_Home,
-                 navbarMenu("Rezeptursammlung",ui_Rezeptursammlung, ui_Rezepturhinzufügen ),
+                 navbarMenu("Rezeptursammlung",ui_Rezeptursammlung, ui_Rezepturhinzufügen2, ui_Rezepturhinzufügen ),
                  
                  navbarMenu("Suppositorien", ui_Suppositorien_Rechner, ui_Suppositorien_gespeichert),
                  ui_Rezeptpflichtcheck)
