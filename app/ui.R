@@ -7,6 +7,7 @@ library(auth0)
 library(shinyWidgets)
 library(shinyFiles)
 library(shinyjs)
+library(purrr)
 
 rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
 taxe_eko <- readRDS("./data/Arzneitaxe/Arzneitaxe_eko.rds")
@@ -15,28 +16,18 @@ juniormed_pagenr <- readRDS("~/data/Juniormed/juniormed_pagenr.rds")
 Wirkstoff <- c()
 Verdrängungsfaktor <- c()
 
+#function Substanzauswahl saved in R/utils.R
+vars <- rep(1:10)
+Rezepturzusammensetzung <- map(vars, Substanzauswahl)
+
 #Rezeptur hinzufügen----------------------------------------------------------------------------------------------------
 
-#Titel;Anwendung;Haltbarkeit;Lagerung; Dosierung;Herstellungshinweise;Quelle
 ui_Rezepturhinzufügen <- tabPanel(title = "neue Herstellungsanweisung", value = "Rezepturhinzufügen",
                                   fluidPage(
                                     titlePanel("Eigene Rezeptur hinzufügen"), 
                                     tags$br(),
-                                    textAreaInput("Titel", "Titel", width = "100%"), 
-                                    textAreaInput("Herstellungshinweise", "Herstellungshinweise", height = "200px", width = "100%"),
-                                    textAreaInput("Quelle", "Quelle", width = "100%"), 
-                                    textAreaInput("Dosierung", "Dosierung", width = "100%"),
-                                    textAreaInput("Haltbarkeit", "Haltbarkeit", width = "100%"),
-                                    textAreaInput("Lagerung", "Lagerung", width = "100%"),
-                                    textAreaInput("Anwendung", "Anwendung", width = "100%"),
-                                    actionBttn(
-                                      inputId = "eigeneRezeptur_hinzu",
-                                      label = "Rezeptur hinzufügen",
-                                      color = "warning",
-                                      style = "fill", 
-                                      size = "lg", 
-                                      block = TRUE
-                                    ),
+                                    rezepturhinweiseUI("textAreas"),
+                                    big_yellow_button("eigeneRezeptur_hinzu", "Rezeptur hinzufügen"),
                                     tags$br()
                                   ))
 #Rezeptur hinzufügen2----------------------------------------------------------------------------------------------------
@@ -44,22 +35,11 @@ ui_Rezepturhinzufügen2 <- tabPanel(title = "neue Rezeptur", value = "Rezepturhi
                                    fluidPage(
                                      titlePanel("Neue Rezeptur - Zusammensetzung"),
                                      
-                                     
-                                     actionBttn(
-                                       inputId = "jump_2_Herstellungshinweise",
-                                       label = "weiter zu Herstellungshinweise",
-                                       color = "warning",
-                                       style = "fill", 
-                                       size = "lg", 
-                                       block = TRUE
-                                     ),
+                                     Rezepturzusammensetzung,
+                                     big_yellow_button("jump_2_Herstellungshinweise", "weiter zu Herstellungshinweise"),
+                        
+                                    )
                                    )
-                                   )
-
-
-
-
-
 
 # Home-------------------------------------------------------------
 ui_Home <- tabPanel("Home", 
@@ -122,7 +102,7 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                         size = "xs"
                                       ),
                                       tags$hr(),
-                                      #selectizeInput("WS_Sammlung", "1.Substanz",choices = NULL),
+                                      
                                       uiOutput("moreSubstanzen_2"),
                                       
                                       actionButton("ei_Rezeptur_B", "suchen"),
@@ -132,7 +112,7 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                       ,
                                     mainPanel(conditionalPanel(condition = "input.NRF_online", 
                                       tags$iframe(src="https://dacnrf.pharmazeutische-zeitung.de/dac/nrf-wissen/rezepturenfinder/offen", height=500, width=800)),
-                                      #tableOutput("table"),
+                                      
                                       
                                       uiOutput("Rezepturen"),
                                       uiOutput("Rezepturen_int"),
@@ -140,20 +120,16 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                       tableOutput("Herstellungstext_int")
                                       
                                              )
-                                    #textOutput("table")
                                        
                                   )))
-                               # tags$iframe(src="https://dacnrf.pharmazeutische-zeitung.de/dac/nrf-wissen/rezepturenfinder/offen", height=300, width=800), 
-                              #  tags$h2("Juniormed"), 
-                              #  selectizeInput("WS_Sammlung", "1.Substanz",choices = NULL))    
+                                 
                       
 
 # Rezeptpflicht-----------------------------------------------------
 ui_Rezeptpflichtcheck <- tabPanel(title = "Rezeptpflichtcheck", value = "Rezeptpflichtcheck",
                                   selectizeInput("WS", "Wirkstoff",choices = NULL),
                                   textOutput("Rstatus"), 
-                                 # tags$iframe(src="http://juniormed.at/pdf/#kompendium/5", height=500, width=800),
-                                 # uiOutput("Herstellungshinweis")
+                               
                                  )
 
 

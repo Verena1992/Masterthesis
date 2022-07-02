@@ -7,6 +7,7 @@ library(auth0)
 library(shinyWidgets)
 library(shinyFiles)
 library(shinyjs)
+library(purrr)
 
 rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
 taxe_eko <- readRDS("./data/Arzneitaxe/Arzneitaxe_eko.rds")
@@ -16,7 +17,25 @@ juniormed_pagenr <- readRDS("~/data/Juniormed/juniormed_pagenr.rds")
 Wirkstoff <- c()
 Verdrängungsfaktor <- c()
 
+
+
+
+
+
+
 server <- function(input, output, session) {
+  
+  #Internal functions,  function needs to use input, output, or session it may make sense 
+  #for the function to live inside the server function
+  Substanzauswahl_server <- function(id){
+    
+    updateSelectizeInput(session, id, choices = taxe_eko$wirkstoffe_arzneitaxe, server = TRUE)
+  }
+  vars <- rep(1:10)
+  Rezepturzusammensetzung_server <- map(as.character(vars), Substanzauswahl_server)
+  
+  
+  
   hideTab("inTabset", "Rezepturhinzufügen2"); hideTab("inTabset", "Rezepturhinzufügen")
   
   observeEvent(input$file, {
@@ -31,25 +50,12 @@ server <- function(input, output, session) {
                       selected = "Rezepturhinzufügen")
   })
 
+  Rezepturzusammensetzung_server
   
 # Rezeptur hinzufügen--------------------------------------------------------------------------------------------- 
   
   new_Rezeptur <- eventReactive(input$eigeneRezeptur_hinzu,{
-    
-    content <- c(
-    input$Titel, input$Herstellungshinweise, input$Quelle, input$Dosierung, 
-    input$Haltbarkeit, input$Lagerung, input$Anwendung)
-    
-    titel <- c("Titel", "Herstellungshinweise", "Quelle", "Dosierung", 
-               "Haltbarkeit", "Lagerung", "Anwendung")
-    
-    new_Rezeptur <- data.frame(content)
-    new_Rezeptur <- t(new_Rezeptur)
-    colnames(new_Rezeptur) <- titel
-    new_Rezeptur
-    #new_Rezeptur <- data.frame(titel, content)
-    #new_Rezeptur <- t(new_Rezeptur)
-    #browser()
+    rezepturhinweiseServer("textAreas")
   })
   
   output$new_Rezeptur <- renderTable({
@@ -103,18 +109,19 @@ server <- function(input, output, session) {
     }
   })
   
+  
   interne_Rezeptursammlung <- reactive({
     req(input$file)
-    file_list <- unzip("~/interne_Rezeptursammlung.zip", list = T, exdir = getwd())
-    interne_Rezeptursammlung <- read.table(file_list[1,1], header=T, sep = "\t")
-    interne_Rezeptursammlung
+    file_list <- unzip(input$file$datapath, list = T, exdir = getwd())
+    dataSet <- read.table(file_list[1,1], header=T, sep = "\t")
+    dataSet
   })
   
    interne_Herstellungshinweise <- reactive({
      req(input$file)
-     file_list <- unzip("~/interne_Rezeptursammlung.zip", list = T, exdir = getwd())
-     interne_Herstellungshinweise <- read.table(file_list[2,1], header=F, sep = ";")
-     interne_Herstellungshinweise
+     file_list <- unzip(input$file$datapath, list = T, exdir = getwd())
+     dataSet <- read.table(file_list[2,1], header=F, sep = ";")
+     dataSet
    })
   
   
