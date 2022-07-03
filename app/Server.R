@@ -11,7 +11,7 @@ library(purrr)
 
 rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
 taxe_eko <- readRDS("./data/Arzneitaxe/Arzneitaxe_eko.rds")
-Rezeptursammlung <- read.csv("~/Rezeptursammlung.txt", header=FALSE, sep=";")
+#Rezeptursammlung <- read.csv("~/Rezeptursammlung.txt", header=FALSE, sep=";") #reads in in createRezeptursammlung
 juniormed_pagenr <- readRDS("~/data/Juniormed/juniormed_pagenr.rds")
 
 Wirkstoff <- c()
@@ -108,6 +108,12 @@ server <- function(input, output, session) {
       dataSet
     }
   })
+  
+      #create ui to select Substanzen from sammlung
+      
+  
+  
+  
   
   
   interne_Rezeptursammlung <- reactive({
@@ -328,7 +334,20 @@ server <- function(input, output, session) {
 
   
 # Rezeptursammlung----------------------------------------------------------   
-
+  
+  rezeptursammlung <- createRezeptursammlungServer("jun_and_int")
+  
+  output$selectizeInput01 <- renderUI({
+    
+    selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = rezeptursammlung()$V2, multiple = TRUE,
+                   options = list(placeholder = "wähle Substanzen aus"))
+  })
+  
+  
+  
+  
+  
+  
    value <- reactiveVal(1) 
    value_2 <- reactiveVal(1)
    
@@ -444,13 +463,7 @@ server <- function(input, output, session) {
       
     })
   })
-    
-    
-      # output$Herstellungshinweis <- renderUI({
-      #   for (i in 1:10){
-      #   if (input[[paste0('Rezeptur', i)]]){
-      #   tags$iframe(src="http://juniormed.at/pdf/#kompendium/5", height=500, width=800)}}
-      # })
+
       
       lapply(
         X = 1:10,
@@ -464,8 +477,6 @@ server <- function(input, output, session) {
             #print(Rezeptur()[i])
             output$Herstellungshinweis <- renderUI({
               tags$iframe(src=src, height=500, width=800 )
-             # tags$iframe(src=juniormed_pagenr$unlist.url_JUN.[i], height=500, width=800 )
-           # tags$iframe(src="http://juniormed.at/pdf/#kompendium/5", height=500, width=800)
             })
           })
         }
@@ -480,20 +491,11 @@ server <- function(input, output, session) {
             print(JUN_int)
             
             interne_Herstellungshinweise <- interne_Herstellungshinweise()
-            #browser()
-            #print(interne_Herstellungshinweise$Titel)
             number <- which(interne_Herstellungshinweise$V1 == JUN_int)
             print(number)
             selected_int_Rezeptur$num <- number
-            #src <- juniormed_pagenr[which(juniormed_pagenr$JUN == JUN),]$unlist.url_JUN.
-            #print(src)
-            #print(Rezeptur()[i])
-            
-            #  tags$iframe(src=src, height=500, width=800 )
-              # tags$iframe(src=juniormed_pagenr$unlist.url_JUN.[i], height=500, width=800 )
-              # tags$iframe(src="http://juniormed.at/pdf/#kompendium/5", height=500, width=800)
             })
-        #})
+        
         }
       )
       

@@ -2,12 +2,14 @@
 #01/07/2022 takes user textinput about "Rezepturhinweise" and returns a dataframe with the new Information  
 #library(purrr)
 
-#funktion to render textinputUI
+#functions----------------------------------------------
+
 textAreaInput01 <- function(id,vars) {
+  #to render textinputUI
   textAreaInput(id, vars, width = "100%")
 }
 
-#UI
+#UI-----------------------------------------------------
 rezepturhinweiseUI <- function(id) {
   vars <- c("Titel", "Herstellungshinweise", "Quelle", "Dosierung",  "Haltbarkeit", "Lagerung", "Anwendung")
   ns <- NS(id)
@@ -18,7 +20,7 @@ rezepturhinweiseUI <- function(id) {
     sliders
 }
 
-#Server
+#Server-------------------------------------------------
 rezepturhinweiseServer <- function(id) {
   moduleServer(id, function(input, output, session) {
     # The user's data, parsed into a data frame
@@ -39,7 +41,7 @@ rezepturhinweiseServer <- function(id) {
 }
 
 
-# Test module:
+# Test module:-------------------------------------------------
  # 
  # histogramApp <- function() {
  #   ui <- fluidPage(

@@ -46,7 +46,8 @@ ui_Home <- tabPanel("Home",
                     
                     fileInput("Verdrängungsfaktoren", "Choose CSV File"),
                    # fileInput("interne_Rezeptursammlung", "Rezeptursammlung"),
-                    fileInput("file", "Upload Zip file", accept = ".zip"),
+                   # fileInput("file", "Upload Zip file", accept = ".zip"),
+                   createRezeptursammlungUI("jun_and_int"),
                    tableOutput("new_Rezeptur"),
                    downloadButton("download_newRezeptur", label = "Neue Verdrängungsfaktoren zur Liste hinzufügen"),       
                     logoutButton())
@@ -57,6 +58,7 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                   titlePanel("Rezeptursammlung"),
                                   sidebarLayout(
                                     sidebarPanel(
+                                      uiOutput("selectizeInput01"),
                                       tags$h3("NRF"),
                                       actionButton("NRF_online", "NRF_online suchen"),
                                       tags$hr(),
