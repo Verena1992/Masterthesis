@@ -2,7 +2,7 @@
 #1. read in Juniormed Rezeptursammlung convert it to dataframe
 #2. (optional) upload, unzip, read in of private Rezeptursammlung
 #3. merge Juniormed with optional uploaded private Rezeptursammlung.
-
+#4. outputs Rezeptursammlungdataset and datapath of uploaded file
 
 
 
@@ -10,8 +10,8 @@
 
 zip2dataSet <- function(datapath, filenr, header=T, sep = "\t") {
   #takes a zip folder as input and reads in one file which defined by filenr
-  file_list <- unzip(datapath, list = T, exdir = getwd())
-  dataSet <- read.table(file_list[filenr,1], header=header, sep = sep)
+  file_list <- unzip(datapath, list = T)
+  dataSet <- read.table(unz(datapath,file_list[filenr,1]), header=header, sep = sep)
   dataSet
 }
 
@@ -60,7 +60,11 @@ createRezeptursammlungServer <- function(id) {
         rezeptursammlung_Jun <- adorigin2dataframe(rezeptursammlung_Jun,1)
       }
     })
-
+    list(
+      rezeptursammlung = reactive(rezeptursammlung()),
+      datapath = reactive(input$file$datapath)
+    )
+   # return(reactive(input$file$datapath))
   })
 }
 
@@ -74,21 +78,26 @@ RezeptursammlungApp <- function() {
   ui <- fluidPage(
     createRezeptursammlungUI("jun_and_int"),
     uiOutput("selectizeInput01"),
-    tableOutput("text")
+    tableOutput("table"),
+    textOutput("text2")
+    
   )
 
   server <- function(input, output, session) {
     #create ui to select Substanzen from sammlung
-    rezeptursammlung <- createRezeptursammlungServer("jun_and_int")
-    
+    rz <- createRezeptursammlungServer("jun_and_int")
+   # rezeptursammlung <- rz$rezeptursammlung()   # browser()
     output$selectizeInput01 <- renderUI({
 
-         selectizeInput("Substanz", "Zusammensetzung der Rezeptur",choices = rezeptursammlung()$V2, multiple = TRUE,
+         selectizeInput("Substanz", "Zusammensetzung der Rezeptur",choices = rz$rezeptursammlung()$V2, multiple = TRUE,
                         options = list(placeholder = "wähle Substanzen aus"))
 
 
     })
-   output$text <- renderTable(rezeptursammlung())
+  
+  output$text <- renderText(input$Substanz)
+  output$text2 <- renderText(rz$datapath())
+  # output$table <- renderTable(rezeptursammlung())
   }
 
   shinyApp(ui, server)

@@ -119,8 +119,8 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                       uiOutput("Rezepturen"),
                                       uiOutput("Rezepturen_int"),
                                       uiOutput("Herstellungshinweis"),
-                                      tableOutput("Herstellungstext_int")
-                                      
+                                      tableOutput("Herstellungstext_int"),
+                                      foundRezepturenButtonUI("button")
                                              )
                                        
                                   )))
