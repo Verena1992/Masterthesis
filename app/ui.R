@@ -114,14 +114,14 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                       ,
                                     mainPanel(conditionalPanel(condition = "input.NRF_online", 
                                       tags$iframe(src="https://dacnrf.pharmazeutische-zeitung.de/dac/nrf-wissen/rezepturenfinder/offen", height=500, width=800)),
-                                      
-                                      
+                                    
+                                      foundRezepturenButtonUI("button"),
                                       uiOutput("Rezepturen"),
                                       uiOutput("Rezepturen_int"),
                                       uiOutput("Herstellungshinweis"),
                                       tableOutput("Herstellungstext_int"),
-                                      foundRezepturenButtonUI("button")
-                                             )
+                                      
+                                    )    
                                        
                                   )))
                                  

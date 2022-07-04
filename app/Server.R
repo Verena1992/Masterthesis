@@ -335,23 +335,26 @@ server <- function(input, output, session) {
   
 # Rezeptursammlung----------------------------------------------------------   
   
-  rezeptursammlung <- createRezeptursammlungServer("jun_and_int")
+  rz <- createRezeptursammlungServer("jun_and_int")
   
   output$selectizeInput01 <- renderUI({
     
-    selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = rezeptursammlung()$V2, multiple = TRUE,
+    selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = rz$rezeptursammlung()$V2, multiple = TRUE,
                    options = list(placeholder = "wähle Substanzen aus"))
+  })
+
+  observeEvent(input$zusammensetzungRezep,{
+    foundRezepturenButtonServer("button",input$zusammensetzungRezep, rz$rezeptursammlung(), rz$datapath())
   })
   
   
   
   
-  
-  
-   value <- reactiveVal(1) 
+
+   value <- reactiveVal(1)
    value_2 <- reactiveVal(1)
-   
-   Rezeptur <- reactiveVal() 
+
+   Rezeptur <- reactiveVal()
    Rezeptur2 <- reactiveVal()
    
    #number of selected interne Rezeptur, reactiveValues = False to use it with req(), 
@@ -360,8 +363,8 @@ server <- function(input, output, session) {
    
   observeEvent(input$minus, {
     if (value() > 1) {
-    newValue <- value() - 1     
-    value(newValue)  }           
+    newValue <- value() - 1
+    value(newValue)  }
   })
   
   observeEvent(input$eR_minus, {

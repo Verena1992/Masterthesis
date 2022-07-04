@@ -1,9 +1,9 @@
 zip2dataSet <- function(datapath, filenr, header=T, sep = "\t") {
-  file_list <- unzip(datapath, list = T, exdir = getwd())
-  dataSet <- read.table(file_list[filenr,1], header=header, sep = sep)
+  #takes a zip folder as input and reads in one file which defined by filenr
+  file_list <- unzip(datapath, list = T)
+  dataSet <- read.table(unz(datapath,file_list[filenr,1]), header=header, sep = sep)
   dataSet
 }
-
 
 
 Substanzauswahl <- function(id){
