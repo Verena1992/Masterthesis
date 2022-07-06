@@ -7,12 +7,13 @@
 
 
 
-
-
 #UI-----------------------------------------------------
 foundRezepturenButtonUI <- function(id) {
+   
   tagList(
+    useShinyjs(),
     uiOutput(NS(id,"Rezepturen")),
+    textOutput(NS(id, "keine_rez")),
     uiOutput(NS(id,"Herstellungshinweis")),
     tableOutput(NS(id,"Herstellungstext_int"))
   )
@@ -31,33 +32,60 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
     
     Rezeptur(Rezepturen)
     
+    if (length(Rezeptur()) == 0){
+      show("keine_rez")
+      output$keine_rez <- renderText("es wurde keine Rezeptur gefunden")
+      hide("Herstellungshinweis")
+      hide("Rezepturen")
+      hide("Herstellungstext_int")
+    } else {
+      hide("keine_rez")
+      show("Rezepturen")
+    
     output$Rezepturen <- renderUI({
+      show("Rezepturen")
+      hide("Herstellungshinweis")
+      hide("Herstellungstext_int")
+
       ns <- session$ns
+     # if (length(Rezeptur())){
+    #    textOutput((ns(keine_rez)),"es wurde keine Rezeptur gefunden")
+     # }
       lapply(1:length(Rezeptur()), function(i){
+        #browser()
         numlines <- which(Rezeptursammlung$V1 == Rezeptur()[i])
         Bestandteile <- Rezeptursammlung$V2[numlines]
         
-          actionButton(ns(paste0("Rezeptur",i)),HTML(paste0("<h3>",Rezeptur()[i]),"</h3>", "<br/>", Bestandteile))
+          actionButton(ns(Rezeptur()[i]),HTML(paste0("<h3>",Rezeptur()[i]),"</h3>", "<br/>", Bestandteile))
         
       })
     }) 
 
-        lapply(1:length(Rezepturen), function(i){
-            observeEvent(input[[paste0("Rezeptur", i)]], {
+        lapply(1:length(Rezeptur()), function(i){
+          print(Rezeptur())
+          
+            observeEvent(input[[Rezeptur()[i]]], {
               numlines <- which(Rezeptursammlung$V1 == Rezeptur()[i])
               print(Rezeptursammlung$origin[numlines])
               if ( unique(Rezeptursammlung$origin[numlines]) == 1)  {
+                show("Herstellungshinweis")
+                hide("Herstellungstext_int")
+                hide("Rezepturen")
                 juniormed_pagenr <- readRDS("~/data/Juniormed/juniormed_pagenr.rds")
                 
                 JUN <- sub(".*JUN", "JUN", Rezeptur()[i])
-                #print(JUN)
+                print(JUN)
                 src <- juniormed_pagenr[which(juniormed_pagenr$JUN == JUN),]$unlist.url_JUN.
                 #print(src)
                 output$Herstellungshinweis <- renderUI({
                   tags$iframe(src=src, height=500, width=800 )
+                  
                 })
-              } else if (unique(Rezeptursammlung$origin[numlines]) == 2){
                 
+              } else if (unique(Rezeptursammlung$origin[numlines]) == 2){
+                show("Herstellungstext_int")
+                hide("Herstellungshinweis")
+                hide("Rezepturen")
                 selected_int_Rezeptur <- reactiveValues(num = FALSE)
                 
                 interne_Herstellungshinweise <- reactive({
@@ -88,13 +116,15 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
                   )
               } else {
                   print("upps")
-                }
+               }
+            
              })
           })
+    }
   })
 }
 
-#Test module:
+# #Test module:
 # 
 # foundRezepturenButtonApp <- function() {
 #   ui <- fluidPage(
