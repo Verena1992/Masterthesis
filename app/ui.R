@@ -1,17 +1,9 @@
-library(shiny)
-library(readr)
-library(vroom)
-library(dplyr)
-library(shinyalert)
-library(auth0)
-library(shinyWidgets)
-library(shinyFiles)
-library(shinyjs)
-library(purrr)
-
+#--------------------------------------------------------------------------
+load_libraries()
+#----------------------------------------------------------------------------
 rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
 taxe_eko <- readRDS("./data/Arzneitaxe/Arzneitaxe_eko.rds")
-juniormed_pagenr <- readRDS("~/data/Juniormed/juniormed_pagenr.rds")
+
 
 Wirkstoff <- c()
 Verdrängungsfaktor <- c()
@@ -43,13 +35,10 @@ ui_Rezepturhinzufügen2 <- tabPanel(title = "neue Rezeptur", value = "Rezepturhi
 
 # Home-------------------------------------------------------------
 ui_Home <- tabPanel("Home", 
-                    
                     fileInput("Verdrängungsfaktoren", "Choose CSV File"),
-                   # fileInput("interne_Rezeptursammlung", "Rezeptursammlung"),
-                   # fileInput("file", "Upload Zip file", accept = ".zip"),
-                   createRezeptursammlungUI("jun_and_int"),
-                   tableOutput("new_Rezeptur"),
-                   downloadButton("download_newRezeptur", label = "Neue Verdrängungsfaktoren zur Liste hinzufügen"),       
+                    createRezeptursammlungUI("jun_and_int"),
+                    tableOutput("new_Rezeptur"),
+                    downloadButton("download_newRezeptur", label = "Neue Verdrängungsfaktoren zur Liste hinzufügen"),       
                     logoutButton())
 
 # Rezeptursammlung----------------------------------------------------------
@@ -60,66 +49,15 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                     sidebarPanel(
                                       uiOutput("selectizeInput01"),
                                       tags$h3("NRF"),
-                                      actionButton("NRF_online", "NRF_online suchen"),
-                                      tags$hr(),
-                                      
-                                      tags$h3("Juniormed"),
-                                      
-                                      actionBttn(
-                                        inputId = "plus",
-                                        label = "Substanz hinzufügen",
-                                        color = "success",
-                                        style = "bordered", 
-                                        size = "xs"
+                                      actionButton("NRF_online", "NRF online suchen"),
+                                      #tags$hr(),
                                       ),
-                                      
-                                      actionBttn(
-                                        inputId = "minus",
-                                        label = "Substanz entfernen",
-                                        color = "royal",
-                                        style = "bordered", 
-                                        size = "xs"
-                                      ),
-                                      
-                                      tags$hr(),
-                                      #selectizeInput("WS_Sammlung", "1.Substanz",choices = NULL),
-                                      uiOutput("moreSubstanzen"),
-                                      
-                                      actionButton("Juniormed", "Juniormed suchen"),
-                                      
-                                      tags$hr(),
-                                      conditionalPanel(condition="output.interne_Rezeptursammlung", 
-                                      tags$h3("eigene Rezeptursammlung"),
-                                      actionBttn(
-                                        inputId = "eR_plus",
-                                        label = "Substanz hinzufügen",
-                                        color = "success",
-                                        style = "bordered", 
-                                        size = "xs"
-                                      ),actionBttn(
-                                        inputId = "eR_minus",
-                                        label = "Substanz entfernen",
-                                        color = "royal",
-                                        style = "bordered", 
-                                        size = "xs"
-                                      ),
-                                      tags$hr(),
-                                      
-                                      uiOutput("moreSubstanzen_2"),
-                                      
-                                      actionButton("ei_Rezeptur_B", "suchen"),
-                                      tags$hr(),
-                                      actionBttn(inputId = "jumpto_neueRezep", label = "neue Rezeptur zur Sammlung hinzufügen", size = "xs", style = "bordered", color = "primary")
-                                      ))
-                                      ,
+        
                                     mainPanel(conditionalPanel(condition = "input.NRF_online", 
                                       tags$iframe(src="https://dacnrf.pharmazeutische-zeitung.de/dac/nrf-wissen/rezepturenfinder/offen", height=500, width=800)),
                                     
                                       foundRezepturenButtonUI("button"),
-                                      uiOutput("Rezepturen"),
-                                      uiOutput("Rezepturen_int"),
-                                      uiOutput("Herstellungshinweis"),
-                                      tableOutput("Herstellungstext_int"),
+                           
                                       
                                     )    
                                        

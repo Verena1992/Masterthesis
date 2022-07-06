@@ -1,0 +1,847 @@
+Atropinsulfat 0,01 % Augentropfen – JUN 01.01. (IV);Atropinsulfat
+Atropinsulfat 0,01 % Augentropfen – JUN 01.01. (IV);Natriumchlorid
+Atropinsulfat 0,01 % Augentropfen – JUN 01.01. (IV);Benzalkoniumchlorid
+Atropinsulfat 0,01 % Augentropfen – JUN 01.01. (IV);Natriumedetat
+Atropinsulfat 0,01 % Augentropfen – JUN 01.01. (IV);Wasser für Injektionszwecke
+Atropinsulfat 0,5 % Augentropfen –JUN 01.02. (III);Atropinsulfat
+Atropinsulfat 0,5 % Augentropfen –JUN 01.02. (III);Natriumchlorid
+Atropinsulfat 0,5 % Augentropfen –JUN 01.02. (III);Benzalkoniumchlorid
+Atropinsulfat 0,5 % Augentropfen –JUN 01.02. (III);Wasser für Injektionszwecke
+
+Chlorhexidindigluconat-Augentropfen 0,1 % –JUN 01.03. (III);Chlorhexidindigluconat-Lösung 200 g/l
+Chlorhexidindigluconat-Augentropfen 0,1 % –JUN 01.03. (III);Wasser für Injektionszwecke
+
+Gentamicinsulfat-Augentropfen 5 mg/ml – JUN 01.04. (III);Gentamicinsulfat
+Gentamicinsulfat-Augentropfen 5 mg/ml – JUN 01.04. (III);Natriumdihydrogenphosphat-Dihydrat
+Gentamicinsulfat-Augentropfen 5 mg/ml – JUN 01.04. (III);Natriummonohydrogenphosphat
+Gentamicinsulfat-Augentropfen 5 mg/ml – JUN 01.04. (III);Natriumchlorid
+Gentamicinsulfat-Augentropfen 5 mg/ml – JUN 01.04. (III);Benzalkoniumchlorid
+Gentamicinsulfat-Augentropfen 5 mg/ml – JUN 01.04. (III);Wasser für Injektionszwecke
+
+Lidocainhydrochlorid 2 % Augentropfen – JUN 01.05. (IV);Lidocainhydrochlorid
+Lidocainhydrochlorid 2 % Augentropfen – JUN 01.05. (IV);Natriumtetraborat
+Lidocainhydrochlorid 2 % Augentropfen – JUN 01.05. (IV);Natriumchlorid
+Lidocainhydrochlorid 2 % Augentropfen – JUN 01.05. (IV);Benzalkoniumchlorid
+Lidocainhydrochlorid 2 % Augentropfen – JUN 01.05. (IV);Wasser für Injektionszwecke
+
+Naphazolinhydrochlorid 0,05 % unkonservierte Augentropfen – JUN 01.06. (III);Naphazolinhydrochlorid
+Naphazolinhydrochlorid 0,05 % unkonservierte Augentropfen – JUN 01.06. (III);Natriumchlorid
+Naphazolinhydrochlorid 0,05 % unkonservierte Augentropfen – JUN 01.06. (III);Borsäure
+Naphazolinhydrochlorid 0,05 % unkonservierte Augentropfen – JUN 01.06. (III);Wasser für Injektionszwecke
+
+Pilocarpinhydrochlorid-Augentropfen 1,0 % – JUN 01.07. (III);Pilocarpinhydrochlorid
+Pilocarpinhydrochlorid-Augentropfen 1,0 % – JUN 01.07. (III);Natriumchlorid
+Pilocarpinhydrochlorid-Augentropfen 1,0 % – JUN 01.07. (III);Benzalkoniumchlorid
+Pilocarpinhydrochlorid-Augentropfen 1,0 % – JUN 01.07. (III);Natriumedetat
+Pilocarpinhydrochlorid-Augentropfen 1,0 % – JUN 01.07. (III);Wasser für Injektionszwecke
+
+Polihexanid 0,02 % Augentropfen – JUN 01.08. (II);Polihexanid 20 % Stammlösung
+Polihexanid 0,02 % Augentropfen – JUN 01.08. (II);Natriumedetat
+Polihexanid 0,02 % Augentropfen – JUN 01.08. (II);Natriumchlorid
+Polihexanid 0,02 % Augentropfen – JUN 01.08. (II);Natriumdihydrogenphosphat-Dihydrat
+Polihexanid 0,02 % Augentropfen – JUN 01.08. (II);Natriummonohydrogenphosphat-Dodecahydrat
+Polihexanid 0,02 % Augentropfen – JUN 01.08. (II);Wasser für Injektionszwecke
+
+Povidon-Iod-Augentropfen 1 % – JUN 01.09. (II);Povidon-Iod
+Povidon-Iod-Augentropfen 1 % – JUN 01.09. (II);Kaliumiodid
+Povidon-Iod-Augentropfen 1 % – JUN 01.09. (II);Kaliumiodat
+Povidon-Iod-Augentropfen 1 % – JUN 01.09. (II);Wasser für Injektionszwecke
+
+Tetracainhydrochlorid 0,5 % Augentropfen – JUN 01.10. (II);Tetracainhydrochlorid
+Tetracainhydrochlorid 0,5 % Augentropfen – JUN 01.10. (II);Natriumchlorid
+Tetracainhydrochlorid 0,5 % Augentropfen – JUN 01.10. (II);Natriumtetraborat
+Tetracainhydrochlorid 0,5 % Augentropfen – JUN 01.10. (II);Wasser für Injektionszwecke
+
+Diphenhydraminhydrochlorid-Kapseln 25 mg – JUN 02.01. (V);Diphenhydraminhydrochlorid
+Diphenhydraminhydrochlorid-Kapseln 25 mg – JUN 02.01. (V);Mannitol
+
+Glycerinzäpfchen ÖAB – JUN 02.02. (II);Natriumcarbonat
+Glycerinzäpfchen ÖAB – JUN 02.02. (II);Stearinsäure
+Glycerinzäpfchen ÖAB – JUN 02.02. (II);Glycerol 85 %	
+
+Lidocainhydrochlorid-Suppositorien mit Kamillenöl 20 mg – JUN 02.04. (V);Lidocainhydrochlorid
+Lidocainhydrochlorid-Suppositorien mit Kamillenöl 20 mg – JUN 02.04. (V);Kamillenöl, ätherisch
+Lidocainhydrochlorid-Suppositorien mit Kamillenöl 20 mg – JUN 02.04. (V);Hartfett
+
+
+Lidocainhydrochlorid-Suppositorien 20 mg/40 mg – JUN 02.03. (V);Lidocainhydrochlorid
+Lidocainhydrochlorid-Suppositorien 20 mg/40 mg – JUN 02.03. (V);Hartfett
+
+Pulver für 1 Liter Darmspüllösung – JUN 02.05. (II);Kaliumchlorid
+Pulver für 1 Liter Darmspüllösung – JUN 02.05. (II);Natriumchlorid
+Pulver für 1 Liter Darmspüllösung – JUN 02.05. (II);Natriumcitrat-Dihydrat
+Pulver für 1 Liter Darmspüllösung – JUN 02.05. (II);Macrogol 4000
+
+Glucose-Elektrolyt-Mischung ORS 40/ORS 60/New-ORS-WHO – JUN 02.06. (II);Natriumchlorid
+Glucose-Elektrolyt-Mischung ORS 40/ORS 60/New-ORS-WHO – JUN 02.06. (II);Kaliumchlorid
+Glucose-Elektrolyt-Mischung ORS 40/ORS 60/New-ORS-WHO – JUN 02.06. (II);Natriumcitrat
+Glucose-Elektrolyt-Mischung ORS 40/ORS 60/New-ORS-WHO – JUN 02.06. (II);Glucose, wasserfrei
+
+Hämorrhoidensalbe – JUN 02.07. (III);Ichthyol
+Hämorrhoidensalbe – JUN 02.07. (III);Lauromacrogol 400
+Hämorrhoidensalbe – JUN 02.07. (III);Zinkoxid
+Hämorrhoidensalbe – JUN 02.07. (III);Wollwachsalkoholsalbe ÖAB
+
+Hämorrhoidenzäpfchen – JUN 02.08. (III);Ichthyol
+Hämorrhoidenzäpfchen – JUN 02.08. (III);Lauromacrogol 400
+Hämorrhoidenzäpfchen – JUN 02.08. (III);Zinkoxid
+Hämorrhoidenzäpfchen – JUN 02.08. (III);Hartfett
+
+Bittertee (Species amaricantes) – JUN 02.09. (II);Wermutkraut
+Bittertee (Species amaricantes) – JUN 02.09. (II);Tausendgüldenkraut
+Bittertee (Species amaricantes) – JUN 02.09. (II);Bitterorangenschale
+Bittertee (Species amaricantes) – JUN 02.09. (II);Bitterkleeblätter
+Bittertee (Species amaricantes) – JUN 02.09. (II);Kalmuswurzelstock
+Bittertee (Species amaricantes) – JUN 02.09. (II);Enzianwurzel
+Bittertee (Species amaricantes) – JUN 02.09. (II);Zimtrinde
+
+Appetitanregender Tee 1 (Species stomachicae I) – JUN 02.10. (II);Wermutkraut
+Appetitanregender Tee 1 (Species stomachicae I) – JUN 02.10. (II);Kalmuswurzelstock
+Appetitanregender Tee 1 (Species stomachicae I) – JUN 02.10. (II);Ingwerwurzelstock
+Appetitanregender Tee 1 (Species stomachicae I) – JUN 02.10. (II);Rosmarinblätter
+
+Appetitanregender Tee 2 (Species stomachicae II) – JUN 02.11. (II);Wermutkraut
+Appetitanregender Tee 2 (Species stomachicae II) – JUN 02.11. (II);Bitterorangenschale
+Appetitanregender Tee 2 (Species stomachicae II) – JUN 02.11. (II);Angelikawurzel
+Appetitanregender Tee 2 (Species stomachicae II) – JUN 02.11. (II);Kondurangorinde
+
+Appetitanregender Tee 3 (Species stomachicae III) – JUN 02.12. (II);Bitterorangenschale
+Appetitanregender Tee 3 (Species stomachicae III) – JUN 02.12. (II);Ingwerwurzelstock
+Appetitanregender Tee 3 (Species stomachicae III) – JUN 02.12. (II);Scharfgarbenkraut
+Appetitanregender Tee 3 (Species stomachicae III) – JUN 02.12. (II);Andornkraut
+
+
+Magentee bei Dyspepsie 1 (Species stomachicae dyspepsiae I) – JUN 02.13. (II);Wermutkraut
+Magentee bei Dyspepsie 1 (Species stomachicae dyspepsiae I) – JUN 02.13. (II);Scharfgarbenkraut
+Magentee bei Dyspepsie 1 (Species stomachicae dyspepsiae I) – JUN 02.13. (II);Pfefferminzblätter
+Magentee bei Dyspepsie 1 (Species stomachicae dyspepsiae I) – JUN 02.13. (II);Bitterorangenschale
+
+Magentee bei Dyspepsie 2 (Species stomachicae dyspepsiae II) – JUN 02.14. (II);Angelikawurzel
+Magentee bei Dyspepsie 2 (Species stomachicae dyspepsiae II) – JUN 02.14. (II);Kalmuswurzelstock
+Magentee bei Dyspepsie 2 (Species stomachicae dyspepsiae II) – JUN 02.14. (II);Ingwerwurzelstock
+Magentee bei Dyspepsie 2 (Species stomachicae dyspepsiae II) – JUN 02.14. (II);Bitterorangenschale
+
+Magentee bei Sodbrennen 1 (Species stomachicae antacidae I) – JUN 02.15. (II);Kamillenblüten
+Magentee bei Sodbrennen 1 (Species stomachicae antacidae I) – JUN 02.15. (II);Süßholzwurzel
+Magentee bei Sodbrennen 1 (Species stomachicae antacidae I) – JUN 02.15. (II);Malvenblätter
+Magentee bei Sodbrennen 1 (Species stomachicae antacidae I) – JUN 02.15. (II);Ringelblumenblüten
+
+Magentee bei Sodbrennen 2 (Species stomachicae antacidae II) – JUN 02.16. (II);Kamillenblüten
+Magentee bei Sodbrennen 2 (Species stomachicae antacidae II) – JUN 02.16. (II);Malvenblätter
+Magentee bei Sodbrennen 2 (Species stomachicae antacidae II) – JUN 02.16. (II);Anis
+Magentee bei Sodbrennen 2 (Species stomachicae antacidae II) – JUN 02.16. (II);Malvenblüten
+
+Magentee bei Sodbrennen 3 (Species stomachicae antacidae III) – JUN 02.17. (II);Süßholzwurzel
+Magentee bei Sodbrennen 3 (Species stomachicae antacidae III) – JUN 02.17. (II);Malvenblätter
+Magentee bei Sodbrennen 3 (Species stomachicae antacidae III) – JUN 02.17. (II);Ringelblumenblüten
+Magentee bei Sodbrennen 3 (Species stomachicae antacidae III) – JUN 02.17. (II);Malvenblüten
+
+Gallentee 1 (Species cholagogae I) – JUN 02.18. (II);Löwenzahnwurzel
+Gallentee 1 (Species cholagogae I) – JUN 02.18. (II);Pfefferminzblätter
+Gallentee 1 (Species cholagogae I) – JUN 02.18. (II);Kamillenblüten
+Gallentee 1 (Species cholagogae I) – JUN 02.18. (II);Andornkraut
+
+Gallentee 2 (Species cholagogae II) – JUN 02.19. (II);Löwenzahnwurzel
+Gallentee 2 (Species cholagogae II) – JUN 02.19. (II);Pfefferminzblätter
+Gallentee 2 (Species cholagogae II) – JUN 02.19. (II);Gelbwurz, Javanische
+Gallentee 2 (Species cholagogae II) – JUN 02.19. (II);Kümmel
+
+Gallentee 3 (Species cholagogae III) – JUN 02.20. (II);Löwenzahnwurzel
+Gallentee 3 (Species cholagogae III) – JUN 02.20. (II);Pfefferminzblätter
+Gallentee 3 (Species cholagogae III) – JUN 02.20. (II);Scharfgarbenkraut
+Gallentee 3 (Species cholagogae III) – JUN 02.20. (II);Wermutkraut
+
+Abführender Tee (Species laxantes) – JUN 02.21. (II);Sennesblätter
+Abführender Tee (Species laxantes) – JUN 02.21. (II);Holunderblüten
+Abführender Tee (Species laxantes) – JUN 02.21. (II);Kamillenblüten
+Abführender Tee (Species laxantes) – JUN 02.21. (II);Fenchel, bitterer
+Abführender Tee (Species laxantes) – JUN 02.21. (II);Kaliumnatriumtartrat-Tetrahydrat
+Abführender Tee (Species laxantes) – JUN 02.21. (II);Weinsäure
+Abführender Tee (Species laxantes) – JUN 02.21. (II);Wasser, gereinigt
+
+Maikurtee (Species majales) – JUN 02.22. (II);Faulbaumrinde
+Maikurtee (Species majales) – JUN 02.22. (II);Sennesblätter
+Maikurtee (Species majales) – JUN 02.22. (II);Kamillenblüten
+Maikurtee (Species majales) – JUN 02.22. (II);Fenchel, bitterer
+Maikurtee (Species majales) – JUN 02.22. (II);Magnesiumsulfat-Heptahydrat
+Maikurtee (Species majales) – JUN 02.22. (II);Wasser, gereinigt
+
+Windtreibender Tee 1 (Species carminativae I) – JUN 02.23. (II);Kamillenblüten
+Windtreibender Tee 1 (Species carminativae I) – JUN 02.23. (II);Pfefferminzblätter
+Windtreibender Tee 1 (Species carminativae I) – JUN 02.23. (II);Kalmuswurzelstock
+Windtreibender Tee 1 (Species carminativae I) – JUN 02.23. (II);Kümmel
+
+Windtreibender Tee 2 (Species carminativae II) – JUN 02.24. (II);Kümmel
+Windtreibender Tee 2 (Species carminativae II) – JUN 02.24. (II);Kalmuswurzelstock
+Windtreibender Tee 2 (Species carminativae II) – JUN 02.24. (II);Kamillenblüten
+Windtreibender Tee 2 (Species carminativae II) – JUN 02.24. (II);Melissenblätter
+
+Windtreibender Tee 3 (Species carminativae III) – JUN 02.25. (II);Pfefferminzblätter
+Windtreibender Tee 3 (Species carminativae III) – JUN 02.25. (II);Kamillenblüten
+Windtreibender Tee 3 (Species carminativae III) – JUN 02.25. (II);Melissenblätter
+Windtreibender Tee 3 (Species carminativae III) – JUN 02.25. (II);Koriander
+Windtreibender Tee 3 (Species carminativae III) – JUN 02.25. (II);Süßholzwurzel
+
+Windtreibender Tee 4 (Species carminativae IV) – JUN 02.26. (II);Pfefferminzblätter
+Windtreibender Tee 4 (Species carminativae IV) – JUN 02.26. (II);Kalmuswurzelstock
+Windtreibender Tee 4 (Species carminativae IV) – JUN 02.26. (II);Melissenblätter
+Windtreibender Tee 4 (Species carminativae IV) – JUN 02.26. (II);Süßholzwurzel
+Windtreibender Tee 4 (Species carminativae IV) – JUN 02.26. (II);Fenchel, bitterer
+
+Bittere Tinktur (Tinctura amara) – JUN 02.27. (II);Bitterkleeblätter
+Bittere Tinktur (Tinctura amara) – JUN 02.27. (II);Tausendgüldenkraut
+Bittere Tinktur (Tinctura amara) – JUN 02.27. (II);Bitterorangenschale
+Bittere Tinktur (Tinctura amara) – JUN 02.27. (II);Enzianwurzel
+Bittere Tinktur (Tinctura amara) – JUN 02.27. (II);Ethanol 70 %
+
+Zusammengesetzte Chinatinktur (Tinctura Chinae composita) – JUN 02.28. (II);Chinarinde
+Zusammengesetzte Chinatinktur (Tinctura Chinae composita) – JUN 02.28. (II);Bitterorangenschale
+Zusammengesetzte Chinatinktur (Tinctura Chinae composita) – JUN 02.28. (II);Enzianwurzel
+Zusammengesetzte Chinatinktur (Tinctura Chinae composita) – JUN 02.28. (II);Zimtrinde
+Zusammengesetzte Chinatinktur (Tinctura Chinae composita) – JUN 02.28. (II);Ethanol 70 %
+
+Zusammengesetzte Wermuttinktur (Tinctura Absinthii composita) – JUN 02.29. (II);Wermutkraut
+Zusammengesetzte Wermuttinktur (Tinctura Absinthii composita) – JUN 02.29. (II);Bitterorangenschale
+Zusammengesetzte Wermuttinktur (Tinctura Absinthii composita) – JUN 02.29. (II);Kalumwurzelstock
+Zusammengesetzte Wermuttinktur (Tinctura Absinthii composita) – JUN 02.29. (II);Enzianwurzel
+Zusammengesetzte Wermuttinktur (Tinctura Absinthii composita) – JUN 02.29. (II);Zimtrinde
+Zusammengesetzte Wermuttinktur (Tinctura Absinthii composita) – JUN 02.29. (II);Ethanol 70 %
+
+Windwasser (Aqua carminativa) – JUN 02.30. (II);Kümmelöl
+Windwasser (Aqua carminativa) – JUN 02.30. (II);Kamillenöl
+Windwasser (Aqua carminativa) – JUN 02.30. (II);Citronenöl
+Windwasser (Aqua carminativa) – JUN 02.30. (II);Bitterfenchelöl
+Windwasser (Aqua carminativa) – JUN 02.30. (II);Pfefferminzöl
+Windwasser (Aqua carminativa) – JUN 02.30. (II);Talk
+Windwasser (Aqua carminativa) – JUN 02.30. (II);Wasser, gereinigt
+
+
+Windtreibende Tropfen – JUN 02.31. (III);Kümmelöl
+Windtreibende Tropfen – JUN 02.31. (III);Bitterfenchelöl
+Windtreibende Tropfen – JUN 02.31. (III);Pfefferminzöl
+Windtreibende Tropfen – JUN 02.31. (III);Ethanol 96%
+
+Windsalbe (Aromatische Salbe, Unguentum aromaticum) – JUN 02.32. (II);Erdnußöl, raffiniertes
+Windsalbe (Aromatische Salbe, Unguentum aromaticum) – JUN 02.32. (II);Erdnußöl, hydriertes
+Windsalbe (Aromatische Salbe, Unguentum aromaticum) – JUN 02.32. (II);Wachs, gelbes
+Windsalbe (Aromatische Salbe, Unguentum aromaticum) – JUN 02.32. (II);Lorbeeröl
+Windsalbe (Aromatische Salbe, Unguentum aromaticum) – JUN 02.32. (II);Lavendelöl
+Windsalbe (Aromatische Salbe, Unguentum aromaticum) – JUN 02.32. (II);Rosmarinöl
+Windsalbe (Aromatische Salbe, Unguentum aromaticum) – JUN 02.32. (II);Wacholderöl
+
+
+4-Winde-Öl – JUN 02.33. (V);Korianderöl
+4-Winde-Öl – JUN 02.33. (V);Anisöl
+4-Winde-Öl – JUN 02.33. (V);Fenchelöl
+4-Winde-Öl – JUN 02.33. (V);Lavendelöl
+4-Winde-Öl – JUN 02.33. (V);Olivenöl
+
+
+Kümmelzäpfchen mit Kamille – JUN 02.34. (V);Kamillenextrakt
+Kümmelzäpfchen mit Kamille – JUN 02.34. (V);Kümmelöl
+Kümmelzäpfchen mit Kamille – JUN 02.34. (V);Siliciumdioxid hochdispers, Aerosil®
+Kümmelzäpfchen mit Kamille – JUN 02.34. (V);Hartfett
+
+Chlorhexidindigluconat-Zahnfleischgel 1 % – JUN 03.01. (III);Chlorhexidindigluconat-Lösung 200 g/l
+Chlorhexidindigluconat-Zahnfleischgel 1 % – JUN 03.01. (III);Hydroxyethylcellulose 250 G
+Chlorhexidindigluconat-Zahnfleischgel 1 % – JUN 03.01. (III);Wasser, gereinigt
+
+Chlorhexidindigluconat Gurgel-Lösung – JUN 03.02. (V);Chlorhexidindigluconat-Lösung 200 g/l
+Chlorhexidindigluconat Gurgel-Lösung – JUN 03.02. (V);Pfefferminzspiritus
+Chlorhexidindigluconat Gurgel-Lösung – JUN 03.02. (V);Sorbitol
+Chlorhexidindigluconat Gurgel-Lösung – JUN 03.02. (V);Wasser, gereinigt
+
+Soor-Gel – JUN 03.03. (III);Dequaliniumchlorid
+Soor-Gel – JUN 03.03. (III);Hydroxyethylcellulose 250 G
+Soor-Gel – JUN 03.03. (III);Wasser, gereinigt
+
+Hydrocortisonacetat-Mundgel 0,5 % – JUN 03.04. (V);Hydrocortisonacetat
+Hydrocortisonacetat-Mundgel 0,5 % – JUN 03.04. (V);Benzalkoniumchlorid
+Hydrocortisonacetat-Mundgel 0,5 % – JUN 03.04. (V);Hydroxyethylcellulose 250 HX
+Hydrocortisonacetat-Mundgel 0,5 % – JUN 03.04. (V);Wasser, gereinigt
+
+
+Lidocainhydrochlorid-Zahnfleischgel 2 % – JUN 03.05. (III);Lidocainhydrochlorid
+Lidocainhydrochlorid-Zahnfleischgel 2 % – JUN 03.05. (III);Benzalkoniumchlorid
+Lidocainhydrochlorid-Zahnfleischgel 2 % – JUN 03.05. (III);Hydroxyethylcellulose 250 G
+Lidocainhydrochlorid-Zahnfleischgel 2 % – JUN 03.05. (III);Wasser, gereinigt
+
+Lidocainhydrochlorid-Lösung 1 % mit Dexpanthenol – JUN 03.06. (II);Lidocainhydrochlorid
+Lidocainhydrochlorid-Lösung 1 % mit Dexpanthenol – JUN 03.06. (II);Glycerol 85 %
+Lidocainhydrochlorid-Lösung 1 % mit Dexpanthenol – JUN 03.06. (II);Dexpanthenol
+Lidocainhydrochlorid-Lösung 1 % mit Dexpanthenol – JUN 03.06. (II);Natriummonohydrogenphosphat-Dodecahydrat
+Lidocainhydrochlorid-Lösung 1 % mit Dexpanthenol – JUN 03.06. (II);Methyl-4-hydroxybenzoat-Lösung 0,2 %
+
+Adstringierende Lösung zur Behandlung des Rachens – JUN 03.07. (V);Silbereiweißacetyltannat, boraxfrei
+Adstringierende Lösung zur Behandlung des Rachens – JUN 03.07. (V);Mannitol
+Adstringierende Lösung zur Behandlung des Rachens – JUN 03.07. (V);Wasser für Injektionszwecke
+
+Adstringierende Gurgel-Lösung – JUN 03.08. (III);Ratanhiatinktur
+Adstringierende Gurgel-Lösung – JUN 03.08. (III);Salbeitinktur
+Adstringierende Gurgel-Lösung – JUN 03.08. (III);Kamillentinktur
+
+Gurgel-Lösung – JUN 03.09. (V);Ratanhiatinktur
+Gurgel-Lösung – JUN 03.09. (V);Myrrhetinktur
+Gurgel-Lösung – JUN 03.09. (V);Menthol
+Gurgel-Lösung – JUN 03.09. (V);Ethanol 70 % (V/V)
+
+Inhalationssalz – JUN 03.10. (III);Natriumcarbonat, getrocknet
+Inhalationssalz – JUN 03.10. (III);Natriumchlorid
+Inhalationssalz – JUN 03.10. (III);Pfefferminzöl
+
+Pflegende Nasensalbe mit Dexpanthenol – JUN 03.11. (V);Dexpanthenol
+Pflegende Nasensalbe mit Dexpanthenol – JUN 03.11. (V);Glycerol 85 %
+Pflegende Nasensalbe mit Dexpanthenol – JUN 03.11. (V);Triglyceride, mittelkettig
+Pflegende Nasensalbe mit Dexpanthenol – JUN 03.11. (V);Wollwachs
+
+Antibiotische Nasensalbe – JUN 03.12. (V);Gentamicin 1 % Cordes® RK
+Antibiotische Nasensalbe – JUN 03.12. (V);Glycerol 85 %
+Antibiotische Nasensalbe – JUN 03.12. (V);Triglyceride, mittelkettig
+Antibiotische Nasensalbe – JUN 03.12. (V);Wollwachs
+
+Lösung zur Abschwellung der Nasenschleimhaut – JUN 03.13. (III);Xylometazolinhydrochlorid
+Lösung zur Abschwellung der Nasenschleimhaut – JUN 03.13. (III);Dexpanthenol
+Lösung zur Abschwellung der Nasenschleimhaut – JUN 03.13. (III);Benzalkoniumchlorid
+Lösung zur Abschwellung der Nasenschleimhaut – JUN 03.13. (III);Natriumchlorid
+Lösung zur Abschwellung der Nasenschleimhaut – JUN 03.13. (III);Wasser für Injektionszwecke
+
+Inhalations-Öl – JUN 03.14. (III);Pfefferminzöl
+Inhalations-Öl – JUN 03.14. (III);Latschenkieferöl
+Inhalations-Öl – JUN 03.14. (III);Eukalyptusöl
+
+Lidocain-Ohrentropfen – JUN 03.15. (V);Lidocain Base
+Lidocain-Ohrentropfen – JUN 03.15. (V);Triglyceride, mittelkettig
+
+Erweichende Salicylsäure-Ohrentropfen – JUN 03.16. (IV);Salicylsäure
+Erweichende Salicylsäure-Ohrentropfen – JUN 03.16. (IV);Glycerol 85 %
+Erweichende Salicylsäure-Ohrentropfen – JUN 03.16. (IV);Ethanol 70 % (V/V)
+
+Ohrentropfen mit Wasserstoffperoxid 2 % – JUN 03.17. (III);Wasserstoffperoxid-Lösung 30 %
+Ohrentropfen mit Wasserstoffperoxid 2 % – JUN 03.17. (III);Wasser, gereinigt
+Ohrentropfen mit Wasserstoffperoxid 2 % – JUN 03.17. (III);Glycerol 85 %
+
+Wasserstoffperoxid-Lösung 3 % – JUN 03.18. (II);Wasserstoffperoxid-Lösung 30 %
+Wasserstoffperoxid-Lösung 3 % – JUN 03.18. (II);Wasser, gereinigt
+
+Essigsaure-Tonerde-Gel – JUN 04.01. (III);Essigsaure-weinsaure Tonerdelösung ÖAB
+Essigsaure-Tonerde-Gel – JUN 04.01. (III);Hydroxyethylcellulose 250 HX
+Essigsaure-Tonerde-Gel – JUN 04.01. (III);Ethanol 96 % (V/V)
+Essigsaure-Tonerde-Gel – JUN 04.01. (III);Wasser, gereinigt
+
+Aluminiumchlorid-Lösung 20 % – JUN 04.02. (III);Aluminiumchlorid-Hexahydrat
+Aluminiumchlorid-Lösung 20 % – JUN 04.02. (III);Wasser, gereinigt
+Aluminiumchlorid-Lösung 20 % – JUN 04.02. (III);Ethanol 96 % (V/V)
+
+Aluminiumchlorid-Gel 20 % – JUN 04.03. (III);Aluminiumchlorid-Hexahydrat
+Aluminiumchlorid-Gel 20 % – JUN 04.03. (III);Hydroxyethylcellulose 250 HX
+Aluminiumchlorid-Gel 20 % – JUN 04.03. (III);Propylenglycol
+Aluminiumchlorid-Gel 20 % – JUN 04.03. (III);Wasser, gereinigt
+
+Benzocain-Schüttelmixtur 5 % – JUN 04.04. (V);Benzocain
+Benzocain-Schüttelmixtur 5 % – JUN 04.04. (V);Zinkoxid
+Benzocain-Schüttelmixtur 5 % – JUN 04.04. (V);Talk
+Benzocain-Schüttelmixtur 5 % – JUN 04.04. (V);Ethanol 96 % (V/V)
+Benzocain-Schüttelmixtur 5 % – JUN 04.04. (V);Glycerol 85 %
+Benzocain-Schüttelmixtur 5 % – JUN 04.04. (V);Wasser, gereinigt
+
+Benzocain-Salbe 5 %/10 % – JUN 04.05. (V);Benzocain
+Benzocain-Salbe 5 %/10 % – JUN 04.05. (V);Macrogol 400
+Benzocain-Salbe 5 %/10 % – JUN 04.05. (V);Macrogol 4000
+
+Ethanolhaltige Chlorhexidindigluconat- Lösung 0,5 %/1 % – JUN 04.06. (II);Chlorhexidindigluconat-Lösung 200 g/l
+Ethanolhaltige Chlorhexidindigluconat- Lösung 0,5 %/1 % – JUN 04.06. (II);Ethanol 70 % (V/V)
+
+Hydrophile Chlorhexidindigluconat-Creme 0,5 %/1 % – JUN 04.07. (II);Chlorhexidindigluconat-Lösung 200 g/l
+Hydrophile Chlorhexidindigluconat-Creme 0,5 %/1 % – JUN 04.07. (II);Basiscreme ÖAB
+
+Clindamycin 1 % Hydrogel – JUN 04.08. (III);Clindamycinhydrochlorid
+Clindamycin 1 % Hydrogel – JUN 04.08. (III);Propylenglycol
+Clindamycin 1 % Hydrogel – JUN 04.08. (III);Hydroxyethylcellulose 250 G
+Clindamycin 1 % Hydrogel – JUN 04.08. (III);Wasser, gereinigt
+
+Hydrophile Dexpanthenol-Creme – JUN 04.09. (III);Dexpanthenol
+Hydrophile Dexpanthenol-Creme – JUN 04.09. (III);Glycerolmonooleat
+Hydrophile Dexpanthenol-Creme – JUN 04.09. (III);Wachs, flüssiges
+Hydrophile Dexpanthenol-Creme – JUN 04.09. (III);Stearylalkohol
+Hydrophile Dexpanthenol-Creme – JUN 04.09. (III);Glycerolmonostearat 40–55
+Hydrophile Dexpanthenol-Creme – JUN 04.09. (III);Propylenglycol
+Hydrophile Dexpanthenol-Creme – JUN 04.09. (III);Vaselin, weißes
+Hydrophile Dexpanthenol-Creme – JUN 04.09. (III);Wasser, gereinigt
+
+Lipophile Dexpanthenol-Creme – JUN 04.10. (III);Dexpanthenol
+Lipophile Dexpanthenol-Creme – JUN 04.10. (III);Wachs, flüssiges
+Lipophile Dexpanthenol-Creme – JUN 04.10. (III);Wasser, gereinigt
+Lipophile Dexpanthenol-Creme – JUN 04.10. (III);Wollwachsalkoholsalbe, wasserhaltig
+
+Unguentum antihistaminicum – JUN 04.11. (IV);Diphenhydraminhydrochlorid
+Unguentum antihistaminicum – JUN 04.11. (IV);Wasser, gereinigt
+Unguentum antihistaminicum – JUN 04.11. (IV);Wollwachsalkoholsalbe
+
+Varicellen-Puder – JUN 04.12. (V);Diphenhydraminhydrochlorid
+Varicellen-Puder – JUN 04.12. (V);Zinkoxid
+Varicellen-Puder – JUN 04.12. (V);Talk
+
+Dithranol-Salbe 0,1–3 % – JUN 04.13. (III);Dithranol
+Dithranol-Salbe 0,1–3 % – JUN 04.13. (III);Salicylsäure
+Dithranol-Salbe 0,1–3 % – JUN 04.13. (III);Vaselin, weißes
+
+Wässrige Eosin-Lösung – JUN 04.14. (II);Eosin-Dinatrium
+Wässrige Eosin-Lösung – JUN 04.14. (II);Citronensäure-Lösung 0,1 %
+Wässrige Eosin-Lösung – JUN 04.14. (II);Wasser, gereinigt
+
+Hydrophile Erythromycin-Creme 1 %/2 %/4 % – JUN 04.15. (II);Erythromycin
+Hydrophile Erythromycin-Creme 1 %/2 %/4 % – JUN 04.15. (II);Triglyceride, mittelkettig
+Hydrophile Erythromycin-Creme 1 %/2 %/4 % – JUN 04.15. (II);Basiscreme ÖAB
+Hydrophile Erythromycin-Creme 1 %/2 %/4 % – JUN 04.15. (II);Citronensäure, wasserfrei
+Hydrophile Erythromycin-Creme 1 %/2 %/4 % – JUN 04.15. (II);Propylenglycol
+Hydrophile Erythromycin-Creme 1 %/2 %/4 % – JUN 04.15. (II);Wasser, gereinigt
+
+Ethacridinlactat-Monohydrat-Lösung 0,05 %/0,1 %/0,5 %/1 % – JUN 04.16. (II);Ethacridinlactat-Monohydrat
+Ethacridinlactat-Monohydrat-Lösung 0,05 %/0,1 %/0,5 %/1 % – JUN 04.16. (II);Wasser für Injektionszwecke
+
+Harnstoff-Creme 5 %/10 %/20 % – JUN 04.17. (V);Harnstoff
+Harnstoff-Creme 5 %/10 %/20 % – JUN 04.17. (V);Wasser, gereinigt
+Harnstoff-Creme 5 %/10 %/20 % – JUN 04.17. (V);Eucerin, wasserfrei
+
+Antiseptische Harnstoff-Creme 5 % – JUN 04.18. (V);Harnstoff
+Antiseptische Harnstoff-Creme 5 % – JUN 04.18. (V);Hans Karrer® Lotion Mikrosilber
+
+Harnstoff-Creme 40 % – JUN 04.19. (V);Harnstoff
+Harnstoff-Creme 40 % – JUN 04.19. (V);Wasser, gereinigt
+Harnstoff-Creme 40 % – JUN 04.19. (V);Excipial® Lipocreme
+
+Hydrophiles Polidocanol-Gel 5 % – JUN 04.20. (II);Lauromacrogol 400
+Hydrophiles Polidocanol-Gel 5 % – JUN 04.20. (II);Propylenglycol
+Hydrophiles Polidocanol-Gel 5 % – JUN 04.20. (II);Carbopol 980
+Hydrophiles Polidocanol-Gel 5 % – JUN 04.20. (II);Trometamol
+Hydrophiles Polidocanol-Gel 5 % – JUN 04.20. (II);Wasser, gereinigt
+
+Lauromacrogol-400-Salbe 5 % – JUN 04.21. (V);Lauromacrogol 400
+Lauromacrogol-400-Salbe 5 % – JUN 04.21. (V);Macrogol 400
+Lauromacrogol-400-Salbe 5 % – JUN 04.21. (V);Unguentum Cordes®
+
+Lauromacrogol-400-Creme 5 % (W/O) – JUN 04.22. (V);Lauromacrogol 400
+Lauromacrogol-400-Creme 5 % (W/O) – JUN 04.22. (V);Macrogol 400
+Lauromacrogol-400-Creme 5 % (W/O) – JUN 04.22. (V);Excipial® Lipocreme
+
+Lauromacrogol-400-Schüttelmixtur 5 % – JUN 04.23. (V);Lauromacrogol 400
+Lauromacrogol-400-Schüttelmixtur 5 % – JUN 04.23. (V);Macrogol 400
+Lauromacrogol-400-Schüttelmixtur 5 % – JUN 04.23. (V);Lotio Cordes®
+
+Lebertransalbe 10 % – JUN 04.24. (V);Lebertran
+Lebertransalbe 10 % – JUN 04.24. (V);Weiche Salbe
+
+Lidocainhydrochlorid-Creme 2 % – JUN 04.25. (V);Lidocainhydrochlorid
+Lidocainhydrochlorid-Creme 2 % – JUN 04.25. (V);Excipial® Hydrocreme
+
+Lidocain-Gel 4% nach Wolf – JUN 04.26. (V);Lidocain (Base)
+Lidocain-Gel 4% nach Wolf – JUN 04.26. (V);Menthol
+Lidocain-Gel 4% nach Wolf – JUN 04.26. (V);Carbopol 980
+Lidocain-Gel 4% nach Wolf – JUN 04.26. (V);Propylenglycol
+Lidocain-Gel 4% nach Wolf – JUN 04.26. (V);Wasser, gereinigt
+
+
+Salicylsäure-Vaselin 1–20 % – JUN 04.27. (II);Salicylsäure
+Salicylsäure-Vaselin 1–20 % – JUN 04.27. (II);Vaselin, weißes
+
+Salicylsäure-Puder 3 % – JUN 04.28. (V);Salicylsäure
+Salicylsäure-Puder 3 % – JUN 04.28. (V);Glucose, wasserfrei
+
+Salicylsäure-Kopföl 10 % – JUN 04.29. (III);Salicylsäure
+Salicylsäure-Kopföl 10 % – JUN 04.29. (III);Ethanol 96 %
+Salicylsäure-Kopföl 10 % – JUN 04.29. (III);Polyethylenglykol-400-stearat
+Salicylsäure-Kopföl 10 % – JUN 04.29. (III);Isopropylmyristat
+Salicylsäure-Kopföl 10 % – JUN 04.29. (III);Erdnußöl, raffiniertes
+
+Fettender Salicylsäure-Hautspiritus 1–5 % – JUN 04.30. (II);Salicylsäure
+Fettender Salicylsäure-Hautspiritus 1–5 % – JUN 04.30. (II);Octyldodecanol
+Fettender Salicylsäure-Hautspiritus 1–5 % – JUN 04.30. (II);2-Propanol
+Fettender Salicylsäure-Hautspiritus 1–5 % – JUN 04.30. (II);Wasser, gereinigt
+
+Tannin-Salbe 5 % – JUN 04.31. (V);Tannin
+Tannin-Salbe 5 % – JUN 04.31. (V);Cordes® RK
+
+Titandioxid-Creme 5 % – JUN 04.32. (V);Titandioxid
+Titandioxid-Creme 5 % – JUN 04.32. (V);Hans Karrer® Lotion Mikrosilber
+
+Ethanolhaltige Tretinoin-Lösung 0,025 %/0,05 %/0,1 % – JUN 04.33. (II);Tretinoin
+Ethanolhaltige Tretinoin-Lösung 0,025 %/0,05 %/0,1 % – JUN 04.33. (II);Butylhydroxytoluol
+Ethanolhaltige Tretinoin-Lösung 0,025 %/0,05 %/0,1 % – JUN 04.33. (II);Propylenglycol
+Ethanolhaltige Tretinoin-Lösung 0,025 %/0,05 %/0,1 % – JUN 04.33. (II);Ethanol 96 %
+
+Hydrophile Tretinoin 0,025 %/0,05 %/0,1 % Creme – JUN 04.34. (II);Tretinoin
+Hydrophile Tretinoin 0,025 %/0,05 %/0,1 % Creme – JUN 04.34. (II);Butylhydroxytoluol
+Hydrophile Tretinoin 0,025 %/0,05 %/0,1 % Creme – JUN 04.34. (II);Paraffin, dickflüssig
+Hydrophile Tretinoin 0,025 %/0,05 %/0,1 % Creme – JUN 04.34. (II);Basiscreme ÖAB
+
+Lipophile Tretinoin-Creme 0,05 % – JUN 04.35. (V);Tretinoin
+Lipophile Tretinoin-Creme 0,05 % – JUN 04.35. (V);Cordes® RK
+Lipophile Tretinoin-Creme 0,05 % – JUN 04.35. (V);Wasser, gereinigt
+
+Zinkoxid-Schüttelpinselung – JUN 04.36. (III);Zinkoxid
+Zinkoxid-Schüttelpinselung – JUN 04.36. (III);Talk
+Zinkoxid-Schüttelpinselung – JUN 04.36. (III);Glycerol 85 %
+Zinkoxid-Schüttelpinselung – JUN 04.36. (III);Ethanol 96 % (V/V)
+Zinkoxid-Schüttelpinselung – JUN 04.36. (III);Wasser, gereinigt
+
+Stabilisierte Zinkoxid-Schüttelpinselung („Achtzehner“-Lotion) – JUN 04.37. (III);Cetylstearylalkohol (Typ A), emulgierend
+Stabilisierte Zinkoxid-Schüttelpinselung („Achtzehner“-Lotion) – JUN 04.37. (III);Zinkoxid
+Stabilisierte Zinkoxid-Schüttelpinselung („Achtzehner“-Lotion) – JUN 04.37. (III);Talk
+Stabilisierte Zinkoxid-Schüttelpinselung („Achtzehner“-Lotion) – JUN 04.37. (III);Glycerol 85 %
+Stabilisierte Zinkoxid-Schüttelpinselung („Achtzehner“-Lotion) – JUN 04.37. (III);Ethanol 96 % (V/V)
+Stabilisierte Zinkoxid-Schüttelpinselung („Achtzehner“-Lotion) – JUN 04.37. (III);Wasser, gereinigt
+
+Weiche Zinkpaste – JUN 04.38. (III);Zinkoxid
+Weiche Zinkpaste – JUN 04.38. (III);Erdnußöl, raffiniertes
+Weiche Zinkpaste – JUN 04.38. (III);Wollwachsalkoholsalbe
+
+Weiße Mandelölsalbe – JUN 04.39. (V);Zinkoxid
+Weiße Mandelölsalbe – JUN 04.39. (V);Mandelöl, raffiniert
+Weiße Mandelölsalbe – JUN 04.39. (V);Paraffin, fest
+Weiße Mandelölsalbe – JUN 04.39. (V);Wachs, gelbes
+
+Zinksulfat-Gel 1 % – JUN 04.40. (III);Zinksulfat
+Zinksulfat-Gel 1 % – JUN 04.40. (III);Benzalkoniumchlorid
+Zinksulfat-Gel 1 % – JUN 04.40. (III);Hydroxyethylcellulose 250 HX
+Zinksulfat-Gel 1 % – JUN 04.40. (III);Wasser, gereinigt
+
+Harnstoff 10 % – Lauromacrogol 400 4 % – Creme – JUN 04.41. (V);Harnstoff
+Harnstoff 10 % – Lauromacrogol 400 4 % – Creme – JUN 04.41. (V);Lauromacrogol 400
+Harnstoff 10 % – Lauromacrogol 400 4 % – Creme – JUN 04.41. (V);Natriumlactat-Lösung 50 %
+Harnstoff 10 % – Lauromacrogol 400 4 % – Creme – JUN 04.41. (V);Milchsäure
+Harnstoff 10 % – Lauromacrogol 400 4 % – Creme – JUN 04.41. (V);Wasser, gereinigt
+Harnstoff 10 % – Lauromacrogol 400 4 % – Creme – JUN 04.41. (V);Unguentum Cordes®
+
+Polidocanol-Zinkoxid-Schüttelmixtur 3 %/5 %/10 % – JUN 04.42. (II);Lauromacrogol 400
+Polidocanol-Zinkoxid-Schüttelmixtur 3 %/5 %/10 % – JUN 04.42. (II);Zinkoxid
+Polidocanol-Zinkoxid-Schüttelmixtur 3 %/5 %/10 % – JUN 04.42. (II);Talk
+Polidocanol-Zinkoxid-Schüttelmixtur 3 %/5 %/10 % – JUN 04.42. (II);Glycerol 85 %
+Polidocanol-Zinkoxid-Schüttelmixtur 3 %/5 %/10 % – JUN 04.42. (II);Wasser, gereinigt
+
+Lipophile Analekzemcreme – JUN 04.43. (V);Lidocainhydrochlorid
+Lipophile Analekzemcreme – JUN 04.43. (V);Prednisolon
+Lipophile Analekzemcreme – JUN 04.43. (V);Menthol
+Lipophile Analekzemcreme – JUN 04.43. (V);Excipial® Lipocreme
+
+Antiseptische Pflegecreme – JUN 04.44. (V);Chlorhexidindiacetat
+Antiseptische Pflegecreme – JUN 04.44. (V);Dexpanthenol
+Antiseptische Pflegecreme – JUN 04.44. (V);Excipial® Lipocreme
+Antiseptische Pflegecreme – JUN 04.44. (V);Wasser, gereinigt
+
+Hydrophile Triamcinolonacetonid-Creme 0,025 %/0,05 %/0,1 % mit Chlorhexidindigluconat 1 % – JUN 04.45. (II);Triamcinolonacetonid
+Hydrophile Triamcinolonacetonid-Creme 0,025 %/0,05 %/0,1 % mit Chlorhexidindigluconat 1 % – JUN 04.45. (II);Triglyceride, mittelkettig
+Hydrophile Triamcinolonacetonid-Creme 0,025 %/0,05 %/0,1 % mit Chlorhexidindigluconat 1 % – JUN 04.45. (II);Chlorhexidindigluconat-Lösung 200 g/l
+Hydrophile Triamcinolonacetonid-Creme 0,025 %/0,05 %/0,1 % mit Chlorhexidindigluconat 1 % – JUN 04.45. (II);Basiscreme ÖAB
+
+Sonnenbrand-Lotion – JUN 04.46. (V);Menthol
+Sonnenbrand-Lotion – JUN 04.46. (V);Dexpanthenol
+Sonnenbrand-Lotion – JUN 04.46. (V);Excipial® U Hydrolotio
+
+Salicylsäure-Kollodium – JUN 04.47. (II);Salicylsäure
+Salicylsäure-Kollodium – JUN 04.47. (II);Milchsäure
+Salicylsäure-Kollodium – JUN 04.47. (II);Kollodium, elastisch
+
+Lidocainhydrochlorid 4 % – Epinephrinhydrochlorid 0,4 % – Tetracainhydrochlorid 2 % – Gel (= LET-Gel) – JUN 04.48. (V);Lidocainhydrochlorid      
+Lidocainhydrochlorid 4 % – Epinephrinhydrochlorid 0,4 % – Tetracainhydrochlorid 2 % – Gel (= LET-Gel) – JUN 04.48. (V);Epinephrinhydrochlorid, racemisch
+Lidocainhydrochlorid 4 % – Epinephrinhydrochlorid 0,4 % – Tetracainhydrochlorid 2 % – Gel (= LET-Gel) – JUN 04.48. (V);Tetracainhydrochlorid
+Lidocainhydrochlorid 4 % – Epinephrinhydrochlorid 0,4 % – Tetracainhydrochlorid 2 % – Gel (= LET-Gel) – JUN 04.48. (V);Hydroxyethylcellulose 250 HX
+Lidocainhydrochlorid 4 % – Epinephrinhydrochlorid 0,4 % – Tetracainhydrochlorid 2 % – Gel (= LET-Gel) – JUN 04.48. (V);Wasser, gereinigt
+
+Schwefel-Salicyl-Vaselin – JUN 04.49. (III);Salicylsäure
+Schwefel-Salicyl-Vaselin – JUN 04.49. (III);Schwefel zum äußerlichen Gebrauch
+Schwefel-Salicyl-Vaselin – JUN 04.49. (III);Vaselin, gelbes
+
+Warzensalbe – JUN 04.50. (II);Dithranol
+Warzensalbe – JUN 04.50. (II);Salicylsäure
+Warzensalbe – JUN 04.50. (II);Paraffin, dickflüssig
+Warzensalbe – JUN 04.50. (II);Vaselin, weißes
+
+Clotrimazol 1 % – Zinkoxid 30 % – Paste – JUN 04.51. (V);Clotrimazol
+Clotrimazol 1 % – Zinkoxid 30 % – Paste – JUN 04.51. (V);Zinkoxid
+Clotrimazol 1 % – Zinkoxid 30 % – Paste – JUN 04.51. (V);Paraffin, dickflüssig
+Clotrimazol 1 % – Zinkoxid 30 % – Paste – JUN 04.51. (V);Wachs, gebleichtes
+Clotrimazol 1 % – Zinkoxid 30 % – Paste – JUN 04.51. (V);Vaselin, weißes
+
+Nichtionogene hydrophile Creme – konserviert mit Propylenglycol – JUN 04.52. (III);Stearylalkohol
+Nichtionogene hydrophile Creme – konserviert mit Propylenglycol – JUN 04.52. (III);Polysorbat-60-stearat
+Nichtionogene hydrophile Creme – konserviert mit Propylenglycol – JUN 04.52. (III);Propylenglycol
+Nichtionogene hydrophile Creme – konserviert mit Propylenglycol – JUN 04.52. (III);Paraffin, flüssig
+Nichtionogene hydrophile Creme – konserviert mit Propylenglycol – JUN 04.52. (III);Vaselin, weißes
+Nichtionogene hydrophile Creme – konserviert mit Propylenglycol – JUN 04.52. (III);Wasser, gereinigt
+
+Basiscreme ÖAB – konserviert mit Propylenglycol – JUN 04.53. (II);Macrogol-20-glycerol-monostearat
+Basiscreme ÖAB – konserviert mit Propylenglycol – JUN 04.53. (II);Wachs, flüssiges
+Basiscreme ÖAB – konserviert mit Propylenglycol – JUN 04.53. (II);Stearylalkohol
+Basiscreme ÖAB – konserviert mit Propylenglycol – JUN 04.53. (II);Glycerolmonostearat 40–55
+Basiscreme ÖAB – konserviert mit Propylenglycol – JUN 04.53. (II);Propylenglycol
+Basiscreme ÖAB – konserviert mit Propylenglycol – JUN 04.53. (II);Vaselin, weißes
+Basiscreme ÖAB – konserviert mit Propylenglycol – JUN 04.53. (II);Wasser, gereinigt
+
+Hydrophile Basiscreme Leoben – konserviert mit Sorbinsäure – JUN 04.54. (V);Sorbinsäure
+Hydrophile Basiscreme Leoben – konserviert mit Sorbinsäure – JUN 04.54. (V);Vaselin, weißes
+Hydrophile Basiscreme Leoben – konserviert mit Sorbinsäure – JUN 04.54. (V);Glycerol 85 %
+Hydrophile Basiscreme Leoben – konserviert mit Sorbinsäure – JUN 04.54. (V);Cetylstearylalkohol (Typ A), emulgierend
+Hydrophile Basiscreme Leoben – konserviert mit Sorbinsäure – JUN 04.54. (V);Paraffin, flüssig
+Hydrophile Basiscreme Leoben – konserviert mit Sorbinsäure – JUN 04.54. (V);Wasser, gereinigt
+
+Unguentum leniens ÖAB (= Kühlsalbe) – JUN 04.55. (II);Wachs, gebleichtes
+Unguentum leniens ÖAB (= Kühlsalbe) – JUN 04.55. (II);Erdnußöl, hydriertes
+Unguentum leniens ÖAB (= Kühlsalbe) – JUN 04.55. (II);Erdnußöl, raffiniertes
+Unguentum leniens ÖAB (= Kühlsalbe) – JUN 04.55. (II);Rizinusöl
+Unguentum leniens ÖAB (= Kühlsalbe) – JUN 04.55. (II);Wasser, gereinigt
+
+Lippenpflege-Creme – JUN 04.56. (V);Cetylalkohol
+Lippenpflege-Creme – JUN 04.56. (V);Wollwachs
+Lippenpflege-Creme – JUN 04.56. (V);Vaselin, weißes
+Lippenpflege-Creme – JUN 04.56. (V);Wasser, gereinigt
+
+Unguentum Lanalcoli ÖAB – JUN 04.57. (II);Cetylstearylalkohol (Typ A), emulgierend
+Unguentum Lanalcoli ÖAB – JUN 04.57. (II);Wollwachsalkohole
+Unguentum Lanalcoli ÖAB – JUN 04.57. (II);Vaselin, weißes
+
+Unguentum emulsificans ÖAB – JUN 04.58. (II);Cetylstearylalkohol (Typ A), emulgierend
+Unguentum emulsificans ÖAB – JUN 04.58. (II);Paraffin, flüssig
+Unguentum emulsificans ÖAB – JUN 04.58. (II);Vaselin, weißes
+
+Basis-Öl-Pflege-Creme (W/O) – JUN 04.59. (V);Wollwachs
+Basis-Öl-Pflege-Creme (W/O) – JUN 04.59. (V);Glycerol 85 %
+Basis-Öl-Pflege-Creme (W/O) – JUN 04.59. (V);Wasser, gereinigt
+Basis-Öl-Pflege-Creme (W/O) – JUN 04.59. (V);Öl (divers)
+Basis-Öl-Pflege-Creme (W/O) – JUN 04.59. (V);Unguentum Cordes®
+
+Öl-Pflege-Creme (W/O) – JUN 04.60. (V);Wollwachs
+Öl-Pflege-Creme (W/O) – JUN 04.60. (V);Glycerol 85 %
+Öl-Pflege-Creme (W/O) – JUN 04.60. (V);Wasser, gereinigt
+Öl-Pflege-Creme (W/O) – JUN 04.60. (V);Nachtkerzensamenöl
+Öl-Pflege-Creme (W/O) – JUN 04.60. (V);Unguentum Cordes®
+
+Acetylsalicylsäure-Kapseln 10 mg – JUN 05.01. (V);Acetylsalicylsäure
+Acetylsalicylsäure-Kapseln 10 mg – JUN 05.01. (V);Mannitol
+
+Enalaprilmaleat 1 mg/ml orale Suspension 20 ml – JUN 05.02. (IV);Enalaprilmaleat
+Enalaprilmaleat 1 mg/ml orale Suspension 20 ml – JUN 05.02. (IV);SyrSpend® SF PH 4
+
+Fludrocortison-Kapseln 50 μg – JUN 05.03. (V);Fludrocortison
+Fludrocortison-Kapseln 50 μg – JUN 05.03. (V);Mannitol
+
+Furosemid 2 mg/ml / 10 mg/ml orale Lösung 100 ml – JUN 05.04. (II);Furosemid
+Furosemid 2 mg/ml / 10 mg/ml orale Lösung 100 ml – JUN 05.04. (II);Trometamol
+Furosemid 2 mg/ml / 10 mg/ml orale Lösung 100 ml – JUN 05.04. (II);Saccharin-Natrium
+Furosemid 2 mg/ml / 10 mg/ml orale Lösung 100 ml – JUN 05.04. (II);Methyl-4-hydroxybenzoat
+Furosemid 2 mg/ml / 10 mg/ml orale Lösung 100 ml – JUN 05.04. (II);Wasser, gereinigt
+
+Furosemid-Kapseln 2 mg – JUN 05.05. (V);Furosemid
+Furosemid-Kapseln 2 mg – JUN 05.05. (V);Mannitol
+
+Hydrocortison-Kapseln 5 mg – JUN 05.06. (V);Hydrocortison
+Hydrocortison-Kapseln 5 mg – JUN 05.06. (V);Mannitol
+
+Hydrocortison 1 mg/ml orale Suspension 100 ml – JUN 05.07. (IV);Hydrocortison
+Hydrocortison 1 mg/ml orale Suspension 100 ml – JUN 05.07. (IV);SyrSpend® SF PH 4
+
+Lisinopril-Kapseln 1 mg – JUN 05.08. (V);Lisinopril (als Dihydrat)
+Lisinopril-Kapseln 1 mg – JUN 05.08. (V);Mannitol
+
+Lisinopril 1 mg/ml orale Suspension – JUN 05.09. (IV);Lisinopril (als Dihydrat)
+Lisinopril 1 mg/ml orale Suspension – JUN 05.09. (IV);SyrSpend® SF PH 4
+
+Oxybutyninhydrochlorid-Kapseln 1 mg – JUN 05.10. (V);Oxybutyninhydrochlorid
+Oxybutyninhydrochlorid-Kapseln 1 mg – JUN 05.10. (V);Mannitol
+
+Natriumglycerophosphat-Kapseln 300 mg – JUN 05.11. (V);Natriumglycerophosphat
+Natriumglycerophosphat-Kapseln 300 mg – JUN 05.11. (V);Mannitol
+
+Calcium-Phosphat-Kapseln – JUN 05.12. (V);Calciumgluconat Monohydrat
+Calcium-Phosphat-Kapseln – JUN 05.12. (V);Calciumglycerophosphat
+Calcium-Phosphat-Kapseln – JUN 05.12. (V);Mannitol
+
+Propranololhydrochlorid 5 mg/ml orale Lösung 100 ml – JUN 05.13. (II);Propranololhydrochlorid
+Propranololhydrochlorid 5 mg/ml orale Lösung 100 ml – JUN 05.13. (II);Saccharose
+Propranololhydrochlorid 5 mg/ml orale Lösung 100 ml – JUN 05.13. (II);Kaliumsorbat
+Propranololhydrochlorid 5 mg/ml orale Lösung 100 ml – JUN 05.13. (II);Citronensäure, wasserfrei
+Propranololhydrochlorid 5 mg/ml orale Lösung 100 ml – JUN 05.13. (II);Wasser, gereinigt
+
+Propranololhydrochlorid-Kapseln 0,5 mg – JUN 05.14. (V);Propranololhydrochlorid
+Propranololhydrochlorid-Kapseln 0,5 mg – JUN 05.14. (V);Mannitol
+
+Spironolacton-Kapseln 2,5 mg – JUN 05.15. (V);Spironolacton
+Spironolacton-Kapseln 2,5 mg – JUN 05.15. (V);Mannitol
+
+Spironolacton 2,5 mg/ml orale Suspension 100 ml – JUN 05.16. (IV);Spironolacton
+Spironolacton 2,5 mg/ml orale Suspension 100 ml – JUN 05.16. (IV);SyrSpend® SF PH 4
+
+Ammoniumchlorid-Lösung – JUN 06.01. (V);Süßholzwurzelfluidextrakt
+Ammoniumchlorid-Lösung – JUN 06.01. (V);Ammoniumchlorid
+Ammoniumchlorid-Lösung – JUN 06.01. (V);Thymiansirup
+
+Dextromethorphanhydrobromid-Lösung 2 mg/ml – JUN 06.02. (V);Dextromethorphanhydrobromid
+Dextromethorphanhydrobromid-Lösung 2 mg/ml – JUN 06.02. (V);Kaliumsorbat
+Dextromethorphanhydrobromid-Lösung 2 mg/ml – JUN 06.02. (V);Himbeersirup
+Dextromethorphanhydrobromid-Lösung 2 mg/ml – JUN 06.02. (V);Wasser, gereinigt
+
+Noscapinhydrochlorid-Suppositorien 5 mg/10 mg – JUN 06.03. (II);Noscapinhydrochlorid
+Noscapinhydrochlorid-Suppositorien 5 mg/10 mg – JUN 06.03. (II);Hartfett
+
+Prednisolon-Suppositorien 30 mg/100 mg – JUN 06.04. (V);Prednisolon
+Prednisolon-Suppositorien 30 mg/100 mg – JUN 06.04. (V);Hartfett
+
+Sildenafil-Kapseln 1 mg – JUN 06.05. (II);Sildenafilcitrat
+Sildenafil-Kapseln 1 mg – JUN 06.05. (II);Mannitol
+
+Ambroxol-Diphenhydramin-Saft – JUN 06.06. (V);Ambroxolhydrochlorid
+Ambroxol-Diphenhydramin-Saft – JUN 06.06. (V);Diphenhydraminhydrochlorid
+Ambroxol-Diphenhydramin-Saft – JUN 06.06. (V);Kaliumsorbat
+Ambroxol-Diphenhydramin-Saft – JUN 06.06. (V);Sorbitol
+Ambroxol-Diphenhydramin-Saft – JUN 06.06. (V);Wasser, gereinigt
+
+Hustensaft mit Süßholzwurzelextrakt – JUN 06.08. (V);Eibischsirup
+Hustensaft mit Süßholzwurzelextrakt – JUN 06.08. (V);Thymiansirup
+Hustensaft mit Süßholzwurzelextrakt – JUN 06.08. (V);Spitzwegerichsirup
+Hustensaft mit Süßholzwurzelextrakt – JUN 06.08. (V);Süßholzwurzelfluidextrakt
+
+Hustensaft mit Senegawurzel – JUN 06.09. (V);Senegasirup
+Hustensaft mit Senegawurzel – JUN 06.09. (V);Thymiansirup
+Hustensaft mit Senegawurzel – JUN 06.09. (V);Spitzwegerichsirup
+Hustensaft mit Senegawurzel – JUN 06.09. (V);Anisspiritus, zusammengesetzt
+
+Thymian Suppositorien – JUN 06.10. (V);Thymianöl
+Thymian Suppositorien – JUN 06.10. (V);Hartfett
+
+Brustbalsam für Kinder – JUN 06.11. (V);Kajeputöl
+Brustbalsam für Kinder – JUN 06.11. (V);Eukalyptusöl
+Brustbalsam für Kinder – JUN 06.11. (V);Thymianöl
+Brustbalsam für Kinder – JUN 06.11. (V);Lavendelöl
+Brustbalsam für Kinder – JUN 06.11. (V);Mandelöl
+Brustbalsam für Kinder – JUN 06.11. (V);Wollwachs
+Brustbalsam für Kinder – JUN 06.11. (V);Wachs, gelbes
+Brustbalsam für Kinder – JUN 06.11. (V);Vaselin, weißes
+
+Hustentee bei Reizhusten I (ÖAB) – JUN 06.12. (II);Eibischblätter
+Hustentee bei Reizhusten I (ÖAB) – JUN 06.12. (II);Eibischwurzel
+Hustentee bei Reizhusten I (ÖAB) – JUN 06.12. (II);Isländische Flechte
+Hustentee bei Reizhusten I (ÖAB) – JUN 06.12. (II);Malvenblüten
+
+Hustentee bei Reizhusten II (ÖAB) – JUN 06.13. (II);Eibischblätter
+Hustentee bei Reizhusten II (ÖAB) – JUN 06.13. (II);Spitzwegerichblätter
+Hustentee bei Reizhusten II (ÖAB) – JUN 06.13. (II);Königskerzenblüten
+
+Krampflösender Hustentee (ÖAB) – JUN 06.14. (II);Thymian
+Krampflösender Hustentee (ÖAB) – JUN 06.14. (II);Fenchel
+Krampflösender Hustentee (ÖAB) – JUN 06.14. (II);Lindenblüten
+
+Schleimlösender Hustentee I (ÖAB) – JUN 06.15. (II);Süßholzwurzel
+Schleimlösender Hustentee I (ÖAB) – JUN 06.15. (II);Thymian
+Schleimlösender Hustentee I (ÖAB) – JUN 06.15. (II);Fenchel
+Schleimlösender Hustentee I (ÖAB) – JUN 06.15. (II);Spitzwegerichblätter
+
+Schleimlösender Hustentee II (ÖAB) – JUN 06.16. (II);Primelwurzel
+Schleimlösender Hustentee II (ÖAB) – JUN 06.16. (II);Königskerzenblüten
+Schleimlösender Hustentee II (ÖAB) – JUN 06.16. (II);Anis
+Schleimlösender Hustentee II (ÖAB) – JUN 06.16. (II);Quendelkraut
+
+Eibischtee (ÖAB) – JUN 06.17. (II);Eibischblätter
+Eibischtee (ÖAB) – JUN 06.17. (II);Eibischwurzel
+Eibischtee (ÖAB) – JUN 06.17. (II);Süßholzwurzel
+Eibischtee (ÖAB) – JUN 06.17. (II);Malvenblüten
+
+Hustentee Dr. Albrecht – JUN 06.18. (V);Süßholzwurzel
+Hustentee Dr. Albrecht – JUN 06.18. (V);Eibischblätter
+Hustentee Dr. Albrecht – JUN 06.18. (V);Thymiankraut
+Hustentee Dr. Albrecht – JUN 06.18. (V);Eibischwurzel
+Hustentee Dr. Albrecht – JUN 06.18. (V);Königskerzenblüten
+Hustentee Dr. Albrecht – JUN 06.18. (V);Anis
+Hustentee Dr. Albrecht – JUN 06.18. (V);Malvenblüten
+
+Hustentee Dr. Egger – JUN 06.19. (V);Thymiankraut
+Hustentee Dr. Egger – JUN 06.19. (V);Sonnentaukraut
+Hustentee Dr. Egger – JUN 06.19. (V);Anis
+Hustentee Dr. Egger – JUN 06.19. (V);Königskerzenblüten
+
+Teegemisch zur Inhalation – JUN 06.20. (V);Kamillenblüten
+Teegemisch zur Inhalation – JUN 06.20. (V);Lindenblüten
+Teegemisch zur Inhalation – JUN 06.20. (V);Salbeiblätter
+Teegemisch zur Inhalation – JUN 06.20. (V);Thymiankraut
+
+Amfetaminsulfat 5 mg/10 mg Kapseln – JUN 07.01. (II);Amfetaminsulfat
+Amfetaminsulfat 5 mg/10 mg Kapseln – JUN 07.01. (II);Mannitol
+
+Amfetaminsulfat 2mg/ml Saft – JUN 07.02. (II);Amfetaminsulfat
+Amfetaminsulfat 2mg/ml Saft – JUN 07.02. (II);Natriumbenzoat
+Amfetaminsulfat 2mg/ml Saft – JUN 07.02. (II);Citronensäure, wasserfrei
+Amfetaminsulfat 2mg/ml Saft – JUN 07.02. (II);Saccharose
+Amfetaminsulfat 2mg/ml Saft – JUN 07.02. (II);Wasser, gereinigt
+
+Amfetaminsulfat 2 mg/ml Saft – JUN 07.03. (V);Amfetaminsulfat
+Amfetaminsulfat 2 mg/ml Saft – JUN 07.03. (V);Citronensäure-Monohydrat
+Amfetaminsulfat 2 mg/ml Saft – JUN 07.03. (V);Sirup, einfach ÖAB
+Amfetaminsulfat 2 mg/ml Saft – JUN 07.03. (V);Wasser, gereinigt
+
+Ölige Cannabidiol-Lösung 50 mg/ml /100 mg/ml – JUN 07.04. (II);Cannabidiol
+Ölige Cannabidiol-Lösung 50 mg/ml /100 mg/ml – JUN 07.04. (II);Triglyceride, mittelkettig
+
+Chloralhydrat-Saft 100 mg/ml – JUN 07.05. (II);Chloralhydrat
+Chloralhydrat-Saft 100 mg/ml – JUN 07.05. (II);Wasser, gereinigt
+Chloralhydrat-Saft 100 mg/ml – JUN 07.05. (II);Pfefferminzöl
+Chloralhydrat-Saft 100 mg/ml – JUN 07.05. (II);Sirup, einfach ÖAB*
+
+Chloralhydrat rektale Lösung 200 mg/ml – JUN 07.06. (II);Chloralhydrat
+Chloralhydrat rektale Lösung 200 mg/ml – JUN 07.06. (II);Triglyceride, mittelkettig
+
+Chlorprothixenhydrochlorid 20 mg/ml orale Lösung – JUN 07.07. (V);Chlorprothixenhydrochlorid
+Chlorprothixenhydrochlorid 20 mg/ml orale Lösung – JUN 07.07. (V);Himbeersirup
+Chlorprothixenhydrochlorid 20 mg/ml orale Lösung – JUN 07.07. (V);Methyl-4-hydroxybenzoat
+Chlorprothixenhydrochlorid 20 mg/ml orale Lösung – JUN 07.07. (V);Wasser, gereinigt
+
+Coffein-Lösung 10 mg/ml – JUN 07.08. (II);Coffein
+Coffein-Lösung 10 mg/ml – JUN 07.08. (II);Kaliumsorbat
+Coffein-Lösung 10 mg/ml – JUN 07.08. (II);Citronensäure, wasserfrei
+Coffein-Lösung 10 mg/ml – JUN 07.08. (II);Wasser, gereinigt
+
+Ölige Dronabinol-Tropfen 25 mg/ml – JUN 07.09. (II);Dronabinol
+Ölige Dronabinol-Tropfen 25 mg/ml – JUN 07.09. (II);Triglyceride, mittelkettig,palmitoylascorbinsäurehaltig
+
+Melatonin-Kapseln 3 mg – JUN 07.10. (V);Melatonin
+Melatonin-Kapseln 3 mg – JUN 07.10. (V);Mannitol
+
+Midazolamhydrochlorid 2,22 mg/ml orale Lösung – JUN 07.11. (II);Midazolamhydrochlorid
+Midazolamhydrochlorid 2,22 mg/ml orale Lösung – JUN 07.11. (II);Kaliumsorbat
+Midazolamhydrochlorid 2,22 mg/ml orale Lösung – JUN 07.11. (II);Citronensäure, wasserfrei
+Midazolamhydrochlorid 2,22 mg/ml orale Lösung – JUN 07.11. (II);Himbeersirup*
+Midazolamhydrochlorid 2,22 mg/ml orale Lösung – JUN 07.11. (II);Wasser, gereinigt
+
+Midazolam-Nasenspray 25 mg/ml – JUN 07.12. (III);Midazolamhydrochlorid
+Midazolam-Nasenspray 25 mg/ml – JUN 07.12. (III);Benzalkoniumchlorid-Lösung 50 %
+Midazolam-Nasenspray 25 mg/ml – JUN 07.12. (III);Natriumedetat
+Midazolam-Nasenspray 25 mg/ml – JUN 07.12. (III);Natriumchlorid
+Midazolam-Nasenspray 25 mg/ml – JUN 07.12. (III);Salzsäure 1 mol/l
+Midazolam-Nasenspray 25 mg/ml – JUN 07.12. (III);Wasser, gereinigt
+
+Phenobarbital-Kapseln 15 mg – JUN 07.13. (V);Phenobarbital
+Phenobarbital-Kapseln 15 mg – JUN 07.13. (V);Mannitol
+
+Phenobarbital-Suppositorien 10 mg/30 mg/ 100 mg – JUN 07.14. (V);Phenobarbital
+Phenobarbital-Suppositorien 10 mg/30 mg/ 100 mg – JUN 07.14. (V);Hartfett
+
+Scopolaminhydrobromid-Lösung 0,03 mg/ml – JUN 07.15. (III);Scopolaminhydrobromid
+Scopolaminhydrobromid-Lösung 0,03 mg/ml – JUN 07.15. (III);Methyl-4-hydroxybenzoat
+Scopolaminhydrobromid-Lösung 0,03 mg/ml – JUN 07.15. (III);Wasser, gereinigt
+
+Nerventee I ÖAB = Species sedativae I – JUN 07.16. (II);Melissenblätter
+Nerventee I ÖAB = Species sedativae I – JUN 07.16. (II);Pfefferminzblätter
+Nerventee I ÖAB = Species sedativae I – JUN 07.16. (II);Bitterorangenblüten
+Nerventee I ÖAB = Species sedativae I – JUN 07.16. (II);Bitterorangenschale
+Nerventee I ÖAB = Species sedativae I – JUN 07.16. (II);Baldrianwurzel
+
+Nerventee II ÖAB = Species sedativae II – JUN 07.17. (II);Hopfenzapfen
+Nerventee II ÖAB = Species sedativae II – JUN 07.17. (II);Melissenblätter
+Nerventee II ÖAB = Species sedativae II – JUN 07.17. (II);Lavendelblüten
+
+Nerventee III ÖAB = Species sedativae III – JUN 07.18. (II);Melissenblätter
+Nerventee III ÖAB = Species sedativae III – JUN 07.18. (II);Passionsblumenkraut
+Nerventee III ÖAB = Species sedativae III – JUN 07.18. (II);Kamillenblüten
+Nerventee III ÖAB = Species sedativae III – JUN 07.18. (II);Bitterorangenblüten
+
+Nerventee IV ÖAB = Species sedativae IV – JUN 07.19. (II);Johanniskraut
+Nerventee IV ÖAB = Species sedativae IV – JUN 07.19. (II);Melissenblätter
+Nerventee IV ÖAB = Species sedativae IV – JUN 07.19. (II);Bitterorangenblüten
+
