@@ -1,58 +1,73 @@
-library(shiny)
-library(readr)
-library(vroom)
-library(dplyr)
-library(shinyalert)
-library(auth0)
-library(shinyWidgets)
-library(shinyFiles)
-library(shinyjs)
-library(purrr)
+#--------------------------------------------------------------------------
+load_libraries()
+#--------------------------------------------------------------------------
 
 rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
 taxe_eko <- readRDS("./data/Arzneitaxe/Arzneitaxe_eko.rds")
-#Rezeptursammlung <- read.csv("~/Rezeptursammlung.txt", header=FALSE, sep=";") #reads in in createRezeptursammlung
-juniormed_pagenr <- readRDS("~/data/Juniormed/juniormed_pagenr.rds")
+
 
 Wirkstoff <- c()
 Verdrängungsfaktor <- c()
 
 
 
-
-
-
-
 server <- function(input, output, session) {
   
-  #Internal functions,  function needs to use input, output, or session it may make sense 
-  #for the function to live inside the server function
-  Substanzauswahl_server <- function(id){
-    
-    updateSelectizeInput(session, id, choices = taxe_eko$wirkstoffe_arzneitaxe, server = TRUE)
-  }
-  vars <- rep(1:10)
-  Rezepturzusammensetzung_server <- map(as.character(vars), Substanzauswahl_server)
-  
-  
-  
-  hideTab("inTabset", "Rezepturhinzufügen2"); hideTab("inTabset", "Rezepturhinzufügen")
-  
-  observeEvent(input$file, {
-    showTab("inTabset", "Rezepturhinzufügen2"); 
-    showTab("inTabset", "Rezepturhinzufügen")
-    })
-  
-# Rezeptur hinzufügen2---------------------------------------------------------------------------------------------  
 
-  observeEvent(input$jump_2_Herstellungshinweise, {
-    updateTabsetPanel(session, "inTabset",
-                      selected = "Rezepturhinzufügen")
+
+# Rezeptursammlung----------------------------------------------------------   
+  
+  rz <- createRezeptursammlungServer("jun_and_int")
+  
+  output$selectizeInput01 <- renderUI({
+    
+    selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = rz$rezeptursammlung()$V2, multiple = TRUE,
+                   options = list(placeholder = "wähle Substanzen aus"))
+  })
+  
+  observeEvent(input$zusammensetzungRezep,{
+    foundRezepturenButtonServer("button",input$zusammensetzungRezep, rz$rezeptursammlung(), rz$datapath())
+  })  
+  
+#--------------------------------------------------------------------------
+  
+  
+
+#neue_Zusammensetzung_Rezeptur----------------------------------------------------------------------------------------------------
+  
+  #show tab only if zip file is uploaded
+  hideTab("inTabset", "neue_Zusammensetzung_Rezeptur")
+  observeEvent(rz$datapath(), {
+    showTab("inTabset", "neue_Zusammensetzung_Rezeptur");
   })
 
-  Rezepturzusammensetzung_server
+  
+  #return: Substanzen -- (new_Rezeptur_Zusam$Substanzen()) 
+  #        and if button jump to Herstellungshinweise is clicked
+  new_Rezeptur_Zusam <- addRezepturServer("Zusammensetzung", taxe_eko)
+  
+  #output$text2 <- renderTable(
+  #  new_Rezeptur_Zusam$Substanzen())
+  
+  
+   
+# Rezeptur hinzufügen2---------------------------------------------------------------------------------------------  
+
+   observeEvent(new_Rezeptur_Zusam$jump_to_Herstellungshinweise(), {
+     updateTabsetPanel(session, "inTabset",
+                       selected = "Rezepturhinzufügen")
+   })
+  # 
+  # Rezepturzusammensetzung_server
   
 # Rezeptur hinzufügen--------------------------------------------------------------------------------------------- 
+  
+  hideTab("inTabset", "Rezepturhinzufügen")
+  
+  observeEvent(rz$datapath(), {
+    showTab("inTabset", "Rezepturhinzufügen")
+  })
+  
   
   new_Rezeptur <- eventReactive(input$eigeneRezeptur_hinzu,{
     rezepturhinweiseServer("textAreas")
@@ -69,8 +84,7 @@ server <- function(input, output, session) {
     titel <- c("Titel", "Herstellungshinweise", "Quelle", "Dosierung", 
                "Haltbarkeit", "Lagerung", "Anwendung")
     colnames(interne_Herstellungshinweise) <- titel
-    
-    
+
     updated_Herstellungshinweise <- rbind(new_Rezeptur,interne_Herstellungshinweise[-1,])
     updated_Herstellungshinweise
   })
@@ -109,26 +123,8 @@ server <- function(input, output, session) {
     }
   })
   
-      #create ui to select Substanzen from sammlung
-      
-  
-  
-  
-  
-  
-  interne_Rezeptursammlung <- reactive({
-    req(input$file)
-    file_list <- unzip(input$file$datapath, list = T, exdir = getwd())
-    dataSet <- read.table(file_list[1,1], header=T, sep = "\t")
-    dataSet
-  })
-  
-   interne_Herstellungshinweise <- reactive({
-     req(input$file)
-     file_list <- unzip(input$file$datapath, list = T, exdir = getwd())
-     dataSet <- read.table(file_list[2,1], header=F, sep = ";")
-     dataSet
-   })
+
+
   
   
   observe({
@@ -332,230 +328,12 @@ server <- function(input, output, session) {
     Rstatus
   })
 
-  
-# Rezeptursammlung----------------------------------------------------------   
-  
-  rz <- createRezeptursammlungServer("jun_and_int")
-  
-  output$selectizeInput01 <- renderUI({
-    
-    selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = rz$rezeptursammlung()$V2, multiple = TRUE,
-                   options = list(placeholder = "wähle Substanzen aus"))
-  })
-
-  observeEvent(input$zusammensetzungRezep,{
-    foundRezepturenButtonServer("button",input$zusammensetzungRezep, rz$rezeptursammlung(), rz$datapath())
-  })
-  
-  
-  
-  
-
-   value <- reactiveVal(1)
-   value_2 <- reactiveVal(1)
-
-   Rezeptur <- reactiveVal()
-   Rezeptur2 <- reactiveVal()
-   
-   #number of selected interne Rezeptur, reactiveValues = False to use it with req(), 
-   #tableOutput should wait until Rezeptur is selected -- if not error 
-   selected_int_Rezeptur <- reactiveValues(num = FALSE)
-   
-  observeEvent(input$minus, {
-    if (value() > 1) {
-    newValue <- value() - 1
-    value(newValue)  }
-  })
-  
-  observeEvent(input$eR_minus, {
-    if (value_2() > 1) {
-      newValue <- value_2() - 1     
-      value_2(newValue)  }           
-  })
-  
-  observeEvent(input$plus, {
-    newValue <- value() + 1     
-    value(newValue)             
-  })
-  
-  observeEvent(input$eR_plus, {
-    newValue <- value_2() + 1     
-    value_2(newValue)             
-  })
-  
-    
-#maybe better using insertUI https://shiny.rstudio.com/reference/shiny/1.0.3/observeEvent.html
-  
-  output$moreSubstanzen <- renderUI({
-    lapply (1:value(), (function(i){
-      # input[[paste0('moreSubstanzen', i)]] <- 
-      selectizeInput(paste0("Substanz", i), paste0("Substanz ", i),choices = Rezeptursammlung$V2)
-    }))
-  })
-  
-  output$moreSubstanzen_2 <- renderUI({
-    lapply (1:value_2(), (function(i){
-      # input[[paste0('moreSubstanzen', i)]] <- 
-      selectizeInput(paste0("Substanz_int", i), paste0("Substanz ", i),choices =  interne_Rezeptursammlung()$V2)
-    }))
-  })
-    
-
-  
-
-  
-  Rezeptursammlung_sub <- eventReactive(input$Juniormed,{
-    
-    for (i in 1:value()){
-      
-      Rezeptursammlung <- subset(Rezeptursammlung, V1 %in% Rezeptursammlung[which(Rezeptursammlung$V2 == input[[paste0('Substanz', i)]]),]$V1)
-    }
-    Rezeptursammlung
-})
-  
-  interne_Rezeptursammlung_sub <- eventReactive(input$ei_Rezeptur_B,{
-    
-    for (i in 1:value_2()){
-      
-      intRez <- interne_Rezeptursammlung()
-      interne_Rezeptursammlung <- subset(intRez, V1 %in% intRez[which(intRez$V2 == input[[paste0('Substanz_int', i)]]),]$V1)
-    }
-    interne_Rezeptursammlung
-  })
-  
-  
-  
-  
-  
-  output$Rezepturen <- renderUI({
-    Rezeptursammlung <- Rezeptursammlung_sub()
-    Rezepturen <- unique(Rezeptursammlung$V1)
-    Rezeptur(Rezepturen)
-  #  Rezepturen
-  #  Rezepturen <- Rezeptursammlung_sub()
-  #  1:nrow(Rezeptursammlung_sub()
-    lapply(1:length(Rezepturen), function(i){
-        numlines <- which(Rezeptursammlung$V1 == Rezepturen[i])
-        Bestandteile <- Rezeptursammlung$V2[numlines]
-        
-        tagList(
-          
-          #sapply(Bestandteile, function(j) as.character(tags$p(j)))
-          actionButton(paste0("Rezeptur",i),HTML(paste0("<h3>",Rezepturen[i]),"</h3>", "<br/>", Bestandteile)))
-        
-      })
-  })
-  
-  
-  
-  output$Rezepturen_int <- renderUI({
-    Rezeptursammlung_int <- interne_Rezeptursammlung_sub()
-    Rezepturen_int <- unique(Rezeptursammlung_int$V1)
-    Rezeptur2(Rezepturen)
-    #  Rezepturen
-    #  Rezepturen <- Rezeptursammlung_sub()
-    #  1:nrow(Rezeptursammlung_sub()
-    lapply(1:length(Rezepturen_int), function(i){
-      numlines_int <- which(Rezeptursammlung_int$V1 == Rezepturen_int[i])
-      Bestandteile_int <- Rezeptursammlung_int$V2[numlines_int]
-      
-      tagList(
-        
-        #sapply(Bestandteile, function(j) as.character(tags$p(j)))
-        actionButton(paste0("Rezeptur_int",i),HTML(paste0("<h3>",Rezepturen_int[i]),"</h3>", "<br/>", Bestandteile_int)))
-      
-    })
-  })
-
-      
-      lapply(
-        X = 1:10,
-        FUN = function(i){
-          observeEvent(input[[paste0("Rezeptur", i)]], {
-            #JUN <- sub(".*JUN", "JUN", Rezepturen)
-            JUN <- sub(".*JUN", "JUN", Rezeptur()[i])
-            print(JUN)
-            src <- juniormed_pagenr[which(juniormed_pagenr$JUN == JUN),]$unlist.url_JUN.
-            print(src)
-            #print(Rezeptur()[i])
-            output$Herstellungshinweis <- renderUI({
-              tags$iframe(src=src, height=500, width=800 )
-            })
-          })
-        }
-      )
-      
-      lapply(
-        X = 1:10,
-        FUN = function(i){
-          observeEvent(input[[paste0("Rezeptur_int", i)]], {
-            #JUN <- sub(".*JUN", "JUN", Rezepturen)
-            JUN_int <-  Rezeptur2()[i]
-            print(JUN_int)
-            
-            interne_Herstellungshinweise <- interne_Herstellungshinweise()
-            number <- which(interne_Herstellungshinweise$V1 == JUN_int)
-            print(number)
-            selected_int_Rezeptur$num <- number
-            })
-        
-        }
-      )
-      
-      table_int_sel_rezeptursammlung <- reactive({
-        number <- selected_int_Rezeptur$num
-        #req(selected_int_Rezeptur$state)
-        a <- as.data.frame(t(interne_Herstellungshinweise()[c(1,number),]))
-        req(selected_int_Rezeptur$num)
-        colnames(a) <- c(unlist(interne_Herstellungshinweise()[1]))
-        b <- a[-1,]
-        b
-      })
-      
-      
-        
-      
-      output$Herstellungstext_int <- renderTable(
-        
-        #interne_Herstellungshinweise <- interne_Herstellungshinweise()
-        #as.data.frame(t(starting_df))
-        table_int_sel_rezeptursammlung()
-        
-      )
-      
-      
-      
-      
-      # interne_Rezeptursammlung <- reactive({
-      #   req(input$interne_Rezeptursammlung)#to make sure code waits until the first file is uploaded
-      #   #first column = c(character), second = double
-      #   #verdrängungsfaktor needs to be written with point as comma
-      #   #datapath = The path to a temp file that contains the data that was uploaded
-      #   #ext <- tools::file_ext(input$Verdrängungsfaktoren$datapath)
-      #   #validate(need(ext == "txt" | ext == "pdf", "Please upload a csv file"))
-      #   
-      #     dataSet <- vroom::vroom(input$interne_Rezeptursammlung$datapath, delim = "\t",col_types = "cc")
-      #     
-      #   dataSet
-      # })
-      
-      output$interne_Rezeptursammlung <- reactive({
-        return(!is.null(interne_Rezeptursammlung()))
-      })
-      outputOptions(output, 'interne_Rezeptursammlung', suspendWhenHidden=FALSE)
-      
-      
       #jump to new page
       observeEvent(input$jumpto_neueRezep, {
         updateTabsetPanel(session, "inTabset",
-                          selected = "Rezepturhinzufügen2")
+                          selected = "neue_Zusammensetzung_Rezeptur")
       })
      
-      output$zipped <-renderTable({
-        req(input$file$datapath)
-        list <- unzip(input$file$datapath, list = TRUE, exdir = getwd())
-        int_rezep <- unz(list[1])
-        browser()
-      })
+
 }
 

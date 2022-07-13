@@ -2,15 +2,59 @@
 load_libraries()
 #----------------------------------------------------------------------------
 rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
-taxe_eko <- readRDS("./data/Arzneitaxe/Arzneitaxe_eko.rds")
+
 
 
 Wirkstoff <- c()
 Verdrängungsfaktor <- c()
 
+# Rezeptursammlung----------------------------------------------------------
+ui_Rezeptursammlung <- tabPanel("Rezeptursammlung", 
+                                fluidPage(
+                                  titlePanel("Rezeptursammlung"),
+                                  sidebarLayout(
+                                    
+                                    sidebarPanel(
+                                      uiOutput("selectizeInput01"),
+                                      tags$h3("NRF"),
+                                      actionButton("NRF_online", "NRF online suchen")
+                                    ),
+                                    
+                                    mainPanel(
+                                      conditionalPanel(condition = "input.NRF_online", 
+                                                      tags$iframe(src="https://dacnrf.pharmazeutische-zeitung.de/dac/nrf-wissen/rezepturenfinder/offen", height=500, width=800)
+                                                      ),
+                                              
+                                      foundRezepturenButtonUI("button"),
+                                    )
+                                  )
+                                )
+                              )
+
+#--------------------------------------------------------------------------
+
+
+#neue_Zusammensetzung_Rezeptur----------------------------------------------------------------------------------------------------
+ui_neue_Zusammensetzung_Rezeptur <- tabPanel(title = "neue Rezeptur", value = "neue_Zusammensetzung_Rezeptur",
+                                   fluidPage(
+                                     titlePanel("Neue Rezeptur - Zusammensetzung"),
+                                     addRezepturUI("Zusammensetzung"),
+                                     tableOutput("text2")
+                                    # Rezepturzusammensetzung,
+                                    # big_yellow_button("jump_2_Herstellungshinweise", "weiter zu Herstellungshinweise"),
+                                     
+                                   )
+)
+
+
+
 #function Substanzauswahl saved in R/utils.R
-vars <- rep(1:10)
-Rezepturzusammensetzung <- map(vars, Substanzauswahl)
+#vars <- rep(1:10)
+#Rezepturzusammensetzung <- map(vars, Substanzauswahl)
+
+
+
+
 
 #Rezeptur hinzufügen----------------------------------------------------------------------------------------------------
 
@@ -22,16 +66,7 @@ ui_Rezepturhinzufügen <- tabPanel(title = "neue Herstellungsanweisung", value =
                                     big_yellow_button("eigeneRezeptur_hinzu", "Rezeptur hinzufügen"),
                                     tags$br()
                                   ))
-#Rezeptur hinzufügen2----------------------------------------------------------------------------------------------------
-ui_Rezepturhinzufügen2 <- tabPanel(title = "neue Rezeptur", value = "Rezepturhinzufügen2",
-                                   fluidPage(
-                                     titlePanel("Neue Rezeptur - Zusammensetzung"),
-                                     
-                                     Rezepturzusammensetzung,
-                                     big_yellow_button("jump_2_Herstellungshinweise", "weiter zu Herstellungshinweise"),
-                        
-                                    )
-                                   )
+
 
 # Home-------------------------------------------------------------
 ui_Home <- tabPanel("Home", 
@@ -41,27 +76,7 @@ ui_Home <- tabPanel("Home",
                     downloadButton("download_newRezeptur", label = "Neue Verdrängungsfaktoren zur Liste hinzufügen"),       
                     logoutButton())
 
-# Rezeptursammlung----------------------------------------------------------
-ui_Rezeptursammlung <- tabPanel("Rezeptursammlung", 
-                                fluidPage(
-                                  titlePanel("Rezeptursammlung"),
-                                  sidebarLayout(
-                                    sidebarPanel(
-                                      uiOutput("selectizeInput01"),
-                                      tags$h3("NRF"),
-                                      actionButton("NRF_online", "NRF online suchen"),
-                                      #tags$hr(),
-                                      ),
-        
-                                    mainPanel(conditionalPanel(condition = "input.NRF_online", 
-                                      tags$iframe(src="https://dacnrf.pharmazeutische-zeitung.de/dac/nrf-wissen/rezepturenfinder/offen", height=500, width=800)),
-                                    
-                                      foundRezepturenButtonUI("button"),
-                           
-                                      
-                                    )    
-                                       
-                                  )))
+
                                  
                       
 
@@ -185,7 +200,7 @@ ui_Suppositorien_Rechner <- tabPanel("Hartfettmengenrechner",
 
 
 ui <- navbarPage("My Application", id = "inTabset", ui_Home,
-                 navbarMenu("Rezeptursammlung",ui_Rezeptursammlung, ui_Rezepturhinzufügen2, ui_Rezepturhinzufügen ),
+                 navbarMenu("Rezeptursammlung",ui_Rezeptursammlung, ui_neue_Zusammensetzung_Rezeptur, ui_Rezepturhinzufügen ),
                  
                  navbarMenu("Suppositorien", ui_Suppositorien_Rechner, ui_Suppositorien_gespeichert),
                  ui_Rezeptpflichtcheck)

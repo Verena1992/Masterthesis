@@ -1,19 +1,41 @@
-#02/07/2022
-#1. read in Rezeptursammlung and selected Substanzen and datapath from uploaded zipfolder
-#2. subsetting Rezeptursammlung with selected Substanzen
-#3. output Buttons with matched Rezepturen
-#4. output Herstellungshinweis from by the user selected Rezeptur
+# #02/07/2022 
+# #1. read in Rezeptursammlung and selected Substanzen 
+# #2. subsetting Rezeptursammlung with selected Substanzen
+# #3. output Buttons
+
+Rezeptursammlung <- read.csv("./Rezeptursammlung.txt", header=FALSE, sep=";")
+Substanzen <- c("Atropinsulfat", "Natriumchlorid")
+juniormed_pagenr <- readRDS("~/data/Juniormed/juniormed_pagenr.rds")
+
+#functions----------------------------------------------
+subsettingRSammlung <- function(Substanzen, Rezeptursammlung) {
+  for (i in Substanzen){
+    Rezeptursammlung <- subset(Rezeptursammlung, V1 %in% Rezeptursammlung[which(Rezeptursammlung$V2 == i),]$V1)
+  }
+  Rezeptursammlung
+}
+
+adorigin2dataframe <- function(df, ori) {
+  #ori = 1 ------ Juniormed
+  #ori = 2 ------ intern
+  origin <- rep(ori, nrow(df))
+  df <- cbind(df, origin)
+}
 
 
+zip2dataSet <- function(datapath, filenr, header=T, sep = "\t") {
+  #takes a zip folder as input and reads in one file which defined by filenr
+  file_list <- unzip(datapath, list = T)
+  dataSet <- read.table(unz(datapath,file_list[filenr,1]), header=header, sep = sep)
+  dataSet
+}
 
+Rezeptursammlung <- adorigin2dataframe(Rezeptursammlung, 1)
 
 #UI-----------------------------------------------------
 foundRezepturenButtonUI <- function(id) {
-   
   tagList(
-    useShinyjs(),
     uiOutput(NS(id,"Rezepturen")),
-    textOutput(NS(id, "keine_rez")),
     uiOutput(NS(id,"Herstellungshinweis")),
     tableOutput(NS(id,"Herstellungstext_int"))
   )
@@ -24,79 +46,64 @@ foundRezepturenButtonUI <- function(id) {
 foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapathHH) {
   moduleServer(id, function(input, output, session) {
     
-    #1.find Rezepturen
     Rezeptur <- reactiveVal()
+    
+    
     subRezepturSammlung <- subsettingRSammlung(Substanzen, Rezeptursammlung)
     Rezepturen <- unique(subRezepturSammlung$V1)
+    
     Rezeptur(Rezepturen)
     
-    
-    #1.1.if no Rezepturen are found, print a text:
-    if (length(Rezeptur()) == 0){
-      show("keine_rez")
-      output$keine_rez <- renderText("es wurde keine Rezeptur gefunden")
-      hide("Herstellungshinweis")
-      hide("Rezepturen")
-      hide("Herstellungstext_int")
-    } else {
-      hide("keine_rez")
-      show("Rezepturen")
-    
-    #1.2. for matched Rezepturen create a Button 
-      output$Rezepturen <- renderUI({
-        show("Rezepturen")
-        hide("Herstellungshinweis")
-        hide("Herstellungstext_int")
+    output$Rezepturen <- renderUI({
+      ns <- session$ns
+      lapply(1:length(Rezepturen), function(i){
+        numlines <- which(Rezeptursammlung$V1 == Rezepturen[i])
+        Bestandteile <- Rezeptursammlung$V2[numlines]
+        
+        
   
-        ns <- session$ns
+          actionButton(ns(paste0("Rezeptur",i)),HTML(paste0("<h3>",Rezepturen[i]),"</h3>", "<br/>", Bestandteile))
         
-        lapply(1:length(Rezeptur()), function(i){
-          numlines <- which(Rezeptursammlung$V1 == Rezeptur()[i])
-          Bestandteile <- Rezeptursammlung$V2[numlines]
-          
-            actionButton(ns(Rezeptur()[i]),HTML(paste0("<h3>",Rezeptur()[i]),"</h3>", "<br/>", Bestandteile))
-          
-        })
-      }) 
-        
-        #1.2.1. observe if user clicks on a Rezepturbutton and print either Juniormed-page or Table
-        lapply(1:length(Rezeptur()), function(i){
-        
-            observeEvent(input[[Rezeptur()[i]]], {
-              numlines <- which(Rezeptursammlung$V1 == Rezeptur()[i])
-              
-              #is selected Rezeptur a Juniormed Rezeptur(1)?
+      })
+    }) 
+
+   
+   #  ns <- session$ns
+        lapply(1:length(Rezepturen), function(i){
+            observeEvent(input[[paste0("Rezeptur", i)]], {
+              numlines <- which(Rezeptursammlung$V1 == Rezepturen[i])
+              print(Rezeptursammlung$origin[numlines])
               if ( unique(Rezeptursammlung$origin[numlines]) == 1)  {
-                show("Herstellungshinweis")
-                hide("Herstellungstext_int")
-                hide("Rezepturen")
-                juniormed_pagenr <- readRDS("~/data/Juniormed/juniormed_pagenr.rds")
                 
+              
+                #JUN <- sub(".*JUN", "JUN", Rezepturen)
                 JUN <- sub(".*JUN", "JUN", Rezeptur()[i])
-               
+                print(JUN)
                 src <- juniormed_pagenr[which(juniormed_pagenr$JUN == JUN),]$unlist.url_JUN.
-                
+                print(src)
+                #print(Rezeptur()[i])
                 output$Herstellungshinweis <- renderUI({
+                  
                   tags$iframe(src=src, height=500, width=800 )
                 })
-              
-              #is selected Rezeptur a Juniormed Rezeptur(1)?  
-              } else if (unique(Rezeptursammlung$origin[numlines]) == 2){
-                show("Herstellungstext_int")
-                hide("Herstellungshinweis")
-                hide("Rezepturen")
+              } else {
+                
                 selected_int_Rezeptur <- reactiveValues(num = FALSE)
                 
-                #read in uploaded interne Herstellungshinweise
                 interne_Herstellungshinweise <- reactive({
+                 # req(input$file)
+                  
                   dataSet <- zip2dataSet(datapathHH, filenr = 2, header=F, sep = ";")
                   dataSet
                 })
                 
                 
-                int <-  Rezeptur()[i]
+                JUN_int <-  Rezeptur()[i]
+                print(JUN_int)
+                
+                
                 interne_Herstellungshinweise <- interne_Herstellungshinweise()
-                number <- which(interne_Herstellungshinweise$V1 == int)
+                number <- which(interne_Herstellungshinweise$V1 == JUN_int)
                 print(number)
                 selected_int_Rezeptur$num <- number
         
@@ -105,24 +112,20 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
                       a <- as.data.frame(t(interne_Herstellungshinweise[c(1,number),]))
                       req(selected_int_Rezeptur$num)
                       colnames(a) <- c(unlist(interne_Herstellungshinweise[1]))
-                      tab <- a[-1,]
-                      tab
+                      b <- a[-1,]
+                      b
                     })
 
                   output$Herstellungstext_int <- renderTable(
                     table_int_sel_rezeptursammlung()
                   )
-                  
-              } else {
-                  print("upps")
-               }
-             })
-          })
-    }
-  })
+              }
+              })
+            })
+})
 }
 
-# #Test module:
+#Test module:
 # 
 # foundRezepturenButtonApp <- function() {
 #   ui <- fluidPage(
@@ -147,8 +150,8 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
 # 
 #   shinyApp(ui, server)
 # }
-# 
-# foundRezepturenButtonApp()
+#
+#foundRezepturenButtonApp()
 
 
 
