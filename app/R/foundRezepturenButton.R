@@ -102,9 +102,11 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
         
                 table_int_sel_rezeptursammlung <- reactive({
                       number <- selected_int_Rezeptur$num
+                      #browser()
                       a <- as.data.frame(t(interne_Herstellungshinweise[c(1,number),]))
                       req(selected_int_Rezeptur$num)
-                      colnames(a) <- c(unlist(interne_Herstellungshinweise[1]))
+                      colnames(a) <- c("Titel", interne_Herstellungshinweise[["V1"]][number])
+                      #colnames(a) <- c(unlist(interne_Herstellungshinweise[1]))
                       tab <- a[-1,]
                       tab
                     })
@@ -122,33 +124,33 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
   })
 }
 
-# #Test module:
-# 
-# foundRezepturenButtonApp <- function() {
-#   ui <- fluidPage(
-#     foundRezepturenButtonUI("button"),
-#     #textOutput("text")
-# 
-#   )
-# 
-#   server <- function(input, output, session) {
-#     Rezeptursammlung1 <- read.csv("./Rezeptursammlung.txt", header=FALSE, sep=";")
-#     Rezeptursammlung2 <- read.csv("./Rezeptursammlung.txt", header=FALSE, sep=";")
-#     Rezeptursammlung1 <- adorigin2dataframe(Rezeptursammlung1, 1)
-#     Rezeptursammlung2 <- adorigin2dataframe(Rezeptursammlung2, 2)
-#     Rezeptursammlung <- rbind(Rezeptursammlung2, Rezeptursammlung1)
-#     Substanzen <- c("Atropinsulfat", "Natriumchlorid")
-#   #  Substanzen <- c("Hartfett")
-#     datapathHH <- c("interne_Rezeptursammlung.zip")
-#     foundRezepturenButtonServer("button",Substanzen, Rezeptursammlung, datapathHH)
-#     #Rezepturen <- foundRezepturenButtonServer("button",Substanzen, Rezeptursammlung)
-#     #output$text <- renderText(foundRezepturenButtonServer("button",Substanzen, Rezeptursammlung))
-#   }
-# 
-#   shinyApp(ui, server)
-# }
-# 
-# foundRezepturenButtonApp()
+#Test module:
+
+foundRezepturenButtonApp <- function() {
+  ui <- fluidPage(
+    foundRezepturenButtonUI("button"),
+    #textOutput("text")
+
+  )
+
+  server <- function(input, output, session) {
+    Rezeptursammlung1 <- read.csv("./Rezeptursammlung.txt", header=FALSE, sep=";")
+    Rezeptursammlung2 <- read.csv("./Rezeptursammlung.txt", header=FALSE, sep=";")
+    Rezeptursammlung1 <- adorigin2dataframe(Rezeptursammlung1, 1)
+    Rezeptursammlung2 <- adorigin2dataframe(Rezeptursammlung2, 2)
+    Rezeptursammlung <- rbind(Rezeptursammlung2, Rezeptursammlung1)
+    Substanzen <- c("Atropinsulfat", "Natriumchlorid")
+  #  Substanzen <- c("Hartfett")
+    datapathHH <- c("interne_Rezeptursammlung.zip")
+    foundRezepturenButtonServer("button",Substanzen, Rezeptursammlung, datapathHH)
+    #Rezepturen <- foundRezepturenButtonServer("button",Substanzen, Rezeptursammlung)
+    #output$text <- renderText(foundRezepturenButtonServer("button",Substanzen, Rezeptursammlung))
+  }
+
+  shinyApp(ui, server)
+}
+
+foundRezepturenButtonApp()
 
 
 
