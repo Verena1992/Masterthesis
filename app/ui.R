@@ -36,23 +36,14 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
 
 #neue_Zusammensetzung_Rezeptur----------------------------------------------------------------------------------------------------
 ui_neue_Zusammensetzung_Rezeptur <- tabPanel(title = "neue Rezeptur", value = "neue_Zusammensetzung_Rezeptur",
-                                   fluidPage(
-                                     titlePanel("Neue Rezeptur - Zusammensetzung"),
-                                     addRezepturUI("Zusammensetzung"),
-                                     tableOutput("text2")
-                                    # Rezepturzusammensetzung,
-                                    # big_yellow_button("jump_2_Herstellungshinweise", "weiter zu Herstellungshinweise"),
-                                     
-                                   )
-)
+                                      fluidPage(
+                                        titlePanel("Neue Rezeptur - Zusammensetzung"),
+                                        addRezepturUI("Zusammensetzung"),
+                                        tableOutput("text2")
+                                       )
+                                      )
 
-
-
-#function Substanzauswahl saved in R/utils.R
-#vars <- rep(1:10)
-#Rezepturzusammensetzung <- map(vars, Substanzauswahl)
-
-
+#--------------------------------------------------------------------------
 
 
 
@@ -68,12 +59,15 @@ ui_Rezepturhinzufügen <- tabPanel(title = "neue Herstellungsanweisung", value =
                                   ))
 
 
+
+
+
 # Home-------------------------------------------------------------
 ui_Home <- tabPanel("Home", 
                     fileInput("Verdrängungsfaktoren", "Choose CSV File"),
                     createRezeptursammlungUI("jun_and_int"),
-                    tableOutput("new_Rezeptur"),
-                    downloadButton("download_newRezeptur", label = "Neue Verdrängungsfaktoren zur Liste hinzufügen"),       
+                    tableOutput("new_Herstellungshinweis"),
+                    downloadButton("download_newRezeptur", label = "Neue Rezeptur zur Sammlung hinzufügen"),       
                     logoutButton())
 
 

@@ -46,67 +46,111 @@ server <- function(input, output, session) {
   #        and if button jump to Herstellungshinweise is clicked
   new_Rezeptur_Zusam <- addRezepturServer("Zusammensetzung", taxe_eko)
   
-  #output$text2 <- renderTable(
-  #  new_Rezeptur_Zusam$Substanzen())
-  
-  
-   
-# Rezeptur hinzufügen2---------------------------------------------------------------------------------------------  
 
-   observeEvent(new_Rezeptur_Zusam$jump_to_Herstellungshinweise(), {
-     updateTabsetPanel(session, "inTabset",
-                       selected = "Rezepturhinzufügen")
-   })
-  # 
-  # Rezepturzusammensetzung_server
   
-# Rezeptur hinzufügen--------------------------------------------------------------------------------------------- 
+#--------------------------------------------------------------------------
+   
   
+#Rezeptur hinzufügen--------------------------------------------------------------------------------------------- 
+  
+  #show tab only if zip file is uploaded
   hideTab("inTabset", "Rezepturhinzufügen")
-  
   observeEvent(rz$datapath(), {
     showTab("inTabset", "Rezepturhinzufügen")
   })
   
+  #if yellow button in rz-zusammensetzung is clicked jump to this panel
+  observeEvent(new_Rezeptur_Zusam$jump_to_Herstellungshinweise(), {
+    updateTabsetPanel(session, "inTabset",
+                      selected = "Rezepturhinzufügen")
+  })
   
-  new_Rezeptur <- eventReactive(input$eigeneRezeptur_hinzu,{
+
+  new_Herstellungshinweis <- eventReactive(input$eigeneRezeptur_hinzu,{
     rezepturhinweiseServer("textAreas")
   })
   
-  output$new_Rezeptur <- renderTable({
-    t(new_Rezeptur())
+# Home-----------------------------------------------------
+#upload and generate dataset
+ 
+   output$new_Herstellungshinweis <- renderTable({
+    t(new_Herstellungshinweis())
   }) 
+  
+  #read in uploaded interne Herstellungshinweise
+  interne_Herstellungshinweise <- reactive({
+    dataSet <- zip2dataSet(rz$datapath(), filenr = 2, header=F, sep = ";")
+    dataSet
+  })
   
   
   updated_Herstellungshinweise <- reactive({
-    new_Rezeptur <- new_Rezeptur()
+    new_Herstellungshinweis <- new_Herstellungshinweis()
     interne_Herstellungshinweise <- interne_Herstellungshinweise()
     titel <- c("Titel", "Herstellungshinweise", "Quelle", "Dosierung", 
                "Haltbarkeit", "Lagerung", "Anwendung")
     colnames(interne_Herstellungshinweise) <- titel
 
-    updated_Herstellungshinweise <- rbind(new_Rezeptur,interne_Herstellungshinweise[-1,])
+    updated_Herstellungshinweise <- rbind(new_Herstellungshinweis,interne_Herstellungshinweise[-1,])
     updated_Herstellungshinweise
   })
   
+  interne_Rezeptursammlung <- reactive({
+    dataSet <- zip2dataSet(rz$datapath(), filenr = 1)
+    dataSet
+  })
+  
+  
+  updated_Rezeptur_Zusam <- reactive({
+    new_Rezeptur_Zusam <- new_Rezeptur_Zusam$Substanzen()
+    interne_Rezeptursammlung <- interne_Rezeptursammlung()
+    titel <- rep(new_Herstellungshinweis()[1], length(new_Rezeptur_Zusam))
+    new_Rezeptur_Zusam_df <- cbind(titel, new_Rezeptur_Zusam)
+    colnames(new_Rezeptur_Zusam_df) <- c("V1", "V2")
+    updated_Rezeptur_Zusam <- rbind(interne_Rezeptursammlung, new_Rezeptur_Zusam_df)
+  })
+  
+  output$text2 <- renderTable(
+    updated_Rezeptur_Zusam())
+  
+  
+  # output$download_newRezeptur <- downloadHandler(
+  #   #https://www.reddit.com/r/rprogramming/comments/f53c59/zip_multiple_csvs_for_download/
+  #   filename = function() {
+  #     paste0("Herstellungshinweise")
+  #   },
+  #   content = function(file) {
+  # 
+  #     
+  #     vroom::vroom_write(updated_Herstellungshinweise(), 
+  #                        file, delim = ";")
+  #   }
+  # )
+  
+  
   
   output$download_newRezeptur <- downloadHandler(
-    #https://www.reddit.com/r/rprogramming/comments/f53c59/zip_multiple_csvs_for_download/
-    filename = function() {
-      paste0("Herstellungshinweise")
-    },
-    content = function(file) {
-
+    filename = 'AllReports.zip',
+    content = function(fname) {
+      tmpdir <- tempdir()
+      setwd(tempdir())
+      print(tempdir())
       
+      fs <- c("Rezeptur_Zusa", "Herstellungshinweise")
+      vroom::vroom_write(updated_Rezeptur_Zusam(), 
+                         "Rezeptur_Zusa", delim = "\t")
       vroom::vroom_write(updated_Herstellungshinweise(), 
-                         file, delim = ";")
-    }
-  )
-  
-  
-  
-# Home-----------------------------------------------------
-#upload and generate dataset
+                         "Herstellungshinweise", delim = ";")
+     
+      
+      zip(zipfile=fname, files=fs)
+      if(file.exists(paste0(fname, ".zip"))) {file.rename(paste0(fname, ".zip"), fname)}
+    },
+    contentType = "application/zip"
+  ) 
+
+
+
   
   data_Verdrän <- reactive({
     req(input$Verdrängungsfaktoren)#to make sure code waits until the first file is uploaded
