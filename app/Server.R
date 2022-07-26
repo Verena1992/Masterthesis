@@ -1,5 +1,17 @@
 #--------------------------------------------------------------------------
-load_libraries()
+#load_libraries()
+library(shiny)
+library(readr)
+library(vroom)
+library(dplyr)
+library(shinyalert)
+library(auth0)
+library(shinyWidgets)
+library(shinyFiles)
+library(shinyjs)
+library(purrr)
+library(shinyBS)
+library(pdftools)
 #--------------------------------------------------------------------------
 
 rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
@@ -12,12 +24,122 @@ Verdrängungsfaktor <- c()
 
 
 server <- function(input, output, session) {
+
+  
+# Home-----------------------------------------------------
+
+  
+  #1 uploads
+  #1.1. interne Sammlung
+  
+  rz <- createRezeptursammlungServer("jun_and_int")
+  
+  #1.1.1. Rezeptursammlung Zusammensetzung
+  interne_Rezeptursammlung <- reactive({
+    dataSet <- zip2dataSet(rz$datapath(), filenr = 1)
+    dataSet
+  })
+  
+  #1.1.2. Herstellungshinweise
+  interne_Herstellungshinweise <- reactive({
+    dataSet <- zip2dataSet(rz$datapath(), filenr = 2, header=F, sep = ";")
+    dataSet
+  })
+  
+  #1.1.3. Verdrängungsfaktoren
+  data_Verdrän <- reactive({
+    #if interne Sammlung is uploaded and nrf merge both
+      verdrängungsfaktoren <- createVerdrängungsfaktorenServer("nrf_and_int", rz$datapath())
+  })
+  
+
+  #2.output added information by user
+  
+  #2.1.Herstellungshinweis
+  output$new_Herstellungshinweis <- renderTable({
+    t(new_Herstellungshinweis())
+  }) 
+  
+  #2.2.Verdrängungsfaktor
+  output$new_Verdrängungsfaktor <- renderTable({
+    new_data()
+  })
+
+
+  #3. Update
+  
+  #3.1.Rezeptursammlung Zusammensetzung
+  updated_Rezeptur_Zusam <- reactive({
+    new_Rezeptur_Zusam <- new_Rezeptur_Zusam$Substanzen()
+    interne_Rezeptursammlung <- interne_Rezeptursammlung()
+    titel <- rep(new_Herstellungshinweis()[1], length(new_Rezeptur_Zusam))
+    new_Rezeptur_Zusam_df <- cbind(titel, new_Rezeptur_Zusam)
+    colnames(new_Rezeptur_Zusam_df) <- c("V1", "V2")
+    updated_Rezeptur_Zusam <- rbind(interne_Rezeptursammlung, new_Rezeptur_Zusam_df)
+  })
+  
+  #3.2.Herstellungshinweise
+  updated_Herstellungshinweise <- reactive({
+    new_Herstellungshinweis <- new_Herstellungshinweis()
+    interne_Herstellungshinweise <- interne_Herstellungshinweise()
+    titel <- c("Titel", "Herstellungshinweise", "Quelle", "Dosierung",
+               "Haltbarkeit", "Lagerung", "Anwendung")
+    colnames(interne_Herstellungshinweise) <- titel
+
+    updated_Herstellungshinweise <- rbind(new_Herstellungshinweis,interne_Herstellungshinweise[-1,])
+    updated_Herstellungshinweise
+  })
+  
+  #3.3.Verdrängungsfaktoren
+  
+  new_data <- eventReactive(list(input$Substanz_hinzufügen , input$Substanz_hinzufügen2, input$Substanz_hinzufügen3),{
+    req(input$Substanz_hinzufügen | input$Substanz_hinzufügen2 | input$Substanz_hinzufügen3)
+    #assigning as global variable ("<<-")is needed to append
+    if (input$weitere_Substanz2 > input$Substanz3_entfernen) {
+      Wirkstoff <<- append(Wirkstoff, input$New_Substanz3)
+      Verdrängungsfaktor <<- append(Verdrängungsfaktor, input$New_Verdrängungsfaktor3)}
+    else if (input$weitere_Substanz > input$Substanz2_entfernen){
+      Wirkstoff <<- append(Wirkstoff, input$New_Substanz2)
+      Verdrängungsfaktor <<- append(Verdrängungsfaktor, input$New_Verdrängungsfaktor2)}
+    else {
+      Wirkstoff <<- append(Wirkstoff, input$New_Substanz)
+      Verdrängungsfaktor <<- append(Verdrängungsfaktor, input$New_Verdrängungsfaktor)}
+    
+    new_data <- data.frame(Wirkstoff, Verdrängungsfaktor)
+    new_data
+  })
+
+  #4 Download zip file
+  
+  output$download_newRezeptur <- downloadHandler(
+    filename = 'interene_Rezepturen.zip',
+    content = function(fname) {
+      tmpdir <- tempdir()
+      setwd(tempdir())
+      #print(tempdir())
+      
+      fs <- c("Rezeptur_Zusa", "Herstellungshinweise")
+      vroom::vroom_write(updated_Rezeptur_Zusam(), 
+                         "Rezeptur_Zusa", delim = "\t")
+      vroom::vroom_write(updated_Herstellungshinweise(), 
+                         "Herstellungshinweise", delim = ";")
+      
+      
+      zip(zipfile=fname, files=fs)
+      if(file.exists(paste0(fname, ".zip"))) {file.rename(paste0(fname, ".zip"), fname)}
+    },
+    contentType = "application/zip"
+  ) 
+  
+  
+  
+  
   
 
 
 # Rezeptursammlung----------------------------------------------------------   
   
-  rz <- createRezeptursammlungServer("jun_and_int")
+  
   
   output$selectizeInput01 <- renderUI({
     
@@ -69,121 +191,41 @@ server <- function(input, output, session) {
   new_Herstellungshinweis <- eventReactive(input$eigeneRezeptur_hinzu,{
     rezepturhinweiseServer("textAreas")
   })
-  
-# Home-----------------------------------------------------
-#upload and generate dataset
- 
-   output$new_Herstellungshinweis <- renderTable({
-    t(new_Herstellungshinweis())
-  }) 
-  
-  #read in uploaded interne Herstellungshinweise
-  interne_Herstellungshinweise <- reactive({
-    dataSet <- zip2dataSet(rz$datapath(), filenr = 2, header=F, sep = ";")
-    dataSet
-  })
-  
-  
-  updated_Herstellungshinweise <- reactive({
-    new_Herstellungshinweis <- new_Herstellungshinweis()
-    interne_Herstellungshinweise <- interne_Herstellungshinweise()
-    titel <- c("Titel", "Herstellungshinweise", "Quelle", "Dosierung", 
-               "Haltbarkeit", "Lagerung", "Anwendung")
-    colnames(interne_Herstellungshinweise) <- titel
+#--------------------------------------------------------------------------
 
-    updated_Herstellungshinweise <- rbind(new_Herstellungshinweis,interne_Herstellungshinweise[-1,])
-    updated_Herstellungshinweise
-  })
   
-  interne_Rezeptursammlung <- reactive({
-    dataSet <- zip2dataSet(rz$datapath(), filenr = 1)
-    dataSet
-  })
+
+  
+
   
   
-  updated_Rezeptur_Zusam <- reactive({
-    new_Rezeptur_Zusam <- new_Rezeptur_Zusam$Substanzen()
-    interne_Rezeptursammlung <- interne_Rezeptursammlung()
-    titel <- rep(new_Herstellungshinweis()[1], length(new_Rezeptur_Zusam))
-    new_Rezeptur_Zusam_df <- cbind(titel, new_Rezeptur_Zusam)
-    colnames(new_Rezeptur_Zusam_df) <- c("V1", "V2")
-    updated_Rezeptur_Zusam <- rbind(interne_Rezeptursammlung, new_Rezeptur_Zusam_df)
-  })
-  
-  output$text2 <- renderTable(
-    updated_Rezeptur_Zusam())
-  
-  
-  # output$download_newRezeptur <- downloadHandler(
-  #   #https://www.reddit.com/r/rprogramming/comments/f53c59/zip_multiple_csvs_for_download/
-  #   filename = function() {
-  #     paste0("Herstellungshinweise")
-  #   },
-  #   content = function(file) {
-  # 
-  #     
-  #     vroom::vroom_write(updated_Herstellungshinweise(), 
-  #                        file, delim = ";")
-  #   }
-  # )
-  
-  
-  
-  output$download_newRezeptur <- downloadHandler(
-    filename = 'AllReports.zip',
-    content = function(fname) {
-      tmpdir <- tempdir()
-      setwd(tempdir())
-      print(tempdir())
-      
-      fs <- c("Rezeptur_Zusa", "Herstellungshinweise")
-      vroom::vroom_write(updated_Rezeptur_Zusam(), 
-                         "Rezeptur_Zusa", delim = "\t")
-      vroom::vroom_write(updated_Herstellungshinweise(), 
-                         "Herstellungshinweise", delim = ";")
-     
-      
-      zip(zipfile=fname, files=fs)
-      if(file.exists(paste0(fname, ".zip"))) {file.rename(paste0(fname, ".zip"), fname)}
-    },
-    contentType = "application/zip"
-  ) 
+
 
 
 
   
-  data_Verdrän <- reactive({
-    req(input$Verdrängungsfaktoren)#to make sure code waits until the first file is uploaded
-    #first column = c(character), second = double
-    #verdrängungsfaktor needs to be written with point as comma
-    #datapath = The path to a temp file that contains the data that was uploaded
-    ext <- tools::file_ext(input$Verdrängungsfaktoren$datapath)
-    #validate(need(ext == "txt" | ext == "pdf", "Please upload a csv file"))
-    if (ext == "txt"){
-    dataSet <- vroom::vroom(input$Verdrängungsfaktoren$datapath, delim = "\t", col_types = "cd")
-    } else if (ext == "pdf") {
-      source("verdrängungsfaktoren_pdf.R")
-      dataSet
-    }
-  })
+
   
 
 
   
   
   observe({
+    #req(rz$datapath())
     dataSet <- data_Verdrän()
-    updateSelectizeInput(session, "WS_S", choices = c(dataSet$Wirkstoff, "Substanz nicht in Liste vorhanden"))
+    updateSelectizeInput(session, "WS_S", choices = c(dataSet()$Wirkstoff, "Substanz nicht in Liste vorhanden"))
   })
   
   observe({
+    #req(rz$datapath())
     dataSet <- data_Verdrän()
-    updateSelectizeInput(session, "WS_S2", choices = c(dataSet$Wirkstoff, "Substanz nicht in Liste vorhanden"))
+    updateSelectizeInput(session, "WS_S2", choices = c(dataSet()$Wirkstoff, "Substanz nicht in Liste vorhanden"))
   })
   
   observe({
+    #req(rz$datapath())
     dataSet <- data_Verdrän()
-    updateSelectizeInput(session, "WS_S3", choices = c(dataSet$Wirkstoff, "Substanz nicht in Liste vorhanden"))
+    updateSelectizeInput(session, "WS_S3", choices = c(dataSet()$Wirkstoff, "Substanz nicht in Liste vorhanden"))
   })
   
   
@@ -195,7 +237,7 @@ server <- function(input, output, session) {
   
   output$vf <- renderUI({
     dataSet <- data_Verdrän()
-    vf <- dataSet[which(dataSet$Wirkstoff == input$WS_S),]
+    vf <- dataSet()[which(dataSet()$Wirkstoff == input$WS_S),]
     if (input$Substanz_hinzufügen){
       vf <- input$New_Verdrängungsfaktor
     } else {
@@ -205,7 +247,7 @@ server <- function(input, output, session) {
   
   output$vf2 <- renderUI({
     dataSet <- data_Verdrän()
-    vf <- dataSet[which(dataSet$Wirkstoff == input$WS_S2),]
+    vf <- dataSet()[which(dataSet()$Wirkstoff == input$WS_S2),]
     if (input$Substanz_hinzufügen2){
       vf2 <- input$New_Verdrängungsfaktor2
     } else {
@@ -215,7 +257,7 @@ server <- function(input, output, session) {
   
   output$vf3 <- renderUI({
     dataSet <- data_Verdrän()
-    vf <- dataSet[which(dataSet$Wirkstoff == input$WS_S3),]
+    vf <- dataSet()[which(dataSet()$Wirkstoff == input$WS_S3),]
     if (input$Substanz_hinzufügen3){
       vf3 <- input$New_Verdrängungsfaktor3
     } else {
@@ -251,24 +293,7 @@ server <- function(input, output, session) {
   updateSelectizeInput(session, "New_Substanz2", choices = taxe_eko$wirkstoffe_arzneitaxe, server = TRUE)
   updateSelectizeInput(session, "New_Substanz3", choices = taxe_eko$wirkstoffe_arzneitaxe, server = TRUE)
           
-  
-  new_data <- eventReactive(list(input$Substanz_hinzufügen , input$Substanz_hinzufügen2, input$Substanz_hinzufügen3),{
-    req(input$Substanz_hinzufügen | input$Substanz_hinzufügen2 | input$Substanz_hinzufügen3)
-    #assigning as global variable ("<<-")is needed to append
-    if (input$weitere_Substanz2 > input$Substanz3_entfernen) {
-      Wirkstoff <<- append(Wirkstoff, input$New_Substanz3)
-      Verdrängungsfaktor <<- append(Verdrängungsfaktor, input$New_Verdrängungsfaktor3)}
-    else if (input$weitere_Substanz > input$Substanz2_entfernen){
-      Wirkstoff <<- append(Wirkstoff, input$New_Substanz2)
-      Verdrängungsfaktor <<- append(Verdrängungsfaktor, input$New_Verdrängungsfaktor2)}
-    else {
-    Wirkstoff <<- append(Wirkstoff, input$New_Substanz)
-    Verdrängungsfaktor <<- append(Verdrängungsfaktor, input$New_Verdrängungsfaktor)}
 
-    new_data <- data.frame(Wirkstoff, Verdrängungsfaktor)
-    new_data
-    #print(new_data)
-  })
   
  
   
@@ -285,11 +310,7 @@ server <- function(input, output, session) {
   )
 
   
-  output$New_Substanz <- renderTable({
-    #new_data <- data.frame(Wirkstoff, Verdrängungsfaktor)
-    #browser()
-    new_data()
-  })
+
   
   
   output$preview1 <- renderTable(head(data_Verdrän()))

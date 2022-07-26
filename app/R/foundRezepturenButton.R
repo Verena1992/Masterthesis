@@ -125,32 +125,32 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
 }
 
 #Test module:
-
-foundRezepturenButtonApp <- function() {
-  ui <- fluidPage(
-    foundRezepturenButtonUI("button"),
-    #textOutput("text")
-
-  )
-
-  server <- function(input, output, session) {
-    Rezeptursammlung1 <- read.csv("./Rezeptursammlung.txt", header=FALSE, sep=";")
-    Rezeptursammlung2 <- read.csv("./Rezeptursammlung.txt", header=FALSE, sep=";")
-    Rezeptursammlung1 <- adorigin2dataframe(Rezeptursammlung1, 1)
-    Rezeptursammlung2 <- adorigin2dataframe(Rezeptursammlung2, 2)
-    Rezeptursammlung <- rbind(Rezeptursammlung2, Rezeptursammlung1)
-    Substanzen <- c("Atropinsulfat", "Natriumchlorid")
-  #  Substanzen <- c("Hartfett")
-    datapathHH <- c("interne_Rezeptursammlung.zip")
-    foundRezepturenButtonServer("button",Substanzen, Rezeptursammlung, datapathHH)
-    #Rezepturen <- foundRezepturenButtonServer("button",Substanzen, Rezeptursammlung)
-    #output$text <- renderText(foundRezepturenButtonServer("button",Substanzen, Rezeptursammlung))
-  }
-
-  shinyApp(ui, server)
-}
-
-foundRezepturenButtonApp()
+# 
+# foundRezepturenButtonApp <- function() {
+#   ui <- fluidPage(
+#     foundRezepturenButtonUI("button"),
+#     #textOutput("text")
+# 
+#   )
+# 
+#   server <- function(input, output, session) {
+#     Rezeptursammlung1 <- read.csv("./Rezeptursammlung.txt", header=FALSE, sep=";")
+#     Rezeptursammlung2 <- read.csv("./Rezeptursammlung.txt", header=FALSE, sep=";")
+#     Rezeptursammlung1 <- adorigin2dataframe(Rezeptursammlung1, 1)
+#     Rezeptursammlung2 <- adorigin2dataframe(Rezeptursammlung2, 2)
+#     Rezeptursammlung <- rbind(Rezeptursammlung2, Rezeptursammlung1)
+#     Substanzen <- c("Atropinsulfat", "Natriumchlorid")
+#   #  Substanzen <- c("Hartfett")
+#     datapathHH <- c("interne_Rezeptursammlung.zip")
+#     foundRezepturenButtonServer("button",Substanzen, Rezeptursammlung, datapathHH)
+#     #Rezepturen <- foundRezepturenButtonServer("button",Substanzen, Rezeptursammlung)
+#     #output$text <- renderText(foundRezepturenButtonServer("button",Substanzen, Rezeptursammlung))
+#   }
+# 
+#   shinyApp(ui, server)
+# }
+# 
+# foundRezepturenButtonApp()
 
 
 

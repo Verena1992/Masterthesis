@@ -44,4 +44,5 @@ Verdrängungsfaktor_pdf <- c()
                 
                 
 dataSet <- data.frame(Wirkstoff_pdf, Verdrängungsfaktor_pdf)
+
                 

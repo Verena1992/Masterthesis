@@ -9,6 +9,8 @@ load_libraries <- function() {
   library(shinyFiles)
   library(shinyjs)
   library(purrr)
+  library(shinyBS)
+  library(pdftools)
 }
 
 
@@ -77,4 +79,64 @@ Substanzauswahl <- function(id){
                        offLabel = "g"
                      ))
             ))
+}
+
+update_Herstellungshinweise <- function(new_Herstellungshinweis, interne_Herstellungshinweise) {
+  titel <- c("Titel", "Herstellungshinweise", "Quelle", "Dosierung", 
+             "Haltbarkeit", "Lagerung", "Anwendung")
+  colnames(interne_Herstellungshinweise) <- titel
+  
+  updated_Herstellungshinweise <- rbind(new_Herstellungshinweis,interne_Herstellungshinweise[-1,])
+  updated_Herstellungshinweise
+}
+
+update_Rezeptur_Zusam <- function(new_Rezeptur_Zusam,interne_Rezeptursammlung) {
+  titel <- rep(new_Herstellungshinweis()[1], length(new_Rezeptur_Zusam))
+  new_Rezeptur_Zusam_df <- cbind(titel, new_Rezeptur_Zusam)
+  colnames(new_Rezeptur_Zusam_df) <- c("V1", "V2")
+  updated_Rezeptur_Zusam <- rbind(interne_Rezeptursammlung, new_Rezeptur_Zusam_df)
+  updated_Rezeptur_Zusam
+}
+
+
+parse_NRF_verdrängungsfaktoren <- function(uploaded_file){
+  AnlageF <- unlist(pdf_text(uploaded_file))
+  # AnlageF <- unlist(pdf_text("~/data/anlage-f_el2021-1_2800.pdf"))
+  lin <- unlist(strsplit(AnlageF, "\n"))
+  first <- grep("Acetylsalicylsäure", lin)
+  last <- grep("Zinkoxid", lin)
+  wirkstoff <- c()
+  for (i in first:last){
+    a <- lin[i]
+    #delet all empty spaces in each line
+    b <- gsub("  ", "", as.character(a))
+    #add a tabulator between Wirkstoff and Verdrängungsfaktor.
+    #change comma to point
+    c <-gsub("0,", "\t0.", as.character(b))
+    wirkstoff <- append(wirkstoff, c)
+  }
+  d <- (wirkstoff[grep("\t0.", wirkstoff)])
+  
+  Wirkstoff <- c()
+  Verdrängungsfaktor <- c()
+  
+  for (i in 1:length(d)){
+    x <- strsplit(d[i], "\t")
+    #append text for Ammoniumbituminosulfonat (from a 2.line) 
+    if (x[[1]][1] ==  "Ammoniumbituminosulfonat/") {
+      
+      Wirkstoff <- append(Wirkstoff, "Ammoniumbituminosulfonat/ Glycerol 85%-Mischung 1:1" )
+      Verdrängungsfaktor <- append(Verdrängungsfaktor, "0.80")
+      #skip Ammoniumbituminosulfonat/Wasser, Verdrängungsfaktor not for Hartfett
+      
+      
+    } else if (x[[1]][1] != "Ammoniumbituminosulfonat/Wasser-Mischung 1:1["){
+      Wirkstoff <- append(Wirkstoff, x[[1]][1])
+      Verdrängungsfaktor <- append(Verdrängungsfaktor, x[[1]][2])
+    } else {
+      print("skip")
+    }
+  }
+  dataSet <- data.frame(Wirkstoff, Verdrängungsfaktor)
+  return(dataSet)
 }

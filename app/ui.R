@@ -1,5 +1,17 @@
 #--------------------------------------------------------------------------
-load_libraries()
+#load_libraries()
+library(shiny)
+library(readr)
+library(vroom)
+library(dplyr)
+library(shinyalert)
+library(auth0)
+library(shinyWidgets)
+library(shinyFiles)
+library(shinyjs)
+library(purrr)
+library(shinyBS)
+library(pdftools)
 #----------------------------------------------------------------------------
 rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
 
@@ -7,6 +19,22 @@ rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
 
 Wirkstoff <- c()
 Verdrängungsfaktor <- c()
+
+# Home-------------------------------------------------------------
+ui_Home <- tabPanel("Home", 
+                    fluidPage(
+                    tags$h2("Uploads"),
+                    createRezeptursammlungUI("jun_and_int"),
+                    createVerdrängungsfaktorenUI("nrf_and_int"),
+                    
+                    tags$hr(),
+                    tags$h2("Downloads"),
+                    tableOutput("new_Herstellungshinweis"),
+                    tableOutput("new_Verdrängungsfaktor"),
+                    downloadButton("download_newRezeptur", label = "Neue Rezeptur zur Sammlung hinzufügen"),       
+                    logoutButton()))
+
+
 
 # Rezeptursammlung----------------------------------------------------------
 ui_Rezeptursammlung <- tabPanel("Rezeptursammlung", 
@@ -62,13 +90,7 @@ ui_Rezepturhinzufügen <- tabPanel(title = "neue Herstellungsanweisung", value =
 
 
 
-# Home-------------------------------------------------------------
-ui_Home <- tabPanel("Home", 
-                    fileInput("Verdrängungsfaktoren", "Choose CSV File"),
-                    createRezeptursammlungUI("jun_and_int"),
-                    tableOutput("new_Herstellungshinweis"),
-                    downloadButton("download_newRezeptur", label = "Neue Rezeptur zur Sammlung hinzufügen"),       
-                    logoutButton())
+
 
 
                                  
@@ -122,7 +144,7 @@ ui_Suppositorien_Rechner <- tabPanel("Hartfettmengenrechner",
                                     
                                     ),
                              column(4,
-                                    tableOutput("New_Substanz")
+                                    #tableOutput("New_Substanz")
                                     )
                              ),
                              

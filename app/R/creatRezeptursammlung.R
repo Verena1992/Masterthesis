@@ -11,7 +11,17 @@
 
 createRezeptursammlungUI <- function(id) {
   tagList(
-    fileInput(NS(id, "file"), "Upload Zip file", accept = ".zip")
+    fileInput(NS(id, "file"), 
+              label = h4("interne Sammlung",
+                         tags$style(type = "text/css", "#q1 {vertical-align: top;}"),
+                         bsButton(NS(id,"q1"), label = "", icon = icon("question"), style = "info", size = "extra-small")
+                         
+                         ), accept = ".zip"),
+    bsPopover(NS(id,"q1"), title = "interne Sammlung",
+              content = paste0("lade deine eigene Sammlung an Rezepturen, Herstellungshinweise und Verdrängungsfaktoren als zip Ordner hoch. Haben Sie noch keine Sammlung? Dann klicken Sie auf erstellen"
+              ),
+              placement = "right", 
+              trigger = "focus")
   )
 }
 
