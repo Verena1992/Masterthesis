@@ -31,7 +31,8 @@ ui_Home <- tabPanel("Home",
                     tags$h2("Downloads"),
                     tableOutput("new_Herstellungshinweis"),
                     tableOutput("new_Verdrängungsfaktor"),
-                    downloadButton("download_newRezeptur", label = "Neue Rezeptur zur Sammlung hinzufügen"),       
+                    downloadButton("download_newRezeptur", label = "Neue Rezeptur zur Sammlung hinzufügen"),   
+                    
                     logoutButton()))
 
 

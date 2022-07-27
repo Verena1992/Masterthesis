@@ -109,6 +109,22 @@ server <- function(input, output, session) {
     new_data
   })
 
+  
+  updated_Verdrängungsfaktoren <- reactive({
+    interne_Verdrängungsfaktoren <- data_Verdrän()
+    data_Verdrän <- rbind(new_data(),interne_Verdrängungsfaktoren())
+    data_Verdrän
+  })
+  
+  # updated_Verdrängungsfaktoren <- observeEvent(input$download_newRezeptur,{
+  #   interne_Verdrängungsfaktoren <- data_Verdrän()
+  #   data_Verdrän <- rbind(new_data(),interne_Verdrängungsfaktoren())
+  #   data_Verdrän
+  # })
+  
+  
+  
+  
   #4 Download zip file
   
   output$download_newRezeptur <- downloadHandler(
@@ -117,13 +133,35 @@ server <- function(input, output, session) {
       tmpdir <- tempdir()
       setwd(tempdir())
       #print(tempdir())
+      #browser()
       
-      fs <- c("Rezeptur_Zusa", "Herstellungshinweise")
-      vroom::vroom_write(updated_Rezeptur_Zusam(), 
-                         "Rezeptur_Zusa", delim = "\t")
-      vroom::vroom_write(updated_Herstellungshinweise(), 
-                         "Herstellungshinweise", delim = ";")
-      
+     
+      fs <- c("Rezeptur_Zusa", "Herstellungshinweise", "Verdrängungsfaktoren")
+      if (rezepturhinweiseServer("textAreas")[1] == ""){
+       # browser()
+        vroom::vroom_write(interne_Rezeptursammlung(), 
+                           "Rezeptur_Zusa", delim = "\t")
+        interne_Herstellungshinweise <- interne_Herstellungshinweise()
+        titel <- c("Titel", "Herstellungshinweise", "Quelle", "Dosierung",
+                   "Haltbarkeit", "Lagerung", "Anwendung")
+        colnames(interne_Herstellungshinweise) <- titel
+        vroom::vroom_write(interne_Herstellungshinweise[-1,], 
+                           "Herstellungshinweise", delim = ";")
+      } else {
+       # browser()
+        vroom::vroom_write(updated_Rezeptur_Zusam(), 
+                           "Rezeptur_Zusa", delim = "\t")
+        vroom::vroom_write(updated_Herstellungshinweise(), 
+                           "Herstellungshinweise", delim = ";")
+        }
+      if (input$Substanz_hinzufügen | input$Substanz_hinzufügen2 | input$Substanz_hinzufügen3){
+      vroom::vroom_write(updated_Verdrängungsfaktoren(), 
+                         "Verdrängungsfaktoren", delim = "\t")
+      } else {
+        interne_Verdrängungsfaktoren <- data_Verdrän()
+        vroom::vroom_write(interne_Verdrängungsfaktoren(), 
+                           "Verdrängungsfaktoren", delim = "\t")
+      }
       
       zip(zipfile=fname, files=fs)
       if(file.exists(paste0(fname, ".zip"))) {file.rename(paste0(fname, ".zip"), fname)}
@@ -133,7 +171,16 @@ server <- function(input, output, session) {
   
   
   
-  
+  # output$download <- downloadHandler(
+  #   filename = function() {
+  #     paste0(input$Verdrängungsfaktoren)
+  #   },
+  #   content = function(file) {
+  #     data_Verdrän <- rbind(new_data(),data_Verdrän())
+  #     vroom::vroom_write(data_Verdrän[order(data_Verdrän$Wirkstoff),], 
+  #                        file, delim = "\t")
+  #   }
+  # )
   
 
 
@@ -298,16 +345,7 @@ server <- function(input, output, session) {
  
   
   
-  output$download <- downloadHandler(
-    filename = function() {
-      paste0(input$Verdrängungsfaktoren)
-    },
-    content = function(file) {
-      data_Verdrän <- rbind(new_data(),data_Verdrän())
-      vroom::vroom_write(data_Verdrän[order(data_Verdrän$Wirkstoff),], 
-                         file, delim = "\t")
-    }
-  )
+  
 
   
 
