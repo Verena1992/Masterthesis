@@ -37,8 +37,8 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
     
     #1.find Rezepturen
     Rezeptur <- reactiveVal()
-    subRezepturSammlung <- subsettingRSammlung(Substanzen, Rezeptursammlung)
-    Rezepturen <- unique(subRezepturSammlung$V1)
+    subRezepturSammlung <- reactive({subsettingRSammlung(Substanzen, Rezeptursammlung)})
+    Rezepturen <- unique(subRezepturSammlung()$V1)
     Rezeptur(Rezepturen)
     
     
@@ -72,12 +72,7 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
           src <- juniormed_pagenr[which(juniormed_pagenr$JUN == JUN),]$unlist.url_JUN.
           #browser()
             actionButton(ns(Rezeptur()[i]),HTML(paste0("<h3>",Rezeptur()[i]),"</h3>", "<br/>", Bestandteile), 
-                         
-                         
                          onclick = paste0("window.open('",src,"', '_blank')")
-                           
-                          # onclick ="window.open('http://juniormed.at/', '_blank')"
-                           
             )
           } else {
             actionButton(ns(Rezeptur()[i]),HTML(paste0("<h3>",Rezeptur()[i]),"</h3>", "<br/>", Bestandteile)
