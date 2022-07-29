@@ -1,5 +1,5 @@
 #02/07/2022
-#1. read in Rezeptursammlung and selected Substanzen and datapath from uploaded zipfolder
+#1. read in Rezeptursammlung, selected Substanzen and datapath from uploaded zipfolder
 #2. subsetting Rezeptursammlung with selected Substanzen
 #3. output Buttons with matched Rezepturen
 #4. output Herstellungshinweis from by the user selected Rezeptur
@@ -64,8 +64,29 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
         lapply(1:length(Rezeptur()), function(i){
           numlines <- which(Rezeptursammlung$V1 == Rezeptur()[i])
           Bestandteile <- Rezeptursammlung$V2[numlines]
+          if ( unique(Rezeptursammlung$origin[numlines]) == 1)  {
+          juniormed_pagenr <- readRDS("./data/Juniormed/juniormed_pagenr.rds")
           
-            actionButton(ns(Rezeptur()[i]),HTML(paste0("<h3>",Rezeptur()[i]),"</h3>", "<br/>", Bestandteile))
+          JUN <- sub(".*JUN", "JUN", Rezeptur()[i])
+          
+          src <- juniormed_pagenr[which(juniormed_pagenr$JUN == JUN),]$unlist.url_JUN.
+          #browser()
+            actionButton(ns(Rezeptur()[i]),HTML(paste0("<h3>",Rezeptur()[i]),"</h3>", "<br/>", Bestandteile), 
+                         
+                         
+                         onclick = paste0("window.open('",src,"', '_blank')")
+                           
+                          # onclick ="window.open('http://juniormed.at/', '_blank')"
+                           
+            )
+          } else {
+            actionButton(ns(Rezeptur()[i]),HTML(paste0("<h3>",Rezeptur()[i]),"</h3>", "<br/>", Bestandteile)
+                         
+            )
+            
+          }
+                         
+                         
           
         })
       }) 
@@ -87,7 +108,7 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
                 JUN <- sub(".*JUN", "JUN", Rezeptur()[i])
                
                 src <- juniormed_pagenr[which(juniormed_pagenr$JUN == JUN),]$unlist.url_JUN.
-                
+                #src <- "https://www.apothekerkammer.at/infothek/juniormed-kompendium"
                 output$Herstellungshinweis <- renderUI({
                   tags$iframe(src=src, height=500, width=800 )
                 })
