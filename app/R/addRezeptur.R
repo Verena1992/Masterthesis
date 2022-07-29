@@ -6,6 +6,21 @@
 
 # functions: Substanzauswahl, big_yellow_button
 
+library(shiny)
+library(readr)
+library(vroom)
+library(dplyr)
+library(shinyalert)
+library(auth0)
+library(shinyWidgets)
+library(shinyFiles)
+library(shinyjs)
+library(purrr)
+library(shinyBS)
+library(pdftools)
+
+
+
 
 #UI-----------------------------------------------------
 

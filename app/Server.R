@@ -1,5 +1,17 @@
 #--------------------------------------------------------------------------
-#load_libraries()
+load_libraries()
+# library(shiny)
+# library(readr)
+# library(vroom)
+# library(dplyr)
+# library(shinyalert)
+# library(auth0)
+# library(shinyWidgets)
+# library(shinyFiles)
+# library(shinyjs)
+# library(purrr)
+# library(shinyBS)
+# library(pdftools)
 library(shiny)
 library(readr)
 library(vroom)
@@ -23,7 +35,7 @@ Verdrängungsfaktor <- c()
 
 
 
-server <- function(input, output, session) {
+server <- auth0_server(function(input, output, session) {
 
   
 # Home-----------------------------------------------------
@@ -116,11 +128,7 @@ server <- function(input, output, session) {
     data_Verdrän
   })
   
-  # updated_Verdrängungsfaktoren <- observeEvent(input$download_newRezeptur,{
-  #   interne_Verdrängungsfaktoren <- data_Verdrän()
-  #   data_Verdrän <- rbind(new_data(),interne_Verdrängungsfaktoren())
-  #   data_Verdrän
-  # })
+
   
   
   
@@ -132,10 +140,8 @@ server <- function(input, output, session) {
     content = function(fname) {
       tmpdir <- tempdir()
       setwd(tempdir())
-      #print(tempdir())
-      #browser()
       
-     
+      
       fs <- c("Rezeptur_Zusa", "Herstellungshinweise", "Verdrängungsfaktoren")
       if (rezepturhinweiseServer("textAreas")[1] == ""){
        # browser()
@@ -171,16 +177,6 @@ server <- function(input, output, session) {
   
   
   
-  # output$download <- downloadHandler(
-  #   filename = function() {
-  #     paste0(input$Verdrängungsfaktoren)
-  #   },
-  #   content = function(file) {
-  #     data_Verdrän <- rbind(new_data(),data_Verdrän())
-  #     vroom::vroom_write(data_Verdrän[order(data_Verdrän$Wirkstoff),], 
-  #                        file, delim = "\t")
-  #   }
-  # )
   
 
 
@@ -215,8 +211,6 @@ server <- function(input, output, session) {
   #        and if button jump to Herstellungshinweise is clicked
   new_Rezeptur_Zusam <- addRezepturServer("Zusammensetzung", taxe_eko)
   
-
-  
 #--------------------------------------------------------------------------
    
   
@@ -241,80 +235,68 @@ server <- function(input, output, session) {
 #--------------------------------------------------------------------------
 
   
-
-  
-
-  
-  
-
-
-
-
-  
-
-  
-
-
-  
-  
   observe({
     #req(rz$datapath())
     dataSet <- data_Verdrän()
+    if(!is.null(dataSet())){
     updateSelectizeInput(session, "WS_S", choices = c(dataSet()$Wirkstoff, "Substanz nicht in Liste vorhanden"))
+    }
   })
   
   observe({
     #req(rz$datapath())
     dataSet <- data_Verdrän()
+    if(!is.null(dataSet())){
     updateSelectizeInput(session, "WS_S2", choices = c(dataSet()$Wirkstoff, "Substanz nicht in Liste vorhanden"))
+    }
   })
   
   observe({
     #req(rz$datapath())
     dataSet <- data_Verdrän()
+    if(!is.null(dataSet())){
     updateSelectizeInput(session, "WS_S3", choices = c(dataSet()$Wirkstoff, "Substanz nicht in Liste vorhanden"))
+    }
   })
   
   
   
   output$fileUploaded <- reactive({
-    return(!is.null(data_Verdrän()))
+    dataSet <- data_Verdrän()
+    return(!is.null(dataSet()))
   })
   outputOptions(output, 'fileUploaded', suspendWhenHidden=FALSE)
   
-  output$vf <- renderUI({
+  
+  vf1 <- reactive({
     dataSet <- data_Verdrän()
-    vf <- dataSet()[which(dataSet()$Wirkstoff == input$WS_S),]
-    if (input$Substanz_hinzufügen){
-      vf <- input$New_Verdrängungsfaktor
-    } else {
-    vf <- vf$Verdrängungsfaktor}
+    vf <- find_verdrängungsf(input$WS_S, input$Substanz_hinzufügen, input$New_Verdrängungsfaktor, dataSet())
+  })
+  
+  vf2 <- reactive({
+    dataSet <- data_Verdrän()
+    vf <- find_verdrängungsf(input$WS_S2, input$Substanz_hinzufügen2, input$New_Verdrängungsfaktor2, dataSet())
+  })
+
+  vf3 <- reactive({
+    dataSet <- data_Verdrän()
+    vf <- find_verdrängungsf(input$WS_S3, input$Substanz_hinzufügen3, input$New_Verdrängungsfaktor3, dataSet())
+  })
+  
+  output$vf <- renderUI({
+    vf <- vf1()
     HTML(paste("Verdrägungsfaktor = ",vf))
   })
   
   output$vf2 <- renderUI({
-    dataSet <- data_Verdrän()
-    vf <- dataSet()[which(dataSet()$Wirkstoff == input$WS_S2),]
-    if (input$Substanz_hinzufügen2){
-      vf2 <- input$New_Verdrängungsfaktor2
-    } else {
-      vf2 <- vf$Verdrängungsfaktor}
-    HTML(paste("Verdrägungsfaktor = ",vf2))
+    vf <- vf2()
+    HTML(paste("Verdrägungsfaktor = ",vf))
   })
   
   output$vf3 <- renderUI({
-    dataSet <- data_Verdrän()
-    vf <- dataSet()[which(dataSet()$Wirkstoff == input$WS_S3),]
-    if (input$Substanz_hinzufügen3){
-      vf3 <- input$New_Verdrängungsfaktor3
-    } else {
-      vf3 <- vf$Verdrängungsfaktor}
-    HTML(paste("Verdrägungsfaktor = ",vf3))
+    vf <- vf3()
+    HTML(paste("Verdrägungsfaktor = ",vf))
   })
-  
-  
-  
-   
   
   
   output$sub <- renderUI({
@@ -334,29 +316,10 @@ server <- function(input, output, session) {
   
   
   
-  
-  
   updateSelectizeInput(session, "New_Substanz", choices = taxe_eko$wirkstoffe_arzneitaxe, server = TRUE)
   updateSelectizeInput(session, "New_Substanz2", choices = taxe_eko$wirkstoffe_arzneitaxe, server = TRUE)
   updateSelectizeInput(session, "New_Substanz3", choices = taxe_eko$wirkstoffe_arzneitaxe, server = TRUE)
           
-
-  
- 
-  
-  
-  
-
-  
-
-  
-  
-  output$preview1 <- renderTable(head(data_Verdrän()))
-  
-  #Harfettgrundmasse berechnen--------------------------------------------------------------
-  
-  ## ohne abgespeicherten Verdrängungsfaktore
- 
   
   
   observeEvent(input$Stückanzahl,{
@@ -394,14 +357,28 @@ server <- function(input, output, session) {
   
   
   output$nötige_Hartfettmenge <- renderText({
-    einwaage_ohne_WS <- input$Stückanzahl * input$Eichwert
+    dataSet <- data_Verdrän()
+    if(is.null(dataSet())){
+    
     verdrängung1 <- (input$Menge_Substanz1 * input$Stückanzahl * input$Vf)
     verdrängung2 <- if(input$weitere_Substanz > input$Substanz2_entfernen){
       (input$Menge_Substanz2 * input$Stückanzahl * input$Vf)} else {0}
     verdrängung3 <- if(input$weitere_Substanz2 > input$Substanz3_entfernen){
       (input$Menge_Substanz3 * input$Stückanzahl * input$Vf)} else {0}
     verdrängung <- verdrängung1 + verdrängung2 + verdrängung3
-                   
+    } else {
+      #browser()
+      verdrängung1 <- (input$Menge_Substanz1 * input$Stückanzahl * as.numeric(vf1()))
+      verdrängung2 <- if(input$weitere_Substanz > input$Substanz2_entfernen){
+        (input$Menge_Substanz2 * input$Stückanzahl * as.numeric(vf2()))} else {0}
+      verdrängung3 <- if(input$weitere_Substanz2 > input$Substanz3_entfernen){
+        (input$Menge_Substanz3 * input$Stückanzahl * as.numeric(vf2()))} else {0}
+      verdrängung <- verdrängung1 + verdrängung2 + verdrängung3  
+      
+      
+      
+    }
+    einwaage_ohne_WS <- input$Stückanzahl * input$Eichwert           
                   
     einwaage_mit_Überschuss <- (einwaage_ohne_WS - verdrängung)/100 * (input$Überschuss+100)
     #((input$Stückanzahl * input$Eichwert)-(input$Menge_Substanz1 *input$Stückanzahl * input$Vf))/100 * (input$Überschuss+100)
@@ -420,7 +397,7 @@ server <- function(input, output, session) {
     (input$Menge_Substanz3 * input$Stückanzahl)/100 * (input$Überschuss+100)
   })
   
- 
+# Rezeptpflicht---------------------------------------------------------------------------- 
   
   updateSelectizeInput(session, "WS", choices = rezeptpflicht$Wirkstoff, server = TRUE
   )
@@ -430,13 +407,9 @@ server <- function(input, output, session) {
     Rstatus <- selected_ws$Rstatus
     Rstatus
   })
+#-------------------------------------------------------------------------------------------
 
-      #jump to new page
-      observeEvent(input$jumpto_neueRezep, {
-        updateTabsetPanel(session, "inTabset",
-                          selected = "neue_Zusammensetzung_Rezeptur")
-      })
      
 
-}
+})
 

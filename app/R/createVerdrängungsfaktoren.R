@@ -11,7 +11,18 @@
 
 #functions---------------------------------------------------
 
-
+library(shiny)
+library(readr)
+library(vroom)
+library(dplyr)
+library(shinyalert)
+library(auth0)
+library(shinyWidgets)
+library(shinyFiles)
+library(shinyjs)
+library(purrr)
+library(shinyBS)
+library(pdftools)
 
 
 zip2dataSet <- function(datapath, filenr, header=T, sep = "\t") {
@@ -74,7 +85,7 @@ createVerdrängungsfaktorenUI <- function(id) {
                          bsButton(NS(id,"q1"), label = "", icon = icon("question"), style = "info", size = "extra-small")
               )),
     bsPopover(NS(id,"q1"), title = "NRF - Verdrängungsfaktoren",
-              content = paste0("um die Berechnung der Hartfettmenge von Zäpfchen zu vereinfachen, lade die heruntergeladene AnlageF aus dem NRF (als pdf) hoch"
+              content = paste0("lade die heruntergeladene AnlageF aus dem NRF (als pdf) hoch, um Sie Ihrer internen Sammlung hinzuzufügen,"
               ),
               placement = "right", 
               trigger = "focus")
@@ -123,11 +134,7 @@ createVerdrängungsfaktorenServer <- function(id, datapath=NULL) {
     })
 
     verdrängungsfaktoren
-    #return rezeptursammlung_dataset and datapath
-    #list(
-    #  rezeptursammlung = reactive(rezeptursammlung()),
-    #  datapath = reactive(input$file$datapath)
-    #)
+
     
   })
 }
@@ -135,43 +142,29 @@ createVerdrängungsfaktorenServer <- function(id, datapath=NULL) {
 
 #Test module:
 
-VerdrängungsfaktorenApp <- function() {
-  ui <- fluidPage(
-    createVerdrängungsfaktorenUI("nrf_and_int"),
-   # uiOutput("selectizeInput01"),
-    tableOutput("table"),
-  #  textOutput("text2")
-
-  )
-
-  server <- function(input, output, session) {
-    #create ui to select Substanzen from sammlung
-    datapath<- c("interne_Rezeptursammlung_3.zip")
-    
-    # 
-    #verdrängungsfaktoren <- reactive({
-
-      if (exists("datapath")){
-
-      verdrängungsfaktoren <- createVerdrängungsfaktorenServer("nrf_and_int", datapath)
-      }else {
-        #browser()
-        verdrängungsfaktoren <- createVerdrängungsfaktorenServer("nrf_and_int")}
-   # })
-    
-  #verdrängungsfaktoren <- createVerdrängungsfaktorenServer("nrf_and_int", datapath)
-
-  output$table <- renderTable(
-    #req()
-    verdrängungsfaktoren())
-  #output$text2 <- renderText(rz$datapath())
-  # output$table <- renderTable(rezeptursammlung())
-  }
-
-  shinyApp(ui, server)
-}
-
-  VerdrängungsfaktorenApp()
+# VerdrängungsfaktorenApp <- function() {
+#   ui <- fluidPage(
+#     createVerdrängungsfaktorenUI("nrf_and_int"),
+#     tableOutput("table"),
+#   )
+# 
+#   server <- function(input, output, session) {
+#     datapath<- c("interne_Rezeptursammlung_3.zip")
+#     
+#       if (exists("datapath")){
+#         verdrängungsfaktoren <- createVerdrängungsfaktorenServer("nrf_and_int", datapath)
+#       } else {
+#         #browser()
+#         verdrängungsfaktoren <- createVerdrängungsfaktorenServer("nrf_and_int")}
+# 
+#   output$table <- renderTable(
+#     verdrängungsfaktoren())
+#   }
+# 
+#   shinyApp(ui, server)
+# }
+# 
+#   VerdrängungsfaktorenApp()
 
 
 

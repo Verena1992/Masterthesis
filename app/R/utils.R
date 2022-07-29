@@ -140,3 +140,14 @@ parse_NRF_verdrängungsfaktoren <- function(uploaded_file){
   dataSet <- data.frame(Wirkstoff, Verdrängungsfaktor)
   return(dataSet)
 }
+
+
+find_verdrängungsf <- function(WS_S, Substanz_hinzufügen, new_verdrängungsfak, dataSet) {
+ # dataSet <- data_Verdrän()
+  vf <- dataSet[which(dataSet$Wirkstoff == WS_S),]
+  if (Substanz_hinzufügen){
+    vf <- new_verdrängungsfak
+  } else {
+    vf <- vf$Verdrängungsfaktor}
+  return(vf)
+}

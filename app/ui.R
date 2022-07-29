@@ -1,5 +1,17 @@
 #--------------------------------------------------------------------------
 #load_libraries()
+# library(shiny)
+# library(readr)
+# library(vroom)
+# library(dplyr)
+# library(shinyalert)
+# library(auth0)
+# library(shinyWidgets)
+# library(shinyFiles)
+# library(shinyjs)
+# library(purrr)
+# library(shinyBS)
+# library(pdftools)
 library(shiny)
 library(readr)
 library(vroom)
@@ -23,17 +35,26 @@ Verdrängungsfaktor <- c()
 # Home-------------------------------------------------------------
 ui_Home <- tabPanel("Home", 
                     fluidPage(
+                      sidebarLayout(
+                        sidebarPanel(
                     tags$h2("Uploads"),
                     createRezeptursammlungUI("jun_and_int"),
                     createVerdrängungsfaktorenUI("nrf_and_int"),
-                    
-                    tags$hr(),
+                    #tags$hr(),
                     tags$h2("Downloads"),
+                    tags$h5("Neue Informationen zur interner Sammlung hinzufügen und herunterladen"),
+                    downloadButton("download_newRezeptur", label = "Download"),
+                    tags$hr(),
+                    logoutButton()
+                        ),
+                    mainPanel(
+                    #tags$hr(),
+                    tags$h3("Neue Informationen"),
                     tableOutput("new_Herstellungshinweis"),
                     tableOutput("new_Verdrängungsfaktor"),
-                    downloadButton("download_newRezeptur", label = "Neue Rezeptur zur Sammlung hinzufügen"),   
+                      
                     
-                    logoutButton()))
+                    ))))
 
 
 
@@ -201,25 +222,17 @@ ui_Suppositorien_Rechner <- tabPanel("Hartfettmengenrechner",
                              )),
                              
                              wellPanel( 
-                               fluidRow(
-                                 column(6,
-                             actionButton("Berechnung_Menge", "Berechnen", class = "btn-primary btn-lg" )),
-                               fluidRow(
-                                 column(6,
-                                        #input.WS_S == 'Substanz nicht in der Liste vorhanden'
-                             conditionalPanel(condition = "input.Substanz_hinzufügen > 0",
-                             downloadButton("download", label = "Neue Verdrängungsfaktoren zur Liste hinzufügen")))))
+                              actionButton("Berechnung_Menge", "Berechnen", class = "btn-primary btn-lg" )
                              )
                              )
-                             #textOutput("nötige_Hartfettmenge")
-                             #class = "btn-primary btn-lg"
+                       
 )
 
 
-ui <- navbarPage("My Application", id = "inTabset", ui_Home,
+ui <- auth0_ui(navbarPage("My Application", id = "inTabset", ui_Home,
                  navbarMenu("Rezeptursammlung",ui_Rezeptursammlung, ui_neue_Zusammensetzung_Rezeptur, ui_Rezepturhinzufügen ),
                  
                  navbarMenu("Suppositorien", ui_Suppositorien_Rechner, ui_Suppositorien_gespeichert),
-                 ui_Rezeptpflichtcheck)
+                 ui_Rezeptpflichtcheck))
 
 

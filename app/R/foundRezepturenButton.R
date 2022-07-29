@@ -4,7 +4,18 @@
 #3. output Buttons with matched Rezepturen
 #4. output Herstellungshinweis from by the user selected Rezeptur
 
-
+library(shiny)
+library(readr)
+library(vroom)
+library(dplyr)
+library(shinyalert)
+library(auth0)
+library(shinyWidgets)
+library(shinyFiles)
+library(shinyjs)
+library(purrr)
+library(shinyBS)
+library(pdftools)
 
 
 #UI-----------------------------------------------------
@@ -70,7 +81,8 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
                 show("Herstellungshinweis")
                 hide("Herstellungstext_int")
                 hide("Rezepturen")
-                juniormed_pagenr <- readRDS("~/data/Juniormed/juniormed_pagenr.rds")
+                
+                juniormed_pagenr <- readRDS("./data/Juniormed/juniormed_pagenr.rds")
                 
                 JUN <- sub(".*JUN", "JUN", Rezeptur()[i])
                
