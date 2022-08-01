@@ -35,6 +35,7 @@ foundRezepturenButtonUI <- function(id) {
 foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapathHH) {
   moduleServer(id, function(input, output, session) {
     
+    Bestandteile_ex <- reactiveVal(NULL)
     #1.find Rezepturen
     Rezeptur <- reactiveVal()
     subRezepturSammlung <- reactive({subsettingRSammlung(Substanzen, Rezeptursammlung)})
@@ -97,22 +98,31 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
                 show("Herstellungshinweis")
                 hide("Herstellungstext_int")
                 hide("Rezepturen")
+                Bestandteile_ex(Rezeptursammlung$V2[numlines])
                 
                 juniormed_pagenr <- readRDS("./data/Juniormed/juniormed_pagenr.rds")
                 
                 JUN <- sub(".*JUN", "JUN", Rezeptur()[i])
                
                 src <- juniormed_pagenr[which(juniormed_pagenr$JUN == JUN),]$unlist.url_JUN.
-                #src <- "https://www.apothekerkammer.at/infothek/juniormed-kompendium"
-                output$Herstellungshinweis <- renderUI({
-                  tags$iframe(src=src, height=500, width=800 )
-                })
+                
+                # output$Herstellungshinweis <- renderUI({
+                #   tags$iframe(src=src, height=500, width=800 )
+                # })
               
+                
+                output$Herstellungshinweis <- renderUI({
+                  tags$h3("Herstellungshinweis wird in einem neuem Fenster geöffnet..")
+                })
+                
+                
               #is selected Rezeptur a Juniormed Rezeptur(1)?  
               } else if (unique(Rezeptursammlung$origin[numlines]) == 2){
                 show("Herstellungstext_int")
                 hide("Herstellungshinweis")
                 hide("Rezepturen")
+                Bestandteile_ex(Rezeptursammlung$V2[numlines])
+                
                 selected_int_Rezeptur <- reactiveValues(num = FALSE)
                 
                 #read in uploaded interne Herstellungshinweise
@@ -145,40 +155,45 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
                   
               } else {
                   print("upps")
-               }
+              }
+              #browser()
+              
              })
+          
           })
     }
+
+    Bestandteile_ex
   })
 }
 
 #Test module:
 # 
-# foundRezepturenButtonApp <- function() {
-#   ui <- fluidPage(
-#     foundRezepturenButtonUI("button"),
-#     #textOutput("text")
+foundRezepturenButtonApp <- function() {
+  ui <- fluidPage(
+    foundRezepturenButtonUI("button"),
+    #textOutput("text")
+
+  )
+
+  server <- function(input, output, session) {
+    Rezeptursammlung1 <- read.csv("./Rezeptursammlung.txt", header=FALSE, sep=";")
+    Rezeptursammlung2 <- read.csv("./Rezeptursammlung.txt", header=FALSE, sep=";")
+    Rezeptursammlung1 <- adorigin2dataframe(Rezeptursammlung1, 1)
+    Rezeptursammlung2 <- adorigin2dataframe(Rezeptursammlung2, 2)
+    Rezeptursammlung <- rbind(Rezeptursammlung2, Rezeptursammlung1)
+    Substanzen <- c("Atropinsulfat", "Natriumchlorid")
+  #  Substanzen <- c("Hartfett")
+    datapathHH <- c("interne_Rezeptursammlung.zip")
+    foundRezepturenButtonServer("button",Substanzen, Rezeptursammlung, datapathHH)
+    #Rezepturen <- foundRezepturenButtonServer("button",Substanzen, Rezeptursammlung)
+    #output$text <- renderText(foundRezepturenButtonServer("button",Substanzen, Rezeptursammlung))
+  }
+
+  shinyApp(ui, server)
+}
 # 
-#   )
-# 
-#   server <- function(input, output, session) {
-#     Rezeptursammlung1 <- read.csv("./Rezeptursammlung.txt", header=FALSE, sep=";")
-#     Rezeptursammlung2 <- read.csv("./Rezeptursammlung.txt", header=FALSE, sep=";")
-#     Rezeptursammlung1 <- adorigin2dataframe(Rezeptursammlung1, 1)
-#     Rezeptursammlung2 <- adorigin2dataframe(Rezeptursammlung2, 2)
-#     Rezeptursammlung <- rbind(Rezeptursammlung2, Rezeptursammlung1)
-#     Substanzen <- c("Atropinsulfat", "Natriumchlorid")
-#   #  Substanzen <- c("Hartfett")
-#     datapathHH <- c("interne_Rezeptursammlung.zip")
-#     foundRezepturenButtonServer("button",Substanzen, Rezeptursammlung, datapathHH)
-#     #Rezepturen <- foundRezepturenButtonServer("button",Substanzen, Rezeptursammlung)
-#     #output$text <- renderText(foundRezepturenButtonServer("button",Substanzen, Rezeptursammlung))
-#   }
-# 
-#   shinyApp(ui, server)
-# }
-# 
-# foundRezepturenButtonApp()
+ foundRezepturenButtonApp()
 
 
 

@@ -1,17 +1,6 @@
 #--------------------------------------------------------------------------
-#load_libraries()
-# library(shiny)
-# library(readr)
-# library(vroom)
-# library(dplyr)
-# library(shinyalert)
-# library(auth0)
-# library(shinyWidgets)
-# library(shinyFiles)
-# library(shinyjs)
-# library(purrr)
-# library(shinyBS)
-# library(pdftools)
+load_libraries()
+
 library(shiny)
 library(readr)
 library(vroom)
@@ -67,7 +56,10 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                     sidebarPanel(
                                       uiOutput("selectizeInput01"),
                                       tags$h3("NRF"),
-                                      actionButton("NRF_online", "NRF online suchen")
+                                      actionButton("NRF_online", "NRF online suchen"),
+                                      tags$hr(),
+                                      uiOutput("erstattungscheck")
+                                      #big_yellow_button("Erstattungscheck", "Erstattungsfähigkeit der ausgewählten Rezeptur prüfen")
                                     ),
                                     
                                     mainPanel(
@@ -229,10 +221,10 @@ ui_Suppositorien_Rechner <- tabPanel("Hartfettmengenrechner",
 )
 
 
-ui <- auth0_ui(navbarPage("My Application", id = "inTabset", ui_Home,
+ui <- navbarPage("My Application", id = "inTabset", ui_Home,
                  navbarMenu("Rezeptursammlung",ui_Rezeptursammlung, ui_neue_Zusammensetzung_Rezeptur, ui_Rezepturhinzufügen ),
                  
                  navbarMenu("Suppositorien", ui_Suppositorien_Rechner, ui_Suppositorien_gespeichert),
-                 ui_Rezeptpflichtcheck))
+                 ui_Rezeptpflichtcheck)
 
 

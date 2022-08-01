@@ -1,17 +1,6 @@
 #--------------------------------------------------------------------------
 load_libraries()
-# library(shiny)
-# library(readr)
-# library(vroom)
-# library(dplyr)
-# library(shinyalert)
-# library(auth0)
-# library(shinyWidgets)
-# library(shinyFiles)
-# library(shinyjs)
-# library(purrr)
-# library(shinyBS)
-# library(pdftools)
+
 library(shiny)
 library(readr)
 library(vroom)
@@ -35,7 +24,7 @@ Verdrängungsfaktor <- c()
 
 
 
-server <- auth0_server(function(input, output, session) {
+server <- function(input, output, session) {
 
   
 # Home-----------------------------------------------------
@@ -190,9 +179,24 @@ server <- auth0_server(function(input, output, session) {
                    options = list(placeholder = "wähle Substanzen aus"))
   })
   
-  observeEvent(input$zusammensetzungRezep,{
-    foundRezepturenButtonServer("button",input$zusammensetzungRezep, rz$rezeptursammlung(), rz$datapath())
-  })  
+  
+  Bestandteile <- reactive({
+    if(!is.null(input$zusammensetzungRezep)){
+     # browser()
+    Bestandteile_ex <- foundRezepturenButtonServer("button",input$zusammensetzungRezep, rz$rezeptursammlung(), rz$datapath())
+    }
+  })
+ 
+  
+    output$erstattungscheck <- renderUI({
+      Bestandteile <- Bestandteile()
+      
+      if (!is.null(Bestandteile())){
+      #browser()
+      big_yellow_button("Erstattungscheck", "Erstattungsfähigkeit der ausgewählten Rezeptur prüfen")}
+    })
+  
+
   
 #--------------------------------------------------------------------------
   
@@ -411,5 +415,5 @@ server <- auth0_server(function(input, output, session) {
 
      
 
-})
+}
 
