@@ -193,10 +193,14 @@ server <- function(input, output, session) {
       
       if (!is.null(Bestandteile())){
       #browser()
-      big_yellow_button("Erstattungscheck", "Erstattungsfähigkeit der ausgewählten Rezeptur prüfen")}
+      #  actionButton("erstattungsfähigkeit", "Erstattungsfähigkeit der ausgewählten Rezeptur prüfen")}
+      big_yellow_button("erstattungsfähigkeit", "Erstattungsfähigkeit der ausgewählten Rezeptur prüfen")}
     })
   
-
+    observeEvent(input$erstattungsfähigkeit, {
+      updateTabsetPanel(session, "inTabset",
+                        selected = "Erstattungscheck")
+    })
   
 #--------------------------------------------------------------------------
   

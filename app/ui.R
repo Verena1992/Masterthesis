@@ -59,7 +59,7 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                       actionButton("NRF_online", "NRF online suchen"),
                                       tags$hr(),
                                       uiOutput("erstattungscheck")
-                                      #big_yellow_button("Erstattungscheck", "Erstattungsfähigkeit der ausgewählten Rezeptur prüfen")
+                                      
                                     ),
                                     
                                     mainPanel(
@@ -101,9 +101,11 @@ ui_Rezepturhinzufügen <- tabPanel(title = "neue Herstellungsanweisung", value =
                                   ))
 
 
+# Erstattungscheck---------------------------------------------------
 
-
-
+ui_Erstattungscheck <- tabPanel(title = "Erstattungscheck", value = "Erstattungscheck"
+                                
+                                )
 
 
 
@@ -223,7 +225,7 @@ ui_Suppositorien_Rechner <- tabPanel("Hartfettmengenrechner",
 
 ui <- navbarPage("My Application", id = "inTabset", ui_Home,
                  navbarMenu("Rezeptursammlung",ui_Rezeptursammlung, ui_neue_Zusammensetzung_Rezeptur, ui_Rezepturhinzufügen ),
-                 
+                 ui_Erstattungscheck,
                  navbarMenu("Suppositorien", ui_Suppositorien_Rechner, ui_Suppositorien_gespeichert),
                  ui_Rezeptpflichtcheck)
 
