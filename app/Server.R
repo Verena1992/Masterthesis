@@ -242,6 +242,28 @@ server <- function(input, output, session) {
   })
 #--------------------------------------------------------------------------
 
+
+  
+  
+# Erstattungscheck---------------------------------------------------
+  
+  observe({
+    if (!is.null(Bestandteile())){
+    Bestandteile_sel <- Bestandteile()
+    erstattungscheckServer("ec", taxe_eko, Bestandteile_sel())
+    } else {
+      
+      erstattungscheckServer("ec", taxe_eko)
+    }
+    })
+  
+  
+  
+#--------------------------------------------------------------------------
+  
+  
+  
+  
   
   observe({
     #req(rz$datapath())

@@ -103,9 +103,10 @@ ui_Rezepturhinzufügen <- tabPanel(title = "neue Herstellungsanweisung", value =
 
 # Erstattungscheck---------------------------------------------------
 
-ui_Erstattungscheck <- tabPanel(title = "Erstattungscheck", value = "Erstattungscheck"
-                                
-                                )
+ui_Erstattungscheck <- tabPanel(title = "Erstattungscheck", value = "Erstattungscheck",
+                                fluidPage(
+                                erstattungscheckUI("ec")
+                                ))
 
 
 
