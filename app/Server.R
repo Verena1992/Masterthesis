@@ -248,10 +248,13 @@ server <- function(input, output, session) {
 # Erstattungscheck---------------------------------------------------
   
   observe({
+    Bestandteile <- Bestandteile()
+    
     if (!is.null(Bestandteile())){
-    Bestandteile_sel <- Bestandteile()
-    erstattungscheckServer("ec", taxe_eko, Bestandteile_sel())
+  
+    erstattungscheckServer("ec", taxe_eko, Bestandteile())
     } else {
+      
       
       erstattungscheckServer("ec", taxe_eko)
     }
