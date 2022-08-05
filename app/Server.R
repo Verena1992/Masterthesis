@@ -186,15 +186,27 @@ server <- function(input, output, session) {
     Bestandteile_ex <- foundRezepturenButtonServer("button",input$zusammensetzungRezep, rz$rezeptursammlung(), rz$datapath())
     }
   })
- 
+    
+    erstattungsstatus <- reactive({
+      Bestandteile <- Bestandteile()
+      box <- taxe_eko[taxe_eko$wirkstoffe_arzneitaxe %in% Bestandteile(),]$box
+    })
   
     output$erstattungscheck <- renderUI({
       Bestandteile <- Bestandteile()
       
       if (!is.null(Bestandteile())){
+      box <- erstattungsstatus()
       #browser()
-      #  actionButton("erstattungsfähigkeit", "Erstattungsfähigkeit der ausgewählten Rezeptur prüfen")}
-      big_yellow_button("erstattungsfähigkeit", "Erstattungsfähigkeit der ausgewählten Rezeptur prüfen")}
+        if(all(box == "grün") & (length(box) == length(Bestandteile()))){
+        #  actionButton("erstattungsfähigkeit", "Erstattungsfähigkeit der ausgewählten Rezeptur prüfen")}
+        big_green_button("erstattungsfähigkeit", "Erstattungsfähigkeit der ausgewählten Rezeptur prüfen")
+        } else {
+            
+          big_red_button("erstattungsfähigkeit", "Achtung! Kontrolliere Erstattungsfähigkeit der ausgewählten Rezeptur")
+          }
+      
+      }
     })
   
     observeEvent(input$erstattungsfähigkeit, {
@@ -247,19 +259,34 @@ server <- function(input, output, session) {
   
 # Erstattungscheck---------------------------------------------------
   
+  # observe({
+  #   
+  #   Bestandteile <- Bestandteile()
+  #   
+  #   if (!is.null(Bestandteile())){
+  # 
+  #   erstattungscheckServer("ec", taxe_eko, Bestandteile())
+  #   } else {
+  #     
+  #     browser()
+  #     erstattungscheckServer("ec", taxe_eko)
+  #   }
+  #   })
+  
+  
   observe({
+    #req()
     Bestandteile <- Bestandteile()
     
-    if (!is.null(Bestandteile())){
-  
-    erstattungscheckServer("ec", taxe_eko, Bestandteile())
-    } else {
+  #  if (is.null(Bestandteile())){
+      print(Bestandteile())
+      erstattungscheckServer("ec", taxe_eko, Bestandteile())
+    #} else {
       
-      
-      erstattungscheckServer("ec", taxe_eko)
-    }
-    })
-  
+     # browser()
+      #erstattungscheckServer("ec", taxe_eko)
+    #}
+  })
   
   
 #--------------------------------------------------------------------------

@@ -50,6 +50,32 @@ big_yellow_button <- function(id, label){
   )
 }
 
+big_green_button <- function(id, label){
+  actionBttn(
+    inputId = id,
+    label = label,
+    color = "success",
+    style = "fill", 
+    size = "lg", 
+    block = TRUE
+  )
+}
+
+big_red_button <- function(id, label){
+  actionBttn(
+    inputId = id,
+    label = label,
+    color = "danger",
+    style = "fill", 
+    size = "lg", 
+    block = TRUE
+  )
+}
+
+
+
+
+
 
 subsettingRSammlung <- function(Substanzen, Rezeptursammlung) {
   for (i in Substanzen){

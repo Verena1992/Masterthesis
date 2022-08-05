@@ -30,33 +30,38 @@ erstattungscheckUI <- function(id) {
 
 
 #Server-------------------------------------------------
-erstattungscheckServer <- function(id, taxe_eko, Bestandteile = NULL) {
+erstattungscheckServer <- function(id, taxe_eko, Bestandteile) {
   moduleServer(id, function(input, output, session) {
     
-    #browser()
-    updateSelectizeInput(session, inputId = 'zusammensetzung_arzneitaxe', choices = taxe_eko$wirkstoffe_arzneitaxe, selected = Bestandteile, server = TRUE)
     
+    updateSelectizeInput(session, inputId = 'zusammensetzung_arzneitaxe', choices = taxe_eko$wirkstoffe_arzneitaxe, selected = Bestandteile, server = TRUE)
+  
     sub_taxe <- reactive({
         sub_taxe <- taxe_eko[taxe_eko$wirkstoffe_arzneitaxe %in% input$zusammensetzung_arzneitaxe,]
         sub_taxe
     })
     
+    box <- reactiveVal("grün")
+    
    observe({
      #browser()
-     req(Bestandteile)
+     #req(Bestandteile)
      req(input$zusammensetzung_arzneitaxe)
+     #Box <- c()
      for (i in input$zusammensetzung_arzneitaxe){
        
-
-     Box <- "grün"
-     numlines <- which(taxe_eko$wirkstoffe_arzneitaxe == i)
+    print(i)
+    # Box <- "grün"
+    # numlines <- which(taxe_eko$wirkstoffe_arzneitaxe == i)
+     #browser()
+     #Box <- append(Box,taxe_eko$box[numlines])
      
-     Box <- taxe_eko$box[numlines]
+     #if(all(x < 0))
+    #if(all(Box != "grün")){
+     #  shinyalert(title = "Bewilligung des chef- und kontrollärztlichen Dienstes nötig! Höchstmenge überschritten", type = "warning")
      
-    if(Box != "grün"){
-       shinyalert(title = "Bewilligung des chef- und kontrollärztlichen Dienstes nötig! Höchstmenge überschritten", type = "warning")
-     
-     }}
+   # }
+     }
    })
     
     
