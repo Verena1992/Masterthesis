@@ -181,10 +181,10 @@ server <- function(input, output, session) {
   
   
   Bestandteile <- reactive({
-    if(!is.null(input$zusammensetzungRezep)){
+   # if(!is.null(input$zusammensetzungRezep)){
      # browser()
     Bestandteile_ex <- foundRezepturenButtonServer("button",input$zusammensetzungRezep, rz$rezeptursammlung(), rz$datapath())
-    }
+  #  }
   })
     
     erstattungsstatus <- reactive({
@@ -196,15 +196,14 @@ server <- function(input, output, session) {
       Bestandteile <- Bestandteile()
       
       if (!is.null(Bestandteile())){
+       # browser()
       box <- erstattungsstatus()
-      #browser()
         if(all(box == "grün") & (length(box) == length(Bestandteile()))){
-        #  actionButton("erstattungsfähigkeit", "Erstattungsfähigkeit der ausgewählten Rezeptur prüfen")}
-        big_green_button("erstattungsfähigkeit", "Erstattungsfähigkeit der ausgewählten Rezeptur prüfen")
+          big_green_button("erstattungsfähigkeit", "Erstattungsfähigkeit der ausgewählten Rezeptur prüfen")
         } else {
-            
           big_red_button("erstattungsfähigkeit", "Achtung! Kontrolliere Erstattungsfähigkeit der ausgewählten Rezeptur")
-          }
+        }
+      
       
       }
     })
@@ -259,33 +258,12 @@ server <- function(input, output, session) {
   
 # Erstattungscheck---------------------------------------------------
   
-  # observe({
-  #   
-  #   Bestandteile <- Bestandteile()
-  #   
-  #   if (!is.null(Bestandteile())){
-  # 
-  #   erstattungscheckServer("ec", taxe_eko, Bestandteile())
-  #   } else {
-  #     
-  #     browser()
-  #     erstattungscheckServer("ec", taxe_eko)
-  #   }
-  #   })
+
   
   
   observe({
-    #req()
     Bestandteile <- Bestandteile()
-    
-  #  if (is.null(Bestandteile())){
-      print(Bestandteile())
       erstattungscheckServer("ec", taxe_eko, Bestandteile())
-    #} else {
-      
-     # browser()
-      #erstattungscheckServer("ec", taxe_eko)
-    #}
   })
   
   
