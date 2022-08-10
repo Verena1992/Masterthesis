@@ -37,7 +37,6 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
     
     Bestandteile_ex <- reactiveVal(NULL)
     #1.find Rezepturen
-    #browser()
     Rezeptur <- reactiveVal(NULL)
     subRezepturSammlung <- reactive({subsettingRSammlung(Substanzen, Rezeptursammlung)})
     Rezepturen <- reactive({unique(subRezepturSammlung()$V1)})
@@ -46,7 +45,6 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
     
     #1.1.if no Rezepturen are found, print a text:
     if (length(Rezeptur()) == 0 | length(Substanzen) == 0  ){
-      #browser()
       show("keine_rez")
       output$keine_rez <- renderText("es wurde keine Rezeptur gefunden")
       hide("Herstellungshinweis")
@@ -67,7 +65,6 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
         ns <- session$ns
         
         lapply(1:length(Rezeptur()), function(i){
-          #browser()
           numlines <- which(Rezeptursammlung$V1 == Rezeptur()[i])
           Bestandteile <- Rezeptursammlung$V2[numlines]
           if ( unique(Rezeptursammlung$origin[numlines]) == 1)  {
@@ -76,7 +73,6 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
           JUN <- sub(".*JUN", "JUN", Rezeptur()[i])
           
           src <- juniormed_pagenr[which(juniormed_pagenr$JUN == JUN),]$unlist.url_JUN.
-          #browser()
             actionButton(ns(Rezeptur()[i]),HTML(paste0("<h3>",Rezeptur()[i]),"</h3>", "<br/>", Bestandteile), 
                          onclick = paste0("window.open('",src,"', '_blank')")
             )
@@ -100,7 +96,7 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
         lapply(1:length(Rezeptur()), function(i){
         
             observeEvent(input[[Rezeptur()[i]]], {
-              #browser()
+              
               numlines <- which(Rezeptursammlung$V1 == Rezeptur()[i])
               
               #is selected Rezeptur a Juniormed Rezeptur(1)?
@@ -150,7 +146,7 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
         
                 table_int_sel_rezeptursammlung <- reactive({
                       number <- selected_int_Rezeptur$num
-                      #browser()
+                      
                       a <- as.data.frame(t(interne_Herstellungshinweise[c(1,number),]))
                       req(selected_int_Rezeptur$num)
                       colnames(a) <- c("Titel", interne_Herstellungshinweise[["V1"]][number])
@@ -166,10 +162,7 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
               } else {
                   print("upps")
               }
-              #browser()
-              
-             }, autoDestroy = TRUE,
-             ignoreNULL = T, ignoreInit = TRUE, once = TRUE)
+             }, autoDestroy = TRUE, ignoreNULL = T, ignoreInit = TRUE, once = TRUE)
           
           })
         

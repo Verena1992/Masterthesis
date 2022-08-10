@@ -33,6 +33,7 @@ ui_Home <- tabPanel("Home",
                     tags$h2("Downloads"),
                     tags$h5("Neue Informationen zur interner Sammlung hinzufügen und herunterladen"),
                     downloadButton("download_newRezeptur", label = "Download"),
+                    #actionButton("NRF_online", "NRF online suchen"),
                     tags$hr(),
                     logoutButton()
                         ),

@@ -27,6 +27,9 @@ library(pdftools)
 
 createRezeptursammlungUI <- function(id) {
   tagList(
+    
+    actionBttn(NS(id,"neue_rzs"), "interne Rezeptursammlung erstellen",style = "fill", color = "danger", size = "s", block = T),
+    tags$br(),
     fileInput(NS(id, "file"), 
               label = h4("interne Sammlung",
                          tags$style(type = "text/css", "#q1 {vertical-align: top;}"),
@@ -37,7 +40,8 @@ createRezeptursammlungUI <- function(id) {
               content = paste0("lade deine eigene Sammlung an Rezepturen, Herstellungshinweise und Verdrängungsfaktoren als zip Ordner hoch. Haben Sie noch keine Sammlung? Dann klicken Sie auf erstellen"
               ),
               placement = "right", 
-              trigger = "focus")
+              trigger = "focus"),
+    
   )
 }
 
@@ -46,18 +50,35 @@ createRezeptursammlungUI <- function(id) {
 
 createRezeptursammlungServer <- function(id) {
   moduleServer(id, function(input, output, session) {
-
+    
+    datapath <- reactiveVal()
+    
+    observeEvent(input$neue_rzs, {
+      datapath("./data/interne_Rezeptursammlung_3.zip")
+    })
+    
+    observeEvent(input$file,{
+      datapath(input$file$datapath)
+    })
+    
     #readin interne Rezeptursammlung
     interne_Rezeptursammlung <- reactive({
-       req(input$file)
-       dataSet <- zip2dataSet(input$file$datapath, filenr = 1)
+      req(datapath())
+       dataSet <- zip2dataSet(datapath(), filenr = 1)
        dataSet <- adorigin2dataframe(dataSet,2)
        dataSet
       })
+    
+    
+    interne_Herstellungshinweise <- reactive({
+      req(datapath())
+      dataSet <- zip2dataSet(datapath(), filenr = 2, header=F, sep = ";")
+      dataSet
+    })
 
     #merge juniormed with interne if uploaded
     rezeptursammlung <- reactive({
-      if (!is.null(input$file)) {
+      if (!is.null(datapath())) {
         rezeptursammlung_Jun <- read.csv("./Rezeptursammlung.txt", header=FALSE, sep=";")
         rezeptursammlung_Jun <- adorigin2dataframe(rezeptursammlung_Jun,1)
         dataSet <- rbind(interne_Rezeptursammlung(), rezeptursammlung_Jun)
@@ -70,7 +91,9 @@ createRezeptursammlungServer <- function(id) {
     #return rezeptursammlung_dataset and datapath
     list(
       rezeptursammlung = reactive(rezeptursammlung()),
-      datapath = reactive(input$file$datapath)
+      datapath = reactive(datapath()),
+      interne_Rezeptursammlung = reactive(interne_Rezeptursammlung()),
+      interne_Herstellungshinweise = reactive(interne_Herstellungshinweise())
     )
 
   })

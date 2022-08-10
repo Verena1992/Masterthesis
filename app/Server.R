@@ -32,20 +32,11 @@ server <- function(input, output, session) {
   
   #1 uploads
   #1.1. interne Sammlung
-  
+  #1.1.1. Rezeptursammlung Zusammensetzung +   #1.1.2. Herstellungshinweise
   rz <- createRezeptursammlungServer("jun_and_int")
   
-  #1.1.1. Rezeptursammlung Zusammensetzung
-  interne_Rezeptursammlung <- reactive({
-    dataSet <- zip2dataSet(rz$datapath(), filenr = 1)
-    dataSet
-  })
   
-  #1.1.2. Herstellungshinweise
-  interne_Herstellungshinweise <- reactive({
-    dataSet <- zip2dataSet(rz$datapath(), filenr = 2, header=F, sep = ";")
-    dataSet
-  })
+
   
   #1.1.3. Verdrängungsfaktoren
   data_Verdrän <- reactive({
@@ -71,18 +62,22 @@ server <- function(input, output, session) {
   
   #3.1.Rezeptursammlung Zusammensetzung
   updated_Rezeptur_Zusam <- reactive({
+  #  browser()
     new_Rezeptur_Zusam <- new_Rezeptur_Zusam$Substanzen()
-    interne_Rezeptursammlung <- interne_Rezeptursammlung()
+    interne_Rezeptursammlung <- rz$interne_Rezeptursammlung()[,-3]
+   # interne_Rezeptursammlung <- interne_Rezeptursammlung()
     titel <- rep(new_Herstellungshinweis()[1], length(new_Rezeptur_Zusam))
     new_Rezeptur_Zusam_df <- cbind(titel, new_Rezeptur_Zusam)
     colnames(new_Rezeptur_Zusam_df) <- c("V1", "V2")
     updated_Rezeptur_Zusam <- rbind(interne_Rezeptursammlung, new_Rezeptur_Zusam_df)
   })
   
+  
   #3.2.Herstellungshinweise
   updated_Herstellungshinweise <- reactive({
     new_Herstellungshinweis <- new_Herstellungshinweis()
-    interne_Herstellungshinweise <- interne_Herstellungshinweise()
+    interne_Herstellungshinweise <- rz$interne_Herstellungshinweise()
+    #interne_Herstellungshinweise <- interne_Herstellungshinweise()
     titel <- c("Titel", "Herstellungshinweise", "Quelle", "Dosierung",
                "Haltbarkeit", "Lagerung", "Anwendung")
     colnames(interne_Herstellungshinweise) <- titel
@@ -126,21 +121,27 @@ server <- function(input, output, session) {
   
   output$download_newRezeptur <- downloadHandler(
     filename = 'interene_Rezepturen.zip',
+   
     content = function(fname) {
       tmpdir <- tempdir()
+      interne_Herstellungshinweise <- rz$interne_Herstellungshinweise()
+      titel <- c("Titel", "Herstellungshinweise", "Quelle", "Dosierung",
+                 "Haltbarkeit", "Lagerung", "Anwendung")
+      colnames(interne_Herstellungshinweise) <- titel
       setwd(tempdir())
       
       
       fs <- c("Rezeptur_Zusa", "Herstellungshinweise", "Verdrängungsfaktoren")
       if (rezepturhinweiseServer("textAreas")[1] == ""){
-       # browser()
-        vroom::vroom_write(interne_Rezeptursammlung(), 
+        browser()
+      #  vroom::vroom_write(interne_Rezeptursammlung(), 
+       #                    "Rezeptur_Zusa", delim = "\t")
+        vroom::vroom_write(rz$interne_Rezeptursammlung()[,-3], 
                            "Rezeptur_Zusa", delim = "\t")
-        interne_Herstellungshinweise <- interne_Herstellungshinweise()
-        titel <- c("Titel", "Herstellungshinweise", "Quelle", "Dosierung",
-                   "Haltbarkeit", "Lagerung", "Anwendung")
-        colnames(interne_Herstellungshinweise) <- titel
+        
+      
         vroom::vroom_write(interne_Herstellungshinweise[-1,], 
+       # vroom::vroom_write(interne_Herstellungshinweise[-1,], 
                            "Herstellungshinweise", delim = ";")
       } else {
        # browser()
@@ -174,7 +175,6 @@ server <- function(input, output, session) {
   
   
   output$selectizeInput01 <- renderUI({
-    
     selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = rz$rezeptursammlung()$V2, multiple = TRUE,
                    options = list(placeholder = "wähle Substanzen aus"))
   })
@@ -182,7 +182,6 @@ server <- function(input, output, session) {
   
   Bestandteile <- reactive({
    # if(!is.null(input$zusammensetzungRezep)){
-     # browser()
     Bestandteile_ex <- foundRezepturenButtonServer("button",input$zusammensetzungRezep, rz$rezeptursammlung(), rz$datapath())
   #  }
   })
