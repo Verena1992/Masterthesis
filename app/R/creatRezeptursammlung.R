@@ -53,12 +53,18 @@ createRezeptursammlungServer <- function(id) {
     
     datapath <- reactiveVal()
     
+ 
+    
     observeEvent(input$neue_rzs, {
       datapath("./data/interne_Rezeptursammlung_3.zip")
+      #shinyjs::toggleState("file")
+      #browser()
+      hide("file")
     })
     
     observeEvent(input$file,{
       datapath(input$file$datapath)
+      hide("neue_rzs")
     })
     
     #readin interne Rezeptursammlung

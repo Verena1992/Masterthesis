@@ -133,7 +133,7 @@ server <- function(input, output, session) {
       
       fs <- c("Rezeptur_Zusa", "Herstellungshinweise", "Verdrängungsfaktoren")
       if (rezepturhinweiseServer("textAreas")[1] == ""){
-        browser()
+       
       #  vroom::vroom_write(interne_Rezeptursammlung(), 
        #                    "Rezeptur_Zusa", delim = "\t")
         vroom::vroom_write(rz$interne_Rezeptursammlung()[,-3], 
