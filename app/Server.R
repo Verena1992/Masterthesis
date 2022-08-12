@@ -183,6 +183,7 @@ server <- function(input, output, session) {
   Bestandteile <- reactive({
    # if(!is.null(input$zusammensetzungRezep)){
     Bestandteile_ex <- foundRezepturenButtonServer("button",input$zusammensetzungRezep, rz$rezeptursammlung(), rz$datapath())
+    
   #  }
   })
     
@@ -262,9 +263,24 @@ server <- function(input, output, session) {
   
   observe({
     Bestandteile <- Bestandteile()
-      erstattungscheckServer("ec", taxe_eko, Bestandteile())
+     # erstattungscheckServer("ec", taxe_eko, Bestandteile())
+      
+      esc <-  erstattungscheckServer("ec", taxe_eko, Bestandteile())
+      output$enf <- renderText({
+        esc$element_not_found()
+      })
+      
+      # observeEvent(esc$reset_button(),{
+      #   browser()
+      #   reset("selectizeInput01")
+      #   
+      # })
   })
   
+
+  #esc <-  erstattungscheckServer("ec", taxe_eko, Bestandteile())
+  
+
   
 #--------------------------------------------------------------------------
   

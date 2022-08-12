@@ -19,11 +19,14 @@ library(pdftools)
 
 erstattungscheckUI <- function(id) {
   tagList(
+    actionBttn(NS(id, "reset"), "Reset"),
+    tags$hr(),
     selectizeInput(NS(id,"zusammensetzung_arzneitaxe"), "Zusammensetzung der Rezeptur",choices = NULL, multiple = TRUE,
                    options = list(create = TRUE,placeholder = "wähle Substanzen aus")), 
     tableOutput(NS(id,"länge")),
-    textOutput(NS(id, "enf"))
-   # uiOutput(NS(id,"selectizeInput01"))
+    
+   # textOutput(NS(id, "enf"))
+
   )
 
 }
@@ -43,27 +46,34 @@ erstattungscheckServer <- function(id, taxe_eko, Bestandteile) {
         sub_taxe
     })
     
-    #box <- reactiveVal("grün")
-  # observe({
-  #   req(Bestandteile)
-  #   req(input$zusammensetzung_arzneitaxe)
-  #   if(!is.null(element_not_found())){
-  #   showNotification(paste("Substanz:/n",element_not_found(), "wurde in Arzneitaxe nicht gefunden"), duration = NULL, type= "warning")
-  #   }
-  # })
+
     
-   element_not_found <- reactive({
-     #browser()
-     req(Bestandteile)
-     req(input$zusammensetzung_arzneitaxe)
-     #Box <- c()
-     if (length(input$zusammensetzung_arzneitaxe) != length(Bestandteile)){
-       
-       #the command setdiff(list.a, list.b) finds the non-overlapping elements only 
-       #if these elements are contained in the object that is used as the first argument
-       
-       element_not_found <- setdiff(Bestandteile, input$zusammensetzung_arzneitaxe)
-     }
+   # element_not_found <- reactive({
+   #   req(Bestandteile)
+   #   req(input$zusammensetzung_arzneitaxe)
+   #   if (length(input$zusammensetzung_arzneitaxe) != length(Bestandteile)){
+   #     #the command setdiff(list.a, list.b) finds the non-overlapping elements only 
+   #     #if these elements are contained in the object that is used as the first argument
+   #     element_not_found <- setdiff(Bestandteile, input$zusammensetzung_arzneitaxe)
+   #     
+   #   }
+     
+     element_not_found <- eventReactive(input$reset,{
+       req(Bestandteile)
+       req(input$zusammensetzung_arzneitaxe)
+       if (length(input$zusammensetzung_arzneitaxe) != length(Bestandteile)){
+         #the command setdiff(list.a, list.b) finds the non-overlapping elements only 
+         #if these elements are contained in the object that is used as the first argument
+         element_not_found <- setdiff(Bestandteile, input$zusammensetzung_arzneitaxe)
+         
+       }
+     
+     
+    # observeEvent(input$reset,{
+    #   element_not_found <- c()
+    # })
+     
+     
    #  for (i in input$zusammensetzung_arzneitaxe){
        
    # print(i)
@@ -80,15 +90,32 @@ erstattungscheckServer <- function(id, taxe_eko, Bestandteile) {
     # }
    })
     
-   output$enf <- renderText({
-     element_not_found()
-   })
+   # output$enf <- renderText({
+   #   element_not_found()
+   # })
    
     
     output$länge <- renderTable({
       sub_taxe()
-  #    browser()
     })
+    
+    
+    observeEvent(input$reset,{
+      # browser()
+      reset("zusammensetzung_arzneitaxe")
+     # Bestandteile <- NULL
+    })
+    
+    #btn <- reactive(input$reset)
+    #return rezeptursammlung_dataset and datapath
+    list(
+      element_not_found = reactive(element_not_found())
+      # = reactive(btn()))
+    #  rezeptursammlung = reactive(rezeptursammlung()),
+
+    )
+ 
+    
   })
 }
 

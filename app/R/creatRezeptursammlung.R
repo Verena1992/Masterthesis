@@ -56,7 +56,7 @@ createRezeptursammlungServer <- function(id) {
  
     
     observeEvent(input$neue_rzs, {
-      datapath("./data/interne_Rezeptursammlung_3.zip")
+      datapath("./data/interne_Rezeptursammlung_leer.zip")
       #shinyjs::toggleState("file")
       #browser()
       hide("file")
