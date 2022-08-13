@@ -276,6 +276,10 @@ server <- function(input, output, session) {
       #   reset("selectizeInput01")
       #   
       # })
+      output$eng <- renderText({
+        esc$not_green()
+      })
+      outputOptions(output, "eng", suspendWhenHidden = FALSE)
   })
   observeEvent(input$reset_ec,{
     # print(input$reset_ec)

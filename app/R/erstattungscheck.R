@@ -46,7 +46,14 @@ erstattungscheckServer <- function(id, taxe_eko, Bestandteile) {
         sub_taxe
     })
     
-  #element_not_green <- react
+  element_not_green <- reactive({
+    #juniormed_pagenr[which(juniormed_pagenr$JUN == JUN),]$unlist.url_JUN.
+    #subtaxe()[which(subtaxe() != "grün"),]$
+    element_not_green <- sub_taxe()[which(sub_taxe()$box != "grün"),]$wirkstoffe_arzneitaxe
+    #sub_taxe()[which(sub_taxe()$box != "grün"),]
+    #numlines <- sub_taxe()
+   # browser()
+  })
     
    # element_not_found <- reactive({
    #   req(Bestandteile)
@@ -110,7 +117,7 @@ erstattungscheckServer <- function(id, taxe_eko, Bestandteile) {
     #return rezeptursammlung_dataset and datapath
     list(
       element_not_found = reactive(element_not_found()), 
-      input = reactive(input$zusammensetzung_arzneitaxe)
+      not_green = reactive(element_not_green())
       # = reactive(btn()))
     #  rezeptursammlung = reactive(rezeptursammlung()),
 

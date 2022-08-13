@@ -117,11 +117,18 @@ ui_Erstattungscheck <- tabPanel(title = "Erstattungscheck", value = "Erstattungs
                                 erstattungscheckUI("ec")), 
                                   column(6,
                                   conditionalPanel(condition = "output.enf", 
-                                    wellPanel(
+                                    wellPanel(style = "background: yellow",
                                       tags$h2("Achtung!"),
-                                      tags$h4("von ausgewählter Rezezptur nicht eingebene Substanz(en)"), 
+                                      tags$h4("von der ausgewählter Rezeptur wurden folgende Substanz(en) nicht gefunden:"), 
                                       textOutput("enf")
-                                    ))
+                                    )),
+                                  conditionalPanel(condition = "output.eng",
+                                    wellPanel(style = "background: red",
+                                      textOutput("eng")
+                                    )    
+                                                   
+                                                   )
+                                  
                                   )
                                 ))
 )
