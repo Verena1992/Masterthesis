@@ -194,7 +194,7 @@ server <- function(input, output, session) {
   
     output$erstattungscheck <- renderUI({
       Bestandteile <- Bestandteile()
-      
+      print(Bestandteile)
       if (!is.null(Bestandteile())){
        # browser()
       box <- erstattungsstatus()
@@ -269,7 +269,8 @@ server <- function(input, output, session) {
       output$enf <- renderText({
         esc$element_not_found()
       })
-      
+      #https://github.com/rstudio/shiny/issues/1318
+      outputOptions(output, "enf", suspendWhenHidden = FALSE)
       # observeEvent(esc$reset_button(),{
       #   browser()
       #   reset("selectizeInput01")
@@ -282,6 +283,7 @@ server <- function(input, output, session) {
     
   })
 
+  
   #esc <-  erstattungscheckServer("ec", taxe_eko, Bestandteile())
   
 

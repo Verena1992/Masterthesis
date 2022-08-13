@@ -46,7 +46,7 @@ erstattungscheckServer <- function(id, taxe_eko, Bestandteile) {
         sub_taxe
     })
     
-
+  #element_not_green <- react
     
    # element_not_found <- reactive({
    #   req(Bestandteile)
@@ -101,7 +101,7 @@ erstattungscheckServer <- function(id, taxe_eko, Bestandteile) {
     
     
     observeEvent(input$reset,{
-      # browser()
+      print(input$reset)
       reset("zusammensetzung_arzneitaxe")
      # Bestandteile <- NULL
     })
@@ -109,7 +109,8 @@ erstattungscheckServer <- function(id, taxe_eko, Bestandteile) {
     #btn <- reactive(input$reset)
     #return rezeptursammlung_dataset and datapath
     list(
-      element_not_found = reactive(element_not_found())
+      element_not_found = reactive(element_not_found()), 
+      input = reactive(input$zusammensetzung_arzneitaxe)
       # = reactive(btn()))
     #  rezeptursammlung = reactive(rezeptursammlung()),
 

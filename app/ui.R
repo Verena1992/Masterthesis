@@ -106,15 +106,24 @@ ui_Rezepturhinzufügen <- tabPanel(title = "neue Herstellungsanweisung", value =
 
 ui_Erstattungscheck <- tabPanel(title = "Erstattungscheck", value = "Erstattungscheck",
                                 fluidPage(
+                                
                                 titlePanel("Erstattungscheck"), 
                                 tags$hr(),
+                                
+                                fluidRow(
+                                  column(5,
                                 actionBttn("reset_ec", "Reset ausgewählte Rezeptur"),
                                 #tags$hr(),
-                                erstattungscheckUI("ec"), 
-                                
-                                wellPanel(tags$h4("nicht gefundene Substanz"), 
-                                textOutput("enf"))
-                                )
+                                erstattungscheckUI("ec")), 
+                                  column(6,
+                                  conditionalPanel(condition = "output.enf", 
+                                    wellPanel(
+                                      tags$h2("Achtung!"),
+                                      tags$h4("von ausgewählter Rezezptur nicht eingebene Substanz(en)"), 
+                                      textOutput("enf")
+                                    ))
+                                  )
+                                ))
 )
 
 
