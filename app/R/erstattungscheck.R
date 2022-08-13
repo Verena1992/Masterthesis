@@ -58,7 +58,7 @@ erstattungscheckServer <- function(id, taxe_eko, Bestandteile) {
    #     
    #   }
      
-     element_not_found <- eventReactive(input$reset,{
+     element_not_found <- reactive({
        req(Bestandteile)
        req(input$zusammensetzung_arzneitaxe)
        if (length(input$zusammensetzung_arzneitaxe) != length(Bestandteile)){

@@ -276,7 +276,11 @@ server <- function(input, output, session) {
       #   
       # })
   })
-  
+  observeEvent(input$reset_ec,{
+    # print(input$reset_ec)
+    reset("selectizeInput01")
+    
+  })
 
   #esc <-  erstattungscheckServer("ec", taxe_eko, Bestandteile())
   

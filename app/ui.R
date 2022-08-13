@@ -108,12 +108,14 @@ ui_Erstattungscheck <- tabPanel(title = "Erstattungscheck", value = "Erstattungs
                                 fluidPage(
                                 titlePanel("Erstattungscheck"), 
                                 tags$hr(),
-                                #actionBttn("reset", "Reset"),
+                                actionBttn("reset_ec", "Reset ausgewählte Rezeptur"),
                                 #tags$hr(),
                                 erstattungscheckUI("ec"), 
                                 
-                                textOutput("enf")
-                                ))
+                                wellPanel(tags$h4("nicht gefundene Substanz"), 
+                                textOutput("enf"))
+                                )
+)
 
 
 
