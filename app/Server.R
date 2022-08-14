@@ -201,10 +201,25 @@ server <- function(input, output, session) {
         } else {
           big_red_button("erstattungsfähigkeit", "Achtung! Kontrolliere Erstattungsfähigkeit der ausgewählten Rezeptur")
         }
-      
+        
       
       }
     })
+    
+    output$kompatibilität <- renderUI({
+      Bestandteile <- Bestandteile()
+      if (!is.null(Bestandteile())){
+        Salbengrundlage <- c("Ultrasicc (R)", "Ultraphil (R)", "Ultrabas (R)", "Ultralip (R)")
+        
+        if(!is_empty(intersect(Salbengrundlage, Bestandteile()))){
+          #browser()
+          big_yellow_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen")
+          
+        }
+      }
+    })
+    
+   
   
     observeEvent(input$erstattungsfähigkeit, {
       updateTabsetPanel(session, "inTabset",

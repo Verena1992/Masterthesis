@@ -59,7 +59,9 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                       tags$h3("NRF"),
                                       actionButton("NRF_online", "NRF online suchen"),
                                       tags$hr(),
-                                      uiOutput("erstattungscheck")
+                                      uiOutput("erstattungscheck"), 
+                                      tags$hr(),
+                                      uiOutput("kompatibilität")
                                       
                                     ),
                                     
@@ -254,11 +256,13 @@ ui_Suppositorien_Rechner <- tabPanel("Hartfettmengenrechner",
                        
 )
 
+ui_Kombatibilitätscheck <- tabPanel("Kombatibilitätscheck",) 
+
 #ui <- auth0_ui(navbarPage("My Application
 ui <- navbarPage("My Application", id = "inTabset", ui_Home,
                  navbarMenu("Rezeptursammlung",ui_Rezeptursammlung, ui_neue_Zusammensetzung_Rezeptur, ui_Rezepturhinzufügen ),
                  ui_Erstattungscheck,
                  navbarMenu("Suppositorien", ui_Suppositorien_Rechner, ui_Suppositorien_gespeichert),
-                 ui_Rezeptpflichtcheck)
+                 ui_Rezeptpflichtcheck, ui_Kombatibilitätscheck)
 
 

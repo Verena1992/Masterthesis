@@ -10,7 +10,7 @@ library(shinyjs)
 library(purrr)
 library(shinyBS)
 library(pdftools)
-#load_libraries()
+
 
 #taxe_eko <- readRDS("./data/Arzneitaxe/Arzneitaxe_eko.rds")
 #??? wenn bei rezeptursammlung mit einer Substanz gesucht wird auf button geklickt und dann nochmals mit die selbe Substanz eingegeben bleibt 
@@ -23,7 +23,7 @@ erstattungscheckUI <- function(id) {
     actionBttn(NS(id, "reset"), "Reset"),
     tags$hr(),
     selectizeInput(NS(id,"zusammensetzung_arzneitaxe"), "Zusammensetzung der Rezeptur",choices = NULL, multiple = TRUE,
-                   options = list(create = TRUE,placeholder = "wähle Substanzen aus")), 
+                   options = list(create = FALSE,placeholder = "wähle Substanzen aus")), 
     tableOutput(NS(id,"länge")),
     
    # textOutput(NS(id, "enf"))
