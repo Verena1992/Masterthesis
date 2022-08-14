@@ -1,5 +1,5 @@
 #--------------------------------------------------------------------------
-load_libraries()
+#load_libraries()
 
 library(shiny)
 library(readr)
@@ -116,18 +116,24 @@ ui_Erstattungscheck <- tabPanel(title = "Erstattungscheck", value = "Erstattungs
                                 #tags$hr(),
                                 erstattungscheckUI("ec")), 
                                   column(6,
+                                         conditionalPanel(condition = "output.eng",
+                                                          wellPanel(style = "background: red",
+                                                                    tags$h3("Achtung!"),
+                                                                    tags$h5("folgende Substanz(en) befinden sich nicht in der grünen Box:"),
+                                                                    tags$h2(textOutput("eng"))
+                                                          )    
+                                                          
+                                         ),
                                   conditionalPanel(condition = "output.enf", 
                                     wellPanel(style = "background: yellow",
-                                      tags$h2("Achtung!"),
-                                      tags$h4("von der ausgewählter Rezeptur wurden folgende Substanz(en) nicht gefunden:"), 
-                                      textOutput("enf")
-                                    )),
-                                  conditionalPanel(condition = "output.eng",
-                                    wellPanel(style = "background: red",
-                                      textOutput("eng")
-                                    )    
-                                                   
-                                                   )
+                                      tags$h3("Achtung!"),
+                                      tags$h5("von der ausgewählter Rezeptur wurden folgende Substanz(en) nicht gefunden:"), 
+                                      tags$hr(),
+                                      tags$h2(textOutput("enf")), 
+                                      tags$hr(),
+                                      tags$h6("Kontrolliere ob ein Synonym in der Arzneitaxe gelistet ist!")
+                                    ))
+                              
                                   
                                   )
                                 ))
@@ -248,7 +254,7 @@ ui_Suppositorien_Rechner <- tabPanel("Hartfettmengenrechner",
                        
 )
 
-
+#ui <- auth0_ui(navbarPage("My Application
 ui <- navbarPage("My Application", id = "inTabset", ui_Home,
                  navbarMenu("Rezeptursammlung",ui_Rezeptursammlung, ui_neue_Zusammensetzung_Rezeptur, ui_Rezepturhinzufügen ),
                  ui_Erstattungscheck,

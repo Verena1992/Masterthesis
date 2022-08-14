@@ -10,6 +10,7 @@ library(shinyjs)
 library(purrr)
 library(shinyBS)
 library(pdftools)
+#load_libraries()
 
 #taxe_eko <- readRDS("./data/Arzneitaxe/Arzneitaxe_eko.rds")
 #??? wenn bei rezeptursammlung mit einer Substanz gesucht wird auf button geklickt und dann nochmals mit die selbe Substanz eingegeben bleibt 

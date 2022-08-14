@@ -1,6 +1,4 @@
 #--------------------------------------------------------------------------
-load_libraries()
-
 library(shiny)
 library(readr)
 library(vroom)
@@ -23,7 +21,7 @@ Wirkstoff <- c()
 Verdrängungsfaktor <- c()
 
 
-
+#server <- auth0_server(function(input, output, session)
 server <- function(input, output, session) {
 
   
@@ -271,11 +269,7 @@ server <- function(input, output, session) {
       })
       #https://github.com/rstudio/shiny/issues/1318
       outputOptions(output, "enf", suspendWhenHidden = FALSE)
-      # observeEvent(esc$reset_button(),{
-      #   browser()
-      #   reset("selectizeInput01")
-      #   
-      # })
+
       output$eng <- renderText({
         esc$not_green()
       })

@@ -18,7 +18,7 @@ library(shinyjs)
 library(purrr)
 library(shinyBS)
 library(pdftools)
-
+#load_libraries()
 
 
 

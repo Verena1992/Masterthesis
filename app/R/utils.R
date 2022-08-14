@@ -1,17 +1,17 @@
-load_libraries <- function() {
-  library(shiny)
-  library(readr)
-  library(vroom)
-  library(dplyr)
-  library(shinyalert)
-  library(auth0)
-  library(shinyWidgets)
-  library(shinyFiles)
-  library(shinyjs)
-  library(purrr)
-  library(shinyBS)
-  library(pdftools)
-}
+# load_libraries <- function() {
+#   library(shiny)
+#   library(readr)
+#   library(vroom)
+#   library(dplyr)
+#   library(shinyalert)
+#   library(auth0)
+#   library(shinyWidgets)
+#   library(shinyFiles)
+#   library(shinyjs)
+#   library(purrr)
+#   library(shinyBS)
+#   library(pdftools)
+# }
 
 
 zip2dataSet <- function(datapath, filenr, header=T, sep = "\t") {

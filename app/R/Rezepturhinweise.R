@@ -1,6 +1,6 @@
 
 #01/07/2022 takes user textinput about "Rezepturhinweise" and returns a dataframe with the new Information  
-#library(purrr)
+library(purrr)
 library(shiny)
 library(readr)
 library(vroom)
@@ -13,7 +13,7 @@ library(shinyjs)
 library(purrr)
 library(shinyBS)
 library(pdftools)
-
+#load_libraries()
 
 
 
