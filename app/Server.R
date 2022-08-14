@@ -210,12 +210,21 @@ server <- function(input, output, session) {
       Bestandteile <- Bestandteile()
       if (!is.null(Bestandteile())){
         Salbengrundlage <- c("Ultrasicc (R)", "Ultraphil (R)", "Ultrabas (R)", "Ultralip (R)")
-        
         if(!is_empty(intersect(Salbengrundlage, Bestandteile()))){
-          #browser()
           big_yellow_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen")
-          
         }
+      }
+    })
+    
+    output$hartfettberechnen <- renderUI({
+      Bestandteile <- Bestandteile()
+      if (!is.null(Bestandteile())){
+        
+        if(is.element("Hartfett", Bestandteile())){
+          big_yellow_button("hartfettberechner", "Hartfettmenge der ausgewählten Rezeptur prüfen")
+         
+        }
+        
       }
     })
     
@@ -224,6 +233,11 @@ server <- function(input, output, session) {
     observeEvent(input$erstattungsfähigkeit, {
       updateTabsetPanel(session, "inTabset",
                         selected = "Erstattungscheck")
+    })
+    
+    observeEvent(input$hartfettberechner, {
+      updateTabsetPanel(session, "inTabset",
+                        selected = "Hartfettmengenrechner")
     })
   
 #--------------------------------------------------------------------------

@@ -61,7 +61,8 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                       tags$hr(),
                                       uiOutput("erstattungscheck"), 
                                       tags$hr(),
-                                      uiOutput("kompatibilität")
+                                      uiOutput("kompatibilität"), 
+                                      uiOutput("hartfettberechnen")
                                       
                                     ),
                                     
@@ -158,7 +159,7 @@ ui_Rezeptpflichtcheck <- tabPanel(title = "Rezeptpflichtcheck", value = "Rezeptp
 ui_Suppositorien_gespeichert <- tabPanel("Dosierungcheck",)
 
 
-ui_Suppositorien_Rechner <- tabPanel("Hartfettmengenrechner", 
+ui_Suppositorien_Rechner <- tabPanel("Hartfettmengenrechner", value = "Hartfettmengenrechner",
                              fluidPage(
                               # titlePanel("Hartfettmengenrechner"),
                               # tags$hr(),
@@ -256,7 +257,7 @@ ui_Suppositorien_Rechner <- tabPanel("Hartfettmengenrechner",
                        
 )
 
-ui_Kombatibilitätscheck <- tabPanel("Kombatibilitätscheck",) 
+ui_Kombatibilitätscheck <- tabPanel("Kombatibilitätscheck", value = "Kombatibilitätscheck",) 
 
 #ui <- auth0_ui(navbarPage("My Application
 ui <- navbarPage("My Application", id = "inTabset", ui_Home,
