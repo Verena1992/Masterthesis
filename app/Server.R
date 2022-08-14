@@ -239,6 +239,12 @@ server <- function(input, output, session) {
       updateTabsetPanel(session, "inTabset",
                         selected = "Hartfettmengenrechner")
     })
+    
+    observeEvent(input$kompatibilitätscheck, {
+      updateTabsetPanel(session, "inTabset",
+                        selected = "Kombatibilitätscheck")
+    })
+    
   
 #--------------------------------------------------------------------------
   
@@ -318,9 +324,17 @@ server <- function(input, output, session) {
 #--------------------------------------------------------------------------
   
   
+#Kombatibilitätscheck---------------------------------------------------------
+  
+  observe({
+    Bestandteile <- Bestandteile()
+    kompatibilitätscheckServer("Salbenfibel", Bestandteile())
+  })
   
   
   
+  
+ #--------------------------------------------------------------------------  
   observe({
     #req(rz$datapath())
     dataSet <- data_Verdrän()

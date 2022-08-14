@@ -256,8 +256,15 @@ ui_Suppositorien_Rechner <- tabPanel("Hartfettmengenrechner", value = "Hartfettm
                              )
                        
 )
-
-ui_Kombatibilitätscheck <- tabPanel("Kombatibilitätscheck", value = "Kombatibilitätscheck",) 
+#Kombatibilitätscheck---------------------------------------------------------
+ui_Kombatibilitätscheck <- tabPanel("Kombatibilitätscheck", value = "Kombatibilitätscheck",
+                                    fluidPage(
+                                      
+                                      titlePanel("Kombatibilitätscheck"), 
+                                      tags$hr(),
+                                      kompatibilitätscheckUI("Salbenfibel"),
+                                    )
+                                    ) 
 
 #ui <- auth0_ui(navbarPage("My Application
 ui <- navbarPage("My Application", id = "inTabset", ui_Home,

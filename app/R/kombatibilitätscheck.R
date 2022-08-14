@@ -19,18 +19,18 @@ kompatibilitätscheckUI <- function(id) {
                    options = list(create = FALSE,placeholder = "Salbengrundlage")),
     selectizeInput(NS(id,"Wirksubstanz"), "wähle Wirksubstanzen oder Adjuvantien aus",choices = NULL, multiple = TRUE,
                     options = list(create = FALSE,placeholder = "Salbengrundlage")),
-   # Substanzauswahl()
+   
   )
 }
 
-kompatibilitätscheckServer <- function(id) {
+kompatibilitätscheckServer <- function(id, Bestandteile) {
   moduleServer(
     id,
     function(input, output, session) {
       physikalische.Stabilität <- read.delim("./data/Salbenfibel/physikalische Stabilität.txt", header=FALSE)
       #Salbengrundlage <- c("Ultrasicc", "Ultraphil", "Ultrabas", "Ultralip")
-      updateSelectizeInput(session, inputId = 'Salbengrundlage', choices = physikalische.Stabilität$V1, selected = NULL, server = TRUE)
-      updateSelectizeInput(session, inputId = 'Wirksubstanz', choices = physikalische.Stabilität$V2, selected = NULL, server = TRUE)
+      updateSelectizeInput(session, inputId = 'Salbengrundlage', choices = physikalische.Stabilität$V1, selected = Bestandteile, server = TRUE)
+      updateSelectizeInput(session, inputId = 'Wirksubstanz', choices = physikalische.Stabilität$V2, selected = Bestandteile, server = TRUE)
     }, 
     
     
@@ -38,14 +38,16 @@ kompatibilitätscheckServer <- function(id) {
 }
 
 #Test module:
-
+# 
 # KombatibilitätscheckApp <- function() {
 # ui <- fluidPage(
 #   kompatibilitätscheckUI("Salbenfibel")
 # )
 # 
 # server <- function(input, output, session) {
-#   kompatibilitätscheckServer("Salbenfibel")
+#   Bestandteile <- c("Zinkoxid", "Ultrasicc (R)")
+#   kompatibilitätscheckServer("Salbenfibel", Bestandteile)
+#   
 # 
 # }
 # 
