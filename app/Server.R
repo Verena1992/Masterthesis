@@ -213,7 +213,7 @@ server <- function(input, output, session) {
       if (!is.null(Bestandteile())){
         
         if(is.element("Hartfett", Bestandteile())){
-          big_yellow_button("hartfettberechner", "Hartfettmenge der ausgewählten Rezeptur prüfen")
+          big_yellow_button("hartfettberechner", "Hartfettmenge der ausgewählten Rezeptur berechnen")
          
         }
         
@@ -543,7 +543,11 @@ server <- function(input, output, session) {
   })
 #-------------------------------------------------------------------------------------------
 
-     
+#bedenkliche Stoffe-------------------------------------------------------------------------
+  
+  bedenklichStServer("arzneimittelkommission")
+  
+#-----------------------------------------------------------------------------------
 
 }
 

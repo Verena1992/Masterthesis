@@ -277,12 +277,21 @@ ui_Kombatibilitätscheck <- tabPanel("Kompatibilitätscheck", value = "Kombatibi
                                                        ))))
                                     )
                                     ) 
+#bedenkliche Stoffe---------------------------------------------------------
+
+ui_bedenkliche_Stoffe <- tabPanel("bedenkliche Stoffe", value = "bedenkliche Stoffe",
+                                  fluidPage(
+                                    titlePanel("Bedenkliche Rezepturarzneimittel"), 
+                                    tags$hr(),
+                                    bedenklichStUI("arzneimittelkommission"),
+                                  )
+                                  )
 
 #ui <- auth0_ui(navbarPage("My Application
 ui <- navbarPage("My Application", id = "inTabset", ui_Home,
                  navbarMenu("Rezeptursammlung",ui_Rezeptursammlung, ui_neue_Zusammensetzung_Rezeptur, ui_Rezepturhinzufügen ),
                  ui_Erstattungscheck,
                  navbarMenu("Suppositorien", ui_Suppositorien_Rechner, ui_Suppositorien_gespeichert),
-                 ui_Rezeptpflichtcheck, ui_Kombatibilitätscheck)
+                 ui_Rezeptpflichtcheck, ui_Kombatibilitätscheck, ui_bedenkliche_Stoffe)
 
 

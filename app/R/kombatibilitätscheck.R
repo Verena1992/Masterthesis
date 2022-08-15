@@ -109,29 +109,29 @@ kompatibilitätscheckServer <- function(id, Bestandteile) {
     })
 }
 
-#Test module:
-
-KombatibilitätscheckApp <- function() {
-ui <- fluidPage(
-  kompatibilitätscheckUI("Salbenfibel"),
-  textOutput("kc"), 
-  textOutput("komp")
-)
-
-server <- function(input, output, session) {
-  #Bestandteile <- c("Zinkoxid", "Ultrasicc (R)", "blabla")
-  #Bestandteile <- c("Ultralip (R)", "Dexpanthenol")
-  Bestandteile <- c("Ultrasicc (R)", "Milchsäure")
-  kc <- kompatibilitätscheckServer("Salbenfibel", Bestandteile)
-  output$kc <- renderText({
-    kc$element_kompatibel()
-  })
-  output$komp <- renderText({
-    kc$kompatibel()
-  })
-
-
-}
-
-shinyApp(ui, server)}
-KombatibilitätscheckApp()
+# #Test module:
+# 
+# KombatibilitätscheckApp <- function() {
+# ui <- fluidPage(
+#   kompatibilitätscheckUI("Salbenfibel"),
+#   textOutput("kc"), 
+#   textOutput("komp")
+# )
+# 
+# server <- function(input, output, session) {
+#   #Bestandteile <- c("Zinkoxid", "Ultrasicc (R)", "blabla")
+#   #Bestandteile <- c("Ultralip (R)", "Dexpanthenol")
+#   Bestandteile <- c("Ultrasicc (R)", "Milchsäure")
+#   kc <- kompatibilitätscheckServer("Salbenfibel", Bestandteile)
+#   output$kc <- renderText({
+#     kc$element_kompatibel()
+#   })
+#   output$komp <- renderText({
+#     kc$kompatibel()
+#   })
+# 
+# 
+# }
+# 
+# shinyApp(ui, server)}
+# KombatibilitätscheckApp()
