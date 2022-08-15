@@ -260,9 +260,10 @@ ui_Suppositorien_Rechner <- tabPanel("Hartfettmengenrechner", value = "Hartfettm
 ui_Kombatibilitätscheck <- tabPanel("Kompatibilitätscheck", value = "Kombatibilitätscheck",
                                     fluidPage(
                                       
-                                      titlePanel("Kombatibilitätscheck"), 
+                                      titlePanel("Kompatibilitätscheck"), 
                                       tags$hr(),
                                       kompatibilitätscheckUI("Salbenfibel"),
+                                      textOutput("kc")
                                     )
                                     ) 
 

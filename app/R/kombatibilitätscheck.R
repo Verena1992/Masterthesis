@@ -63,40 +63,42 @@ kompatibilitätscheckServer <- function(id, Bestandteile) {
     
     element_not_found <- reactive({
       req(Bestandteile)
-      req(input$Salbengrundlage | input$Wirksubstanz)
-      browser()
+   
       if (sum(length(input$Salbengrundlage),length(input$Wirksubstanz)) != length(Bestandteile)){
         #the command setdiff(list.a, list.b) finds the non-overlapping elements only 
         #if these elements are contained in the object that is used as the first argument
-      #  browser()
-        element_not_found <- setdiff(Bestandteile, input$zusammensetzung_arzneitaxe)
+        element_not_found <- setdiff(Bestandteile, c(input$Salbengrundlage, input$Wirksubstanz))
       }
       })
     
-    #list(
-     # element_not_found = reactive(element_not_found()), 
+    list(
+      element_not_found = reactive(element_not_found()) 
       #not_green = reactive(element_not_green())
       # = reactive(btn()))
       #  rezeptursammlung = reactive(rezeptursammlung()),
       
-    #)
+    )
     
     })
 }
 
 #Test module:
 
-KombatibilitätscheckApp <- function() {
-ui <- fluidPage(
-  kompatibilitätscheckUI("Salbenfibel")
-)
-
-server <- function(input, output, session) {
-  Bestandteile <- c("Zinkoxid", "Ultrasicc (R)", "blabla")
-  kompatibilitätscheckServer("Salbenfibel", Bestandteile)
-
-
-}
-
-shinyApp(ui, server)}
-KombatibilitätscheckApp()
+# KombatibilitätscheckApp <- function() {
+# ui <- fluidPage(
+#   kompatibilitätscheckUI("Salbenfibel"),
+#   textOutput("kc")
+# )
+# 
+# server <- function(input, output, session) {
+#   Bestandteile <- c("Zinkoxid", "Ultrasicc (R)", "blabla")
+#   kc <- kompatibilitätscheckServer("Salbenfibel", Bestandteile)
+#   output$kc <- renderText({
+#     kc$element_not_found()
+#   })
+#   
+# 
+# }
+# 
+# shinyApp(ui, server)}
+# KombatibilitätscheckApp()

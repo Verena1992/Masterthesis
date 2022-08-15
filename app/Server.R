@@ -310,10 +310,10 @@ server <- function(input, output, session) {
       })
       outputOptions(output, "eng", suspendWhenHidden = FALSE)
   })
+  
   observeEvent(input$reset_ec,{
     # print(input$reset_ec)
     reset("selectizeInput01")
-    
   })
 
   
@@ -328,11 +328,20 @@ server <- function(input, output, session) {
   
   observe({
     Bestandteile <- Bestandteile()
-    kompatibilitätscheckServer("Salbenfibel", Bestandteile())
+    kc <- kompatibilitätscheckServer("Salbenfibel", Bestandteile())
+    
+    
+    output$kc <- renderText({
+      kc$element_not_found()
+    })
   })
   
+ # kc <- kompatibilitätscheckServer("Salbenfibel", isolate(Bestandteile()))
   
   
+#  output$kc <- renderText({
+#        kc$element_not_found()
+#      })
   
  #--------------------------------------------------------------------------  
   observe({
