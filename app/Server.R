@@ -206,15 +206,7 @@ server <- function(input, output, session) {
       }
     })
     
-    output$kompatibilität <- renderUI({
-      Bestandteile <- Bestandteile()
-      if (!is.null(Bestandteile())){
-        Salbengrundlage <- c("Ultrasicc (R)", "Ultraphil (R)", "Ultrabas (R)", "Ultralip (R)")
-        if(!is_empty(intersect(Salbengrundlage, Bestandteile()))){
-          big_yellow_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen")
-        }
-      }
-    })
+ 
     
     output$hartfettberechnen <- renderUI({
       Bestandteile <- Bestandteile()
@@ -330,6 +322,17 @@ server <- function(input, output, session) {
     Bestandteile <- Bestandteile()
     kc <- kompatibilitätscheckServer("Salbenfibel", Bestandteile())
     
+    output$kompatibilität <- renderUI({
+      Bestandteile <- Bestandteile()
+      if (!is.null(Bestandteile())){
+        Salbengrundlage <- c("Ultrasicc (R)", "Ultraphil (R)", "Ultrabas (R)", "Ultralip (R)")
+        if(!is_empty(intersect(Salbengrundlage, Bestandteile()))){
+          #browser()
+          if(!is.null(kc$element_not_found()))
+            big_yellow_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen")
+        }
+      }
+    })
     
     output$kc <- renderText({
       kc$element_not_found()
