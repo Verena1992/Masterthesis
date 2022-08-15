@@ -327,21 +327,38 @@ server <- function(input, output, session) {
       if (!is.null(Bestandteile())){
         Salbengrundlage <- c("Ultrasicc (R)", "Ultraphil (R)", "Ultrabas (R)", "Ultralip (R)")
         if(!is_empty(intersect(Salbengrundlage, Bestandteile()))){
-        #  browser()
+         # browser()
           if(!is_empty(kc$element_not_kompatibel())){
             big_red_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen")
           }
           else if (!is.null(kc$element_not_found())){
-            big_yellow_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen")}
-         
+            big_yellow_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen")
+            
+           
+            }
+          
+          else if (kc$kompatibel() == TRUE){
+            big_green_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen")
+          } else {
+            big_yellow_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen")
+          }
+       
             
         }
+
       }
     })
     
-    output$kc <- renderText({
+    output$enf_kc <- renderText({
       kc$element_not_found()
     })
+    
+    outputOptions(output, "enf_kc", suspendWhenHidden = FALSE)
+    
+    
+   # output$kc <- renderText({
+  #    kc$element_not_found()
+ #   })
   })
   
  # kc <- kompatibilitätscheckServer("Salbenfibel", isolate(Bestandteile()))

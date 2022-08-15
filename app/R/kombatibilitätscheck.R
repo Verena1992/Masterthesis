@@ -73,16 +73,34 @@ kompatibilitätscheckServer <- function(id, Bestandteile) {
     
     
     element_not_kompatibel <- reactive({
-  
-      element_not_kompatibel <- sub_physika_Stabil()[which(sub_physika_Stabil()$Mischbarkeit == "inkompatibel"),]$Substanz
-      
-       #browser()
+      element_not_kompatibel_ph <- sub_physika_Stabil()[which(sub_physika_Stabil()$Mischbarkeit == "inkompatibel"),]$Substanz
+      element_not_kompatibel_ch <- sub_chemi_Stabil()[which(sub_chemi_Stabil()$Mischbarkeit == "inkompatibel"),]$Substanz
+      element_not_kompatibel <- unique(c(element_not_kompatibel_ph,  element_not_kompatibel_ch))
+      element_not_kompatibel
+      # browser()
     })
+    
+    element_kompatibel <- reactive({
+      element_kompatibel_ph <- sub_physika_Stabil()[which(sub_physika_Stabil()$Mischbarkeit == "kompatibel"),]$Substanz
+      element_kompatibel_ch <- sub_chemi_Stabil()[which(sub_chemi_Stabil()$Mischbarkeit == "chemisch stabil"),]$Substanz
+      element_kompatibel <- c(element_kompatibel_ph,  element_kompatibel_ch)
+      element_kompatibel
+      # browser()
+    })
+    
+    kompatibel <- reactive({
+     # browser()
+      length(element_kompatibel()) == sum(nrow(sub_physika_Stabil()),nrow(sub_chemi_Stabil()))
+    })
+    
+    
     
     
     list(
       element_not_found = reactive(element_not_found()),
-      element_not_kompatibel = reactive(element_not_kompatibel())
+      element_not_kompatibel = reactive(element_not_kompatibel()),
+      element_kompatibel = reactive(element_kompatibel()),
+      kompatibel = reactive(kompatibel())
       # = reactive(btn()))
       #  rezeptursammlung = reactive(rezeptursammlung()),
       
@@ -93,22 +111,27 @@ kompatibilitätscheckServer <- function(id, Bestandteile) {
 
 #Test module:
 
-# KombatibilitätscheckApp <- function() {
-# ui <- fluidPage(
-#   kompatibilitätscheckUI("Salbenfibel"),
-#   textOutput("kc")
-# )
-# 
-# server <- function(input, output, session) {
-#   Bestandteile <- c("Zinkoxid", "Ultrasicc (R)", "blabla")
-#   #Bestandteile <- c("Ultralip (R)", "Dexpanthenol")
-#   kc <- kompatibilitätscheckServer("Salbenfibel", Bestandteile)
-#   output$kc <- renderText({
-#     kc$element_not_kompatibel()
-#   })
-# 
-# 
-# }
-# 
-# shinyApp(ui, server)}
-# KombatibilitätscheckApp()
+KombatibilitätscheckApp <- function() {
+ui <- fluidPage(
+  kompatibilitätscheckUI("Salbenfibel"),
+  textOutput("kc"), 
+  textOutput("komp")
+)
+
+server <- function(input, output, session) {
+  #Bestandteile <- c("Zinkoxid", "Ultrasicc (R)", "blabla")
+  #Bestandteile <- c("Ultralip (R)", "Dexpanthenol")
+  Bestandteile <- c("Ultrasicc (R)", "Milchsäure")
+  kc <- kompatibilitätscheckServer("Salbenfibel", Bestandteile)
+  output$kc <- renderText({
+    kc$element_kompatibel()
+  })
+  output$komp <- renderText({
+    kc$kompatibel()
+  })
+
+
+}
+
+shinyApp(ui, server)}
+KombatibilitätscheckApp()

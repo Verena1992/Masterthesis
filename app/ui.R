@@ -263,7 +263,16 @@ ui_Kombatibilitätscheck <- tabPanel("Kompatibilitätscheck", value = "Kombatibi
                                       titlePanel("Kompatibilitätscheck"), 
                                       tags$hr(),
                                       kompatibilitätscheckUI("Salbenfibel"),
-                                      textOutput("kc")
+                                      textOutput("kc"),
+                                      conditionalPanel(condition = "output.enf_kc", 
+                                                       wellPanel(style = "background: yellow",
+                                                                 tags$h3("Achtung!"),
+                                                                 tags$h5("von der ausgewählter Rezeptur wurden folgende Substanz(en) nicht gefunden:"), 
+                                                                 tags$hr(),
+                                                                 tags$h2(textOutput("enf_kc")), 
+                                                                 tags$hr(),
+                                                                 tags$h6("Kontrolliere ob ein Synonym gelistet ist!")
+                                                       ))
                                     )
                                     ) 
 
