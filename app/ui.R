@@ -259,11 +259,13 @@ ui_Suppositorien_Rechner <- tabPanel("Hartfettmengenrechner", value = "Hartfettm
 #Kombatibilitätscheck---------------------------------------------------------
 ui_Kombatibilitätscheck <- tabPanel("Kompatibilitätscheck", value = "Kombatibilitätscheck",
                                     fluidPage(
-                                      
                                       titlePanel("Kompatibilitätscheck"), 
                                       tags$hr(),
+                                      fluidRow(
+                                        column(7,
                                       kompatibilitätscheckUI("Salbenfibel"),
-                                      textOutput("kc"),
+                                      textOutput("kc")),
+                                        column(5,
                                       conditionalPanel(condition = "output.enf_kc", 
                                                        wellPanel(style = "background: yellow",
                                                                  tags$h3("Achtung!"),
@@ -272,7 +274,7 @@ ui_Kombatibilitätscheck <- tabPanel("Kompatibilitätscheck", value = "Kombatibi
                                                                  tags$h2(textOutput("enf_kc")), 
                                                                  tags$hr(),
                                                                  tags$h6("Kontrolliere ob ein Synonym gelistet ist!")
-                                                       ))
+                                                       ))))
                                     )
                                     ) 
 
