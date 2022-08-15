@@ -327,9 +327,14 @@ server <- function(input, output, session) {
       if (!is.null(Bestandteile())){
         Salbengrundlage <- c("Ultrasicc (R)", "Ultraphil (R)", "Ultrabas (R)", "Ultralip (R)")
         if(!is_empty(intersect(Salbengrundlage, Bestandteile()))){
-          #browser()
-          if(!is.null(kc$element_not_found()))
-            big_yellow_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen")
+        #  browser()
+          if(!is_empty(kc$element_not_kompatibel())){
+            big_red_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen")
+          }
+          else if (!is.null(kc$element_not_found())){
+            big_yellow_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen")}
+         
+            
         }
       }
     })

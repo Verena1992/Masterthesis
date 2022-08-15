@@ -71,9 +71,18 @@ kompatibilitätscheckServer <- function(id, Bestandteile) {
       }
       })
     
+    
+    element_not_kompatibel <- reactive({
+  
+      element_not_kompatibel <- sub_physika_Stabil()[which(sub_physika_Stabil()$Mischbarkeit == "inkompatibel"),]$Substanz
+      
+       #browser()
+    })
+    
+    
     list(
-      element_not_found = reactive(element_not_found()) 
-      #not_green = reactive(element_not_green())
+      element_not_found = reactive(element_not_found()),
+      element_not_kompatibel = reactive(element_not_kompatibel())
       # = reactive(btn()))
       #  rezeptursammlung = reactive(rezeptursammlung()),
       
@@ -92,11 +101,12 @@ kompatibilitätscheckServer <- function(id, Bestandteile) {
 # 
 # server <- function(input, output, session) {
 #   Bestandteile <- c("Zinkoxid", "Ultrasicc (R)", "blabla")
+#   #Bestandteile <- c("Ultralip (R)", "Dexpanthenol")
 #   kc <- kompatibilitätscheckServer("Salbenfibel", Bestandteile)
 #   output$kc <- renderText({
-#     kc$element_not_found()
+#     kc$element_not_kompatibel()
 #   })
-#   
+# 
 # 
 # }
 # 
