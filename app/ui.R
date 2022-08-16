@@ -55,15 +55,18 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                   sidebarLayout(
                                     
                                     sidebarPanel(
-                                      uiOutput("selectizeInput01"),
+                                      selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = NULL, multiple = TRUE,
+                                                     options = list(placeholder = "wähle Substanzen aus")),
+                                      #uiOutput("selectizeInput01"),
                                       tags$h3("NRF"),
                                       actionButton("NRF_online", "NRF online suchen"),
                                       tags$hr(),
                                       uiOutput("erstattungscheck"), 
                                       tags$hr(),
                                       uiOutput("kompatibilität"), 
-                                      uiOutput("hartfettberechnen")
-                                      
+                                      uiOutput("hartfettberechnen"), 
+                                      uiOutput("bedenklicher_Stoff"),
+                                      textOutput("bs")
                                     ),
                                     
                                     mainPanel(

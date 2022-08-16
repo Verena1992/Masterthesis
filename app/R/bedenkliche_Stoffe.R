@@ -19,37 +19,59 @@ bedenklichStUI <- function(id) {
   )
 }
 
-bedenklichStServer <- function(id) {
+bedenklichStServer <- function(id, Rezepturzusammensetzung) {
   moduleServer(
     id,
     function(input, output, session) {
       
       bedenkliche_St <- read.delim("./data/bedenkliche_Substanzen/bedenkliche_St.txt")
       
-      output$mytable = DT::renderDataTable({
-        bedenkliche_St
+      #https://github.com/rstudio/DT/issues/902
+      output$mytable <- DT::renderDataTable({
+        if(is_empty(bedenkliche_Substanz())){
+         # browser()
+          bedenkliche_St
+        } else {
+        bedenkliche_St  %>%
+          DT::datatable(
+        options = list(search = list(search = bedenkliche_Substanz()), searchHighlight = TRUE)
+        )}
       })
       
+      bedenkliche_Substanz <- reactive({
+        #browser()
+        #is.element(Rezepturzusammensetzung, bedenkliche_St$Stoffe)
+        bedenkliche_Substanz <- intersect(Rezepturzusammensetzung(), bedenkliche_St$Stoffe)
+        bedenkliche_Substanz
+      })
+      
+      list(
+        bedenkliche_Substanz = reactive(bedenkliche_Substanz()) 
+      )
+      
+
     }
   )
 }
 
-
-#Test module:
-
-bedenklichStApp <- function() {
-ui <- fluidPage(
-  bedenklichStUI("arzneimittelkommission"),
-)
-
-server <- function(input, output, session) {
-
-  
-  bedenklichStServer("arzneimittelkommission")
-
-
-
-}
-
-shinyApp(ui, server)}
-bedenklichStApp()
+# 
+# #Test module:
+# 
+# bedenklichStApp <- function() {
+# ui <- fluidPage(
+#   bedenklichStUI("arzneimittelkommission"),
+#   textOutput("bs")
+# )
+# 
+# server <- function(input, output, session) {
+# 
+#   Rezepturzusammensetzung <- c("Amygdalin", "irge")
+#  # Rezepturzusammensetzung <- c()
+#   bs <- bedenklichStServer("arzneimittelkommission", Rezepturzusammensetzung)
+#   output$bs <- renderText({
+#          bs$bedenkliche_Substanz()
+#        })
+# }
+# 
+# shinyApp(ui, server)}
+# bedenklichStApp()

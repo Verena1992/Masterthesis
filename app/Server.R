@@ -172,17 +172,16 @@ server <- function(input, output, session) {
   
   
   
-  output$selectizeInput01 <- renderUI({
-    selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = rz$rezeptursammlung()$V2, multiple = TRUE,
-                   options = list(placeholder = "wähle Substanzen aus"))
+  # output$selectizeInput01 <- renderUI({
+  #   selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = rz$rezeptursammlung()$V2, multiple = TRUE,
+  #                  options = list(placeholder = "wähle Substanzen aus"))
+  # })
+  observe({
+  updateSelectizeInput(session, inputId = "zusammensetzungRezep", choices = rz$rezeptursammlung()$V2 ,server = TRUE)
   })
   
-  
   Bestandteile <- reactive({
-   # if(!is.null(input$zusammensetzungRezep)){
     Bestandteile_ex <- foundRezepturenButtonServer("button",input$zusammensetzungRezep, rz$rezeptursammlung(), rz$datapath())
-    
-  #  }
   })
     
     erstattungsstatus <- reactive({
@@ -201,8 +200,6 @@ server <- function(input, output, session) {
         } else {
           big_red_button("erstattungsfähigkeit", "Achtung! Kontrolliere Erstattungsfähigkeit der ausgewählten Rezeptur")
         }
-        
-      
       }
     })
     
@@ -219,6 +216,26 @@ server <- function(input, output, session) {
         
       }
     })
+    
+  bs <- bedenklichStServer("arzneimittelkommission", Rezepturzusammensetzung = reactive(input$zusammensetzungRezep))
+  
+  # output$bs <- renderText({
+  #            bs$bedenkliche_Substanz()
+  #          })
+  
+  
+     
+      #Bestandteile <- Bestandteile()
+      #bs <- bedenklichStServer("arzneimittelkommission", Bestandteile())
+      
+        output$bedenklicher_Stoff <- renderUI({
+          if (!is_empty(bs$bedenkliche_Substanz())){
+        #browser()
+            big_red_button("bedenklich", "ein bedenklicher Stoff wurde eingegeben!!")
+          }
+        })
+      
+    
     
    
   
@@ -333,8 +350,6 @@ server <- function(input, output, session) {
           }
           else if (!is.null(kc$element_not_found())){
             big_yellow_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen")
-            
-           
             }
           
           else if (kc$kompatibel() == TRUE){
@@ -342,8 +357,6 @@ server <- function(input, output, session) {
           } else {
             big_yellow_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen")
           }
-       
-            
         }
 
       }
@@ -544,8 +557,9 @@ server <- function(input, output, session) {
 #-------------------------------------------------------------------------------------------
 
 #bedenkliche Stoffe-------------------------------------------------------------------------
-  
-  bedenklichStServer("arzneimittelkommission")
+
+
+
   
 #-----------------------------------------------------------------------------------
 
