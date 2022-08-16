@@ -217,20 +217,10 @@ server <- function(input, output, session) {
       }
     })
     
-  bs <- bedenklichStServer("arzneimittelkommission", Rezepturzusammensetzung = reactive(input$zusammensetzungRezep))
   
-  # output$bs <- renderText({
-  #            bs$bedenkliche_Substanz()
-  #          })
-  
-  
-     
-      #Bestandteile <- Bestandteile()
-      #bs <- bedenklichStServer("arzneimittelkommission", Bestandteile())
       
         output$bedenklicher_Stoff <- renderUI({
           if (!is_empty(bs$bedenkliche_Substanz())){
-        #browser()
             big_red_button("bedenklich", "ein bedenklicher Stoff wurde eingegeben!!")
           }
         })
@@ -252,6 +242,11 @@ server <- function(input, output, session) {
     observeEvent(input$kompatibilitätscheck, {
       updateTabsetPanel(session, "inTabset",
                         selected = "Kombatibilitätscheck")
+    })
+    
+    observeEvent(input$bedenklich, {
+      updateTabsetPanel(session, "inTabset",
+                        selected = "bedenkliche Stoffe")
     })
     
   
@@ -558,8 +553,9 @@ server <- function(input, output, session) {
 
 #bedenkliche Stoffe-------------------------------------------------------------------------
 
-
-
+#https://stackoverflow.com/questions/54677043/unable-to-pass-user-inputs-into-r-shiny-modules
+#when passing global user input to a shiny module. It seems it will "break" the reactivity. You can fix this my explicitly passing in a reactive object. 
+bs <- bedenklichStServer("arzneimittelkommission", Rezepturzusammensetzung = reactive(input$zusammensetzungRezep))
   
 #-----------------------------------------------------------------------------------
 
