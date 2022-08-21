@@ -303,7 +303,11 @@ ui_Dosierungscheck <- tabPanel("Dosierungscheck", value = "Dosierungscheck",
                                   fluidPage(
                                     titlePanel("Dosierung der Wirkstoffe zur Lokalanwendung"), 
                                     tags$hr(),
-                                    dosierungUI("dosierung")
+                                    dosierungUI("dosierung"), 
+                                    conditionalPanel(condition = "output.limits",
+                                    wellPanel(style = "background: red",
+                                     #         tags$h3("Achtung!"),
+                                    textOutput("limits")))
                                     
                                   )
 )

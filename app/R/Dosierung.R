@@ -17,15 +17,19 @@ library(ggplot2)
 dosierungUI <- function(id) {
   #ns <- NS(id)
   tagList(
+    fluidPage(
+      fluidRow(
+        column(3,
+    wellPanel(
     numericInput(NS(id,"Mengeinsgesamt"), "insgesamt Herzustellende Menge", value = 100, min = 0, max = 1000, step = 1),
     #https://github.com/rstudio/shiny/issues/1182
     selectizeInput(NS(id,"zusammensetzung_arzneitaxe"), "Zusammensetzung der Rezeptur",choices = NULL, multiple = TRUE,
                    options = list(placeholder = "wähle Substanzen aus", maxItems = 1)), 
-    numericInput(NS(id,"Menge_Substanz1"), "Menge der zu prüfende Substanz (g)", value = NULL, min = 0, max = 1, step = 0.01), 
-    
-    plotOutput(NS(id, "plot"), width = "53%", height = "100px"), 
-    
-    tableOutput(NS(id, "table"))
+    numericInput(NS(id,"Menge_Substanz1"), "Menge der zu prüfende Substanz (g)", value = NULL, min = 0, max = 1, step = 0.01))), 
+    column(9,
+    plotOutput(NS(id, "plot"), width = "100%", height = "120px"), 
+    tags$hr(),
+    tableOutput(NS(id, "table")))))
   )
 }
 

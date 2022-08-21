@@ -577,8 +577,35 @@ observe({
           # browser()
             big_yellow_button("dosierung", "Dosierung der ausgewählten Rezeptur prüfen")
         }}
+    })
         
+      output$limits <- renderText({
+        req(ds$not_within_con())
+      #  ds$not_within_con()
+        if(ds$not_within_con()){
+          "Achtung!"
+        }
       })
+      outputOptions(output, "limits", suspendWhenHidden = FALSE)
+     # })
+    
+    
+    
+    
+    
+    
+    # if(ds$not_within_con()){
+    #   browser()
+    #   output$limits <- renderText({
+    #     "ljkl"
+    #   })
+    #   outputOptions(output, "limits", suspendWhenHidden = FALSE)
+    # }
+    # output$limits <- renderText({
+    #   ds$not_within_con()
+    # })
+    # 
+    # outputOptions(output, "enf_kc", suspendWhenHidden = FALSE)
     
 })
 
