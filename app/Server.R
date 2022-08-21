@@ -249,6 +249,10 @@ server <- function(input, output, session) {
                         selected = "bedenkliche Stoffe")
     })
     
+    observeEvent(input$dosierung, {
+      updateTabsetPanel(session, "inTabset",
+                        selected = "Dosierungscheck")
+    })
   
 #--------------------------------------------------------------------------
   
@@ -564,6 +568,18 @@ bs <- bedenklichStServer("arzneimittelkommission", Rezepturzusammensetzung = rea
 observe({
     Bestandteile <- Bestandteile()
     ds <- dosierungServer("dosierung", Bestandteile())
+    
+    output$dosierung <- renderUI({
+      Bestandteile <- Bestandteile()
+      if (!is.null(Bestandteile())){
+        dosierung_lokal <- read.delim2("./data/NRF/Dosierung der Wirkstoffe zur Lokalanwendung.txt", header=FALSE)
+        if(!is_empty(intersect(dosierung_lokal$V1, Bestandteile()))){
+          # browser()
+            big_yellow_button("dosierung", "Dosierung der ausgewählten Rezeptur prüfen")
+        }}
+        
+      })
+    
 })
 
 }

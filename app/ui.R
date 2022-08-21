@@ -72,7 +72,8 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                       uiOutput("kompatibilität"), 
                                       uiOutput("hartfettberechnen"), 
                                       uiOutput("bedenklicher_Stoff"),
-                                      textOutput("bs")
+                                      textOutput("bs"), 
+                                      uiOutput("dosierung")
                                     ),
                                     
                                     mainPanel(
