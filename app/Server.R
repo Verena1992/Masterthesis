@@ -172,13 +172,13 @@ server <- function(input, output, session) {
   
   
   
-  # output$selectizeInput01 <- renderUI({
-  #   selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = rz$rezeptursammlung()$V2, multiple = TRUE,
-  #                  options = list(placeholder = "wähle Substanzen aus"))
-  # })
-  observe({
-  updateSelectizeInput(session, inputId = "zusammensetzungRezep", choices = rz$rezeptursammlung()$V2 ,server = TRUE)
+  output$selectizeInput01 <- renderUI({
+    selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = rz$rezeptursammlung()$V2, multiple = TRUE,
+                   options = list(placeholder = "wähle Substanzen aus"))
   })
+  # observe({
+  # updateSelectizeInput(session, inputId = "zusammensetzungRezep", choices = rz$rezeptursammlung()$V2 ,server = TRUE)
+  # })
   
   Bestandteile <- reactive({
     Bestandteile_ex <- foundRezepturenButtonServer("button",input$zusammensetzungRezep, rz$rezeptursammlung(), rz$datapath())
@@ -299,9 +299,6 @@ server <- function(input, output, session) {
   
 # Erstattungscheck---------------------------------------------------
   
-
-  
-  
   observe({
     Bestandteile <- Bestandteile()
      # erstattungscheckServer("ec", taxe_eko, Bestandteile())
@@ -320,7 +317,6 @@ server <- function(input, output, session) {
   })
   
   observeEvent(input$reset_ec,{
-    # print(input$reset_ec)
     reset("selectizeInput01")
   })
 
@@ -587,6 +583,7 @@ observe({
         }
       })
       outputOptions(output, "limits", suspendWhenHidden = FALSE)
+      
      # })
     
     

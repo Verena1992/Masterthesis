@@ -61,9 +61,9 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                   sidebarLayout(
                                     
                                     sidebarPanel(
-                                      selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = NULL, multiple = TRUE,
-                                                     options = list(placeholder = "wähle Substanzen aus")),
-                                      #uiOutput("selectizeInput01"),
+                                     # selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = NULL, multiple = TRUE,
+                                    #                 options = list(placeholder = "wähle Substanzen aus")),
+                                      uiOutput("selectizeInput01"),
                                       tags$h3("NRF"),
                                       actionButton("NRF_online", "NRF online suchen"),
                                       tags$hr(),

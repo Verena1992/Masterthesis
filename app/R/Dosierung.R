@@ -23,11 +23,11 @@ dosierungUI <- function(id) {
     wellPanel(
     numericInput(NS(id,"Mengeinsgesamt"), "insgesamt Herzustellende Menge", value = 100, min = 0, max = 1000, step = 1),
     #https://github.com/rstudio/shiny/issues/1182
-    selectizeInput(NS(id,"zusammensetzung_arzneitaxe"), "Zusammensetzung der Rezeptur",choices = NULL, multiple = TRUE,
+    selectizeInput(NS(id,"arzneitaxe"), "Zusammensetzung der Rezeptur",choices = NULL, multiple = TRUE,
                    options = list(placeholder = "wähle Substanzen aus", maxItems = 1)), 
     numericInput(NS(id,"Menge_Substanz1"), "Menge der zu prüfende Substanz (g)", value = NULL, min = 0, max = 1, step = 0.01))), 
     column(9,
-    plotOutput(NS(id, "plot"), width = "100%", height = "120px"), 
+    plotOutput(NS(id, "plot"), width = "100%", height = "120px", click = NS(id,"arzneitaxe")), 
     tags$hr(),
     tableOutput(NS(id, "table")))))
   )
@@ -38,7 +38,7 @@ dosierungServer <- function(id, Bestandteile) {
     id,
     function(input, output, session) {
       dosierung_lokal <- read.delim2("./data/NRF/Dosierung der Wirkstoffe zur Lokalanwendung.txt", header=FALSE)
-      updateSelectizeInput(session, inputId = 'zusammensetzung_arzneitaxe', choices = dosierung_lokal$V1, selected = Bestandteile, server = TRUE)
+      updateSelectizeInput(session, inputId = "arzneitaxe", choices = dosierung_lokal$V1, selected = Bestandteile, server = TRUE)
     
     
     calc_perce <- reactive({
@@ -56,8 +56,10 @@ dosierungServer <- function(id, Bestandteile) {
       #   geom_point(aes(y=min),size=3,color="red")+
       #   geom_point(aes(y=max),size=3,color="red")+
       #   theme_bw()
-      
-       ggplot(dosierung_lokal[which(dosierung_lokal$V1 == input$zusammensetzung_arzneitaxe),], aes(x=V1))+
+      req(calc_perce())
+      dataSet <- dosierung_lokal[which(dosierung_lokal$V1 == input$arzneitaxe),]
+      #req(dataSet)
+       ggplot(dataSet, aes(x=V1))+
       #  ggplot(dosierung_lokal[which(dosierung_lokal$V1 == "Erythromycin"),], aes(x=V1))+
         geom_linerange(aes(ymin=V3,ymax=V4),linetype=1,color="blue")+
         geom_point(aes(y=V3),shape=15, size=3,color="blue")+
@@ -85,12 +87,13 @@ dosierungServer <- function(id, Bestandteile) {
     })
     
     not_within_con <- reactive({
-      calc_perce()<dosierung_lokal[which(dosierung_lokal$V1 == input$zusammensetzung_arzneitaxe),]$V3 | calc_perce()>dosierung_lokal[which(dosierung_lokal$V1 == input$zusammensetzung_arzneitaxe),]$V4
+      calc_perce()<dosierung_lokal[which(dosierung_lokal$V1 == input$arzneitaxe),]$V3 | calc_perce()>dosierung_lokal[which(dosierung_lokal$V1 == input$arzneitaxe),]$V4
     })
     
     output$table <- renderTable({
       #browser()
-      df <- dosierung_lokal[which(dosierung_lokal$V1 == input$zusammensetzung_arzneitaxe),c(3,4)]
+      req(input$arzneitaxe)
+      df <- dosierung_lokal[which(dosierung_lokal$V1 == input$arzneitaxe),c(3,4)]
       df$V5 <- calc_perce()
       colnames(df) <- c("untere Grenze", "obere Grenze", "Konzentration Rezeptur")
       df
