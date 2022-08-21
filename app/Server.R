@@ -171,9 +171,9 @@ server <- function(input, output, session) {
 # Rezeptursammlung----------------------------------------------------------   
   
   
-  
+  #renderUI needed to reset
   output$selectizeInput01 <- renderUI({
-    selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = rz$rezeptursammlung()$V2, multiple = TRUE,
+    selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = c(rz$rezeptursammlung()$V2,taxe_eko$wirkstoffe_arzneitaxe) , multiple = TRUE,
                    options = list(placeholder = "wähle Substanzen aus"))
   })
   # observe({
@@ -181,7 +181,10 @@ server <- function(input, output, session) {
   # })
   
   Bestandteile <- reactive({
-    Bestandteile_ex <- foundRezepturenButtonServer("button",input$zusammensetzungRezep, rz$rezeptursammlung(), rz$datapath())
+    if(input$rezep_nicht_gefun){
+      Bestandteile_ex <- input$zusammensetzungRezep
+    } else {
+    Bestandteile_ex <- foundRezepturenButtonServer("button",input$zusammensetzungRezep, rz$rezeptursammlung(), rz$datapath())}
   })
     
     erstattungsstatus <- reactive({
@@ -253,6 +256,12 @@ server <- function(input, output, session) {
       updateTabsetPanel(session, "inTabset",
                         selected = "Dosierungscheck")
     })
+    
+    
+    # output$selectizeInput02 <- renderUI({
+    #   selectizeInput("zusammensetzungRezep02", "Zusammensetzung der Rezeptur",choices = taxe_eko$wirkstoffe_arzneitaxe, multiple = TRUE,
+    #                  options = list(placeholder = "wähle Substanzen aus"))
+    # })
   
 #--------------------------------------------------------------------------
   
@@ -301,6 +310,7 @@ server <- function(input, output, session) {
   
   observe({
     Bestandteile <- Bestandteile()
+    
      # erstattungscheckServer("ec", taxe_eko, Bestandteile())
       
       esc <-  erstattungscheckServer("ec", taxe_eko, Bestandteile())

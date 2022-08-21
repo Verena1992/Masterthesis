@@ -63,23 +63,32 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                     sidebarPanel(
                                      # selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = NULL, multiple = TRUE,
                                     #                 options = list(placeholder = "wähle Substanzen aus")),
+                                      #conditionalPanel(condition = "input.rezep_nicht_gefun < 1",
                                       uiOutput("selectizeInput01"),
                                       tags$h3("NRF"),
-                                      actionButton("NRF_online", "NRF online suchen"),
+                                      actionButton("NRF_online", "NRF online suchen", onclick = paste0("window.open('https://dacnrf.pharmazeutische-zeitung.de/dac/nrf-wissen/rezepturenfinder/offen', '_blank')")),
                                       tags$hr(),
                                       uiOutput("erstattungscheck"), 
                                       tags$hr(),
-                                      uiOutput("kompatibilität"), 
-                                      uiOutput("hartfettberechnen"), 
+                                      uiOutput("kompatibilität"),
+                                      tags$hr(),
+                                      uiOutput("hartfettberechnen"),
+                                      tags$hr(),
                                       uiOutput("bedenklicher_Stoff"),
+                                    #  tags$hr(),
                                       textOutput("bs"), 
-                                      uiOutput("dosierung")
+                                      uiOutput("dosierung"), 
+                                      tags$hr(),
+                                      actionBttn("rezep_nicht_gefun", "Rezeptur wurde nicht gefunden")
+                                      #conditionalPanel(condition = "input.rezep_nicht_gefun >= 1",
+                                      
                                     ),
                                     
                                     mainPanel(
-                                      conditionalPanel(condition = "input.NRF_online", 
-                                                      tags$iframe(src="https://dacnrf.pharmazeutische-zeitung.de/dac/nrf-wissen/rezepturenfinder/offen", height=500, width=800)
-                                                      ),
+                                    #  conditionalPanel(condition = "input.NRF_online", 
+                                    #                   tags$h3("Herstellungshinweis wird in einem neuem Fenster geöffnet..")
+                                                      #tags$iframe(src="https://dacnrf.pharmazeutische-zeitung.de/dac/nrf-wissen/rezepturenfinder/offen", height=500, width=800)
+                                    #                  ),
                                               
                                       foundRezepturenButtonUI("button"),
                                     )
