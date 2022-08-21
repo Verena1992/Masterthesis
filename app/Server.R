@@ -558,6 +558,13 @@ server <- function(input, output, session) {
 bs <- bedenklichStServer("arzneimittelkommission", Rezepturzusammensetzung = reactive(input$zusammensetzungRezep))
   
 #-----------------------------------------------------------------------------------
+  
+#dosierung------------------------------------------------------------------------------
+  
+observe({
+    Bestandteile <- Bestandteile()
+    ds <- dosierungServer("dosierung", Bestandteile())
+})
 
 }
 

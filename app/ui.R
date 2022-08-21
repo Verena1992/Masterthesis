@@ -39,7 +39,13 @@ ui_Home <- tabPanel("Home",
                         ),
                     mainPanel(
                     #tags$hr(),
-                    tags$h3("Neue Informationen"),
+                      conditionalPanel(condition = "input.eigeneRezeptur_hinzu < 1",
+                        tags$h1("Willkommen"),
+                      tags$hr(),
+                      img(src='pharmazie.png',height = '172px', width = '200px')),#, align = "right"),  
+                      conditionalPanel(condition = "input.eigeneRezeptur_hinzu",
+                      tags$h3("Neue Informationen")),
+                      
                     tableOutput("new_Herstellungshinweis"),
                     tableOutput("new_Verdrängungsfaktor"),
                       
@@ -289,12 +295,24 @@ ui_bedenkliche_Stoffe <- tabPanel("bedenkliche Stoffe", value = "bedenkliche Sto
                                     bedenklichStUI("arzneimittelkommission"),
                                   )
                                   )
+#Dosierungscheck------------------------------------------------------------------
+
+
+ui_Dosierungscheck <- tabPanel("Dosierungscheck", value = "Dosierungscheck",
+                                  fluidPage(
+                                    titlePanel("Dosierung der Wirkstoffe zur Lokalanwendung"), 
+                                    tags$hr(),
+                                    dosierungUI("dosierung")
+                                    
+                                  )
+)
+
 
 #ui <- auth0_ui(navbarPage("My Application
 ui <- navbarPage("My Application", id = "inTabset", ui_Home,
                  navbarMenu("Rezeptursammlung",ui_Rezeptursammlung, ui_neue_Zusammensetzung_Rezeptur, ui_Rezepturhinzufügen ),
                  ui_Erstattungscheck,
                  navbarMenu("Suppositorien", ui_Suppositorien_Rechner, ui_Suppositorien_gespeichert),
-                 ui_Rezeptpflichtcheck, ui_Kombatibilitätscheck, ui_bedenkliche_Stoffe)
+                 ui_Rezeptpflichtcheck, ui_Kombatibilitätscheck, ui_bedenkliche_Stoffe, ui_Dosierungscheck)
 
 
