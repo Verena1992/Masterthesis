@@ -1,4 +1,5 @@
-#--------------------------------------------------------------------------
+
+# load libraries ----------------------------------------------------------
 library(shiny)
 library(readr)
 library(vroom)
@@ -11,12 +12,15 @@ library(shinyjs)
 library(purrr)
 library(shinyBS)
 library(pdftools)
-#--------------------------------------------------------------------------
+
+
+# load data ---------------------------------------------------------------
 
 rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
 taxe_eko <- readRDS("./data/Arzneitaxe/Arzneitaxe_eko.rds")
 
 
+# generate empty vectors --------------------------------------------------
 Wirkstoff <- c()
 Verdrängungsfaktor <- c()
 
@@ -24,7 +28,6 @@ Verdrängungsfaktor <- c()
 #server <- auth0_server(function(input, output, session)
 server <- function(input, output, session) {
 
-  
 # Home-----------------------------------------------------
 
   
@@ -168,13 +171,16 @@ server <- function(input, output, session) {
   
 
 
+  
+  
+  
 # Rezeptursammlung----------------------------------------------------------   
   
   
   #renderUI needed to reset
   output$selectizeInput01 <- renderUI({
-    selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = c(rz$rezeptursammlung()$V2,taxe_eko$wirkstoffe_arzneitaxe) , multiple = TRUE,
-                   options = list(placeholder = "wähle Substanzen aus"))
+        selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = c(rz$rezeptursammlung()$V2,taxe_eko$wirkstoffe_arzneitaxe) , multiple = TRUE,
+                       options = list(placeholder = "wähle Substanzen aus"))
   })
   # observe({
   # updateSelectizeInput(session, inputId = "zusammensetzungRezep", choices = rz$rezeptursammlung()$V2 ,server = TRUE)
@@ -257,17 +263,17 @@ server <- function(input, output, session) {
                         selected = "Dosierungscheck")
     })
     
+    observeEvent(input$bedenkliche_RZ, {
+      
+      updateTabsetPanel(session, "inTabset",
+                        selected = "bedenkliche Stoffe")
+    })
     
-    # output$selectizeInput02 <- renderUI({
-    #   selectizeInput("zusammensetzungRezep02", "Zusammensetzung der Rezeptur",choices = taxe_eko$wirkstoffe_arzneitaxe, multiple = TRUE,
-    #                  options = list(placeholder = "wähle Substanzen aus"))
-    # })
-  
-#--------------------------------------------------------------------------
-  
+
   
 
-#neue_Zusammensetzung_Rezeptur----------------------------------------------------------------------------------------------------
+    
+# neue_Zusammensetzung_Rezeptur----------------------------------------------------------------------------------------------------
   
   #show tab only if zip file is uploaded
   hideTab("inTabset", "neue_Zusammensetzung_Rezeptur")
@@ -280,10 +286,8 @@ server <- function(input, output, session) {
   #        and if button jump to Herstellungshinweise is clicked
   new_Rezeptur_Zusam <- addRezepturServer("Zusammensetzung", taxe_eko)
   
-#--------------------------------------------------------------------------
-   
-  
-#Rezeptur hinzufügen--------------------------------------------------------------------------------------------- 
+
+# Rezeptur hinzufügen--------------------------------------------------------------------------------------------- 
   
   #show tab only if zip file is uploaded
   hideTab("inTabset", "Rezepturhinzufügen")
@@ -301,11 +305,7 @@ server <- function(input, output, session) {
   new_Herstellungshinweis <- eventReactive(input$eigeneRezeptur_hinzu,{
     rezepturhinweiseServer("textAreas")
   })
-#--------------------------------------------------------------------------
 
-
-  
-  
 # Erstattungscheck---------------------------------------------------
   
   observe({
@@ -335,10 +335,8 @@ server <- function(input, output, session) {
   
 
   
-#--------------------------------------------------------------------------
-  
-  
-#Kombatibilitätscheck---------------------------------------------------------
+
+# Kompatibilitätscheck---------------------------------------------------------
   
   observe({
     Bestandteile <- Bestandteile()
@@ -386,7 +384,8 @@ server <- function(input, output, session) {
 #        kc$element_not_found()
 #      })
   
- #--------------------------------------------------------------------------  
+  
+# Hartfettmengenrechner --------------------------------------------------------------------------  
   observe({
     #req(rz$datapath())
     dataSet <- data_Verdrän()
@@ -548,7 +547,9 @@ server <- function(input, output, session) {
   output$nötige_Substanzmenge3 <- renderText({
     (input$Menge_Substanz3 * input$Stückanzahl)/100 * (input$Überschuss+100)
   })
+
   
+
 # Rezeptpflicht---------------------------------------------------------------------------- 
   
   updateSelectizeInput(session, "WS", choices = rezeptpflicht$Wirkstoff, server = TRUE
@@ -559,17 +560,31 @@ server <- function(input, output, session) {
     Rstatus <- selected_ws$Rstatus
     Rstatus
   })
-#-------------------------------------------------------------------------------------------
 
-#bedenkliche Stoffe-------------------------------------------------------------------------
+# bedenkliche Stoffe-------------------------------------------------------------------------
+  
+bedenkliche_St <- read.delim("./data/bedenkliche_Substanzen/bedenkliche_St.txt")
+
 
 #https://stackoverflow.com/questions/54677043/unable-to-pass-user-inputs-into-r-shiny-modules
 #when passing global user input to a shiny module. It seems it will "break" the reactivity. You can fix this my explicitly passing in a reactive object. 
-bs <- bedenklichStServer("arzneimittelkommission", Rezepturzusammensetzung = reactive(input$zusammensetzungRezep))
+bs <- bedenklichStServer("arzneimittelkommission", Rezepturzusammensetzung = reactive(input$zusammensetzungRezep), bedenkliche_St)
+ 
+    output$bedenklicheSt <- renderUI({
+    Bestandteile <- Bestandteile()
+    if (!is.null(Bestandteile())){
+
+    if(!is_empty(intersect(bedenkliche_St$Stoffe, Bestandteile()))){
+      big_red_button("bedenkliche_RZ", "Rezeptur enthält einen bedenkliche Substanz")
+      
+    }}
+    })
+
   
-#-----------------------------------------------------------------------------------
   
-#dosierung------------------------------------------------------------------------------
+  
+  
+# dosierung------------------------------------------------------------------------------
   
 observe({
     Bestandteile <- Bestandteile()

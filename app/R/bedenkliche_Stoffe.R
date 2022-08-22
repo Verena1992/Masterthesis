@@ -19,12 +19,12 @@ bedenklichStUI <- function(id) {
   )
 }
 
-bedenklichStServer <- function(id, Rezepturzusammensetzung) {
+bedenklichStServer <- function(id, Rezepturzusammensetzung, bedenkliche_St) {
   moduleServer(
     id,
     function(input, output, session) {
       
-      bedenkliche_St <- read.delim("./data/bedenkliche_Substanzen/bedenkliche_St.txt")
+      #bedenkliche_St <- read.delim("./data/bedenkliche_Substanzen/bedenkliche_St.txt")
       
       #https://github.com/rstudio/DT/issues/902
       output$mytable <- DT::renderDataTable({
