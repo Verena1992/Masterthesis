@@ -205,9 +205,13 @@ server <- function(input, output, session) {
        # browser()
       box <- erstattungsstatus()
         if(all(box == "grün") & (length(box) == length(Bestandteile()))){
-          big_green_button("erstattungsfähigkeit", "Erstattungsfähigkeit der ausgewählten Rezeptur prüfen")
+          tagList(
+          tags$hr(),
+          big_green_button("erstattungsfähigkeit", "Erstattungsfähigkeit der ausgewählten Rezeptur prüfen"))
         } else {
-          big_red_button("erstattungsfähigkeit", "Achtung! Kontrolliere Erstattungsfähigkeit der ausgewählten Rezeptur")
+          tagList(
+          tags$hr(),
+          big_red_button("erstattungsfähigkeit", "Achtung! Kontrolliere Erstattungsfähigkeit der ausgewählten Rezeptur"))
         }
       }
     })
@@ -219,7 +223,9 @@ server <- function(input, output, session) {
       if (!is.null(Bestandteile())){
         
         if(is.element("Hartfett", Bestandteile())){
-          big_yellow_button("hartfettberechner", "Hartfettmenge der ausgewählten Rezeptur berechnen")
+          tagList(
+            tags$hr(),
+          big_yellow_button("hartfettberechner", "Hartfettmenge der ausgewählten Rezeptur berechnen"))
          
         }
         
@@ -230,7 +236,9 @@ server <- function(input, output, session) {
       
         output$bedenklicher_Stoff <- renderUI({
           if (!is_empty(bs$bedenkliche_Substanz())){
-            big_red_button("bedenklich", "ein bedenklicher Stoff wurde eingegeben!!")
+            tagList(
+              tags$hr(),
+            big_red_button("bedenklich", "ein bedenklicher Stoff wurde eingegeben!!"))
           }
         })
       
@@ -349,16 +357,24 @@ server <- function(input, output, session) {
         if(!is_empty(intersect(Salbengrundlage, Bestandteile()))){
          # browser()
           if(!is_empty(kc$element_not_kompatibel())){
-            big_red_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen")
+            tagList(
+              tags$hr(),
+            big_red_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen"))
           }
           else if (!is.null(kc$element_not_found())){
-            big_yellow_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen")
+            tagList(
+            tags$hr(),
+            big_yellow_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen"))
             }
           
           else if (kc$kompatibel() == TRUE){
-            big_green_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen")
+            tagList(
+              tags$hr(),
+            big_green_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen"))
           } else {
-            big_yellow_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen")
+            tagList(
+              tags$hr(),
+            big_yellow_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen"))
           }
         }
 
@@ -575,11 +591,16 @@ bs <- bedenklichStServer("arzneimittelkommission", Rezepturzusammensetzung = rea
     if (!is.null(Bestandteile())){
 
     if(!is_empty(intersect(bedenkliche_St$Stoffe, Bestandteile()))){
+      hide("bedenklicher_Stoff")
       bedenk <- intersect(bedenkliche_St$Stoffe, Bestandteile())
       if(length(bedenk) == 1){
-      big_red_button("bedenkliche_RZ", paste0("ausgewählte Rezeptur enthält ",bedenk," als bedenkliche Substanz"))
+        tagList(
+          tags$hr(),
+      big_red_button("bedenkliche_RZ", paste0("ausgewählte Rezeptur enthält ",bedenk," als bedenkliche Substanz")))
       } else {
-        big_red_button("bedenkliche_RZ", paste0("ausgewählte Rezeptur enthält mehrere bedenkliche Substanzen"))
+        tagList(
+          tags$hr(),
+        big_red_button("bedenkliche_RZ", paste0("ausgewählte Rezeptur enthält mehrere bedenkliche Substanzen")))
       }
     }}
     })
@@ -599,8 +620,9 @@ observe({
       if (!is.null(Bestandteile())){
         dosierung_lokal <- read.delim2("./data/NRF/Dosierung der Wirkstoffe zur Lokalanwendung.txt", header=FALSE)
         if(!is_empty(intersect(dosierung_lokal$V1, Bestandteile()))){
-          # browser()
-            big_yellow_button("dosierung", "Dosierung der ausgewählten Rezeptur prüfen")
+            tagList(
+              tags$hr(),
+            big_yellow_button("dosierung", "Dosierung der ausgewählten Rezeptur prüfen"))
         }}
     })
         
