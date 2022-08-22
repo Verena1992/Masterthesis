@@ -24,7 +24,7 @@ taxe_eko <- readRDS("./data/Arzneitaxe/Arzneitaxe_eko.rds")
 Wirkstoff <- c()
 Verdrängungsfaktor <- c()
 
-
+# server------------------------------------------------------------------
 #server <- auth0_server(function(input, output, session)
 server <- function(input, output, session) {
 
@@ -575,8 +575,12 @@ bs <- bedenklichStServer("arzneimittelkommission", Rezepturzusammensetzung = rea
     if (!is.null(Bestandteile())){
 
     if(!is_empty(intersect(bedenkliche_St$Stoffe, Bestandteile()))){
-      big_red_button("bedenkliche_RZ", "Rezeptur enthält einen bedenkliche Substanz")
-      
+      bedenk <- intersect(bedenkliche_St$Stoffe, Bestandteile())
+      if(length(bedenk) == 1){
+      big_red_button("bedenkliche_RZ", paste0("ausgewählte Rezeptur enthält ",bedenk," als bedenkliche Substanz"))
+      } else {
+        big_red_button("bedenkliche_RZ", paste0("ausgewählte Rezeptur enthält mehrere bedenkliche Substanzen"))
+      }
     }}
     })
 
