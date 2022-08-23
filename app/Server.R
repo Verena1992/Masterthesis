@@ -178,13 +178,17 @@ server <- function(input, output, session) {
   
   
   #renderUI needed to reset
-  output$selectizeInput01 <- renderUI({
-        selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = c(rz$rezeptursammlung()$V2,taxe_eko$wirkstoffe_arzneitaxe) , multiple = TRUE,
-                       options = list(placeholder = "wähle Substanzen aus"))
-  })
-  # observe({
-  # updateSelectizeInput(session, inputId = "zusammensetzungRezep", choices = rz$rezeptursammlung()$V2 ,server = TRUE)
-  # })
+  # output$selectizeInput01 <- renderUI({
+  #   browser()
+  #       selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = NULL , multiple = TRUE, options = list(placeholder = "wähle Substanzen aus"),
+  #       )
+  # })#
+  
+   observe({
+     data <- c(rz$rezeptursammlung()$V2,taxe_eko$wirkstoffe_arzneitaxe)
+    updateSelectizeInput(session, inputId = "zusammensetzungRezep", choices = data ,server = TRUE
+                       )
+   })
   
   Bestandteile <- reactive({
     if(input$rezep_nicht_gefun){
@@ -335,7 +339,7 @@ server <- function(input, output, session) {
   })
   
   observeEvent(input$reset_ec,{
-    reset("selectizeInput01")
+    reset("zusammensetzungRezep")
   })
 
   

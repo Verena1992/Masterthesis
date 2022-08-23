@@ -59,10 +59,10 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                   sidebarLayout(
                                     
                                     sidebarPanel(
-                                     # selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = NULL, multiple = TRUE,
-                                    #                 options = list(placeholder = "wähle Substanzen aus")),
+                                      selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = NULL, multiple = TRUE,
+                                                     options = list(placeholder = "wähle Substanzen aus")),
                                       
-                                      uiOutput("selectizeInput01"),
+                                     # uiOutput("selectizeInput01"),
                                       tags$h3("NRF"),
                                       actionButton("NRF_online", "NRF online suchen", onclick = paste0("window.open('https://dacnrf.pharmazeutische-zeitung.de/dac/nrf-wissen/rezepturenfinder/offen', '_blank')")),
                                       uiOutput("erstattungscheck"),
