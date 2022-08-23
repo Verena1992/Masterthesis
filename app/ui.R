@@ -29,10 +29,12 @@ ui_Home <- tabPanel("Home",
                     tags$h2("Uploads"),
                     createRezeptursammlungUI("jun_and_int"),
                     createVerdrängungsfaktorenUI("nrf_and_int"),
-                    tags$h2("Downloads"),
-                    tags$h5("Neue Informationen zur interner Sammlung hinzufügen und herunterladen"),
-                    downloadButton("download_newRezeptur", label = "Download"),
-                    tags$hr(),
+                    
+                    uiOutput("download"),
+                    # tags$h2("Downloads"),
+                    # tags$h5("Neue Informationen zur interner Sammlung hinzufügen und herunterladen"),
+                    # downloadButton("download_newRezeptur", label = "Download"),
+                    # tags$hr(),
                     logoutButton()
                         ),
                     mainPanel(
@@ -306,8 +308,9 @@ ui_Dosierungscheck <- tabPanel("Dosierungscheck", value = "Dosierungscheck",
 )
 
 # UI--------------------------------------------------------------------------------------------
-#ui <- auth0_ui(navbarPage("My Application
-ui <- navbarPage("My Application", id = "inTabset", ui_Home,
+#ui <- auth0_ui(navbarPage("My Application",id = "inTabset", ui_Home,
+ui <- navbarPage("My Application",id = "inTabset", ui_Home,
+
                  navbarMenu("Rezeptursammlung",
                             ui_Rezeptursammlung, ui_neue_Zusammensetzung_Rezeptur, ui_Rezepturhinzufügen),
                  navbarMenu("Rezepturkontrollen",

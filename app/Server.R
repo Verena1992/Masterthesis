@@ -25,7 +25,7 @@ Wirkstoff <- c()
 Verdrängungsfaktor <- c()
 
 # server------------------------------------------------------------------
-#server <- auth0_server(function(input, output, session)
+#server <- auth0_server(function(input, output, session) {
 server <- function(input, output, session) {
 
 # Home-----------------------------------------------------
@@ -129,7 +129,11 @@ server <- function(input, output, session) {
       titel <- c("Titel", "Herstellungshinweise", "Quelle", "Dosierung",
                  "Haltbarkeit", "Lagerung", "Anwendung")
       colnames(interne_Herstellungshinweise) <- titel
-      setwd(tempdir())
+      # temporarily switch to the temp dir, in case you do not have write
+      # permission to the current working directory
+      owd <- setwd(tempdir())
+      on.exit(setwd(owd))
+      #setwd(tempdir())
       
       
       fs <- c("Rezeptur_Zusa", "Herstellungshinweise", "Verdrängungsfaktoren")
@@ -215,7 +219,7 @@ server <- function(input, output, session) {
   
     output$erstattungscheck <- renderUI({
       Bestandteile <- Bestandteile()
-      print(Bestandteile)
+      #print(Bestandteile)
       if (!is.null(Bestandteile())){
        # browser()
       box <- erstattungsstatus()
@@ -302,9 +306,11 @@ server <- function(input, output, session) {
 # neue_Zusammensetzung_Rezeptur----------------------------------------------------------------------------------------------------
   
   #show tab only if zip file is uploaded
+  #hide("download_newRezeptur")
   hideTab("inTabset", "neue_Zusammensetzung_Rezeptur")
   observeEvent(rz$datapath(), {
     showTab("inTabset", "neue_Zusammensetzung_Rezeptur");
+   # show("download_newRezeptur")
   })
 
   
@@ -315,10 +321,20 @@ server <- function(input, output, session) {
 
 # Rezeptur hinzufügen--------------------------------------------------------------------------------------------- 
   
+  output$download <- renderUI({
+    tagList(
+    tags$h2("Downloads"),
+    tags$h5("Neue Informationen zur interner Sammlung hinzufügen und herunterladen"),
+    downloadButton("download_newRezeptur", label = "Download"),
+    tags$hr())
+  })
+  
   #show tab only if zip file is uploaded
+  hide("download")
   hideTab("inTabset", "Rezepturhinzufügen")
   observeEvent(rz$datapath(), {
     showTab("inTabset", "Rezepturhinzufügen")
+    show("download")
   })
   
   #if yellow button in rz-zusammensetzung is clicked jump to this panel
