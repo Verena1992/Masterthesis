@@ -190,10 +190,19 @@ server <- function(input, output, session) {
                        )
    })
   
+  r <- reactiveValues(found = 1)
+  
+  observeEvent(input$rezep_nicht_gefun, {
+    r$found <- 0
+  })
+  
+  observeEvent(input$reset_ec, {
+    r$found <- 1
+  })
   
   
   Bestandteile <- reactive({
-    if(input$rezep_nicht_gefun){
+    if(r$found == 0){
       Bestandteile_ex <- input$zusammensetzungRezep
     } else {
     Bestandteile_ex <- foundRezepturenButtonServer("button",input$zusammensetzungRezep, rz$rezeptursammlung(), rz$datapath())}
