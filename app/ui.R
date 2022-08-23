@@ -73,7 +73,10 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                       textOutput("bs"), 
                                       uiOutput("dosierung"), 
                                       tags$hr(),
-                                      actionBttn("rezep_nicht_gefun", "Rezeptur wurde nicht gefunden")
+                                     
+                                      actionBttn("reset_ec", "Reset ausgewählte Rezeptur",style = "float", color="success" ),
+                                     tags$hr(),
+                                      actionBttn("rezep_nicht_gefun", "Rezeptur wurde nicht gefunden", style = "float", color="success")
                                       #conditionalPanel(condition = "input.rezep_nicht_gefun >= 1",
                                       
                                     ),
@@ -117,7 +120,7 @@ ui_Erstattungscheck <- tabPanel(title = "Erstattungscheck", value = "Erstattungs
                                 
                                 fluidRow(
                                   column(5,
-                                actionBttn("reset_ec", "Reset ausgewählte Rezeptur"),
+                                #actionBttn("reset_ec", "Reset ausgewählte Rezeptur"),
                                 #tags$hr(),
                                 erstattungscheckUI("ec")), 
                                   column(6,

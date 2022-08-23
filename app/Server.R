@@ -190,6 +190,8 @@ server <- function(input, output, session) {
                        )
    })
   
+  
+  
   Bestandteile <- reactive({
     if(input$rezep_nicht_gefun){
       Bestandteile_ex <- input$zusammensetzungRezep
@@ -281,7 +283,10 @@ server <- function(input, output, session) {
                         selected = "bedenkliche Stoffe")
     })
     
-
+    observeEvent(input$reset_ec,{
+      reset("zusammensetzungRezep")
+      
+    })
   
 
     
@@ -338,9 +343,7 @@ server <- function(input, output, session) {
       outputOptions(output, "eng", suspendWhenHidden = FALSE)
   })
   
-  observeEvent(input$reset_ec,{
-    reset("zusammensetzungRezep")
-  })
+
 
   
   #esc <-  erstattungscheckServer("ec", taxe_eko, Bestandteile())
