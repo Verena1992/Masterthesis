@@ -1,5 +1,5 @@
-#--------------------------------------------------------------------------
-#load_libraries()
+
+# load_libraries ----------------------------------------------------------
 
 library(shiny)
 library(readr)
@@ -13,14 +13,14 @@ library(shinyjs)
 library(purrr)
 library(shinyBS)
 library(pdftools)
-#----------------------------------------------------------------------------
+
+# load data ---------------------------------------------------------------
 rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
 
-
+# generate empty vectors --------------------------------------------------
 
 Wirkstoff <- c()
 Verdrängungsfaktor <- c()
-
 # Home-------------------------------------------------------------
 ui_Home <- tabPanel("Home", 
                     fluidPage(
@@ -86,10 +86,7 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                 )
                               )
 
-#--------------------------------------------------------------------------
-
-
-#neue_Zusammensetzung_Rezeptur----------------------------------------------------------------------------------------------------
+# neue_Zusammensetzung_Rezeptur----------------------------------------------------------------------------------------------------
 ui_neue_Zusammensetzung_Rezeptur <- tabPanel(title = "neue Rezeptur", value = "neue_Zusammensetzung_Rezeptur",
                                       fluidPage(
                                         titlePanel("Neue Rezeptur - Zusammensetzung"),
@@ -98,11 +95,7 @@ ui_neue_Zusammensetzung_Rezeptur <- tabPanel(title = "neue Rezeptur", value = "n
                                        )
                                       )
 
-#--------------------------------------------------------------------------
-
-
-
-#Rezeptur hinzufügen----------------------------------------------------------------------------------------------------
+# Rezeptur hinzufügen----------------------------------------------------------------------------------------------------
 
 ui_Rezepturhinzufügen <- tabPanel(title = "neue Herstellungsanweisung", value = "Rezepturhinzufügen",
                                   fluidPage(
@@ -164,9 +157,7 @@ ui_Rezeptpflichtcheck <- tabPanel(title = "Rezeptpflichtcheck", value = "Rezeptp
                                  )
 
 
-# Suppositorien----------------------------------------------------------
-
-
+# Hartfettmengenrechner----------------------------------------------------------
 
 ui_Suppositorien_Rechner <- tabPanel("Hartfettmengenrechner", value = "Hartfettmengenrechner",
                              fluidPage(
@@ -265,7 +256,7 @@ ui_Suppositorien_Rechner <- tabPanel("Hartfettmengenrechner", value = "Hartfettm
                              )
                        
 )
-#Kombatibilitätscheck---------------------------------------------------------
+# Kombatibilitätscheck---------------------------------------------------------
 ui_Kombatibilitätscheck <- tabPanel("Kompatibilitätscheck", value = "Kombatibilitätscheck",
                                     fluidPage(
                                       titlePanel("Kompatibilitätscheck"), 
@@ -286,7 +277,7 @@ ui_Kombatibilitätscheck <- tabPanel("Kompatibilitätscheck", value = "Kombatibi
                                                        ))))
                                     )
                                     ) 
-#bedenkliche Stoffe---------------------------------------------------------
+# bedenkliche Stoffe---------------------------------------------------------
 
 ui_bedenkliche_Stoffe <- tabPanel("bedenkliche Stoffe", value = "bedenkliche Stoffe",
                                   fluidPage(
@@ -295,7 +286,7 @@ ui_bedenkliche_Stoffe <- tabPanel("bedenkliche Stoffe", value = "bedenkliche Sto
                                     bedenklichStUI("arzneimittelkommission"),
                                   )
                                   )
-#Dosierungscheck------------------------------------------------------------------
+# Dosierungscheck------------------------------------------------------------------
 
 
 ui_Dosierungscheck <- tabPanel("Dosierungscheck", value = "Dosierungscheck",
@@ -311,13 +302,13 @@ ui_Dosierungscheck <- tabPanel("Dosierungscheck", value = "Dosierungscheck",
                                   )
 )
 
-
+# UI--------------------------------------------------------------------------------------------
 #ui <- auth0_ui(navbarPage("My Application
 ui <- navbarPage("My Application", id = "inTabset", ui_Home,
-                 navbarMenu("Rezeptursammlung",ui_Rezeptursammlung, ui_neue_Zusammensetzung_Rezeptur, ui_Rezepturhinzufügen ),
+                 navbarMenu("Rezeptursammlung",
+                            ui_Rezeptursammlung, ui_neue_Zusammensetzung_Rezeptur, ui_Rezepturhinzufügen),
                  navbarMenu("Rezepturkontrollen",
-                 ui_Erstattungscheck,
-                 #navbarMenu("Suppositorien", ui_Suppositorien_Rechner),
-                 ui_Rezeptpflichtcheck, ui_Kombatibilitätscheck, ui_bedenkliche_Stoffe, ui_Dosierungscheck),ui_Suppositorien_Rechner)
+                            ui_Erstattungscheck,ui_Rezeptpflichtcheck, ui_Kombatibilitätscheck, ui_bedenkliche_Stoffe, ui_Dosierungscheck),
+                 ui_Suppositorien_Rechner)
 
 
