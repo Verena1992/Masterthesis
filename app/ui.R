@@ -76,9 +76,11 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                       uiOutput("dosierung"), 
                                       tags$hr(),
                                      
-                                      actionBttn("reset_ec", "Reset ausgewählte Rezeptur",style = "float", color="success" ),
+                                     actionBttn("rezep_nicht_gefun", "Rezeptur wurde nicht gefunden", style = "float", color="success", block = T),
                                      tags$hr(),
-                                      actionBttn("rezep_nicht_gefun", "Rezeptur wurde nicht gefunden", style = "float", color="success")
+                                      actionBttn("reset_ec", "Reset ausgewählte Rezeptur",style = "float", color="success", block = T),
+                                    
+                                      
                                       #conditionalPanel(condition = "input.rezep_nicht_gefun >= 1",
                                       
                                     ),

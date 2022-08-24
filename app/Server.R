@@ -197,10 +197,12 @@ server <- function(input, output, session) {
   r <- reactiveValues(found = 1)
   
   observeEvent(input$rezep_nicht_gefun, {
+    hide("rezep_nicht_gefun")
     r$found <- 0
   })
   
   observeEvent(input$reset_ec, {
+    show("rezep_nicht_gefun")
     r$found <- 1
   })
   

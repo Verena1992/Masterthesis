@@ -28,7 +28,7 @@ library(pdftools)
 createRezeptursammlungUI <- function(id) {
   tagList(
     
-    actionBttn(NS(id,"neue_rzs"), "interne Rezeptursammlung erstellen",style = "fill", color = "danger", size = "s", block = T),
+    actionBttn(NS(id,"neue_rzs"), "interne Rezeptursammlung erstellen",style = "fill", color = "success", size = "s", block = T),
     tags$br(),
     fileInput(NS(id, "file"), 
               label = h4("interne Sammlung",
