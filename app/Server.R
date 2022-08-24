@@ -437,6 +437,7 @@ server <- function(input, output, session) {
   
 # Hartfettmengenrechner --------------------------------------------------------------------------  
   observe({
+    #Bestandteile <- Bestandteile()
     #req(rz$datapath())
     dataSet <- data_Verdrän()
     if(!is.null(dataSet())){

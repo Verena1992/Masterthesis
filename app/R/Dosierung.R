@@ -27,7 +27,7 @@ dosierungUI <- function(id) {
                    options = list(placeholder = "wähle Substanzen aus", maxItems = 1)), 
     numericInput(NS(id,"Menge_Substanz1"), "Menge der zu prüfende Substanz (g)", value = NULL, min = 0, max = 1, step = 0.01))), 
     column(9,
-    plotOutput(NS(id, "plot"), width = "100%", height = "120px", click = NS(id,"arzneitaxe")), 
+    plotOutput(NS(id, "plot"), width = "100%", height = "120px"),#, click = NS(id,"arzneitaxe")), 
     tags$hr(),
     tableOutput(NS(id, "table")))))
   )
@@ -47,6 +47,12 @@ dosierungServer <- function(id, Bestandteile) {
       calc_perce
     })
     
+    dataSet <- reactive({
+      req(input$arzneitaxe)
+      #browser()
+      dataSet <- dosierung_lokal[which(dosierung_lokal$V1 == input$arzneitaxe),]
+      dataSet
+    })
     
     output$plot <- renderPlot({
       # df <- data.frame(id=LETTERS[1:4], min=c(13,15,23,2), max=c(20,30,40,11))
@@ -56,10 +62,13 @@ dosierungServer <- function(id, Bestandteile) {
       #   geom_point(aes(y=min),size=3,color="red")+
       #   geom_point(aes(y=max),size=3,color="red")+
       #   theme_bw()
+      
+      
+      #dataSet <- dosierung_lokal[which(dosierung_lokal$V1 == input$arzneitaxe),]
       req(calc_perce())
-      dataSet <- dosierung_lokal[which(dosierung_lokal$V1 == input$arzneitaxe),]
-      #req(dataSet)
-       ggplot(dataSet, aes(x=V1))+
+      req(dataSet())
+      #browser()
+       ggplot(dataSet(), aes(x=V1))+
       #  ggplot(dosierung_lokal[which(dosierung_lokal$V1 == "Erythromycin"),], aes(x=V1))+
         geom_linerange(aes(ymin=V3,ymax=V4),linetype=1,color="blue")+
         geom_point(aes(y=V3),shape=15, size=3,color="blue")+
