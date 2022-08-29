@@ -59,3 +59,14 @@ data_to_upload_or_generateDs/interne_Rezeptursammlung_3.zip
 data_to_upload_or_generateDs/Salbenfibel_2021_MAT-27555.pdf
 data_to_upload_or_generateDs/Bedenkliche-Rezepturarzneimittel.pdf
 data_to_upload_or_generateDs/Tabellen_fuer_die_Rezeptur_2022_2939.pdf
+Literatur/mastering_shiny/app.R
+app/generate_datasets/input/Arzneitaxe/Österreichische Arzneitaxe 1962, Fassung vom 16.05.2022.rtf
+app/generate_datasets/input/EKO/Stoffe_gelbeListe_EKO.txt
+app/generate_datasets/input/EKO/Stoffe_noBox_EKO.txt
+app/generate_datasets/output/2022-05-16Arzneitaxe.rds
+app/generate_datasets/output/2022-08-25Arzneitaxe.rds
+app/generate_datasets/output/Arzneitaxe_eko.rds
+app/not_used/not_used.R
+app/not_used/parse_Arzneitaxe.R
+data_to_upload_or_generateDs/MagZub.pdf
+Handout.docx

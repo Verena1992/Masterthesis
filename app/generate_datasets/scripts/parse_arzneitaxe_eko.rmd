@@ -5,8 +5,6 @@ date: '2022-05-16'
 output: html_document
 ---
 
-Die ÖAT erscheint 2 x jährlich (Jänner und Juli)
-
 # required libraries are loaded
 ```{r}
 library(unrtf)
@@ -22,11 +20,11 @@ text <- unrtf("https://www.ris.bka.gv.at/GeltendeFassung/Bundesnormen/10010306/%
 
 
 if rtf-file is already downloaded read in the file as text
+
+
 ```{r}
-text <- unrtf("~/data/Arzneitaxe/download/Österreichische Arzneitaxe 1962, Fassung vom 16.05.2022.rtf", format = "text")
+text <- unrtf("../input/Arzneitaxe/Österreichische Arzneitaxe 1962, Fassung vom 16.05.2022.rtf", format = "text")
 ```
-
-
 
 
 split text into separated lines
@@ -39,8 +37,6 @@ separate words
 ```{r}
 word <- strsplit(lin, "\t")
 ```
-
-
 
 
 
@@ -78,9 +74,6 @@ head(wirkstoff)
 ```
 
 
-
-
-
 some wirkstoffe have *) added at the end. remove this from string:
 ```{r}
 wirkstoff <- gsub(" \\*)", "", as.character(wirkstoff))
@@ -92,19 +85,50 @@ promille is not formatted correctly, in original text on homepage neither
 wirkstoff <- gsub("spiritus \\(3.*", "spiritus \\(3 ‰\\)", as.character(wirkstoff))
 ```
 
-Abstand vor % nicht universal
+not every substance has a gap before %, if so delete it to make it consistent
+```{r}
+wirkstoff <- gsub(" %", "%", as.character(wirkstoff))
+```
+
 
 ```{r}
+saveRDS(wirkstoff, file ="../output/2022-05-16Arzneitaxe.rds")
+```
+
+
+2x jährlich (Jänner und Juli) wird die Arzneitaxe aktualisiert:
+
+Fassung August herunterladen:
+```{r}
+text <- unrtf("https://www.ris.bka.gv.at/GeltendeFassung/Bundesnormen/10010306/%c3%96sterreichische%20Arzneitaxe%201962%2c%20Fassung%20vom%2025.08.2022.rtf", format = "text")
+```
+
+```{r}
+lin <- unlist(strsplit(text, "\n"))
+word <- strsplit(lin, "\t")
+last_wirkstoff <- which(lin == "\tZypressenöl\t1\t58")
+first_wirkstoff <- which(lin == "\tAbführender Tee offizinal\t10\t52")
+
+#create empty vector wirkstoff
+wirkstoff <- c()
+
+#append every second element from every list, from the first to the last wirkstoff
+for (i in first_wirkstoff:last_wirkstoff){
+    vector <- word[[i]]
+    wirkstoff <- append(wirkstoff, vector[2])
+}
+
+wirkstoff <- gsub(" \\*)", "", as.character(wirkstoff))
+wirkstoff <- gsub("spiritus \\(3.*", "spiritus \\(3 ‰\\)", as.character(wirkstoff))
 wirkstoff <- gsub(" %", "%", as.character(wirkstoff))
 
 ```
 
 
-
-
 ```{r}
-saveRDS(wirkstoff, file ="data/Arzneitaxe/Arzneitaxe.rds")
+saveRDS(wirkstoff, file ="../output/2022-08-25Arzneitaxe.rds")
 ```
+
 
 
 ## add erstattungssstatus to Arzneitaxe Wirkstoffe
@@ -128,70 +152,74 @@ sind und dementsprechend – sowohl rein als auch in Verarbeitung – nur mit
 vorheriger Bewilligung des chef- und kontrollärztlichen Dienstes abgegeben
 werden können.
 
+
+read in "Stoffe aus Anlage B der Arzneitaxe" to add "Erstattungsinformation"
 ```{r}
-wirkstoffe_arzneitaxe <- readRDS("data/Arzneitaxe/Arzneitaxe.rds")
+wirkstoffe_arzneitaxe <- readRDS("../output/2022-08-25Arzneitaxe.rds")
 ```
 
 
 read in stoffe aus dem gelben Bereich laut EKO
+
 ```{r}
-eko <- read.delim(file = "~/data/EKO/Stoffe_gelbeListe_EKO.txt", sep = "\t", header = T)
+eko <- read.delim(file = "../input/EKO/Stoffe_gelbeListe_EKO.txt", sep = "\t", header = T)
 ```
+
 
 ```{r}
 str(eko)
 ```
 
+
 ```{r}
 eko$Stoffe <- gsub(" %", "%", as.character(eko$Stoffe))
 ```
 
-
-
+create vector box and set for every substance "Erstattungsinformation" to green
+make the same for Ausnahmen (to keine)
 ```{r}
 box <- rep("grün", length(wirkstoffe_arzneitaxe))
-```
-
-```{r}
 ausnahme <- rep("keine", length(wirkstoffe_arzneitaxe))
 ```
 
 
-
-
+overwrite box if substance in arzneitaxe is identical with the list of substances in the "gelben Box"
+control with the vector <no_match> if substances in the list of "gelbe Box" don't match perfectly
 ```{r}
 no_match <- c()
 
 for (i in 1:length(eko$Stoffe)){
   match <- which(wirkstoffe_arzneitaxe == eko$Stoffe[i])
   if (length(match) == 0){
-    #print(i)
     no_match <- append(no_match, eko$Stoffe[i])
   } else {
       box[match] <- "gelb"
-      #print(eko$Ausnahmen.von.der.Chefarztpflicht[i])
       ausnahme[match] <- eko$Ausnahmen.von.der.Chefarztpflicht[i]
     }
-
- # print(which(wirkstoffe_arzneitaxe == eko$Stoffe[i]))
-  
 }
 ```
 
-
+83 of 91 substances matched
 ```{r}
 sum(box == "gelb")
 ```
+
+show substances which could not be assigned
 ```{r}
 no_match
 ```
+
+search similar substances
 ```{r}
 for (i in 1:length(no_match)){
   print(no_match[i])
   print(wirkstoffe_arzneitaxe[grep(no_match[i], wirkstoffe_arzneitaxe)])
-  print(grep(no_match[i], wirkstoffe_arzneitaxe))
+  #print(grep(no_match[i], wirkstoffe_arzneitaxe))
 }
 ```
+
+all similar substances can be considered as identical
+
 ```{r}
 no_match_2 <- c()
 
@@ -204,33 +232,85 @@ for (i in 1:length(no_match)){
       box[match] <- "gelb"
       ausnahme[match] <- eko$Ausnahmen.von.der.Chefarztpflicht[which(eko$Stoffe == no_match[i])]
     }
-
- # print(which(wirkstoffe_arzneitaxe == eko$Stoffe[i]))
-  
 }
 ```
 
-
+4 substances remain left in the list
 ```{r}
 no_match_2
 ```
 
+
 ```{r}
 #Süßholzwurzelextrakt
 match <- which(wirkstoffe_arzneitaxe == "Süßholzwurzelfluidextrakt / Quantifizierter")
-#print(wirkstoffe_arzneitaxe[which(wirkstoffe_arzneitaxe == "Prasteron")])
 box[match] <- "gelb"
 ausnahme[match] <- "keine"
 ```
 
+Substance Carbomer 947P does not exist, but Carbomer 974P. It is probably misspelled in the EKO
 
+```{r}
+#Carbomer 947P
+match <- which(wirkstoffe_arzneitaxe == "Carbomer 974P")
+box[match] <- "gelb"
+ausnahme[match] <- "keine"
+```
 
+Arnikawurzel and synonyms are not listet in "Arzneitaxe"
+
+Aetherolea
+
+search every substance containing *öl in the name and find substance which already "gelb"status
+
+```{r}
+box_oel <- box[grep("*öl", wirkstoffe_arzneitaxe)]
+gelb_oel <- which(box_oel == "gelb")
+```
+
+69 stubstances found with *öl
+```{r}
+öl <- wirkstoffe_arzneitaxe[grep("*öl", wirkstoffe_arzneitaxe)]
+```
+
+substract 5 substances with gelb status
+```{r}
+öl <- öl[-gelb_oel]
+öl
+```
+
+raffiniert and nativ is not Aetherolea
+```{r}
+öl <- öl[grep("Raffinie|Nativ", öl, invert= T)]
+```
+
+delete Schöllkraut, Vitamin A and Inhaltionsöl
+```{r}
+öl <- öl[grep("öli|öll|öl o", öl, invert= T)]
+öl
+```
+Allylsenföl, Bilsenkrautöl, Campheröl, Cedernholzöl, Erdnussöl, Johanneskrautöl, Lorbeeröl, Rizinusöl, Sojaöl, 
+```{r}
+öl <- öl[grep("Allylsenföl|Bilsenkrautöl|Campheröl|edernholzöl|Erdnu|Johanniskrautöl|Lorbeeröl|Rizinusöl|Sojaöl", öl, invert= T)]
+öl
+```
 
 
 ```{r}
-sum(df_taxe_eko$box == "gelb")
-#weizenkeimöl matched 2 times
+öl_no_match <- c()
+
+for (i in 1:length(öl)){
+  match <- which(wirkstoffe_arzneitaxe == öl[i])
+  if (length(match) == 0){
+    no_match <- append(no_match, öl_no_match[i])
+  } else {
+      box[match] <- "gelb"
+      ausnahme[match] <- eko$Ausnahmen.von.der.Chefarztpflicht[which(eko$Stoffe == "Aetherolea (alle)")]
+    }
+}
 ```
+
+
 
 ## Medizinalweine (weinhaltigen Zubereitungen) sowie Gewürze und Genussmittel
 
@@ -239,8 +319,9 @@ und Genussmittel werden von den Krankenversicherungsträgern keine Kosten
 übernommen, obgleich sie in der Anlage B der Österreichischen Arzneitaxe angeführt
 sind:
 
+
 ```{r}
-Stoffe_noBox_EKO <- read.delim("~/data/EKO/Stoffe_noBox_EKO.txt", header=FALSE)
+Stoffe_noBox_EKO <- read.delim("../input/EKO/Stoffe_noBox_EKO.txt", header=FALSE)
 ```
 
 ```{r}
@@ -266,13 +347,12 @@ sum(box == "no")
 ```
 
 
-
 ```{r}
 df_taxe_eko <- data.frame(wirkstoffe_arzneitaxe, box, ausnahme)
 ```
 
 
 ```{r}
-saveRDS(df_taxe_eko, file ="data/Arzneitaxe/Arzneitaxe_eko.rds")
+saveRDS(df_taxe_eko, file ="../output/Arzneitaxe_eko.rds")
 ```
 
