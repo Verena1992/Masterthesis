@@ -4,7 +4,7 @@
 #3. merge Juniormed with optional uploaded private Rezeptursammlung.
 #4. outputs Rezeptursammlungdataset and datapath of uploaded file
 
-# inputs: ./Rezeptursammlung.txt, optional(interner zip ordner containing a Rezeptursammlung)
+# inputs: ./data/Rezeptursammlung/Juniormed/Rezeptursammlung.txt, optional(interner zip ordner containing a Rezeptursammlung)
 # outputs: rezeptursammlungdataset and optional(datapath from uploaded interner Ordner)
 library(shiny)
 library(readr)
@@ -85,11 +85,11 @@ createRezeptursammlungServer <- function(id) {
     #merge juniormed with interne if uploaded
     rezeptursammlung <- reactive({
       if (!is.null(datapath())) {
-        rezeptursammlung_Jun <- read.csv("./Rezeptursammlung.txt", header=FALSE, sep=";")
+        rezeptursammlung_Jun <- read.csv("./data/Rezeptursammlung/Juniormed/Rezeptursammlung.txt", header=FALSE, sep=";")
         rezeptursammlung_Jun <- adorigin2dataframe(rezeptursammlung_Jun,1)
         dataSet <- rbind(interne_Rezeptursammlung(), rezeptursammlung_Jun)
       } else {
-        rezeptursammlung_Jun <- read.csv("./Rezeptursammlung.txt", header=FALSE, sep=";")
+        rezeptursammlung_Jun <- read.csv("./data/Rezeptursammlung/Juniormed/Rezeptursammlung.txt", header=FALSE, sep=";")
         rezeptursammlung_Jun <- adorigin2dataframe(rezeptursammlung_Jun,1)
       }
     })
