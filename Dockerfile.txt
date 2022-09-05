@@ -1,0 +1,13 @@
+FROM rocker/rstudio:4
+#docker pull rocker/rstudio:4
+RUN R -e "install.packages(c('shiny'))"
+
+#RUN mkdir /home/rstudio/output
+#RUN mkdir /home/rstudio/output/images
+#RUN mkdir /home/rstudio/output/timings
+#RUN mkdir /home/rstudio/tutorial
+
+
+
+#ADD ./tutorial/seurat_tutorial.Rmd /home/rstudio/tutorial
+

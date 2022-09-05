@@ -5,6 +5,10 @@ backups_shiny.io/
 app/.config/
 app/.local/
 app/data/
+Literatur/
+app/not_used/
+Präsentationen/
+research_proposal/
 
 app/.config/rstudio/rstudio-prefs.json
 app/.local/share/rstudio/addin_registry
@@ -71,3 +75,14 @@ app/not_used/parse_Arzneitaxe.R
 data_to_upload_or_generateDs/MagZub.pdf
 Handout.docx
 app/not_used/bedenkliche_Substanzen.txt
+Präsentationen/
+research_proposal/
+app/generate_datasets/input/Rezeptpflicht/download_rezeptpflichtverordnung.txt
+app/generate_datasets/input/Rezeptpflicht/Rezeptpflicht.rtf
+FH_MasterThesis_Format_MBDS.zip
+research_proposal/research_proposal.aux
+research_proposal/research_proposal.aux
+research_proposal/research_proposal.bcf
+SS22_MASll (1).pdf
+IAM-verifies-access.png
+workflow.png

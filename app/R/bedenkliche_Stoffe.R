@@ -11,25 +11,23 @@ library(purrr)
 library(shinyBS)
 library(pdftools)
 library(DT)
+
 #---------------------------------------------------------------------------------------------------
 bedenklichStUI <- function(id) {
-  #ns <- NS(id)
   tagList(
     DT::dataTableOutput(NS(id,"mytable"))
   )
 }
+
 
 bedenklichStServer <- function(id, Rezepturzusammensetzung, bedenkliche_St) {
   moduleServer(
     id,
     function(input, output, session) {
       
-      #bedenkliche_St <- read.delim("./data/bedenkliche_Substanzen/bedenkliche_St.txt")
-      
       #https://github.com/rstudio/DT/issues/902
       output$mytable <- DT::renderDataTable({
         if(is_empty(bedenkliche_Substanz())){
-         # browser()
           bedenkliche_St
         } else {
         bedenkliche_St  %>%
@@ -39,8 +37,6 @@ bedenklichStServer <- function(id, Rezepturzusammensetzung, bedenkliche_St) {
       })
       
       bedenkliche_Substanz <- reactive({
-        #browser()
-        #is.element(Rezepturzusammensetzung, bedenkliche_St$Stoffe)
         bedenkliche_Substanz <- intersect(Rezepturzusammensetzung(), bedenkliche_St$Stoffe)
         bedenkliche_Substanz
       })

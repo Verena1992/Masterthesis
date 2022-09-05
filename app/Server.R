@@ -189,7 +189,8 @@ server <- function(input, output, session) {
   # })#
   
    observe({
-     data <- c(rz$rezeptursammlung()$V2,taxe_eko$wirkstoffe_arzneitaxe)
+     #browser()
+     data <- sort(c(rz$rezeptursammlung()$V2,taxe_eko$wirkstoffe_arzneitaxe))
     updateSelectizeInput(session, inputId = "zusammensetzungRezep", choices = data ,server = TRUE
                        )
    })
