@@ -68,7 +68,7 @@ erstattungscheckServer <- function(id, taxe_eko, Bestandteile) {
      
      element_not_found <- reactive({
        req(Bestandteile)
-       req(input$zusammensetzung_arzneitaxe)
+       #req(input$zusammensetzung_arzneitaxe)
        if (length(input$zusammensetzung_arzneitaxe) != length(Bestandteile)){
          #the command setdiff(list.a, list.b) finds the non-overlapping elements only 
          #if these elements are contained in the object that is used as the first argument
