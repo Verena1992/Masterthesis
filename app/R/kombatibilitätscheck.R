@@ -5,7 +5,6 @@ library(dplyr)
 library(shinyalert)
 library(auth0)
 library(shinyWidgets)
-library(shinyFiles)
 library(shinyjs)
 library(purrr)
 library(shinyBS)
@@ -62,8 +61,8 @@ kompatibilitätscheckServer <- function(id, Bestandteile) {
     })
     
     element_not_found <- reactive({
-      req(Bestandteile)
-   
+      #req(Bestandteile)
+      req(input$Salbengrundlage)
       if (sum(length(input$Salbengrundlage),length(input$Wirksubstanz)) != length(Bestandteile)){
         #the command setdiff(list.a, list.b) finds the non-overlapping elements only 
         #if these elements are contained in the object that is used as the first argument

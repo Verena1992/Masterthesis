@@ -1,0 +1,173 @@
+{
+  "input": {
+    "._auth0logout_": 0,
+    "Berechnung_Menge": 1,
+    "dosierung-arzneitaxe": "Albendazol",
+    "dosierung-Menge_Substanz1": null,
+    "dosierung-Mengeinsgesamt": 100,
+    "ec-reset": 0,
+    "ec-zusammensetzung_arzneitaxe": null,
+    "Eichwert": 1.9,
+    "eigeneRezeptur_hinzu": 0,
+    "inTabset": "Hartfettmengenrechner",
+    "jun_and_int-file": null,
+    "jun_and_int-neue_rzs": 0,
+    "jun_and_int-q1": 0,
+    "Menge_Substanz1": 0.03,
+    "Menge_Substanz2": 0.7,
+    "Menge_Substanz3": 0.7,
+    "New_Substanz": "Aciclovir",
+    "New_Substanz2": "Abführender Tee offizinal",
+    "New_Substanz3": "Abführender Tee offizinal",
+    "New_Verdrängungsfaktor": 0.6,
+    "New_Verdrängungsfaktor2": 0.7,
+    "New_Verdrängungsfaktor3": 0.7,
+    "nrf_and_int-q1": 0,
+    "nrf_and_int-Verdrängungsfaktoren": {
+      "name": [
+        "anlage-f_el2021-1_2800.pdf"
+      ],
+      "size": [
+        787839
+      ],
+      "type": [
+        "application/pdf"
+      ],
+      "datapath": [
+        "0.pdf"
+      ]
+    },
+    "NRF_online": 0,
+    "reset_ec": 0,
+    "rezep_nicht_gefun": 0,
+    "Salbenfibel-Salbengrundlage": null,
+    "Salbenfibel-Wirksubstanz": null,
+    "Stückanzahl": 10,
+    "Substanz_hinzufügen": 1,
+    "Substanz_hinzufügen2": 0,
+    "Substanz_hinzufügen3": 0,
+    "Substanz2_entfernen": 0,
+    "Substanz3_entfernen": 0,
+    "textAreas-Anwendung": "",
+    "textAreas-Dosierung": "",
+    "textAreas-Haltbarkeit": "",
+    "textAreas-Herstellungshinweise": "",
+    "textAreas-Lagerung": "",
+    "textAreas-Quelle": "",
+    "textAreas-Titel": "",
+    "Überschuss": 20,
+    "Vf": 0.7,
+    "Vf2": 0.7,
+    "Vf3": 0.7,
+    "weitere_Substanz": 0,
+    "weitere_Substanz2": 0,
+    "WS": "ABACAVIR",
+    "WS_S": "Substanz nicht in Liste vorhanden",
+    "WS_S2": "Acetylsalicylsäure ",
+    "WS_S3": "Acetylsalicylsäure ",
+    "Zusammensetzung-1": null,
+    "Zusammensetzung-1ad": 0,
+    "Zusammensetzung-1Einheit": false,
+    "Zusammensetzung-1num": 1,
+    "Zusammensetzung-2": null,
+    "Zusammensetzung-2ad": 0,
+    "Zusammensetzung-2Einheit": false,
+    "Zusammensetzung-2num": 1,
+    "Zusammensetzung-3": null,
+    "Zusammensetzung-3ad": 0,
+    "Zusammensetzung-3Einheit": false,
+    "Zusammensetzung-3num": 1,
+    "Zusammensetzung-4": null,
+    "Zusammensetzung-4ad": 0,
+    "Zusammensetzung-4Einheit": false,
+    "Zusammensetzung-4num": 1,
+    "Zusammensetzung-5": null,
+    "Zusammensetzung-5ad": 0,
+    "Zusammensetzung-5Einheit": false,
+    "Zusammensetzung-5num": 1,
+    "Zusammensetzung-jump_2_Herstellungshinweise": 0,
+    "zusammensetzungRezep": null
+  },
+  "output": {
+    "download": {
+      "html": "<h2>Downloads<\/h2>\n<h5>Neue Informationen zur interner Sammlung hinzufügen und herunterladen<\/h5>\n<a id=\"download_newRezeptur\" class=\"btn btn-default shiny-download-link \" href=\"\" target=\"_blank\" download>\n  <i class=\"fa fa-download\" role=\"presentation\" aria-label=\"download icon\"><\/i>\n  Download\n<\/a>\n<hr/>",
+      "deps": [
+        {
+          "name": "font-awesome",
+          "version": "5.15.3",
+          "src": {
+            "href": "font-awesome-5.15.3"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": [
+            "css/all.min.css",
+            "css/v4-shims.min.css"
+          ],
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        }
+      ]
+    },
+    "enf": {
+      "message": "",
+      "call": "NULL",
+      "type": [
+        "shiny.silent.error",
+        "validation"
+      ]
+    },
+    "enf_kc": {
+      "message": "",
+      "call": "NULL",
+      "type": [
+        "shiny.silent.error",
+        "validation"
+      ]
+    },
+    "eng": "",
+    "fileUploaded": true,
+    "limits": {
+      "message": "",
+      "call": "NULL",
+      "type": [
+        "shiny.silent.error",
+        "validation"
+      ]
+    },
+    "new_Herstellungshinweis": {
+      "message": "",
+      "call": "NULL",
+      "type": [
+        "shiny.silent.error",
+        "validation"
+      ]
+    },
+    "new_Verdrängungsfaktor": {
+      "message": "",
+      "call": "NULL",
+      "type": [
+        "shiny.silent.error",
+        "validation"
+      ]
+    },
+    "nötige_Hartfettmenge": "22.584",
+    "nötige_Substanzmenge1": "0.36",
+    "sub": {
+      "html": "Aciclovir",
+      "deps": [
+
+      ]
+    },
+    "vf": {
+      "html": "Verdrägungsfaktor =  0.6",
+      "deps": [
+
+      ]
+    }
+  },
+  "export": {
+
+  }
+}

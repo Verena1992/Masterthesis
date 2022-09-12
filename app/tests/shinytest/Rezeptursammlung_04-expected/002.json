@@ -1,0 +1,379 @@
+{
+  "input": {
+    "._auth0logout_": 0,
+    "arzneimittelkommission-mytable_cell_clicked": {
+
+    },
+    "arzneimittelkommission-mytable_cells_selected": [
+
+    ],
+    "arzneimittelkommission-mytable_columns_selected": null,
+    "arzneimittelkommission-mytable_rows_all": 5,
+    "arzneimittelkommission-mytable_rows_current": 5,
+    "arzneimittelkommission-mytable_rows_selected": null,
+    "arzneimittelkommission-mytable_search": "Borsäure",
+    "arzneimittelkommission-mytable_state": {
+      "start": 0,
+      "length": 10,
+      "order": [
+
+      ],
+      "search": {
+        "search": "Borsäure",
+        "smart": true,
+        "regex": false,
+        "caseInsensitive": true
+      },
+      "columns": [
+        {
+          "visible": true,
+          "search": {
+            "search": "",
+            "smart": true,
+            "regex": false,
+            "caseInsensitive": true
+          }
+        },
+        {
+          "visible": true,
+          "search": {
+            "search": "",
+            "smart": true,
+            "regex": false,
+            "caseInsensitive": true
+          }
+        },
+        {
+          "visible": true,
+          "search": {
+            "search": "",
+            "smart": true,
+            "regex": false,
+            "caseInsensitive": true
+          }
+        },
+        {
+          "visible": true,
+          "search": {
+            "search": "",
+            "smart": true,
+            "regex": false,
+            "caseInsensitive": true
+          }
+        },
+        {
+          "visible": true,
+          "search": {
+            "search": "",
+            "smart": true,
+            "regex": false,
+            "caseInsensitive": true
+          }
+        }
+      ]
+    },
+    "bedenklich": 1,
+    "Berechnung_Menge": 0,
+    "button-Naphazolinhydrochlorid 0,05 % unkonservierte Augentropfen – JUN 01.06. (III)": 0,
+    "dosierung-arzneitaxe": "Albendazol",
+    "dosierung-Menge_Substanz1": null,
+    "dosierung-Mengeinsgesamt": 100,
+    "ec-reset": 0,
+    "ec-zusammensetzung_arzneitaxe": null,
+    "Eichwert": 2,
+    "eigeneRezeptur_hinzu": 0,
+    "inTabset": "bedenkliche Stoffe",
+    "jun_and_int-file": {
+      "name": [
+        "Rezeptursammlung_präsi.zip"
+      ],
+      "size": [
+        111372
+      ],
+      "type": [
+        "application/zip"
+      ],
+      "datapath": [
+        "0.zip"
+      ]
+    },
+    "jun_and_int-neue_rzs": 0,
+    "jun_and_int-q1": 0,
+    "Menge_Substanz1": 0.7,
+    "Menge_Substanz2": 0.7,
+    "Menge_Substanz3": 0.7,
+    "New_Substanz": "Abführender Tee offizinal",
+    "New_Substanz2": "Abführender Tee offizinal",
+    "New_Substanz3": "Abführender Tee offizinal",
+    "New_Verdrängungsfaktor": 0.7,
+    "New_Verdrängungsfaktor2": 0.7,
+    "New_Verdrängungsfaktor3": 0.7,
+    "nrf_and_int-q1": 0,
+    "nrf_and_int-Verdrängungsfaktoren": null,
+    "NRF_online": 0,
+    "reset_ec": 0,
+    "rezep_nicht_gefun": 0,
+    "Salbenfibel-Salbengrundlage": null,
+    "Salbenfibel-Wirksubstanz": null,
+    "Stückanzahl": 6,
+    "Substanz_hinzufügen": 0,
+    "Substanz_hinzufügen2": 0,
+    "Substanz_hinzufügen3": 0,
+    "Substanz2_entfernen": 0,
+    "Substanz3_entfernen": 0,
+    "textAreas-Anwendung": "",
+    "textAreas-Dosierung": "",
+    "textAreas-Haltbarkeit": "",
+    "textAreas-Herstellungshinweise": "",
+    "textAreas-Lagerung": "",
+    "textAreas-Quelle": "",
+    "textAreas-Titel": "",
+    "Überschuss": 10,
+    "Vf": 0.7,
+    "Vf2": 0.7,
+    "Vf3": 0.7,
+    "weitere_Substanz": 0,
+    "weitere_Substanz2": 0,
+    "WS": "ABACAVIR",
+    "WS_S": "Acetylsalicylsäure ",
+    "WS_S2": "Acetylsalicylsäure ",
+    "WS_S3": "Acetylsalicylsäure ",
+    "Zusammensetzung-1": null,
+    "Zusammensetzung-1ad": 0,
+    "Zusammensetzung-1Einheit": false,
+    "Zusammensetzung-1num": 1,
+    "Zusammensetzung-2": null,
+    "Zusammensetzung-2ad": 0,
+    "Zusammensetzung-2Einheit": false,
+    "Zusammensetzung-2num": 1,
+    "Zusammensetzung-3": null,
+    "Zusammensetzung-3ad": 0,
+    "Zusammensetzung-3Einheit": false,
+    "Zusammensetzung-3num": 1,
+    "Zusammensetzung-4": null,
+    "Zusammensetzung-4ad": 0,
+    "Zusammensetzung-4Einheit": false,
+    "Zusammensetzung-4num": 1,
+    "Zusammensetzung-5": null,
+    "Zusammensetzung-5ad": 0,
+    "Zusammensetzung-5Einheit": false,
+    "Zusammensetzung-5num": 1,
+    "Zusammensetzung-jump_2_Herstellungshinweise": 0,
+    "zusammensetzungRezep": "Borsäure"
+  },
+  "output": {
+    "arzneimittelkommission-mytable": {
+      "x": {
+        "filter": "none",
+        "vertical": false,
+        "container": "<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Stoffe<\/th>\n      <th>Anwendung<\/th>\n      <th>Risiko<\/th>\n      <th>Ausnahmen<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>",
+        "options": {
+          "search": {
+            "search": "Borsäure"
+          },
+          "searchHighlight": true,
+          "columnDefs": [
+            {
+              "orderable": false,
+              "targets": 0
+            }
+          ],
+          "order": [
+
+          ],
+          "autoWidth": false,
+          "orderClasses": false,
+          "ajax": {
+            "type": "POST",
+            "data": "function(d) {\nd.search.caseInsensitive = true;\nd.search.smart = true;\nd.escape = true;\nvar encodeAmp = function(x) { x.value = x.value.replace(/&/g, \"%26\"); }\nencodeAmp(d.search);\n$.each(d.columns, function(i, v) {encodeAmp(v.search);});\n}"
+          },
+          "serverSide": true,
+          "processing": true
+        },
+        "selection": {
+          "mode": "multiple",
+          "selected": null,
+          "target": "row",
+          "selectable": null
+        }
+      },
+      "evals": [
+        "options.ajax.data"
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+        {
+          "name": "jquery",
+          "version": "3.6.0",
+          "src": {
+            "href": "jquery-3.6.0"
+          },
+          "meta": null,
+          "script": "jquery-3.6.0.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        },
+        {
+          "name": "dt-core",
+          "version": "1.11.3",
+          "src": {
+            "href": "dt-core-1.11.3"
+          },
+          "meta": null,
+          "script": "js/jquery.dataTables.min.js",
+          "stylesheet": [
+            "css/jquery.dataTables.min.css",
+            "css/jquery.dataTables.extra.css"
+          ],
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": false
+        },
+        {
+          "name": "dt-plugin-searchhighlight",
+          "version": "1.11.3",
+          "src": {
+            "href": "dt-plugin-searchhighlight-1.11.3"
+          },
+          "meta": null,
+          "script": [
+            "jquery.highlight.js",
+            "source.min.js"
+          ],
+          "stylesheet": "source.css",
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
+          "name": "crosstalk",
+          "version": "1.2.0",
+          "src": {
+            "href": "crosstalk-1.2.0"
+          },
+          "meta": null,
+          "script": "js/crosstalk.min.js",
+          "stylesheet": "css/crosstalk.min.css",
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        }
+      ]
+    },
+    "bedenklicher_Stoff": {
+      "html": "<hr/>\n<button class=\"action-button bttn bttn-fill bttn-lg bttn-danger bttn-block bttn-no-outline\" id=\"bedenklich\" type=\"button\">ein bedenklicher Stoff wurde eingegeben!!<\/button>",
+      "deps": [
+        {
+          "name": "shinyWidgets",
+          "version": "0.7.0",
+          "src": {
+            "href": "shinyWidgets"
+          },
+          "meta": null,
+          "script": "shinyWidgets-bindings.min.js",
+          "stylesheet": "shinyWidgets.min.css",
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
+        {
+          "name": "bttn",
+          "version": "0.2.4",
+          "src": {
+            "href": "shinyWidgets/bttn"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "bttn.min.css",
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        }
+      ]
+    },
+    "bedenklicheSt": null,
+    "button-keine_rez": "es wurde keine Rezeptur gefunden",
+    "button-Rezepturen": {
+      "html": "<button id=\"button-Naphazolinhydrochlorid 0,05 % unkonservierte Augentropfen – JUN 01.06. (III)\" type=\"button\" class=\"btn btn-default action-button\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/20&#39;, &#39;_blank&#39;)\"><h3>Naphazolinhydrochlorid 0,05 % unkonservierte Augentropfen – JUN 01.06. (III) <\/h3> <br/> c(\"Naphazolinhydrochlorid\", \"Natriumchlorid\", \"Borsäure\", \"Wasser für Injektionszwecke\")<\/button>",
+      "deps": [
+
+      ]
+    },
+    "dosierung": null,
+    "download": {
+      "html": "<h2>Downloads<\/h2>\n<h5>Neue Informationen zur interner Sammlung hinzufügen und herunterladen<\/h5>\n<a id=\"download_newRezeptur\" class=\"btn btn-default shiny-download-link \" href=\"\" target=\"_blank\" download>\n  <i class=\"fa fa-download\" role=\"presentation\" aria-label=\"download icon\"><\/i>\n  Download\n<\/a>\n<hr/>",
+      "deps": [
+        {
+          "name": "font-awesome",
+          "version": "5.15.3",
+          "src": {
+            "href": "font-awesome-5.15.3"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": [
+            "css/all.min.css",
+            "css/v4-shims.min.css"
+          ],
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        }
+      ]
+    },
+    "enf": {
+      "message": "",
+      "call": "NULL",
+      "type": [
+        "shiny.silent.error",
+        "validation"
+      ]
+    },
+    "enf_kc": {
+      "message": "",
+      "call": "NULL",
+      "type": [
+        "shiny.silent.error",
+        "validation"
+      ]
+    },
+    "eng": "",
+    "erstattungscheck": null,
+    "fileUploaded": true,
+    "hartfettberechnen": null,
+    "kompatibilität": null,
+    "limits": {
+      "message": "",
+      "call": "NULL",
+      "type": [
+        "shiny.silent.error",
+        "validation"
+      ]
+    },
+    "new_Herstellungshinweis": {
+      "message": "",
+      "call": "NULL",
+      "type": [
+        "shiny.silent.error",
+        "validation"
+      ]
+    },
+    "new_Verdrängungsfaktor": {
+      "message": "",
+      "call": "NULL",
+      "type": [
+        "shiny.silent.error",
+        "validation"
+      ]
+    }
+  },
+  "export": {
+
+  }
+}

@@ -11,7 +11,7 @@ library(shinyWidgets)
 library(shinyFiles)
 library(shinyjs)
 library(purrr)
-library(shinyBS)
+#library(shinyBS)
 library(pdftools)
 
 # load data ---------------------------------------------------------------

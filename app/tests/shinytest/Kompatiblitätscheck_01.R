@@ -1,0 +1,12 @@
+app <- ShinyDriver$new("../../")
+app$snapshotInit("Kompatiblitätscheck_01")
+
+app$setInputs(New_Substanz = "Abführender Tee offizinal")
+app$setInputs(New_Substanz2 = "Abführender Tee offizinal")
+app$setInputs(New_Substanz3 = "Abführender Tee offizinal")
+app$setInputs(WS = "ABACAVIR")
+app$setInputs(`dosierung-arzneitaxe` = "Albendazol")
+app$setInputs(inTabset = "Kombatibilitätscheck")
+app$setInputs(`Salbenfibel-Salbengrundlage` = "Ultrabas (R)")
+app$setInputs(`Salbenfibel-Wirksubstanz` = "Ethanol")
+app$snapshot()

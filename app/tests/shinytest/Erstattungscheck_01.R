@@ -1,0 +1,11 @@
+app <- ShinyDriver$new("../../")
+app$snapshotInit("Erstattungscheck_01")
+
+app$setInputs(New_Substanz = "Abführender Tee offizinal")
+app$setInputs(New_Substanz2 = "Abführender Tee offizinal")
+app$setInputs(New_Substanz3 = "Abführender Tee offizinal")
+app$setInputs(WS = "ABACAVIR")
+app$setInputs(`dosierung-arzneitaxe` = "Albendazol")
+app$setInputs(inTabset = "Erstattungscheck")
+app$setInputs(`ec-zusammensetzung_arzneitaxe` = "Dronabinol")
+app$snapshot()

@@ -7,12 +7,11 @@ library(dplyr)
 library(shinyalert)
 library(auth0)
 library(shinyWidgets)
-library(shinyFiles)
 library(shinyjs)
 library(purrr)
 library(shinyBS)
 library(pdftools)
-
+library(shinytest)
 
 # load data ---------------------------------------------------------------
 
@@ -565,9 +564,9 @@ server <- function(input, output, session) {
     
     verdrängung1 <- (input$Menge_Substanz1 * input$Stückanzahl * input$Vf)
     verdrängung2 <- if(input$weitere_Substanz > input$Substanz2_entfernen){
-      (input$Menge_Substanz2 * input$Stückanzahl * input$Vf)} else {0}
+      (input$Menge_Substanz2 * input$Stückanzahl * input$Vf2)} else {0} 
     verdrängung3 <- if(input$weitere_Substanz2 > input$Substanz3_entfernen){
-      (input$Menge_Substanz3 * input$Stückanzahl * input$Vf)} else {0}
+      (input$Menge_Substanz3 * input$Stückanzahl * input$Vf3)} else {0}
     verdrängung <- verdrängung1 + verdrängung2 + verdrängung3
     } else {
       #browser()
@@ -575,7 +574,7 @@ server <- function(input, output, session) {
       verdrängung2 <- if(input$weitere_Substanz > input$Substanz2_entfernen){
         (input$Menge_Substanz2 * input$Stückanzahl * as.numeric(vf2()))} else {0}
       verdrängung3 <- if(input$weitere_Substanz2 > input$Substanz3_entfernen){
-        (input$Menge_Substanz3 * input$Stückanzahl * as.numeric(vf2()))} else {0}
+        (input$Menge_Substanz3 * input$Stückanzahl * as.numeric(vf3()))} else {0}
       verdrängung <- verdrängung1 + verdrängung2 + verdrängung3  
       
       
