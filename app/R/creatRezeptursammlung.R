@@ -13,12 +13,11 @@ library(dplyr)
 library(shinyalert)
 library(auth0)
 library(shinyWidgets)
-#library(shinyFiles)
 library(shinyjs)
 library(purrr)
 library(shinyBS)
 library(pdftools)
-#load_libraries()
+
 
 
 

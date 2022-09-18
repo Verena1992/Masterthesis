@@ -74,7 +74,7 @@ subsettingRSammlung <- function(Substanzen, Rezeptursammlung) {
 
 
 Substanzauswahl <- function(id){
-  wellPanel(style = "height:80px",    
+  wellPanel(#style = "height:80px",    
             fluidRow(
               column(4,
                      selectizeInput(id, label = NULL, choices = NULL, multiple = TRUE,
@@ -91,7 +91,7 @@ Substanzauswahl <- function(id){
                        onLabel = "ml",
                        offLabel = "g"
                      ))
-            ))
+            ), style = "padding: 20px;")
 }
 
 update_Herstellungshinweise <- function(new_Herstellungshinweis, interne_Herstellungshinweise) {

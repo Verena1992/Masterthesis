@@ -3,7 +3,6 @@
 #2. subsetting Rezeptursammlung with selected Substanzen
 #3. output Buttons with matched Rezepturen
 #4. output Herstellungshinweis from by the user selected Rezeptur
-#load_libraries()
 
 library(shiny)
 library(readr)
@@ -12,7 +11,6 @@ library(dplyr)
 library(shinyalert)
 library(auth0)
 library(shinyWidgets)
-#library(shinyFiles)
 library(shinyjs)
 library(purrr)
 library(shinyBS)
@@ -75,11 +73,12 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
           
           src <- juniormed_pagenr[which(juniormed_pagenr$JUN == JUN),]$unlist.url_JUN.
             actionButton(ns(Rezeptur()[i]),HTML(paste0("<h3>",Rezeptur()[i]),"</h3>", "<br/>", Bestandteile), 
+                         block = TRUE,
                          onclick = paste0("window.open('",src,"', '_blank')")
             )
           } else {
-            actionButton(ns(Rezeptur()[i]),HTML(paste0("<h3>",Rezeptur()[i]),"</h3>", "<br/>", Bestandteile)
-                         
+            actionButton(ns(Rezeptur()[i]), HTML(paste0("<h3>",Rezeptur()[i]),"</h3>", "<br/>", Bestandteile),
+                 block = TRUE        
             )
             
           }

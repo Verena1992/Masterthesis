@@ -74,6 +74,7 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
                                       uiOutput("bedenklicheSt"),
                                       textOutput("bs"), 
                                       uiOutput("dosierung"), 
+                                      uiOutput("rezeptpflicht"),
                                       tags$hr(),
                                      
                                      actionBttn("rezep_nicht_gefun", "Rezeptur wurde nicht gefunden", style = "float", color="success", block = T),
@@ -95,11 +96,12 @@ ui_Rezeptursammlung <- tabPanel("Rezeptursammlung",
 
 # neue_Zusammensetzung_Rezeptur----------------------------------------------------------------------------------------------------
 ui_neue_Zusammensetzung_Rezeptur <- tabPanel(title = "neue Rezeptur", value = "neue_Zusammensetzung_Rezeptur",
-                                      fluidPage(
+                                        fluidPage(
                                         titlePanel("Neue Rezeptur - Zusammensetzung"),
                                         addRezepturUI("Zusammensetzung"),
-                                        tableOutput("text2")
-                                       )
+                                        tableOutput("text2"), 
+                                        tags$br()
+                                        )
                                       )
 
 # Rezeptur hinzufügen----------------------------------------------------------------------------------------------------
@@ -158,8 +160,9 @@ ui_Erstattungscheck <- tabPanel(title = "Erstattungscheck", value = "Erstattungs
 
 # Rezeptpflicht-----------------------------------------------------
 ui_Rezeptpflichtcheck <- tabPanel(title = "Rezeptpflichtcheck", value = "Rezeptpflichtcheck",
-                                  selectizeInput("WS", "Wirkstoff",choices = NULL),
-                                  textOutput("Rstatus"), 
+                                  rezeptpflichtUI("rezeptpflicht")
+                                  #selectizeInput("WS", "Wirkstoff",choices = NULL),
+                                  #textOutput("Rstatus"), 
                                
                                  )
 

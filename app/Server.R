@@ -15,7 +15,9 @@ library(shinytest)
 
 # load data ---------------------------------------------------------------
 
-rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
+rezeptpflichtDS <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
+#eclude one substance with a open bracket in the name
+rezeptpflichtDS <- rezeptpflichtDS[-1605,]
 taxe_eko <- readRDS("./data/Arzneitaxe/Arzneitaxe_eko.rds")
 
 
@@ -35,8 +37,6 @@ server <- function(input, output, session) {
   #1.1.1. Rezeptursammlung Zusammensetzung +   #1.1.2. Herstellungshinweise
   rz <- createRezeptursammlungServer("jun_and_int")
   
-  
-
   
   #1.1.3. Verdrängungsfaktoren
   data_Verdrän <- reactive({
@@ -180,15 +180,7 @@ server <- function(input, output, session) {
 # Rezeptursammlung----------------------------------------------------------   
   
   
-  #renderUI needed to reset
-  # output$selectizeInput01 <- renderUI({
-  #   browser()
-  #       selectizeInput("zusammensetzungRezep", "Zusammensetzung der Rezeptur",choices = NULL , multiple = TRUE, options = list(placeholder = "wähle Substanzen aus"),
-  #       )
-  # })#
-  
    observe({
-     #browser()
      data <- sort(c(rz$rezeptursammlung()$V2,taxe_eko$wirkstoffe_arzneitaxe))
     updateSelectizeInput(session, inputId = "zusammensetzungRezep", choices = data ,server = TRUE
                        )
@@ -603,14 +595,22 @@ server <- function(input, output, session) {
 
 # Rezeptpflicht---------------------------------------------------------------------------- 
   
-  updateSelectizeInput(session, "WS", choices = rezeptpflicht$Wirkstoff, server = TRUE
-  )
   
-  output$Rstatus <- renderPrint({
-    selected_ws <- rezeptpflicht[which(rezeptpflicht$Wirkstoff == input$WS),]
-    Rstatus <- selected_ws$Rstatus
-    Rstatus
+  observe({
+    Bestandteile <- Bestandteile()
+    rpf <- rezeptpflichtServer("rezeptpflicht", rezeptpflichtDS, Bestandteile())
+    output$rezeptpflicht <- renderUI({
+      Bestandteile <- Bestandteile()
+      if (!is.null(Bestandteile())){
+        if (!is_empty(rpf$element_rpf())){
+          tagList(
+            tags$hr(),
+            big_red_button("rezeptpflicht", "Rezeptpflicht"))
+        }
+      }
+    })
   })
+  
 
 # bedenkliche Stoffe-------------------------------------------------------------------------
   
