@@ -213,9 +213,7 @@ server <- function(input, output, session) {
   
     output$erstattungscheck <- renderUI({
       Bestandteile <- Bestandteile()
-      #print(Bestandteile)
       if (!is.null(Bestandteile())){
-       # browser()
       box <- erstattungsstatus()
         if(all(box == "grün") & (length(box) == length(Bestandteile()))){
           tagList(
@@ -256,39 +254,36 @@ server <- function(input, output, session) {
         })
       
     
-    
    
-  
     observeEvent(input$erstattungsfähigkeit, {
-      updateTabsetPanel(session, "inTabset",
-                        selected = "Erstattungscheck")
-    })
-    
+      changePanel(session, "erstattungsfähigkeit")
+    })    
+        
     observeEvent(input$hartfettberechner, {
-      updateTabsetPanel(session, "inTabset",
-                        selected = "Hartfettmengenrechner")
+      changePanel(session, "Hartfettmengenrechner")
     })
     
     observeEvent(input$kompatibilitätscheck, {
-      updateTabsetPanel(session, "inTabset",
-                        selected = "Kombatibilitätscheck")
+      changePanel(session, "Kombatibilitätscheck")
     })
     
     observeEvent(input$bedenklich, {
-      updateTabsetPanel(session, "inTabset",
-                        selected = "bedenkliche Stoffe")
+      changePanel(session, "bedenkliche Stoffe")
     })
     
     observeEvent(input$dosierung, {
-      updateTabsetPanel(session, "inTabset",
-                        selected = "Dosierungscheck")
+      changePanel(session, "Dosierungscheck")
     })
     
     observeEvent(input$bedenkliche_RZ, {
-      
-      updateTabsetPanel(session, "inTabset",
-                        selected = "bedenkliche Stoffe")
+      changePanel(session, "bedenkliche Stoffe")
     })
+    
+    observeEvent(input$rezeptpflicht, {
+      changePanel(session, "Rezeptpflichtcheck")
+    })
+    
+    
     
     observeEvent(input$reset_ec,{
       reset("zusammensetzungRezep")
@@ -593,12 +588,13 @@ server <- function(input, output, session) {
 
   
 
-# Rezeptpflicht---------------------------------------------------------------------------- 
+# rezeptpflichtcheck---------------------------------------------------------------------------- 
   
   
   observe({
     Bestandteile <- Bestandteile()
     rpf <- rezeptpflichtServer("rezeptpflicht", rezeptpflichtDS, Bestandteile())
+    
     output$rezeptpflicht <- renderUI({
       Bestandteile <- Bestandteile()
       if (!is.null(Bestandteile())){
@@ -609,6 +605,7 @@ server <- function(input, output, session) {
         }
       }
     })
+    
   })
   
 

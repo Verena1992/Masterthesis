@@ -118,7 +118,7 @@ ui_Rezepturhinzufügen <- tabPanel(title = "neue Herstellungsanweisung", value =
 
 # Erstattungscheck---------------------------------------------------
 
-ui_Erstattungscheck <- tabPanel(title = "Erstattungscheck", value = "Erstattungscheck",
+ui_Erstattungscheck <- tabPanel(title = "Erstattungscheck", value = "erstattungsfähigkeit",
                                 fluidPage(
                                 
                                 titlePanel("Erstattungscheck"), 
@@ -160,11 +160,11 @@ ui_Erstattungscheck <- tabPanel(title = "Erstattungscheck", value = "Erstattungs
 
 # Rezeptpflicht-----------------------------------------------------
 ui_Rezeptpflichtcheck <- tabPanel(title = "Rezeptpflichtcheck", value = "Rezeptpflichtcheck",
-                                  rezeptpflichtUI("rezeptpflicht")
-                                  #selectizeInput("WS", "Wirkstoff",choices = NULL),
-                                  #textOutput("Rstatus"), 
-                               
-                                 )
+                                  fluidPage(
+                                    titlePanel("Rezeptpflichtcheck"), 
+                                    tags$hr(),
+                                    rezeptpflichtUI("rezeptpflicht")
+                                 ))
 
 
 # Hartfettmengenrechner----------------------------------------------------------
@@ -289,7 +289,7 @@ ui_Kombatibilitätscheck <- tabPanel("Kompatibilitätscheck", value = "Kombatibi
                                     ) 
 # bedenkliche Stoffe---------------------------------------------------------
 
-ui_bedenkliche_Stoffe <- tabPanel("bedenkliche Stoffe", value = "bedenkliche Stoffe",
+ui_bedenkliche_Stoffe <- tabPanel("Bedenkliche Stoffe", value = "bedenkliche Stoffe",
                                   fluidPage(
                                     titlePanel("Bedenkliche Rezepturarzneimittel"), 
                                     tags$hr(),

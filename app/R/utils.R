@@ -1,6 +1,14 @@
 
 
 
+changePanel <- function(session, panel_name){
+    updateTabsetPanel(session, "inTabset",
+                      selected = panel_name)
+}
+
+
+
+
 zip2dataSet <- function(datapath, filenr, header=T, sep = "\t") {
   #takes a zip folder as input and reads in one file which defined by filenr
   file_list <- unzip(datapath, list = T)
