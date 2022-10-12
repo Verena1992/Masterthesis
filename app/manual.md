@@ -1,6 +1,6 @@
 
-### Table of Contents
-1. [Eigenen Datensatz für Upload erstellen](#eigener-datensatz-fur-upload-erstellen)
+### Inhaltsverzeichnis
+1. [Eigenen Datensatz für Upload erstellen](#eigenen-datensatz-fur-upload-erstellen)
 2. [Eigene Rezepturen hinzufügen](#eigene-rezeptur-hinzufugen)
 3. [Verdrängungsfaktoren hinzufügen](#verdrangungsfaktoren-hinzufugen)
 4. [Rezepturencheck](#rezepturencheck)
@@ -12,8 +12,6 @@ Es gibt 2 Möglichkeiten die App zu nutzen:
 * ohne Upload
 * mit Upload von eigenen Dateien
 
-
- 
 ### Eigenen Datensatz für Upload erstellen
 
 Man kann einen zip komprimierten Ordner mit eigenen Dateien hochladen.
