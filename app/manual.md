@@ -1,10 +1,11 @@
 
 ### Inhaltsverzeichnis
-1. [Eigenen Datensatz für Upload erstellen](#eigenen-datensatz-fur-upload-erstellen)
-2. [Eigene Rezepturen hinzufügen](#eigene-rezeptur-hinzufugen)
-3. [Verdrängungsfaktoren hinzufügen](#verdrangungsfaktoren-hinzufugen)
-4. [Rezepturencheck](#rezepturencheck)
-
+1. [Eigenen Datensatz für Upload erstellen](#eigenen-datensatz-für-upload-erstellen)
+2. [Eigene Rezeptur hinzufügen](#eigene-rezeptur-hinzufügen)
+3. [Verdrängungsfaktoren hinzufügen](#verdrängungsfaktoren-hinzufügen)
+4. [Rezepturensuche](#rezepturensuche)
+5. [Rezepturencheck](#rezepturencheck)
+6. 
 
 **********************************************************************
 
@@ -12,7 +13,8 @@ Es gibt 2 Möglichkeiten die App zu nutzen:
 * ohne Upload
 * mit Upload von eigenen Dateien
 
-### Eigenen Datensatz für Upload erstellen
+
+# Eigenen Datensatz für Upload erstellen
 
 Man kann einen zip komprimierten Ordner mit eigenen Dateien hochladen.
 
@@ -21,42 +23,42 @@ Dieser Ordner muss 3 Dateien enthalten:
 * Herstellungshinweise
 * Rezepturzusammensetzung
 
-Um einen solchen Ordner mit diesen Dateien ohne Inhalt zu erstellen, klicken Sie auf **interne Rezeptursammlung erstellen**
+Um einen solchen Ordner mit diesen Dateien ohne Inhalt zu erstellen, klicken Sie auf **interne Rezeptursammlung erstellen**.
 
 <img src="screenshot/1.png" alt="drawing" width="50%"/>
 
-Es erscheint ein Download-Bereich. Klicke auf Download und ein zip komprimierter Ordner wird heruntergeladen. <br>
+Es erscheint ein Download-Bereich. Klicke auf **Download** und ein zip komprimierter Ordner wird heruntergeladen. <br>
 Dieser Ordner mit den darin enthaltenden Dateien ist für den Upload und damit für das Hinzufügen von eigenen Rezepturen/Verdrängungsfaktoren geeignet. 
 
 <img src="screenshot/11.png" alt="drawing" width="50%"/>
 
-### Eigene Rezeptur hinzufügen
+# Eigene Rezeptur hinzufügen
 
-
-Durch das Klicken auf **interne Rezeptursammlung erstellen** oder Hochladen eines eingenen Datensatzes (unter **interne Sammlung**)
-erscheinen unter Rezeptursammlung die Seiten **neue Rezeptur** und **neue Herstellungsanweisung** <br>
+Um eigene Rezepturen abzuspeichern, erstellen Sie einen [eigenen Datensatz](#eigenen-datensatz-für-upload-erstellen) oder laden sie unter **interne Sammlung** Ihren Datensatz hoch. <br>
+Es erscheinen unter Rezeptursammlung die Seiten **neue Rezeptur** und **neue Herstellungsanweisung** <br>
 
 <img src="screenshot/2.png" alt="drawing" width="50%"/>
 
-Unter neue Rezeptur kann die Zusammensetzung einer Rezeptur eingetragen werden. <br>
-Man kann Substanzen aus der Arzneitaxe auswählen oder andere Substanzen eintragen. 
-Mengenangaben können entweder in g oder ml angegeben werden. 
+Unter **neue Rezeptur** kann die Zusammensetzung einer Rezeptur eingetragen werden. <br>
+Man kann Substanzen aus der Arzneitaxe auswählen oder andere Substanzen eintragen. <br>
+Mengenangaben können entweder in g oder ml angegeben werden. <br>
 Wenn mit einer Substanz bis zu einer bestimmeten Menge aufgefüllt werden soll, drücke **ad** und gib dahinter die Gesamtmenge an. 
 
 <img src="screenshot/3.png" alt="drawing" width="50%"/>
 
-Diese Rezeptur muss unter neue Herstellungshinweise benannt werden (Titel).  <br>
+Diese Rezeptur muss unter **neue Herstellungshinweise** benannt werden (Titel).  <br>
 Es können weitere Informationen wie Herstellungshinweise, Dosierung, Haltbarkeiten, Quelle usw zur Rezeptur hinzugefügt werden.<br>
 Durch klicken auf **Rezeptur hinzufügen** wird die Zusammensetzung der Rezeptur mit die dazugehörigen Informationen hinzugefügt.<br>
+
 <img src="screenshot/4.png" alt="drawing" width="50%"/>
 <img src="screenshot/5.png" alt="drawing" width="50%"/>
 
-Kontrollieren Sie auf der Startseite die neu hinzugefügeten Informationen und downloaden Sie den aktualisierten Datensatz. <br>
+Kontrollieren Sie auf der Startseite die hinzugefügten Informationen und downloaden Sie den aktualisierten Datensatz. <br>
 Dieser Ordner kann bei der nächsten Verwendung der App wieder hochgeladen werden. 
 
 <img src="screenshot/6.png" alt="drawing" width="50%"/>
 
-### Verdrängungsfaktoren hinzufügen
+# Verdrängungsfaktoren hinzufügen
 
 Wenn Sie einen Zugang zum online DAC/NRF-Werk 2022 haben, speichern Sie die DAC-Anlage F als PDF ab.
 
@@ -66,32 +68,30 @@ Die DAC-Anlage F kann als PDF hochgeladen werden, dadurch werden die Verdrängun
 
 <img src="screenshot/8.png" alt="drawing" width="50%"/>
 
-Wird beim Hartfettmengenrechner eine Substanz nicht gefunden, wählen Sie **Substanz nicht in Liste vorhanden** dadurch erscheint ein neues Fenster.
-Mit diesen Fenster können Sie neue Substanzen und deren Verdrängungsfaktoren zu Ihren Datensatz hinzufügen, klicken sie dabei auf **übernehmen**. Kontrollieren Sie die neuen Verdrängungsfaktoren auf der Startseite und downloaden Sie den neuen Datensatz.
-
+Wird beim Hartfettmengenrechner eine Substanz nicht gefunden, wählen Sie **Substanz nicht in Liste vorhanden**. <br>
+Dadurch erscheint ein neues Fenster. 
+Mit diesen Fenster können Sie neue Substanzen und deren Verdrängungsfaktoren zu Ihren Datensatz hinzufügen. Klicken Sie dabei auf **übernehmen**. <br>
+Kontrollieren Sie die neuen Verdrängungsfaktoren auf der Startseite und downloaden Sie den neuen Datensatz.<br>
 
 <img src="screenshot/9.png" alt="drawing" width="50%"/>
 
-
-
-### Rezepturensuche
+# Rezepturensuche
 Rezepturen können in einer Rezepturensammlung gesucht werden. 
 
 Diese Rezepturensammlung setzt sich zusammen aus:
 * Rezepturen aus dem Kompendium JUNIORMED
-* eigene hochgelade Rezepturensammlung (optional)
+* eigene hochgelade Rezepturen (optional)
 
-Um Rezepturen in der Rezepturensammlung zu suchen, wählen Sie die Bestandteile der Rezeptur unter **Zusammensetzung der Rezeptur** aus. Auf der rechten Seite finden Sie die gefundenen Rezepturen. Um zusätzliche Informationen sehen zu können, klicken Sie die passende Rezeptur an. Ist die ausgewählte Rezeptur eine JUNIORMED Rezeptur, dann öffnet sich ein neues Fenster mit der online Version des JUNIORMEDs. Dabei ist bereits die Seite mit der ausgewählten Rezeptur ersichtlich. <br>
-
+Um Rezepturen in der Rezepturensammlung zu suchen, wählen Sie die Bestandteile der Rezeptur unter **Zusammensetzung der Rezeptur** aus. Auf der rechten Seite finden Sie die gefundenen Rezepturen. Um zusätzliche Informationen sehen zu können, klicken Sie die gewünschte Rezeptur an. <br>
+Ist die ausgewählte Rezeptur eine JUNIORMED Rezeptur, dann öffnet sich ein neues Fenster mit der online Version des JUNIORMEDs. Dabei ist bereits die Seite mit der ausgewählten Rezeptur ersichtlich. <br>
 
 <img src="screenshot/10.png" alt="drawing" width="50%"/>
 
 Ist die ausgewählte Rezeptur eine selbst abgespeicherte Rezeptur, erscheint auf der rechten Seite eine Tabelle mit den abgespeicherten Informationen. 
+
 <img src="screenshot/12.png" alt="drawing" width="50%"/>
 
-
-
-### Rezepturencheck
+# Rezepturencheck
 
 Automatisch ausgeführte Prüfungen der ausgewählten Rezeptur sind:
 
