@@ -43,6 +43,8 @@
     "NRF_online": 0,
     "reset_ec": 0,
     "rezep_nicht_gefun": 1,
+    "rezeptpflicht": 0,
+    "rezeptpflicht-WS": "",
     "Salbenfibel-Salbengrundlage": null,
     "Salbenfibel-Wirksubstanz": null,
     "Stückanzahl": 6,
@@ -64,7 +66,6 @@
     "Vf3": 0.7,
     "weitere_Substanz": 0,
     "weitere_Substanz2": 0,
-    "WS": "ABACAVIR",
     "WS_S": "Acetylsalicylsäure ",
     "WS_S2": "Acetylsalicylsäure ",
     "WS_S3": "Acetylsalicylsäure ",
@@ -96,7 +97,7 @@
     "bedenklicheSt": null,
     "button-keine_rez": "es wurde keine Rezeptur gefunden",
     "button-Rezepturen": {
-      "html": "<button id=\"button-Atropinsulfat 0,01 % Augentropfen – JUN 01.01. (IV)\" type=\"button\" class=\"btn btn-default action-button\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/16&#39;, &#39;_blank&#39;)\"><h3>Atropinsulfat 0,01 % Augentropfen – JUN 01.01. (IV) <\/h3> <br/> c(\"Atropinsulfat\", \"Natriumchlorid\", \"Benzalkoniumchlorid\", \"Natriumedetat\", \"Wasser für Injektionszwecke\")<\/button>\n<button id=\"button-Atropinsulfat 0,5 % Augentropfen –JUN 01.02. (III)\" type=\"button\" class=\"btn btn-default action-button\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/16&#39;, &#39;_blank&#39;)\"><h3>Atropinsulfat 0,5 % Augentropfen –JUN 01.02. (III) <\/h3> <br/> c(\"Atropinsulfat\", \"Natriumchlorid\", \"Benzalkoniumchlorid\", \"Wasser für Injektionszwecke\")<\/button>",
+      "html": "<button id=\"button-Atropinsulfat 0,01 % Augentropfen – JUN 01.01. (IV)\" type=\"button\" class=\"btn btn-default action-button\" block=\"TRUE\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/16&#39;, &#39;_blank&#39;)\"><h3>Atropinsulfat 0,01 % Augentropfen – JUN 01.01. (IV) <\/h3> <br/> c(\"Atropinsulfat\", \"Natriumchlorid\", \"Benzalkoniumchlorid\", \"Natriumedetat\", \"Wasser für Injektionszwecke\")<\/button>\n<button id=\"button-Atropinsulfat 0,5 % Augentropfen –JUN 01.02. (III)\" type=\"button\" class=\"btn btn-default action-button\" block=\"TRUE\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/16&#39;, &#39;_blank&#39;)\"><h3>Atropinsulfat 0,5 % Augentropfen –JUN 01.02. (III) <\/h3> <br/> c(\"Atropinsulfat\", \"Natriumchlorid\", \"Benzalkoniumchlorid\", \"Wasser für Injektionszwecke\")<\/button>",
       "deps": [
 
       ]
@@ -124,7 +125,14 @@
       ]
     },
     "enf": "",
-    "enf_kc": "Atropinsulfat",
+    "enf_kc": {
+      "message": "",
+      "call": "NULL",
+      "type": [
+        "shiny.silent.error",
+        "validation"
+      ]
+    },
     "eng": "",
     "erstattungscheck": {
       "html": "<hr/>\n<button class=\"action-button bttn bttn-fill bttn-lg bttn-success bttn-block bttn-no-outline\" id=\"erstattungsfähigkeit\" type=\"button\">Erstattungsfähigkeit der ausgewählten Rezeptur prüfen<\/button>",
@@ -182,6 +190,37 @@
       "type": [
         "shiny.silent.error",
         "validation"
+      ]
+    },
+    "rezeptpflicht": {
+      "html": "<hr/>\n<button class=\"action-button bttn bttn-fill bttn-lg bttn-danger bttn-block bttn-no-outline\" id=\"rezeptpflicht\" type=\"button\">Rezeptpflicht<\/button>",
+      "deps": [
+        {
+          "name": "shinyWidgets",
+          "version": "0.7.0",
+          "src": {
+            "href": "shinyWidgets"
+          },
+          "meta": null,
+          "script": "shinyWidgets-bindings.min.js",
+          "stylesheet": "shinyWidgets.min.css",
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
+        {
+          "name": "bttn",
+          "version": "0.2.4",
+          "src": {
+            "href": "shinyWidgets/bttn"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "bttn.min.css",
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        }
       ]
     }
   },

@@ -13,6 +13,8 @@ library(shinyjs)
 library(purrr)
 #library(shinyBS)
 library(pdftools)
+#library(knitr)
+library(markdown)
 
 # load data ---------------------------------------------------------------
 rezeptpflicht <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
@@ -311,6 +313,14 @@ ui_Dosierungscheck <- tabPanel("Dosierungscheck", value = "Dosierungscheck",
                                     
                                   )
 )
+# Hilfen------------------------------------------------------------------
+
+
+ui_Hilfen <- tabPanel("Hilfe", value = "Hilfe",
+                               fluidPage(
+                                 titlePanel("Manual"), 
+                                 includeMarkdown("manual.md")
+                               ))
 
 # UI--------------------------------------------------------------------------------------------
 #ui <- auth0_ui(navbarPage("My Application",id = "inTabset", ui_Home,
@@ -320,6 +330,6 @@ ui <- navbarPage("My Application",id = "inTabset", ui_Home,
                             ui_Rezeptursammlung, ui_neue_Zusammensetzung_Rezeptur, ui_Rezepturhinzufügen),
                  navbarMenu("Rezepturkontrollen",
                             ui_Erstattungscheck,ui_Rezeptpflichtcheck, ui_Kombatibilitätscheck, ui_bedenkliche_Stoffe, ui_Dosierungscheck),
-                 ui_Suppositorien_Rechner)
+                 ui_Suppositorien_Rechner, ui_Hilfen)
 
 

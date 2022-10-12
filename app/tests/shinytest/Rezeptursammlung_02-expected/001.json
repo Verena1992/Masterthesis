@@ -42,6 +42,7 @@
     "NRF_online": 0,
     "reset_ec": 0,
     "rezep_nicht_gefun": 0,
+    "rezeptpflicht-WS": "",
     "Salbenfibel-Salbengrundlage": null,
     "Salbenfibel-Wirksubstanz": null,
     "Stückanzahl": 6,
@@ -63,7 +64,6 @@
     "Vf3": 0.7,
     "weitere_Substanz": 0,
     "weitere_Substanz2": 0,
-    "WS": "ABACAVIR",
     "WS_S": "Acetylsalicylsäure ",
     "WS_S2": "Acetylsalicylsäure ",
     "WS_S3": "Acetylsalicylsäure ",
@@ -95,7 +95,7 @@
     "bedenklicheSt": null,
     "button-keine_rez": "es wurde keine Rezeptur gefunden",
     "button-Rezepturen": {
-      "html": "<button id=\"button-Ethanolhaltiges Erythromycin-Gel  (NRF 11.84.)\" type=\"button\" class=\"btn btn-default action-button\"><h3>Ethanolhaltiges Erythromycin-Gel  (NRF 11.84.) <\/h3> <br/> c(\"Erythromycin\", \"Citronensäure\", \"Ethanol 96%\", \"Glycerol 85%\", \"Hypromellose\", \"Wasser / Gereinigtes\")<\/button>\n<button id=\"button-Hydrophile Erythromycin-Creme 1 %/2 %/4 % – JUN 04.15. (II)\" type=\"button\" class=\"btn btn-default action-button\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/82&#39;, &#39;_blank&#39;)\"><h3>Hydrophile Erythromycin-Creme 1 %/2 %/4 % – JUN 04.15. (II) <\/h3> <br/> c(\"Erythromycin\", \"Triglyceride / Mittelkettige\", \"Basiscreme ÖAB\", \"Citronensäure\", \"Propylenglycol\", \"Wasser / Gereinigtes\")<\/button>",
+      "html": "<button id=\"button-Ethanolhaltiges Erythromycin-Gel  (NRF 11.84.)\" type=\"button\" class=\"btn btn-default action-button\" block=\"TRUE\"><h3>Ethanolhaltiges Erythromycin-Gel  (NRF 11.84.) <\/h3> <br/> c(\"Erythromycin\", \"Citronensäure\", \"Ethanol 96%\", \"Glycerol 85%\", \"Hypromellose\", \"Wasser / Gereinigtes\")<\/button>\n<button id=\"button-Hydrophile Erythromycin-Creme 1 %/2 %/4 % – JUN 04.15. (II)\" type=\"button\" class=\"btn btn-default action-button\" block=\"TRUE\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/82&#39;, &#39;_blank&#39;)\"><h3>Hydrophile Erythromycin-Creme 1 %/2 %/4 % – JUN 04.15. (II) <\/h3> <br/> c(\"Erythromycin\", \"Triglyceride / Mittelkettige\", \"Basiscreme ÖAB\", \"Citronensäure\", \"Propylenglycol\", \"Wasser / Gereinigtes\")<\/button>",
       "deps": [
 
       ]
@@ -166,7 +166,8 @@
         "shiny.silent.error",
         "validation"
       ]
-    }
+    },
+    "rezeptpflicht": null
   },
   "export": {
 

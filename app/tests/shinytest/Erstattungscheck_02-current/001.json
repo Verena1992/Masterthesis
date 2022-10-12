@@ -2,30 +2,15 @@
   "input": {
     "._auth0logout_": 0,
     "Berechnung_Menge": 0,
-    "button-Atropinsulfat 0,01 % Augentropfen – JUN 01.01. (IV)": 0,
-    "button-Atropinsulfat 0,5 % Augentropfen –JUN 01.02. (III)": 0,
     "dosierung-arzneitaxe": "Albendazol",
     "dosierung-Menge_Substanz1": null,
     "dosierung-Mengeinsgesamt": 100,
     "ec-reset": 0,
-    "ec-zusammensetzung_arzneitaxe": null,
+    "ec-zusammensetzung_arzneitaxe": "Abführender Tee offizinal",
     "Eichwert": 2,
     "eigeneRezeptur_hinzu": 0,
-    "inTabset": "Rezeptursammlung",
-    "jun_and_int-file": {
-      "name": [
-        "Rezeptursammlung_präsi.zip"
-      ],
-      "size": [
-        111372
-      ],
-      "type": [
-        "application/zip"
-      ],
-      "datapath": [
-        "0.zip"
-      ]
-    },
+    "inTabset": "Home",
+    "jun_and_int-file": null,
     "jun_and_int-neue_rzs": 0,
     "jun_and_int-q1": 0,
     "Menge_Substanz1": 0.7,
@@ -42,6 +27,7 @@
     "NRF_online": 0,
     "reset_ec": 0,
     "rezep_nicht_gefun": 0,
+    "rezeptpflicht-WS": "",
     "Salbenfibel-Salbengrundlage": null,
     "Salbenfibel-Wirksubstanz": null,
     "Stückanzahl": 6,
@@ -63,10 +49,9 @@
     "Vf3": 0.7,
     "weitere_Substanz": 0,
     "weitere_Substanz2": 0,
-    "WS": "ABACAVIR",
-    "WS_S": "Acetylsalicylsäure ",
-    "WS_S2": "Acetylsalicylsäure ",
-    "WS_S3": "Acetylsalicylsäure ",
+    "WS_S": "",
+    "WS_S2": "",
+    "WS_S3": "",
     "Zusammensetzung-1": null,
     "Zusammensetzung-1ad": 0,
     "Zusammensetzung-1Einheit": false,
@@ -88,19 +73,9 @@
     "Zusammensetzung-5Einheit": false,
     "Zusammensetzung-5num": 1,
     "Zusammensetzung-jump_2_Herstellungshinweise": 0,
-    "zusammensetzungRezep": "Atropinsulfat"
+    "zusammensetzungRezep": null
   },
   "output": {
-    "bedenklicher_Stoff": null,
-    "bedenklicheSt": null,
-    "button-keine_rez": "es wurde keine Rezeptur gefunden",
-    "button-Rezepturen": {
-      "html": "<button id=\"button-Atropinsulfat 0,01 % Augentropfen – JUN 01.01. (IV)\" type=\"button\" class=\"btn btn-default action-button\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/16&#39;, &#39;_blank&#39;)\"><h3>Atropinsulfat 0,01 % Augentropfen – JUN 01.01. (IV) <\/h3> <br/> c(\"Atropinsulfat\", \"Natriumchlorid\", \"Benzalkoniumchlorid\", \"Natriumedetat\", \"Wasser für Injektionszwecke\")<\/button>\n<button id=\"button-Atropinsulfat 0,5 % Augentropfen –JUN 01.02. (III)\" type=\"button\" class=\"btn btn-default action-button\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/16&#39;, &#39;_blank&#39;)\"><h3>Atropinsulfat 0,5 % Augentropfen –JUN 01.02. (III) <\/h3> <br/> c(\"Atropinsulfat\", \"Natriumchlorid\", \"Benzalkoniumchlorid\", \"Wasser für Injektionszwecke\")<\/button>",
-      "deps": [
-
-      ]
-    },
-    "dosierung": null,
     "download": {
       "html": "<h2>Downloads<\/h2>\n<h5>Neue Informationen zur interner Sammlung hinzufügen und herunterladen<\/h5>\n<a id=\"download_newRezeptur\" class=\"btn btn-default shiny-download-link \" href=\"\" target=\"_blank\" download>\n  <i class=\"fa fa-download\" role=\"presentation\" aria-label=\"download icon\"><\/i>\n  Download\n<\/a>\n<hr/>",
       "deps": [
@@ -139,10 +114,7 @@
       ]
     },
     "eng": "",
-    "erstattungscheck": null,
-    "fileUploaded": true,
-    "hartfettberechnen": null,
-    "kompatibilität": null,
+    "fileUploaded": false,
     "limits": {
       "message": "",
       "call": "NULL",

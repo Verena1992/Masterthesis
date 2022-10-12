@@ -12,6 +12,7 @@ library(purrr)
 library(shinyBS)
 library(pdftools)
 library(shinytest)
+#library(knitr)
 
 # load data ---------------------------------------------------------------
 
@@ -690,4 +691,7 @@ observe({
 })
 
 }
+# Hilfen------------------------------------------------------------------
+
+
 

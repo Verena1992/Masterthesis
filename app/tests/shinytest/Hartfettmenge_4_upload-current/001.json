@@ -1,35 +1,19 @@
 {
   "input": {
     "._auth0logout_": 0,
-    "Berechnung_Menge": 0,
-    "button-Atropinsulfat 0,01 % Augentropfen – JUN 01.01. (IV)": 0,
-    "button-Atropinsulfat 0,5 % Augentropfen –JUN 01.02. (III)": 0,
-    "dosierung-arzneitaxe": null,
+    "Berechnung_Menge": 1,
+    "dosierung-arzneitaxe": "Albendazol",
     "dosierung-Menge_Substanz1": null,
     "dosierung-Mengeinsgesamt": 100,
     "ec-reset": 0,
-    "ec-zusammensetzung_arzneitaxe": "Atropinsulfat",
-    "Eichwert": 2,
+    "ec-zusammensetzung_arzneitaxe": null,
+    "Eichwert": 1.9,
     "eigeneRezeptur_hinzu": 0,
-    "erstattungsfähigkeit": 0,
-    "inTabset": "Rezeptursammlung",
-    "jun_and_int-file": {
-      "name": [
-        "Rezeptursammlung_präsi.zip"
-      ],
-      "size": [
-        111372
-      ],
-      "type": [
-        "application/zip"
-      ],
-      "datapath": [
-        "0.zip"
-      ]
-    },
+    "inTabset": "Hartfettmengenrechner",
+    "jun_and_int-file": null,
     "jun_and_int-neue_rzs": 0,
     "jun_and_int-q1": 0,
-    "Menge_Substanz1": 0.7,
+    "Menge_Substanz1": 0.03,
     "Menge_Substanz2": 0.7,
     "Menge_Substanz3": 0.7,
     "New_Substanz": "Abführender Tee offizinal",
@@ -39,13 +23,27 @@
     "New_Verdrängungsfaktor2": 0.7,
     "New_Verdrängungsfaktor3": 0.7,
     "nrf_and_int-q1": 0,
-    "nrf_and_int-Verdrängungsfaktoren": null,
+    "nrf_and_int-Verdrängungsfaktoren": {
+      "name": [
+        "anlage-f_el2021-1_2800.pdf"
+      ],
+      "size": [
+        787839
+      ],
+      "type": [
+        "application/pdf"
+      ],
+      "datapath": [
+        "0.pdf"
+      ]
+    },
     "NRF_online": 0,
     "reset_ec": 0,
-    "rezep_nicht_gefun": 1,
+    "rezep_nicht_gefun": 0,
+    "rezeptpflicht-WS": "",
     "Salbenfibel-Salbengrundlage": null,
     "Salbenfibel-Wirksubstanz": null,
-    "Stückanzahl": 6,
+    "Stückanzahl": 10,
     "Substanz_hinzufügen": 0,
     "Substanz_hinzufügen2": 0,
     "Substanz_hinzufügen3": 0,
@@ -58,14 +56,13 @@
     "textAreas-Lagerung": "",
     "textAreas-Quelle": "",
     "textAreas-Titel": "",
-    "Überschuss": 10,
+    "Überschuss": 20,
     "Vf": 0.7,
     "Vf2": 0.7,
     "Vf3": 0.7,
     "weitere_Substanz": 0,
     "weitere_Substanz2": 0,
-    "WS": "ABACAVIR",
-    "WS_S": "Acetylsalicylsäure ",
+    "WS_S": "Allantoin",
     "WS_S2": "Acetylsalicylsäure ",
     "WS_S3": "Acetylsalicylsäure ",
     "Zusammensetzung-1": null,
@@ -89,19 +86,9 @@
     "Zusammensetzung-5Einheit": false,
     "Zusammensetzung-5num": 1,
     "Zusammensetzung-jump_2_Herstellungshinweise": 0,
-    "zusammensetzungRezep": "Atropinsulfat"
+    "zusammensetzungRezep": null
   },
   "output": {
-    "bedenklicher_Stoff": null,
-    "bedenklicheSt": null,
-    "button-keine_rez": "es wurde keine Rezeptur gefunden",
-    "button-Rezepturen": {
-      "html": "<button id=\"button-Atropinsulfat 0,01 % Augentropfen – JUN 01.01. (IV)\" type=\"button\" class=\"btn btn-default action-button\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/16&#39;, &#39;_blank&#39;)\"><h3>Atropinsulfat 0,01 % Augentropfen – JUN 01.01. (IV) <\/h3> <br/> c(\"Atropinsulfat\", \"Natriumchlorid\", \"Benzalkoniumchlorid\", \"Natriumedetat\", \"Wasser für Injektionszwecke\")<\/button>\n<button id=\"button-Atropinsulfat 0,5 % Augentropfen –JUN 01.02. (III)\" type=\"button\" class=\"btn btn-default action-button\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/16&#39;, &#39;_blank&#39;)\"><h3>Atropinsulfat 0,5 % Augentropfen –JUN 01.02. (III) <\/h3> <br/> c(\"Atropinsulfat\", \"Natriumchlorid\", \"Benzalkoniumchlorid\", \"Wasser für Injektionszwecke\")<\/button>",
-      "deps": [
-
-      ]
-    },
-    "dosierung": null,
     "download": {
       "html": "<h2>Downloads<\/h2>\n<h5>Neue Informationen zur interner Sammlung hinzufügen und herunterladen<\/h5>\n<a id=\"download_newRezeptur\" class=\"btn btn-default shiny-download-link \" href=\"\" target=\"_blank\" download>\n  <i class=\"fa fa-download\" role=\"presentation\" aria-label=\"download icon\"><\/i>\n  Download\n<\/a>\n<hr/>",
       "deps": [
@@ -123,7 +110,14 @@
         }
       ]
     },
-    "enf": "",
+    "enf": {
+      "message": "",
+      "call": "NULL",
+      "type": [
+        "shiny.silent.error",
+        "validation"
+      ]
+    },
     "enf_kc": {
       "message": "",
       "call": "NULL",
@@ -133,40 +127,7 @@
       ]
     },
     "eng": "",
-    "erstattungscheck": {
-      "html": "<hr/>\n<button class=\"action-button bttn bttn-fill bttn-lg bttn-success bttn-block bttn-no-outline\" id=\"erstattungsfähigkeit\" type=\"button\">Erstattungsfähigkeit der ausgewählten Rezeptur prüfen<\/button>",
-      "deps": [
-        {
-          "name": "shinyWidgets",
-          "version": "0.7.0",
-          "src": {
-            "href": "shinyWidgets"
-          },
-          "meta": null,
-          "script": "shinyWidgets-bindings.min.js",
-          "stylesheet": "shinyWidgets.min.css",
-          "head": null,
-          "attachment": null,
-          "all_files": false
-        },
-        {
-          "name": "bttn",
-          "version": "0.2.4",
-          "src": {
-            "href": "shinyWidgets/bttn"
-          },
-          "meta": null,
-          "script": null,
-          "stylesheet": "bttn.min.css",
-          "head": null,
-          "attachment": null,
-          "all_files": true
-        }
-      ]
-    },
     "fileUploaded": true,
-    "hartfettberechnen": null,
-    "kompatibilität": null,
     "limits": {
       "message": "",
       "call": "NULL",
@@ -189,6 +150,14 @@
       "type": [
         "shiny.silent.error",
         "validation"
+      ]
+    },
+    "nötige_Hartfettmenge": "22.6128",
+    "nötige_Substanzmenge1": "0.36",
+    "vf": {
+      "html": "Verdrägungsfaktor =  0.52",
+      "deps": [
+
       ]
     }
   },

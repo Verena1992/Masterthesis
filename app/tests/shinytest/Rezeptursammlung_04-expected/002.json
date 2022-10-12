@@ -113,6 +113,7 @@
     "NRF_online": 0,
     "reset_ec": 0,
     "rezep_nicht_gefun": 0,
+    "rezeptpflicht-WS": "",
     "Salbenfibel-Salbengrundlage": null,
     "Salbenfibel-Wirksubstanz": null,
     "Stückanzahl": 6,
@@ -134,7 +135,6 @@
     "Vf3": 0.7,
     "weitere_Substanz": 0,
     "weitere_Substanz2": 0,
-    "WS": "ABACAVIR",
     "WS_S": "Acetylsalicylsäure ",
     "WS_S2": "Acetylsalicylsäure ",
     "WS_S3": "Acetylsalicylsäure ",
@@ -300,7 +300,7 @@
     "bedenklicheSt": null,
     "button-keine_rez": "es wurde keine Rezeptur gefunden",
     "button-Rezepturen": {
-      "html": "<button id=\"button-Naphazolinhydrochlorid 0,05 % unkonservierte Augentropfen – JUN 01.06. (III)\" type=\"button\" class=\"btn btn-default action-button\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/20&#39;, &#39;_blank&#39;)\"><h3>Naphazolinhydrochlorid 0,05 % unkonservierte Augentropfen – JUN 01.06. (III) <\/h3> <br/> c(\"Naphazolinhydrochlorid\", \"Natriumchlorid\", \"Borsäure\", \"Wasser für Injektionszwecke\")<\/button>",
+      "html": "<button id=\"button-Naphazolinhydrochlorid 0,05 % unkonservierte Augentropfen – JUN 01.06. (III)\" type=\"button\" class=\"btn btn-default action-button\" block=\"TRUE\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/20&#39;, &#39;_blank&#39;)\"><h3>Naphazolinhydrochlorid 0,05 % unkonservierte Augentropfen – JUN 01.06. (III) <\/h3> <br/> c(\"Naphazolinhydrochlorid\", \"Natriumchlorid\", \"Borsäure\", \"Wasser für Injektionszwecke\")<\/button>",
       "deps": [
 
       ]
@@ -371,7 +371,8 @@
         "shiny.silent.error",
         "validation"
       ]
-    }
+    },
+    "rezeptpflicht": null
   },
   "export": {
 
