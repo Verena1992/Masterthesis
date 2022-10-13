@@ -111,25 +111,18 @@ wenn keine Rezeptur in der Sammlung gefunden wurde, und trotzdem die Rezepturche
 
 Erscheinen auf der linken Seite, durch klicken darauf gelangt man zur entsprechenden Seite
 
-* Erstattungsfähigkeit
-
-| First Header  | Second Header |
+|  | |
 | ------------- | ------------- |
-| <img src="screenshot/16.png" width="200"/> | alle Bestandteile der Rezeptur erstattungsfähig  |
-| <img src="screenshot/17.png" alt="drawing" width="200"/> | Content Cell  |
+| **Erstattungsfähigkeit** | |
+| <img src="screenshot/16.png" width="200"/> | alle Bestandteile der Rezeptur sind erstattungsfähig.  |
+| <img src="screenshot/17.png" alt="drawing" width="200"/> |  mindestens ein Bestandteil der Rezeptur befindet sich nicht in der grünen Box bzw. wurde in der Arzneitaxe nicht gefunden  |
+| **Rezeptpflichtstatus** | |
+| <img src="screenshot/18.png" width="200"/> | mindestens ein Bestandteil der Rezeptur ist in der Rezeptpflichtverordnung gelistet  |
+| **Kompatibilität der Substanzen mit Salbengrundlage** | |
+| <img src="screenshot/21.png" width="200"/> | alle Bestandteile der Rezeptur sind mit der Grundlage stabil |
+| <img src="screenshot/19.png" width="200"/> | es kann nicht für alle Bestandteile eine eindeutige Entscheidung getroffen werden  |
+| <img src="screenshot/20.png" width="200"/> |  mindestens ein Bestandteil der Rezeptur ist nicht kompatibel mit der Grundlage |
 
-| <img src="screenshot/16.png" alt="drawing" width="19%"/> | alle Bestandteile der Rezeptur erstattungsfähig |
-| <img src="screenshot/17.png" alt="drawing" width="19%"/> | mindestens ein Bestandteil der Rezeptur befindet sich nicht in der grünen Box bzw. wurde in der Arzneitaxe nicht gefunden. |
-
-* Rezeptpflichtstatus
-
-<img src="screenshot/18.png" alt="drawing" width="19%"/> mindestens ein Bestandteil der Rezeptur ist in der Rezeptpflichtverordnung gelistet
-
-* Kompatibilität der Substanzen mit Salbengrundlage
-
-<img src="screenshot/21.png" alt="drawing" width="19%"/> alle Bestandteile der Rezeptur sind mit der Grundlage stabil <br>
-<img src="screenshot/19.png" alt="drawing" width="19%"/> es kann nicht für alle Bestandteile eine eindeutige Entscheidung getroffen werden <br>
-<img src="screenshot/20.png" alt="drawing" width="19%"/> mindestens ein Bestandteil der Rezeptur ist nicht kompatibel mit der Grundlage
 
 
 * Dosierung von lokal applizierten Wirkstoffe
