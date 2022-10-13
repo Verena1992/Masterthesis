@@ -1,11 +1,12 @@
 
 ### Inhaltsverzeichnis
-1. [Eigenen Datensatz für Upload erstellen](#eigenen-datensatz-für-upload-erstellen)
-2. [Eigene Rezeptur hinzufügen](#eigene-rezeptur-hinzufügen)
-3. [Verdrängungsfaktoren hinzufügen](#verdrängungsfaktoren-hinzufügen)
-4. [Rezepturensuche](#rezepturensuche)
-5. [Rezepturencheck](#rezepturencheck)
-6. 
+- [Eigenen Datensatz für Upload erstellen](#eigenen-datensatz-für-upload-erstellen)
+- [Eigene Rezeptur hinzufügen](#eigene-rezeptur-hinzufügen)
+- [Verdrängungsfaktoren hinzufügen](#verdrängungsfaktoren-hinzufügen)
+- [Rezepturensuche](#rezepturensuche)
+- [Rezepturencheck](#rezepturencheck)
+  - [Ergebnisse der Rezepturkontrollen](#ergebnisse-der-rezepturkontrollen)
+
 
 **********************************************************************
 
@@ -106,15 +107,19 @@ wenn keine Rezeptur in der Sammlung gefunden wurde, und trotzdem die Rezepturche
 
 <img src="screenshot/13.png" alt="drawing" width="50%"/>
 
-#### Ergebnisse der Rezepturkontrollen
+## Ergebnisse der Rezepturkontrollen
 
 Erscheinen auf der linken Seite, durch klicken darauf gelangt man zur entsprechenden Seite
 
 * Erstattungsfähigkeit
 
-<img src="screenshot/16.png" alt="drawing" width="19%"/> alle Bestandteile der Rezeptur erstattungsfähig
+| First Header  | Second Header |
+| ------------- | ------------- |
+| <img src="screenshot/16.png" width="200"/> | alle Bestandteile der Rezeptur erstattungsfähig  |
+| <img src="screenshot/17.png" alt="drawing" width="200"/> | Content Cell  |
 
-<img src="screenshot/17.png" alt="drawing" width="19%"/> mindestens ein Bestandteil der Rezeptur befindet sich nicht in der grünen Box bzw. wurde in der Arzneitaxe nicht gefunden.
+| <img src="screenshot/16.png" alt="drawing" width="19%"/> | alle Bestandteile der Rezeptur erstattungsfähig |
+| <img src="screenshot/17.png" alt="drawing" width="19%"/> | mindestens ein Bestandteil der Rezeptur befindet sich nicht in der grünen Box bzw. wurde in der Arzneitaxe nicht gefunden. |
 
 * Rezeptpflichtstatus
 
