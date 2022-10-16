@@ -1,6 +1,6 @@
 
 ### Inhaltsverzeichnis
-- [Eigenen Datensatz für Upload erstellen](#eigenen-datensatz-für-upload-erstellen)
+- [Eigenen Ordner für Upload erstellen](#eigenen-ordner-für-upload-erstellen)
 - [Eigene Rezeptur hinzufügen](#eigene-rezeptur-hinzufügen)
 - [Verdrängungsfaktoren hinzufügen](#verdrängungsfaktoren-hinzufügen)
 - [Rezepturensuche](#rezepturensuche)
@@ -16,22 +16,29 @@
   - [Mit Upload](#mit-upload)
 
 **********************************************************************
+Hauptfunktionen der App sind:
+1. Rezepturen und deren Herstellungsvorschriften in einer Rezepturensammlung zu suchen
+2. Rezepturen automatisiert zu überprüfen
+3. Hartfettmenge berechnen
 
-Es gibt 2 Möglichkeiten die App zu nutzen:
-* ohne Upload
-* mit Upload von eigenen Dateien
+Die in der App integrierte Rezepturensammlung besteht aus den JUNIORMED Rezepturen. 
+Weiters ist es möglich eigene Rezepturen zu dieser Sammlung hinzuzufügen. 
+Um eigene Rezepturen hinzuzufügen muss man zuerst einen zip komprimierten Ordner hochladen. Danach kann man unter **neue Rezeptur** neue Rezepturen abspeichern (siehe [Eigene Rezeptur hinzufügen](#eigene-rezeptur-hinzufügen)).
+Wie man einen für den Upload geeigneten Ordner erstellt, siehe [Eigenen Ordner für Upload erstellen](#eigenen-ordner-für-upload-erstellen).
+Zusätzlich können mit einem hochgeladenen Ordner eigene Verdrängungsfaktoren abgespeichert werden, siehe [Verdrängungsfaktoren hinzufügen](#verdrängungsfaktoren-hinzufügen).
 
 
-# Eigenen Datensatz für Upload erstellen
+
+# Eigenen Ordner für Upload erstellen
 
 Man kann einen zip komprimierten Ordner mit eigenen Dateien hochladen.
 
-Dieser Ordner muss 3 Dateien enthalten:
+Dieser Ordner muss 3 Textdateien enthalten:
 * Verdrängungsfaktoren
 * Herstellungshinweise
 * Rezepturzusammensetzung
 
->Um einen solchen Ordner mit diesen Dateien ohne Inhalt zu erstellen, klicken Sie auf **interne Rezeptursammlung erstellen**.
+>Um einen solchen Ordner zu erstellen, klicken Sie auf **interne Rezeptursammlung erstellen**.
 >
 ><img src="screenshot/1.png" alt="drawing" width="50%"/>
 
