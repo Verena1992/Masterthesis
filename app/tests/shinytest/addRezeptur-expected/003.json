@@ -13,6 +13,7 @@
     "jun_and_int-file": null,
     "jun_and_int-neue_rzs": 1,
     "jun_and_int-q1": 0,
+    "manual": 0,
     "Menge_Substanz1": 0.7,
     "Menge_Substanz2": 0.7,
     "Menge_Substanz3": 0.7,
@@ -76,10 +77,6 @@
     "zusammensetzungRezep": null
   },
   "output": {
-    "bedenklicher_Stoff": null,
-    "bedenklicheSt": null,
-    "button-keine_rez": "es wurde keine Rezeptur gefunden",
-    "dosierung": null,
     "download": {
       "html": "<h2>Downloads<\/h2>\n<h5>Neue Informationen zur interner Sammlung hinzufügen und herunterladen<\/h5>\n<a id=\"download_newRezeptur\" class=\"btn btn-default shiny-download-link \" href=\"\" target=\"_blank\" download>\n  <i class=\"fa fa-download\" role=\"presentation\" aria-label=\"download icon\"><\/i>\n  Download\n<\/a>\n<hr/>",
       "deps": [
@@ -118,10 +115,7 @@
       ]
     },
     "eng": "",
-    "erstattungscheck": null,
     "fileUploaded": true,
-    "hartfettberechnen": null,
-    "kompatibilität": null,
     "limits": {
       "message": "",
       "call": "NULL",
@@ -138,8 +132,7 @@
         "shiny.silent.error",
         "validation"
       ]
-    },
-    "rezeptpflicht": null
+    }
   },
   "export": {
 

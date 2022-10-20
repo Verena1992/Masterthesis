@@ -57,9 +57,9 @@ ui_Home <- tabPanel("Home",
 
 
 # Rezeptursammlung----------------------------------------------------------
-ui_Rezeptursammlung <- tabPanel("Rezeptursammlung", 
+ui_Rezeptursammlung <- tabPanel("Rezepturensuche", 
                                 fluidPage(
-                                  titlePanel("Rezeptursammlung"),
+                                  titlePanel("Rezepturensuche"),
                                   sidebarLayout(
                                     
                                     sidebarPanel(
@@ -318,8 +318,9 @@ ui_Dosierungscheck <- tabPanel("Dosierungscheck", value = "Dosierungscheck",
 
 ui_Hilfen <- tabPanel("Hilfe", value = "Hilfe",
                                fluidPage(
-                                 titlePanel("Manual"), 
-                                 includeMarkdown("manual.md")
+                                 actionButton("manual", "Manual", onclick = paste0("window.open('https://github.com/Verena1992/Masterthesis/blob/main/app/manual.md', '_blank')")),
+                                 #titlePanel("Manual"), 
+                                 #includeMarkdown("manual.md")
                                ))
 
 # UI--------------------------------------------------------------------------------------------

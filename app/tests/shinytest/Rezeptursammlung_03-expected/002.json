@@ -19,10 +19,11 @@
     "eigeneRezeptur_hinzu": 0,
     "erstattungsfähigkeit": 0,
     "hartfettberechner": 0,
-    "inTabset": "Rezeptursammlung",
+    "inTabset": "Rezepturensuche",
     "jun_and_int-file": null,
     "jun_and_int-neue_rzs": 0,
     "jun_and_int-q1": 0,
+    "manual": 0,
     "Menge_Substanz1": 0.7,
     "Menge_Substanz2": 0.7,
     "Menge_Substanz3": 0.7,
@@ -37,6 +38,7 @@
     "NRF_online": 0,
     "reset_ec": 0,
     "rezep_nicht_gefun": 1,
+    "rezeptpflicht-WS": "",
     "Salbenfibel-Salbengrundlage": null,
     "Salbenfibel-Wirksubstanz": null,
     "Stückanzahl": 6,
@@ -58,7 +60,6 @@
     "Vf3": 0.7,
     "weitere_Substanz": 0,
     "weitere_Substanz2": 0,
-    "WS": "ABACAVIR",
     "WS_S": "",
     "WS_S2": "",
     "WS_S3": "",
@@ -90,7 +91,7 @@
     "bedenklicheSt": null,
     "button-keine_rez": "es wurde keine Rezeptur gefunden",
     "button-Rezepturen": {
-      "html": "<button id=\"button-Lidocainhydrochlorid-Suppositorien mit Kamillenöl 20 mg – JUN 02.04. (V)\" type=\"button\" class=\"btn btn-default action-button\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/28&#39;, &#39;_blank&#39;)\"><h3>Lidocainhydrochlorid-Suppositorien mit Kamillenöl 20 mg – JUN 02.04. (V) <\/h3> <br/> c(\"Lidocainhydrochlorid\", \"Kamillenöl\", \"Hartfett\")<\/button>\n<button id=\"button-Lidocainhydrochlorid-Suppositorien 20 mg/40 mg – JUN 02.03. (V)\" type=\"button\" class=\"btn btn-default action-button\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/28&#39;, &#39;_blank&#39;)\"><h3>Lidocainhydrochlorid-Suppositorien 20 mg/40 mg – JUN 02.03. (V) <\/h3> <br/> c(\"Lidocainhydrochlorid\", \"Hartfett\")<\/button>\n<button id=\"button-Hämorrhoidenzäpfchen – JUN 02.08. (III)\" type=\"button\" class=\"btn btn-default action-button\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/31&#39;, &#39;_blank&#39;)\"><h3>Hämorrhoidenzäpfchen – JUN 02.08. (III) <\/h3> <br/> c(\"Ichthyol (R)\", \"Lauromacrogol 400\", \"Zinkoxid\", \"Hartfett\")<\/button>\n<button id=\"button-Kümmelzäpfchen mit Kamille – JUN 02.34. (V)\" type=\"button\" class=\"btn btn-default action-button\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/47&#39;, &#39;_blank&#39;)\"><h3>Kümmelzäpfchen mit Kamille – JUN 02.34. (V) <\/h3> <br/> c(\"Kamillenfluidextrakt\", \"Kümmelöl\", \"Siliciumdioxid / Hochdisperses\", \"Hartfett\")<\/button>\n<button id=\"button-Noscapinhydrochlorid-Suppositorien 5 mg/10 mg – JUN 06.03. (II)\" type=\"button\" class=\"btn btn-default action-button\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/132&#39;, &#39;_blank&#39;)\"><h3>Noscapinhydrochlorid-Suppositorien 5 mg/10 mg – JUN 06.03. (II) <\/h3> <br/> c(\"Noscapinhydrochlorid\", \"Hartfett\")<\/button>\n<button id=\"button-Prednisolon-Suppositorien 30 mg/100 mg – JUN 06.04. (V)\" type=\"button\" class=\"btn btn-default action-button\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/133&#39;, &#39;_blank&#39;)\"><h3>Prednisolon-Suppositorien 30 mg/100 mg – JUN 06.04. (V) <\/h3> <br/> c(\"Prednisolon\", \"Hartfett\")<\/button>\n<button id=\"button-Thymian Suppositorien – JUN 06.10. (V)\" type=\"button\" class=\"btn btn-default action-button\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/138&#39;, &#39;_blank&#39;)\"><h3>Thymian Suppositorien – JUN 06.10. (V) <\/h3> <br/> c(\"Thymianöl\", \"Hartfett\")<\/button>\n<button id=\"button-Phenobarbital-Suppositorien 10 mg/30 mg/ 100 mg – JUN 07.14. (V)\" type=\"button\" class=\"btn btn-default action-button\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/152&#39;, &#39;_blank&#39;)\"><h3>Phenobarbital-Suppositorien 10 mg/30 mg/ 100 mg – JUN 07.14. (V) <\/h3> <br/> c(\"Phenobarbital\", \"Hartfett\")<\/button>",
+      "html": "<button id=\"button-Lidocainhydrochlorid-Suppositorien mit Kamillenöl 20 mg – JUN 02.04. (V)\" type=\"button\" class=\"btn btn-default action-button\" block=\"TRUE\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/28&#39;, &#39;_blank&#39;)\"><h3>Lidocainhydrochlorid-Suppositorien mit Kamillenöl 20 mg – JUN 02.04. (V) <\/h3> <br/> c(\"Lidocainhydrochlorid\", \"Kamillenöl\", \"Hartfett\")<\/button>\n<button id=\"button-Lidocainhydrochlorid-Suppositorien 20 mg/40 mg – JUN 02.03. (V)\" type=\"button\" class=\"btn btn-default action-button\" block=\"TRUE\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/28&#39;, &#39;_blank&#39;)\"><h3>Lidocainhydrochlorid-Suppositorien 20 mg/40 mg – JUN 02.03. (V) <\/h3> <br/> c(\"Lidocainhydrochlorid\", \"Hartfett\")<\/button>\n<button id=\"button-Hämorrhoidenzäpfchen – JUN 02.08. (III)\" type=\"button\" class=\"btn btn-default action-button\" block=\"TRUE\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/31&#39;, &#39;_blank&#39;)\"><h3>Hämorrhoidenzäpfchen – JUN 02.08. (III) <\/h3> <br/> c(\"Ichthyol (R)\", \"Lauromacrogol 400\", \"Zinkoxid\", \"Hartfett\")<\/button>\n<button id=\"button-Kümmelzäpfchen mit Kamille – JUN 02.34. (V)\" type=\"button\" class=\"btn btn-default action-button\" block=\"TRUE\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/47&#39;, &#39;_blank&#39;)\"><h3>Kümmelzäpfchen mit Kamille – JUN 02.34. (V) <\/h3> <br/> c(\"Kamillenfluidextrakt\", \"Kümmelöl\", \"Siliciumdioxid / Hochdisperses\", \"Hartfett\")<\/button>\n<button id=\"button-Noscapinhydrochlorid-Suppositorien 5 mg/10 mg – JUN 06.03. (II)\" type=\"button\" class=\"btn btn-default action-button\" block=\"TRUE\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/132&#39;, &#39;_blank&#39;)\"><h3>Noscapinhydrochlorid-Suppositorien 5 mg/10 mg – JUN 06.03. (II) <\/h3> <br/> c(\"Noscapinhydrochlorid\", \"Hartfett\")<\/button>\n<button id=\"button-Prednisolon-Suppositorien 30 mg/100 mg – JUN 06.04. (V)\" type=\"button\" class=\"btn btn-default action-button\" block=\"TRUE\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/133&#39;, &#39;_blank&#39;)\"><h3>Prednisolon-Suppositorien 30 mg/100 mg – JUN 06.04. (V) <\/h3> <br/> c(\"Prednisolon\", \"Hartfett\")<\/button>\n<button id=\"button-Thymian Suppositorien – JUN 06.10. (V)\" type=\"button\" class=\"btn btn-default action-button\" block=\"TRUE\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/138&#39;, &#39;_blank&#39;)\"><h3>Thymian Suppositorien – JUN 06.10. (V) <\/h3> <br/> c(\"Thymianöl\", \"Hartfett\")<\/button>\n<button id=\"button-Phenobarbital-Suppositorien 10 mg/30 mg/ 100 mg – JUN 07.14. (V)\" type=\"button\" class=\"btn btn-default action-button\" block=\"TRUE\" onclick=\"window.open(&#39;http://juniormed.at/pdf/#kompendium/152&#39;, &#39;_blank&#39;)\"><h3>Phenobarbital-Suppositorien 10 mg/30 mg/ 100 mg – JUN 07.14. (V) <\/h3> <br/> c(\"Phenobarbital\", \"Hartfett\")<\/button>",
       "deps": [
 
       ]
@@ -214,7 +215,8 @@
         "shiny.silent.error",
         "validation"
       ]
-    }
+    },
+    "rezeptpflicht": null
   },
   "export": {
 

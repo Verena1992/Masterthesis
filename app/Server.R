@@ -20,7 +20,8 @@ rezeptpflichtDS <- readRDS("./data/Rezeptpflicht/rezeptpflicht.rds")
 #eclude one substance with a open bracket in the name
 rezeptpflichtDS <- rezeptpflichtDS[-1605,]
 taxe_eko <- readRDS("./data/Arzneitaxe/Arzneitaxe_eko.rds")
-
+dosierung_lokal <- read.delim2("./data/NRF/Dosierung der Wirkstoffe zur Lokalanwendung.txt", header=FALSE)
+bedenkliche_St <- read.delim("./data/bedenkliche_Substanzen/bedenkliche_St.txt")
 
 # generate empty vectors --------------------------------------------------
 Wirkstoff <- c()
@@ -410,17 +411,12 @@ server <- function(input, output, session) {
     outputOptions(output, "enf_kc", suspendWhenHidden = FALSE)
     
     
-   # output$kc <- renderText({
-  #    kc$element_not_found()
- #   })
   })
   
- # kc <- kompatibilitätscheckServer("Salbenfibel", isolate(Bestandteile()))
+
   
   
-#  output$kc <- renderText({
-#        kc$element_not_found()
-#      })
+
   
   
 # Hartfettmengenrechner --------------------------------------------------------------------------  
@@ -612,7 +608,7 @@ server <- function(input, output, session) {
 
 # bedenkliche Stoffe-------------------------------------------------------------------------
   
-bedenkliche_St <- read.delim("./data/bedenkliche_Substanzen/bedenkliche_St.txt")
+
 
 
 #https://stackoverflow.com/questions/54677043/unable-to-pass-user-inputs-into-r-shiny-modules
@@ -648,50 +644,33 @@ observe({
     Bestandteile <- Bestandteile()
     ds <- dosierungServer("dosierung", Bestandteile())
     
+    #gelber Button wenn Dosierungsinformationen über ein Bestandteil vorhanden sind 
     output$dosierung <- renderUI({
       Bestandteile <- Bestandteile()
       if (!is.null(Bestandteile())){
-        dosierung_lokal <- read.delim2("./data/NRF/Dosierung der Wirkstoffe zur Lokalanwendung.txt", header=FALSE)
         if(!is_empty(intersect(dosierung_lokal$V1, Bestandteile()))){
             tagList(
               tags$hr(),
             big_yellow_button("dosierung", "Dosierung der ausgewählten Rezeptur prüfen"))
-        }}
+        }
+      }
     })
         
       output$limits <- renderText({
         req(ds$not_within_con())
-      #  ds$not_within_con()
         if(ds$not_within_con()){
           "Achtung!"
         }
       })
-      outputOptions(output, "limits", suspendWhenHidden = FALSE)
       
-     # })
-    
-    
-    
-    
-    
-    
-    # if(ds$not_within_con()){
-    #   browser()
-    #   output$limits <- renderText({
-    #     "ljkl"
-    #   })
-    #   outputOptions(output, "limits", suspendWhenHidden = FALSE)
-    # }
-    # output$limits <- renderText({
-    #   ds$not_within_con()
-    # })
-    # 
-    # outputOptions(output, "enf_kc", suspendWhenHidden = FALSE)
+      outputOptions(output, "limits", suspendWhenHidden = FALSE)
     
 })
 
+    
+    
 }
-# Hilfen------------------------------------------------------------------
+
 
 
 

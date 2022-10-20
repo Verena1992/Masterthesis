@@ -85,7 +85,7 @@ createVerdrängungsfaktorenUI <- function(id) {
                          bsButton(NS(id,"q1"), label = "", icon = icon("question"), style = "info", size = "extra-small")
               )),
     bsPopover(NS(id,"q1"), title = "NRF - Verdrängungsfaktoren",
-              content = paste0("lade die heruntergeladene AnlageF aus dem NRF (als pdf) hoch, um Sie Ihrer internen Sammlung hinzuzufügen,"
+              content = paste0("lade die heruntergeladene AnlageF aus dem NRF (als pdf) hoch, um Sie Ihrer internen Sammlung hinzuzufügen."
               ),
               placement = "right", 
               trigger = "focus")

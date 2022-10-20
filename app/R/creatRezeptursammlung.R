@@ -36,7 +36,7 @@ createRezeptursammlungUI <- function(id) {
                          
                          ), accept = ".zip"),
     bsPopover(NS(id,"q1"), title = "interne Sammlung",
-              content = paste0("lade deine eigene Sammlung an Rezepturen, Herstellungshinweise und Verdrängungsfaktoren als zip Ordner hoch. Haben Sie noch keine Sammlung? Dann klicken Sie auf erstellen"
+              content = paste0("lade deine eigene Sammlung an Rezepturen, Herstellungshinweise und Verdrängungsfaktoren als zip Ordner hoch. Haben Sie noch keine Sammlung? Dann klicken Sie auf: interne Rezeptursammlung erstellen"
               ),
               placement = "right", 
               trigger = "focus"),
