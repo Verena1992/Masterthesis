@@ -20,7 +20,6 @@ Hauptfunktionen der App sind:
 1. Rezepturen und deren Herstellungsvorschriften in einer Rezepturensammlung zu suchen
 2. Rezepturen automatisiert zu überprüfen
 3. Hartfettmenge berechnen
-4. 
 
 Die in der App integrierte Rezepturensammlung besteht aus den JUNIORMED Rezepturen. 
 Weiters ist es möglich eigene Rezepturen zu dieser Sammlung hinzuzufügen. 
