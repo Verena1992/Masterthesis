@@ -12,7 +12,6 @@ library(purrr)
 library(shinyBS)
 library(pdftools)
 library(shinytest)
-#library(knitr)
 
 # load data ---------------------------------------------------------------
 
@@ -64,10 +63,8 @@ server <- function(input, output, session) {
   
   #3.1.Rezeptursammlung Zusammensetzung
   updated_Rezeptur_Zusam <- reactive({
-  #  browser()
     new_Rezeptur_Zusam <- new_Rezeptur_Zusam$Substanzen()
     interne_Rezeptursammlung <- rz$interne_Rezeptursammlung()[,-3]
-   # interne_Rezeptursammlung <- interne_Rezeptursammlung()
     titel <- rep(new_Herstellungshinweis()[1], length(new_Rezeptur_Zusam))
     new_Rezeptur_Zusam_df <- cbind(titel, new_Rezeptur_Zusam)
     colnames(new_Rezeptur_Zusam_df) <- c("V1", "V2")
@@ -79,11 +76,9 @@ server <- function(input, output, session) {
   updated_Herstellungshinweise <- reactive({
     new_Herstellungshinweis <- new_Herstellungshinweis()
     interne_Herstellungshinweise <- rz$interne_Herstellungshinweise()
-    #interne_Herstellungshinweise <- interne_Herstellungshinweise()
     titel <- c("Titel", "Herstellungshinweise", "Quelle", "Dosierung",
                "Haltbarkeit", "Lagerung", "Anwendung")
     colnames(interne_Herstellungshinweise) <- titel
-
     updated_Herstellungshinweise <- rbind(new_Herstellungshinweis,interne_Herstellungshinweise[-1,])
     updated_Herstellungshinweise
   })
@@ -134,28 +129,24 @@ server <- function(input, output, session) {
       # permission to the current working directory
       owd <- setwd(tempdir())
       on.exit(setwd(owd))
-      #setwd(tempdir())
       
       
       fs <- c("Rezeptur_Zusa", "Herstellungshinweise", "Verdrängungsfaktoren")
       if (rezepturhinweiseServer("textAreas")[1] == ""){
-       
-      #  vroom::vroom_write(interne_Rezeptursammlung(), 
-       #                    "Rezeptur_Zusa", delim = "\t")
+ 
         vroom::vroom_write(rz$interne_Rezeptursammlung()[,-3], 
                            "Rezeptur_Zusa", delim = "\t")
         
       
         vroom::vroom_write(interne_Herstellungshinweise[-1,], 
-       # vroom::vroom_write(interne_Herstellungshinweise[-1,], 
                            "Herstellungshinweise", delim = ";")
       } else {
-       # browser()
         vroom::vroom_write(updated_Rezeptur_Zusam(), 
                            "Rezeptur_Zusa", delim = "\t")
         vroom::vroom_write(updated_Herstellungshinweise(), 
                            "Herstellungshinweise", delim = ";")
-        }
+      }
+      
       if (input$Substanz_hinzufügen | input$Substanz_hinzufügen2 | input$Substanz_hinzufügen3){
       vroom::vroom_write(updated_Verdrängungsfaktoren(), 
                          "Verdrängungsfaktoren", delim = "\t")
@@ -183,10 +174,11 @@ server <- function(input, output, session) {
   
   
    observe({
+     #es kann Arzneimittel aus der Rezeptursammlungsammlung und Arzneitaxe ausgewählt werden 
      data <- sort(c(rz$rezeptursammlung()$V2,taxe_eko$wirkstoffe_arzneitaxe))
-    updateSelectizeInput(session, inputId = "zusammensetzungRezep", choices = data ,server = TRUE
-                       )
+     updateSelectizeInput(session, inputId = "zusammensetzungRezep", choices = data ,server = TRUE)
    })
+  
   
   r <- reactiveValues(found = 1)
   
@@ -208,52 +200,46 @@ server <- function(input, output, session) {
     Bestandteile_ex <- foundRezepturenButtonServer("button",input$zusammensetzungRezep, rz$rezeptursammlung(), rz$datapath())}
   })
     
-    erstattungsstatus <- reactive({
-      Bestandteile <- Bestandteile()
-      box <- taxe_eko[taxe_eko$wirkstoffe_arzneitaxe %in% Bestandteile(),]$box
-    })
+  erstattungsstatus <- reactive({
+    Bestandteile <- Bestandteile()
+    box <- taxe_eko[taxe_eko$wirkstoffe_arzneitaxe %in% Bestandteile(),]$box
+  })
   
-    output$erstattungscheck <- renderUI({
-      Bestandteile <- Bestandteile()
-      if (!is.null(Bestandteile())){
-      box <- erstattungsstatus()
-        if(all(box == "grün") & (length(box) == length(Bestandteile()))){
-          tagList(
-          tags$hr(),
-          big_green_button("erstattungsfähigkeit", "Erstattungsfähigkeit der ausgewählten Rezeptur prüfen"))
-        } else {
-          tagList(
-          tags$hr(),
-          big_red_button("erstattungsfähigkeit", "Achtung! Kontrolliere Erstattungsfähigkeit der ausgewählten Rezeptur"))
-        }
+  output$erstattungscheck <- renderUI({
+    Bestandteile <- Bestandteile()
+    if (!is.null(Bestandteile())){
+    box <- erstattungsstatus()
+      if(all(box == "grün") & (length(box) == length(Bestandteile()))){
+        tagList(
+        tags$hr(),
+        big_green_button("erstattungsfähigkeit", "Erstattungsfähigkeit der ausgewählten Rezeptur prüfen"))
+      } else {
+        tagList(
+        tags$hr(),
+        big_red_button("erstattungsfähigkeit", "Achtung! Kontrolliere Erstattungsfähigkeit der ausgewählten Rezeptur"))
       }
-    })
+    }
+  })
     
- 
     
     output$hartfettberechnen <- renderUI({
       Bestandteile <- Bestandteile()
       if (!is.null(Bestandteile())){
-        
         if(is.element("Hartfett", Bestandteile())){
           tagList(
             tags$hr(),
-          big_yellow_button("hartfettberechner", "Hartfettmenge der ausgewählten Rezeptur berechnen"))
-         
+            big_yellow_button("hartfettberechner", "Hartfettmenge der ausgewählten Rezeptur berechnen"))
         }
-        
       }
     })
     
-  
-      
-        output$bedenklicher_Stoff <- renderUI({
-          if (!is_empty(bs$bedenkliche_Substanz())){
-            tagList(
-              tags$hr(),
-            big_red_button("bedenklich", "ein bedenklicher Stoff wurde eingegeben!!"))
-          }
-        })
+    output$bedenklicher_Stoff <- renderUI({
+      if (!is_empty(bs$bedenkliche_Substanz())){
+        tagList(
+          tags$hr(),
+          big_red_button("bedenklich", "ein bedenklicher Stoff wurde eingegeben!!"))
+      }
+    })
       
     
    
@@ -286,10 +272,8 @@ server <- function(input, output, session) {
     })
     
     
-    
     observeEvent(input$reset_ec,{
       reset("zusammensetzungRezep")
-      
     })
   
 
@@ -297,11 +281,9 @@ server <- function(input, output, session) {
 # neue_Zusammensetzung_Rezeptur----------------------------------------------------------------------------------------------------
   
   #show tab only if zip file is uploaded
-  #hide("download_newRezeptur")
   hideTab("inTabset", "neue_Zusammensetzung_Rezeptur")
   observeEvent(rz$datapath(), {
     showTab("inTabset", "neue_Zusammensetzung_Rezeptur");
-   # show("download_newRezeptur")
   })
 
   
@@ -343,10 +325,8 @@ server <- function(input, output, session) {
   
   observe({
     Bestandteile <- Bestandteile()
-    
-     # erstattungscheckServer("ec", taxe_eko, Bestandteile())
-      
       esc <-  erstattungscheckServer("ec", taxe_eko, Bestandteile())
+      
       output$enf <- renderText({
         esc$element_not_found()
       })
@@ -359,12 +339,6 @@ server <- function(input, output, session) {
       outputOptions(output, "eng", suspendWhenHidden = FALSE)
   })
   
-
-
-  
-  #esc <-  erstattungscheckServer("ec", taxe_eko, Bestandteile())
-  
-
   
 
 # Kompatibilitätscheck---------------------------------------------------------
@@ -378,7 +352,6 @@ server <- function(input, output, session) {
       if (!is.null(Bestandteile())){
         Salbengrundlage <- c("Ultrasicc (R)", "Ultraphil (R)", "Ultrabas (R)", "Ultralip (R)")
         if(!is_empty(intersect(Salbengrundlage, Bestandteile()))){
-         # browser()
           if(!is_empty(kc$element_not_kompatibel())){
             tagList(
               tags$hr(),
@@ -389,7 +362,6 @@ server <- function(input, output, session) {
             tags$hr(),
             big_yellow_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen"))
             }
-          
           else if (kc$kompatibel() == TRUE){
             tagList(
               tags$hr(),
@@ -400,29 +372,21 @@ server <- function(input, output, session) {
             big_yellow_button("kompatibilitätscheck", "Kompatibilität der ausgewählten Rezeptur prüfen"))
           }
         }
-
       }
     })
     
     output$enf_kc <- renderText({
       kc$element_not_found()
     })
-    
     outputOptions(output, "enf_kc", suspendWhenHidden = FALSE)
-    
-    
+
   })
   
 
   
-  
-
-  
-  
 # Hartfettmengenrechner --------------------------------------------------------------------------  
+  
   observe({
-    #Bestandteile <- Bestandteile()
-    #req(rz$datapath())
     dataSet <- data_Verdrän()
     if(!is.null(dataSet())){
     updateSelectizeInput(session, "WS_S", choices = c(dataSet()$Wirkstoff, "Substanz nicht in Liste vorhanden"))
@@ -430,7 +394,6 @@ server <- function(input, output, session) {
   })
   
   observe({
-    #req(rz$datapath())
     dataSet <- data_Verdrän()
     if(!is.null(dataSet())){
     updateSelectizeInput(session, "WS_S2", choices = c(dataSet()$Wirkstoff, "Substanz nicht in Liste vorhanden"))
@@ -438,7 +401,6 @@ server <- function(input, output, session) {
   })
   
   observe({
-    #req(rz$datapath())
     dataSet <- data_Verdrän()
     if(!is.null(dataSet())){
     updateSelectizeInput(session, "WS_S3", choices = c(dataSet()$Wirkstoff, "Substanz nicht in Liste vorhanden"))
@@ -501,7 +463,6 @@ server <- function(input, output, session) {
   })
   
   
-  
   updateSelectizeInput(session, "New_Substanz", choices = taxe_eko$wirkstoffe_arzneitaxe, server = TRUE)
   updateSelectizeInput(session, "New_Substanz2", choices = taxe_eko$wirkstoffe_arzneitaxe, server = TRUE)
   updateSelectizeInput(session, "New_Substanz3", choices = taxe_eko$wirkstoffe_arzneitaxe, server = TRUE)
@@ -516,28 +477,29 @@ server <- function(input, output, session) {
   })
   
   observeEvent(input$Berechnung_Menge,{
-      shinyalert(
-        html = TRUE,
-        title = "Berechnete Einwaagen(g)",
-        text = tagList(
-         
-          tags$h3("Hartfett:"),
-          textOutput("nötige_Hartfettmenge", inline = T),
-          tags$hr(),
-          tags$h3("Substanz 1:"),
-          textOutput("nötige_Substanzmenge1", inline = T),
-          tags$hr(),
-          if(input$weitere_Substanz > input$Substanz2_entfernen){
-            tags$h3("Substanz 2:")},
-          if(input$weitere_Substanz > input$Substanz2_entfernen){
-            textOutput("nötige_Substanzmenge2", inline = T)},
-          if(input$weitere_Substanz2 > input$Substanz3_entfernen){
-            tags$hr()},          
-          if(input$weitere_Substanz2 > input$Substanz3_entfernen){
-            tags$h3("Substanz 3:")},
-          if(input$weitere_Substanz2 > input$Substanz3_entfernen){
-            textOutput("nötige_Substanzmenge3", inline = T)}         
-          ))})
+    shinyalert(
+      html = TRUE,
+      title = "Berechnete Einwaagen(g)",
+      text = tagList(
+        tags$h3("Hartfett:"),
+        textOutput("nötige_Hartfettmenge", inline = T),
+        tags$hr(),
+        tags$h3("Substanz 1:"),
+        textOutput("nötige_Substanzmenge1", inline = T),
+        tags$hr(),
+        if(input$weitere_Substanz > input$Substanz2_entfernen){
+          tags$h3("Substanz 2:")},
+        if(input$weitere_Substanz > input$Substanz2_entfernen){
+          textOutput("nötige_Substanzmenge2", inline = T)},
+        if(input$weitere_Substanz2 > input$Substanz3_entfernen){
+          tags$hr()},          
+        if(input$weitere_Substanz2 > input$Substanz3_entfernen){
+          tags$h3("Substanz 3:")},
+        if(input$weitere_Substanz2 > input$Substanz3_entfernen){
+          textOutput("nötige_Substanzmenge3", inline = T)}         
+      )
+    )
+  })
   
   
   
@@ -615,24 +577,23 @@ server <- function(input, output, session) {
 #when passing global user input to a shiny module. It seems it will "break" the reactivity. You can fix this my explicitly passing in a reactive object. 
 bs <- bedenklichStServer("arzneimittelkommission", Rezepturzusammensetzung = reactive(input$zusammensetzungRezep), bedenkliche_St)
  
-    output$bedenklicheSt <- renderUI({
+  output$bedenklicheSt <- renderUI({
     Bestandteile <- Bestandteile()
     if (!is.null(Bestandteile())){
-
-    if(!is_empty(intersect(bedenkliche_St$Stoffe, Bestandteile()))){
-      hide("bedenklicher_Stoff")
-      bedenk <- intersect(bedenkliche_St$Stoffe, Bestandteile())
-      if(length(bedenk) == 1){
-        tagList(
-          tags$hr(),
-      big_red_button("bedenkliche_RZ", paste0("ausgewählte Rezeptur enthält ",bedenk," als bedenkliche Substanz")))
-      } else {
-        tagList(
-          tags$hr(),
-        big_red_button("bedenkliche_RZ", paste0("ausgewählte Rezeptur enthält mehrere bedenkliche Substanzen")))
-      }
+      if(!is_empty(intersect(bedenkliche_St$Stoffe, Bestandteile()))){
+        hide("bedenklicher_Stoff")
+        bedenk <- intersect(bedenkliche_St$Stoffe, Bestandteile())
+        if(length(bedenk) == 1){
+          tagList(
+            tags$hr(),
+            big_red_button("bedenkliche_RZ", paste0("ausgewählte Rezeptur enthält ",bedenk," als bedenkliche Substanz")))
+        } else {
+          tagList(
+            tags$hr(),
+            big_red_button("bedenkliche_RZ", paste0("ausgewählte Rezeptur enthält mehrere bedenkliche Substanzen")))
+        }
     }}
-    })
+  })
 
   
   
@@ -641,30 +602,29 @@ bs <- bedenklichStServer("arzneimittelkommission", Rezepturzusammensetzung = rea
 # dosierung------------------------------------------------------------------------------
   
 observe({
+  Bestandteile <- Bestandteile()
+  ds <- dosierungServer("dosierung", Bestandteile())
+    
+  #gelber Button wenn Dosierungsinformationen über ein Bestandteil vorhanden sind 
+  output$dosierung <- renderUI({
     Bestandteile <- Bestandteile()
-    ds <- dosierungServer("dosierung", Bestandteile())
-    
-    #gelber Button wenn Dosierungsinformationen über ein Bestandteil vorhanden sind 
-    output$dosierung <- renderUI({
-      Bestandteile <- Bestandteile()
-      if (!is.null(Bestandteile())){
-        if(!is_empty(intersect(dosierung_lokal$V1, Bestandteile()))){
-            tagList(
-              tags$hr(),
-            big_yellow_button("dosierung", "Dosierung der ausgewählten Rezeptur prüfen"))
-        }
+    if (!is.null(Bestandteile())){
+      if(!is_empty(intersect(dosierung_lokal$V1, Bestandteile()))){
+        tagList(
+          tags$hr(),
+          big_yellow_button("dosierung", "Dosierung der ausgewählten Rezeptur prüfen"))
       }
-    })
+    }
+  })
         
-      output$limits <- renderText({
-        req(ds$not_within_con())
-        if(ds$not_within_con()){
-          "Achtung!"
-        }
-      })
+  output$limits <- renderText({
+    req(ds$not_within_con())
+    if(ds$not_within_con()){
+      "Achtung!"
+    }
+  })
       
-      outputOptions(output, "limits", suspendWhenHidden = FALSE)
-    
+  outputOptions(output, "limits", suspendWhenHidden = FALSE)
 })
 
     
