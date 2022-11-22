@@ -11,13 +11,15 @@ library(shinyBS)
 library(pdftools)
 library(DT)
 
-#---------------------------------------------------------------------------------------------------
+#UI-----------------------------------------------------
+
 bedenklichStUI <- function(id) {
   tagList(
     DT::dataTableOutput(NS(id,"mytable"))
   )
 }
 
+#Server-------------------------------------------------
 
 bedenklichStServer <- function(id, Rezepturzusammensetzung, bedenkliche_St) {
   moduleServer(

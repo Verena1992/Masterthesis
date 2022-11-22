@@ -39,10 +39,12 @@ addRezepturUI <- function(id) {
 
 addRezepturServer <- function(id, taxe_eko) {
   moduleServer(id, function(input, output, session) {
-    #Internal functions,  function needs to use input, output, or session it may make sense 
-    #for the function to live inside the server function
     
     bedenkliche_St <- read.delim("./data/bedenkliche_Substanzen/bedenkliche_St.txt")
+    
+    
+    #Internal functions,  function needs to use input, output, or session it may make sense 
+    #for the function to live inside the server function
     Substanzauswahl_server <- function(id){
       updateSelectizeInput(session, id, choices = c(taxe_eko$wirkstoffe_arzneitaxe,bedenkliche_St$Stoffe) , server = TRUE)
     }
@@ -55,10 +57,8 @@ addRezepturServer <- function(id, taxe_eko) {
        Substanzen
      })   
      
+     
      bedenkliche_Substanz <- reactive({
-       
-      # browser()
-       #is.element(Rezepturzusammensetzung, bedenkliche_St$Stoffe)
        bedenkliche_Substanz <- intersect(c(input[["1"]],input[["2"]], input[["3"]], input[["4"]], input[["5"]]), bedenkliche_St$Stoffe)
        bedenkliche_Substanz
      })

@@ -6,6 +6,7 @@
 
 # inputs: ./data/Rezeptursammlung/Juniormed/Rezeptursammlung.txt, optional(interner zip ordner containing a Rezeptursammlung)
 # outputs: rezeptursammlungdataset and optional(datapath from uploaded interner Ordner)
+
 library(shiny)
 library(readr)
 library(vroom)
@@ -33,7 +34,6 @@ createRezeptursammlungUI <- function(id) {
               label = h4("interne Sammlung",
                          tags$style(type = "text/css", "#q1 {vertical-align: top;}"),
                          bsButton(NS(id,"q1"), label = "", icon = icon("question"), style = "info", size = "extra-small")
-                         
                          ), accept = ".zip"),
     bsPopover(NS(id,"q1"), title = "interne Sammlung",
               content = paste0("lade deine eigene Sammlung an Rezepturen, Herstellungshinweise und Verdrängungsfaktoren als zip Ordner hoch. Haben Sie noch keine Sammlung? Dann klicken Sie auf: interne Rezeptursammlung erstellen"
@@ -53,11 +53,8 @@ createRezeptursammlungServer <- function(id) {
     datapath <- reactiveVal()
     
  
-    
     observeEvent(input$neue_rzs, {
       datapath("./data/interne_Rezeptursammlung_leer.zip")
-      #shinyjs::toggleState("file")
-      #browser()
       hide("file")
     })
     

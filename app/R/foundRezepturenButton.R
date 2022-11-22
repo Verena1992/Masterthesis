@@ -35,6 +35,7 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
   moduleServer(id, function(input, output, session) {
     
     Bestandteile_ex <- reactiveVal(NULL)
+    
     #1.find Rezepturen
     Rezeptur <- reactiveVal(NULL)
     subRezepturSammlung <- reactive({subsettingRSammlung(Substanzen, Rezeptursammlung)})
@@ -66,11 +67,9 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
         lapply(1:length(Rezeptur()), function(i){
           numlines <- which(Rezeptursammlung$V1 == Rezeptur()[i])
           Bestandteile <- Rezeptursammlung$V2[numlines]
-          if ( unique(Rezeptursammlung$origin[numlines]) == 1)  {
+          if (unique(Rezeptursammlung$origin[numlines]) == 1)  {
           juniormed_pagenr <- readRDS("./data/Juniormed/juniormed_pagenr.rds")
-          
           JUN <- sub(".*JUN", "JUN", Rezeptur()[i])
-          
           src <- juniormed_pagenr[which(juniormed_pagenr$JUN == JUN),]$unlist.url_JUN.
             actionButton(ns(Rezeptur()[i]),HTML(paste0("<h3>",Rezeptur()[i]),"</h3>", "<br/>", Bestandteile), 
                          block = TRUE,
@@ -80,11 +79,8 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
             actionButton(ns(Rezeptur()[i]), HTML(paste0("<h3>",Rezeptur()[i]),"</h3>", "<br/>", Bestandteile),
                  block = TRUE        
             )
-            
           }
-                         
-                         
-          
+                        
         })
       }) 
         
@@ -111,10 +107,6 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
                 JUN <- sub(".*JUN", "JUN", Rezeptur()[i])
                
                 src <- juniormed_pagenr[which(juniormed_pagenr$JUN == JUN),]$unlist.url_JUN.
-                
-                # output$Herstellungshinweis <- renderUI({
-                #   tags$iframe(src=src, height=500, width=800 )
-                # })
               
                 
                 output$Herstellungshinweis <- renderUI({
@@ -122,7 +114,7 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
                 })
                 
                 
-              #is selected Rezeptur a Juniormed Rezeptur(1)?  
+              #is selected Rezeptur interne Rezeptur (2)?  
               } else if (unique(Rezeptursammlung$origin[numlines]) == 2){
                 show("Herstellungstext_int")
                 hide("Herstellungshinweis")
@@ -141,23 +133,20 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
                 int <-  Rezeptur()[i]
                 interne_Herstellungshinweise <- interne_Herstellungshinweise()
                 number <- which(interne_Herstellungshinweise$V1 == int)
-                print(number)
                 selected_int_Rezeptur$num <- number
         
                 table_int_sel_rezeptursammlung <- reactive({
                       number <- selected_int_Rezeptur$num
-                      
                       a <- as.data.frame(t(interne_Herstellungshinweise[c(1,number),]))
                       req(selected_int_Rezeptur$num)
                       colnames(a) <- c("Titel", interne_Herstellungshinweise[["V1"]][number])
-                      #colnames(a) <- c(unlist(interne_Herstellungshinweise[1]))
                       tab <- a[-1,]
                       tab
-                    })
+                })
 
-                  output$Herstellungstext_int <- renderTable(
-                    table_int_sel_rezeptursammlung()
-                  )
+                output$Herstellungstext_int <- renderTable(
+                  table_int_sel_rezeptursammlung()
+                )
                   
               } else {
                   print("upps")
@@ -167,13 +156,6 @@ foundRezepturenButtonServer <- function(id, Substanzen, Rezeptursammlung,datapat
           })
         
     }
-    
-    
-    # observe({
-    #   if(length(Rezeptur()) == 0){
-    #     Bestandteile_ex(NULL)
-    #   }
-    #   })
     Bestandteile_ex
   })
 }

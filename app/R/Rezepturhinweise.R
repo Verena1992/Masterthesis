@@ -8,12 +8,10 @@ library(dplyr)
 library(shinyalert)
 library(auth0)
 library(shinyWidgets)
-#library(shinyFiles)
 library(shinyjs)
 library(purrr)
 library(shinyBS)
 library(pdftools)
-#load_libraries()
 
 
 
@@ -33,7 +31,7 @@ rezepturhinweiseUI <- function(id) {
   #map() calls textAreaInput01() once for each string stored in vars. It returns a list of textAreas
   sliders <- map2(ns(vars),vars, textAreaInput01)
   
-    sliders
+  sliders
 }
 
 #Server-------------------------------------------------
